@@ -895,7 +895,7 @@ augur.markets.getMarketsInfo({
     "0x0000000000000000000000000000000000000001",
     "0x0000000000000000000000000000000000000002",
   ],
-}, function (error, result) {
+}, function (result) {
   console.log(result);
 });
 // example output:
