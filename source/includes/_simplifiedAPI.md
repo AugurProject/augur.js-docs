@@ -1454,14 +1454,14 @@ augur.reporting.getFeeWindowCurrent({
 });
 // example output:
 {
-  endTime: 1509670273,
-  feeWindow: "0x2000000000000000000000000000000000000000",
-  feeWindowId: 457,
-  startTime: 1509065473,
-  totalStake: "132",
-  participantContributions: "102",
-  participationTokens: "30",
-  universe: "0x000000000000000000000000000000000000000b",
+  feeWindowEthFees: '3655120000000000',
+  feeWindowRepStaked: '2041145160544346556955',
+  endTime: 1536192000,
+  feeWindow: '0x3c3d83f340eed2e41687da063d4ec21fa1fae687',
+  feeWindowId: 2539,
+  startTime: 1535587200,
+  universe: '0xe991247b78f937d7b69cfc00f1a487a293557677',
+  feeToken: '0x7d5f95ae3bf9470d154c3cbde22c55b1df295173'
 }
 
 augur.reporting.getFeeWindows({
