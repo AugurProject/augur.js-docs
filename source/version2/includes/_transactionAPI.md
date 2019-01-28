@@ -1355,7 +1355,7 @@ This transaction will fail if:
 #### **Parameters:**
 
 * **`p`** (Object) Parameters object.
-    * **`p._token`** (string) Ethereum address of an [ERC20Basic](https://github.com/AugurProject/augur/tree/master/packages/augur-core/source/contracts/libraries/token/ERC20Basic.sol) token contract, as a 20-byte hexadecimal value.
+    * **`p._token`** (string) Ethereum address of an [ERC20Basic](https://github.com/AugurProject/augur/blob/master/packages/augur-core/source/contracts/libraries/token/ERC20Basic.sol) token contract, as a 20-byte hexadecimal value.
     * **`p.tx`** (Object) Object containing details about how this transaction should be made.
         * **`p.tx.to`** (string) Ethereum contract address on which to call this function, as a 20-byte hexadecimal string.
         * **`p.tx.gas`** (string) Gas limit to use when submitting this transaction, as a hexadecimal string.
