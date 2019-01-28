@@ -264,7 +264,7 @@ Stop listening for blocks and block removals.
 
 Event Types
 -----------
-The following table shows the different types of events that Augur's smart contracts log to the Ethereum blockchain. In this table, the `Contract` field refers to the Solidity contract in which the event is defined ([source code](https://github.com/AugurProject/augur/tree/master/packages/augur-core) / [contract addresses](https://github.com/AugurProject/augur-contracts/blob/master/addresses.json)), and and the `Data (indexed)` field describes which event fields are indexed on the Ethereum blockchain.
+The following table shows the different types of events that Augur's smart contracts log to the Ethereum blockchain. In this table, the `Contract` field refers to the Solidity contract in which the event is defined ([source code](https://github.com/AugurProject/augur/tree/master/packages/augur-core) / [contract addresses](https://github.com/AugurProject/augur/blob/master/packages/augur-artifacts/addresses.json)), and and the `Data (indexed)` field describes which event fields are indexed on the Ethereum blockchain.
 
 Label                     | Contract                                                                                   | Event Description | Data (indexed) | Data (non-indexed)
 ------------------------- | ------------------------------------------------------------------------------------------ | ----------------- | -------------- | ------------------
