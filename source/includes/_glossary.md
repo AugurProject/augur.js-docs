@@ -304,7 +304,7 @@ A Parent Universe is a [Universe](#universe) that has spawned [Child Universes](
 
 ## Participation Token
 
-At any time during a [Fee Window](#fee-window), users can purchase Participation Tokens in exchange for [REP](#rep). Once the Fee Window ends, users can redeem their Participation Tokens for a portion of the [Reporting Fees](#reporting-fee) (in Ether) that Augur collected during that Fee Window. The more Participation Tokens a user purchases, the bigger the portion of the Reporting Fees they will receive. Users are not required to purchase Participation Tokens, but their purpose is to incentivize users to be active on Augur in the even that they will be needed, such as when a [Market](#market) [Forks](#fork).
+At any time during a [Fee Window](#fee-window), users can purchase Participation Tokens in exchange for [REP](#rep). Once the Fee Window ends, users can redeem their Participation Tokens for a portion of the [Reporting Fees](#reporting-fee) (in Ether) that Augur collected during that Fee Window. The more Participation Tokens a user purchases, the bigger the portion of the Reporting Fees they will receive. Users are not required to purchase Participation Tokens, but their purpose is to incentivize users to be active on Augur in the event that they will be needed, such as when a [Market](#market) [Forks](#fork).
 
 ## Payout Distribution Hash
 
