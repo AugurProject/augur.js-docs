@@ -2519,10 +2519,10 @@ var ethCostToCreateMarket = "0x58d15e17628000";
 var cashAddress = "0xd2ee83a8a2a904181ccfddd8292f178614062aa0";
 
 var _extraInfo = {
-  "resolutionSource": "http://www.espn.com",
-  "tags": ["college football", "football"],
-  "outcomeNames": ["Georgia", "Florida"],
-  "longDescription": ""
+  resolutionSource: "http://www.espn.com",
+  tags: ["college football", "football"],
+  outcomeNames: ["Georgia", "Florida"],
+  longDescription: ""
 };
 augur.api.Universe.createCategoricalMarket({
   _endTime: "0x5bd7e550",
@@ -2571,9 +2571,10 @@ augur.api.Universe.createChildUniverse({
 });
 
 var _extraInfo = {
-  "resolutionSource": "https://forecast.weather.gov",
-  "tags": ["San Francisco", "weather"],
-  "longDescription": ""
+  resolutionSource: "https://forecast.weather.gov",
+  tags: ["San Francisco", "weather"],
+  longDescription: "",
+  _scalarDenomination: "degrees Fahrenheit",
 };
 augur.api.Universe.createScalarMarket({
   _endTime: "0x5b39b150",
@@ -2605,9 +2606,9 @@ augur.api.Universe.createScalarMarket({
 });
 
 var _extraInfo = {
-  "resolutionSource": "https://www.spacex.com",
-  "tags": [ "SpaceX", "spaceflight" ],
-  "longDescription": "SpaceX hit a big milestone on Friday with NASA confirming on Friday that the Elon Musk-led space cargo business will launch astronauts to the International Space Station by 2017."
+  resolutionSource: "https://www.spacex.com",
+  tags: [ "SpaceX", "spaceflight" ],
+  longDescription: "SpaceX hit a big milestone on Friday with NASA confirming on Friday that the Elon Musk-led space cargo business will launch astronauts to the International Space Station by 2017."
 };
 augur.api.Universe.createYesNoMarket({
   _endTime: "0x5c2b1e00",

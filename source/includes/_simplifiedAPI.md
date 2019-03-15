@@ -515,10 +515,10 @@ Create Market Functions
 ```javascript
 // Create Market Simplified API Examples:
 var _extraInfo = {
-  "resolutionSource": "https://www.espn.com",
-  "tags": ["college football", "football"],
-  "outcomeNames": ["Georgia", "Florida"],
-  "longDescription": ""
+  resolutionSource: "https://www.espn.com",
+  tags: ["college football", "football"],
+  outcomeNames: ["Georgia", "Florida"],
+  longDescription: ""
 };
 augur.createMarket.createCategoricalMarket({
   universe: "0x1f732847fbbcc46ffe859f28e916d993b2b08831",
@@ -561,9 +561,10 @@ augur.createMarket.createCategoricalMarket({
 }
 
 var _extraInfo = {
-  "resolutionSource": "https://forecast.weather.gov",
-  "tags": ["San Francisco", "weather"],
-  "longDescription": ""
+  resolutionSource: "https://forecast.weather.gov",
+  tags: ["San Francisco", "weather"],
+  longDescription: "",
+  _scalarDenomination: "degrees Fahrenheit",
 };
 augur.createMarket.createScalarMarket({
   universe: "0x1f732847fbbcc46ffe859f28e916d993b2b08831",
@@ -608,9 +609,9 @@ augur.createMarket.createScalarMarket({
 }
 
 var _extraInfo = {
-  "resolutionSource": "https://www.nasdaq.com/symbol/msft",
-  "tags": [ "Stocks", "Microsoft" ],
-  "longDescription": ""
+  resolutionSource: "https://www.nasdaq.com/symbol/msft",
+  tags: [ "Stocks", "Microsoft" ],
+  longDescription: ""
 };
 augur.createMarket.createYesNoMarket({
   universe: "0x1f732847fbbcc46ffe859f28e916d993b2b08831",

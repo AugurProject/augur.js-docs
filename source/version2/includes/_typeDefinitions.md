@@ -168,6 +168,7 @@ Serves as an enum for the state of a Dispute Token.
 * **`resolutionSource`** (string|null) Source that should be referenced when determining the Outcome of a Market.
 * **`tags`** (Array.&lt;string>|null) Keywords used to tag the Market (maximum of 2).
 * **`longDescription`** (string|null) Additional information not included in description of the Market.
+* **`_scalarDenomination`** (string|null) Denomination used for describing the Outcome of a Scalar Market (e.g., degrees Fahrenheit, dollars, etc.) Not used when creating a Yes/No or Categorical Market.
 
 <a name="FailedTransactionsForkedMarket"></a>
 ### FailedTransactionsForkedMarket  (Object)
