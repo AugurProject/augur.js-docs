@@ -1,6 +1,6 @@
 Trading
 ========
-Augur allows anyone to create an openly tradable [Market](#market) about any upcoming event. Augur maintains an [Order Book](#order-book) for each of the Markets created. Any trader can place or take an [Order](#order) on the Market's Order Book. When placing an trade, that trade request will be [Filled](#fill-order) immediately if there is an Order on the Order Book that will fulfill it. If there is no matching Order, or if the trade request can only be partially Filled, the remainder of what wasn't filled of the trade will be placed on the Order Book as an Order. Order [Creators](#order-creator) may cancel their Order to remove it from the Order Book. Orders are executed on a "first come, first served" basis.
+Augur allows anyone to create an openly tradable [Market](#market) about any upcoming event. Augur maintains an [Order Book](#order-book) for each of the Markets created. Any trader can place or take an [Order](#order) on the Market's Order Book. When placing a trade, that trade request will be [Filled](#fill-order) immediately if there is an Order on the Order Book that will fulfill it. If there is no matching Order, or if the trade request can only be partially Filled, the remainder of what wasn't filled of the trade will be placed on the Order Book as an Order. Order [Creators](#order-creator) may cancel their Order to remove it from the Order Book. Orders are executed on a "first come, first served" basis.
 
 The Augur UI offers users the best prices first when displaying the Order Book on each Market page. Orders are never executed at a worse price than the limit price set by the trader, however they can settle for better than the limit price. Orders can also be partially filled. The UI will automatically include multiple backup/fallback Orders to attempt to fill the Order in the event that the best Order was filled before the transaction was sent. These backup/fallback Orders are always within the limit price set by the trader.
 
@@ -25,7 +25,7 @@ The Augur contracts will track the [Open Interest](#open-interest) of all Market
 
 `current_reporting_fee * (augur_open_interest * 7.5 / rep_market_cap)`
 
-The Reporting Fee will be updated once every 7 days, or once every [Fee Window](#fee-window). If updates where to occur too frequently, the Market will not have time to adjust to the new fees. If we update too infrequently, then we are at risk of the security model becoming invalid due to a sudden growth in Augur that isn't yet accounted for by the fee system.
+The Reporting Fee will be updated once every 7 days, or once every [Fee Window](#fee-window). If updates were to occur too frequently, the Market will not have time to adjust to the new fees. If we update too infrequently, then we are at risk of the security model becoming invalid due to a sudden growth in Augur that isn't yet accounted for by the fee system.
 
 Settlement Fees are extracted anytime [Settlement](#settlement) occurs and Shares are destroyed. This can happen for two reasons:
 

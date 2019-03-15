@@ -304,7 +304,7 @@ A Parent Universe is a [Universe](#universe) that has spawned [Child Universes](
 
 ## Participation Token
 
-At any time during a [Fee Window](#fee-window), users can purchase Participation Tokens in exchange for [REP](#rep). Once the Fee Window ends, users can redeem their Participation Tokens for a portion of the [Reporting Fees](#reporting-fee) (in Ether) that Augur collected during that Fee Window. The more Participation Tokens a user purchases, the bigger the portion of the Reporting Fees they will receive. Users are not required to purchase Participation Tokens, but their purpose is to incentivize users to be active on Augur in the even that they will be needed, such as when a [Market](#market) [Forks](#fork).
+At any time during a [Fee Window](#fee-window), users can purchase Participation Tokens in exchange for [REP](#rep). Once the Fee Window ends, users can redeem their Participation Tokens for a portion of the [Reporting Fees](#reporting-fee) (in Ether) that Augur collected during that Fee Window. The more Participation Tokens a user purchases, the bigger the portion of the Reporting Fees they will receive. Users are not required to purchase Participation Tokens, but their purpose is to incentivize users to be active on Augur in the event that they will be needed, such as when a [Market](#market) [Forks](#fork).
 
 ## Payout Distribution Hash
 
@@ -413,7 +413,7 @@ A Topic is a keyword used to categorize [Markets](#market). All Markets must hav
 
 ## Universe
 
-All [Markets](#market) created on Augur belong to a Universe. Augur has only one Universe at launch (the [Genesis Universe]), but more can be created in the rare event of a [Fork](#fork). The Universe in which a Fork occurs will become a [Locked Universe](#locked-universe) and new [Child Universes](#child-universes) will be created, one for each [Outcome](#outcome) of the [Forked Market](#forked-market). Once a [Fork Phase](#fork-period) begins, [REP](#rep) holders can choose to migrate their REP to one of the new Child Universes. They don't have to migrate, but Locked Universes do not allow the creation of new Markets, and therefore there will be no Markets to [Report](#report) on in the future and no [Fees](#reporting-fees) to earn. All Child Universes can continue to operate after the [Fork Phase](#fork-period) ends.
+All [Markets](#market) created on Augur belong to a Universe. Augur has only one Universe at launch (the [Genesis Universe](#genesis-universe)), but more can be created in the rare event of a [Fork](#fork). The Universe in which a Fork occurs will become a [Locked Universe](#locked-universe) and new [Child Universes](#child-universes) will be created, one for each [Outcome](#outcome) of the [Forked Market](#forked-market). Once a [Fork Phase](#fork-period) begins, [REP](#rep) holders can choose to migrate their REP to one of the new Child Universes. They don't have to migrate, but Locked Universes do not allow the creation of new Markets, and therefore there will be no Markets to [Report](#report) on in the future and no [Fees](#reporting-fees) to earn. All Child Universes can continue to operate after the [Fork Phase](#fork-period) ends.
 
 ## Validity Bond
 
