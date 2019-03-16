@@ -164,7 +164,7 @@ The <code>--ws</code> flag allows WebSocket connections, which are recommended f
 
           <h1 id="trading">Trading</h1>
 
-<p>Augur allows anyone to create an openly tradable <a href="#market">Market</a> about any upcoming event. Augur maintains an <a href="#order-book">Order Book</a> for each of the Markets created. Any trader can place or take an <a href="#order">Order</a> on the Market&rsquo;s Order Book. When placing an trade, that trade request will be <a href="#fill-order">Filled</a> immediately if there is an Order on the Order Book that will fulfill it. If there is no matching Order, or if the trade request can only be partially Filled, the remainder of what wasn&rsquo;t filled of the trade will be placed on the Order Book as an Order. Order <a href="#order-creator">Creators</a> may cancel their Order to remove it from the Order Book. Orders are executed on a &ldquo;first come, first served&rdquo; basis.</p>
+<p>Augur allows anyone to create an openly tradable <a href="#market">Market</a> about any upcoming event. Augur maintains an <a href="#order-book">Order Book</a> for each of the Markets created. Any trader can place or take an <a href="#order">Order</a> on the Market&rsquo;s Order Book. When placing a trade, that trade request will be <a href="#fill-order">Filled</a> immediately if there is an Order on the Order Book that will fulfill it. If there is no matching Order, or if the trade request can only be partially Filled, the remainder of what wasn&rsquo;t filled of the trade will be placed on the Order Book as an Order. Order <a href="#order-creator">Creators</a> may cancel their Order to remove it from the Order Book. Orders are executed on a &ldquo;first come, first served&rdquo; basis.</p>
 
 <p>The Augur UI offers users the best prices first when displaying the Order Book on each Market page. Orders are never executed at a worse price than the limit price set by the trader, however they can settle for better than the limit price. Orders can also be partially filled. The UI will automatically include multiple backup/fallback Orders to attempt to fill the Order in the event that the best Order was filled before the transaction was sent. These backup/fallback Orders are always within the limit price set by the trader.</p>
 
@@ -188,7 +188,7 @@ The <code>--ws</code> flag allows WebSocket connections, which are recommended f
 
 <p><code class="prettyprint">current_reporting_fee * (augur_open_interest * 7.5 / rep_market_cap)</code></p>
 
-<p>The Reporting Fee will be updated once every 7 days, or once every <a href="#fee-window">Fee Window</a>. If updates where to occur too frequently, the Market will not have time to adjust to the new fees. If we update too infrequently, then we are at risk of the security model becoming invalid due to a sudden growth in Augur that isn&rsquo;t yet accounted for by the fee system.</p>
+<p>The Reporting Fee will be updated once every 7 days, or once every <a href="#fee-window">Fee Window</a>. If updates were to occur too frequently, the Market will not have time to adjust to the new fees. If we update too infrequently, then we are at risk of the security model becoming invalid due to a sudden growth in Augur that isn&rsquo;t yet accounted for by the fee system.</p>
 
 <p>Settlement Fees are extracted anytime <a href="#settlement">Settlement</a> occurs and Shares are destroyed. This can happen for two reasons:</p>
 
@@ -1314,10 +1314,10 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
 <h2 id="create-market-functions">Create Market Functions</h2>
 <div class="highlight"><pre class="highlight javascript"><code><span class="c1">// Create Market Simplified API Examples:</span>
 <span class="kd">var</span> <span class="nx">_extraInfo</span> <span class="o">=</span> <span class="p">{</span>
-  <span class="s2">"resolutionSource"</span><span class="p">:</span> <span class="s2">"https://www.espn.com"</span><span class="p">,</span>
-  <span class="s2">"tags"</span><span class="p">:</span> <span class="p">[</span><span class="s2">"college football"</span><span class="p">,</span> <span class="s2">"football"</span><span class="p">],</span>
-  <span class="s2">"outcomeNames"</span><span class="p">:</span> <span class="p">[</span><span class="s2">"Georgia"</span><span class="p">,</span> <span class="s2">"Florida"</span><span class="p">],</span>
-  <span class="s2">"longDescription"</span><span class="p">:</span> <span class="s2">""</span>
+  <span class="na">resolutionSource</span><span class="p">:</span> <span class="s2">"https://www.espn.com"</span><span class="p">,</span>
+  <span class="na">tags</span><span class="p">:</span> <span class="p">[</span><span class="s2">"college football"</span><span class="p">,</span> <span class="s2">"football"</span><span class="p">],</span>
+  <span class="na">outcomeNames</span><span class="p">:</span> <span class="p">[</span><span class="s2">"Georgia"</span><span class="p">,</span> <span class="s2">"Florida"</span><span class="p">],</span>
+  <span class="na">longDescription</span><span class="p">:</span> <span class="s2">""</span>
 <span class="p">};</span>
 <span class="nx">augur</span><span class="p">.</span><span class="nx">createMarket</span><span class="p">.</span><span class="nx">createCategoricalMarket</span><span class="p">({</span>
   <span class="na">universe</span><span class="p">:</span> <span class="s2">"0x1f732847fbbcc46ffe859f28e916d993b2b08831"</span><span class="p">,</span>
@@ -1360,9 +1360,10 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
 <span class="p">}</span>
 
 <span class="kd">var</span> <span class="nx">_extraInfo</span> <span class="o">=</span> <span class="p">{</span>
-  <span class="s2">"resolutionSource"</span><span class="p">:</span> <span class="s2">"https://forecast.weather.gov"</span><span class="p">,</span>
-  <span class="s2">"tags"</span><span class="p">:</span> <span class="p">[</span><span class="s2">"San Francisco"</span><span class="p">,</span> <span class="s2">"weather"</span><span class="p">],</span>
-  <span class="s2">"longDescription"</span><span class="p">:</span> <span class="s2">""</span>
+  <span class="na">resolutionSource</span><span class="p">:</span> <span class="s2">"https://forecast.weather.gov"</span><span class="p">,</span>
+  <span class="na">tags</span><span class="p">:</span> <span class="p">[</span><span class="s2">"San Francisco"</span><span class="p">,</span> <span class="s2">"weather"</span><span class="p">],</span>
+  <span class="na">longDescription</span><span class="p">:</span> <span class="s2">""</span><span class="p">,</span>
+  <span class="na">_scalarDenomination</span><span class="p">:</span> <span class="s2">"degrees Fahrenheit"</span><span class="p">,</span>
 <span class="p">};</span>
 <span class="nx">augur</span><span class="p">.</span><span class="nx">createMarket</span><span class="p">.</span><span class="nx">createScalarMarket</span><span class="p">({</span>
   <span class="na">universe</span><span class="p">:</span> <span class="s2">"0x1f732847fbbcc46ffe859f28e916d993b2b08831"</span><span class="p">,</span>
@@ -1407,9 +1408,9 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
 <span class="p">}</span>
 
 <span class="kd">var</span> <span class="nx">_extraInfo</span> <span class="o">=</span> <span class="p">{</span>
-  <span class="s2">"resolutionSource"</span><span class="p">:</span> <span class="s2">"https://www.nasdaq.com/symbol/msft"</span><span class="p">,</span>
-  <span class="s2">"tags"</span><span class="p">:</span> <span class="p">[</span> <span class="s2">"Stocks"</span><span class="p">,</span> <span class="s2">"Microsoft"</span> <span class="p">],</span>
-  <span class="s2">"longDescription"</span><span class="p">:</span> <span class="s2">""</span>
+  <span class="na">resolutionSource</span><span class="p">:</span> <span class="s2">"https://www.nasdaq.com/symbol/msft"</span><span class="p">,</span>
+  <span class="na">tags</span><span class="p">:</span> <span class="p">[</span> <span class="s2">"Stocks"</span><span class="p">,</span> <span class="s2">"Microsoft"</span> <span class="p">],</span>
+  <span class="na">longDescription</span><span class="p">:</span> <span class="s2">""</span>
 <span class="p">};</span>
 <span class="nx">augur</span><span class="p">.</span><span class="nx">createMarket</span><span class="p">.</span><span class="nx">createYesNoMarket</span><span class="p">({</span>
   <span class="na">universe</span><span class="p">:</span> <span class="s2">"0x1f732847fbbcc46ffe859f28e916d993b2b08831"</span><span class="p">,</span>
@@ -12031,10 +12032,10 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
 <span class="kd">var</span> <span class="nx">cashAddress</span> <span class="o">=</span> <span class="s2">"0xd2ee83a8a2a904181ccfddd8292f178614062aa0"</span><span class="p">;</span>
 
 <span class="kd">var</span> <span class="nx">_extraInfo</span> <span class="o">=</span> <span class="p">{</span>
-  <span class="s2">"resolutionSource"</span><span class="p">:</span> <span class="s2">"http://www.espn.com"</span><span class="p">,</span>
-  <span class="s2">"tags"</span><span class="p">:</span> <span class="p">[</span><span class="s2">"college football"</span><span class="p">,</span> <span class="s2">"football"</span><span class="p">],</span>
-  <span class="s2">"outcomeNames"</span><span class="p">:</span> <span class="p">[</span><span class="s2">"Georgia"</span><span class="p">,</span> <span class="s2">"Florida"</span><span class="p">],</span>
-  <span class="s2">"longDescription"</span><span class="p">:</span> <span class="s2">""</span>
+  <span class="na">resolutionSource</span><span class="p">:</span> <span class="s2">"http://www.espn.com"</span><span class="p">,</span>
+  <span class="na">tags</span><span class="p">:</span> <span class="p">[</span><span class="s2">"college football"</span><span class="p">,</span> <span class="s2">"football"</span><span class="p">],</span>
+  <span class="na">outcomeNames</span><span class="p">:</span> <span class="p">[</span><span class="s2">"Georgia"</span><span class="p">,</span> <span class="s2">"Florida"</span><span class="p">],</span>
+  <span class="na">longDescription</span><span class="p">:</span> <span class="s2">""</span>
 <span class="p">};</span>
 <span class="nx">augur</span><span class="p">.</span><span class="nx">api</span><span class="p">.</span><span class="nx">Universe</span><span class="p">.</span><span class="nx">createCategoricalMarket</span><span class="p">({</span>
   <span class="na">_endTime</span><span class="p">:</span> <span class="s2">"0x5bd7e550"</span><span class="p">,</span>
@@ -12084,9 +12085,10 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
 <span class="p">});</span>
 
 <span class="kd">var</span> <span class="nx">_extraInfo</span> <span class="o">=</span> <span class="p">{</span>
-  <span class="s2">"resolutionSource"</span><span class="p">:</span> <span class="s2">"https://forecast.weather.gov"</span><span class="p">,</span>
-  <span class="s2">"tags"</span><span class="p">:</span> <span class="p">[</span><span class="s2">"San Francisco"</span><span class="p">,</span> <span class="s2">"weather"</span><span class="p">],</span>
-  <span class="s2">"longDescription"</span><span class="p">:</span> <span class="s2">""</span>
+  <span class="na">resolutionSource</span><span class="p">:</span> <span class="s2">"https://forecast.weather.gov"</span><span class="p">,</span>
+  <span class="na">tags</span><span class="p">:</span> <span class="p">[</span><span class="s2">"San Francisco"</span><span class="p">,</span> <span class="s2">"weather"</span><span class="p">],</span>
+  <span class="na">longDescription</span><span class="p">:</span> <span class="s2">""</span><span class="p">,</span>
+  <span class="na">_scalarDenomination</span><span class="p">:</span> <span class="s2">"degrees Fahrenheit"</span><span class="p">,</span>
 <span class="p">};</span>
 <span class="nx">augur</span><span class="p">.</span><span class="nx">api</span><span class="p">.</span><span class="nx">Universe</span><span class="p">.</span><span class="nx">createScalarMarket</span><span class="p">({</span>
   <span class="na">_endTime</span><span class="p">:</span> <span class="s2">"0x5b39b150"</span><span class="p">,</span>
@@ -12119,9 +12121,9 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
 <span class="p">});</span>
 
 <span class="kd">var</span> <span class="nx">_extraInfo</span> <span class="o">=</span> <span class="p">{</span>
-  <span class="s2">"resolutionSource"</span><span class="p">:</span> <span class="s2">"https://www.spacex.com"</span><span class="p">,</span>
-  <span class="s2">"tags"</span><span class="p">:</span> <span class="p">[</span> <span class="s2">"SpaceX"</span><span class="p">,</span> <span class="s2">"spaceflight"</span> <span class="p">],</span>
-  <span class="s2">"longDescription"</span><span class="p">:</span> <span class="s2">"SpaceX hit a big milestone on Friday with NASA confirming on Friday that the Elon Musk-led space cargo business will launch astronauts to the International Space Station by 2017."</span>
+  <span class="na">resolutionSource</span><span class="p">:</span> <span class="s2">"https://www.spacex.com"</span><span class="p">,</span>
+  <span class="na">tags</span><span class="p">:</span> <span class="p">[</span> <span class="s2">"SpaceX"</span><span class="p">,</span> <span class="s2">"spaceflight"</span> <span class="p">],</span>
+  <span class="na">longDescription</span><span class="p">:</span> <span class="s2">"SpaceX hit a big milestone on Friday with NASA confirming on Friday that the Elon Musk-led space cargo business will launch astronauts to the International Space Station by 2017."</span>
 <span class="p">};</span>
 <span class="nx">augur</span><span class="p">.</span><span class="nx">api</span><span class="p">.</span><span class="nx">Universe</span><span class="p">.</span><span class="nx">createYesNoMarket</span><span class="p">({</span>
   <span class="na">_endTime</span><span class="p">:</span> <span class="s2">"0x5c2b1e00"</span><span class="p">,</span>
@@ -13589,6 +13591,7 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
 <li><strong><code class="prettyprint">resolutionSource</code></strong> (string|null) Source that should be referenced when determining the Outcome of a Market.</li>
 <li><strong><code class="prettyprint">tags</code></strong> (Array.&lt;string&gt;|null) Keywords used to tag the Market (maximum of 2).</li>
 <li><strong><code class="prettyprint">longDescription</code></strong> (string|null) Additional information not included in description of the Market.</li>
+<li><strong><code class="prettyprint">_scalarDenomination</code></strong> (string|null) Denomination used for describing the Outcome of a Scalar Market (e.g., degrees Fahrenheit, dollars, etc.) Not used when creating a Yes/No or Categorical Market.</li>
 </ul>
 
 <p><a name="FailedTransactionsForkedMarket"></a></p>
@@ -14204,7 +14207,7 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
 <li><strong><code class="prettyprint">transactionHash</code></strong> (string) Hash to look up the trade transaction receipt.</li>
 <li><strong><code class="prettyprint">logIndex</code></strong> (number) Number of the log index position in the Ethereum block containing the trade transaction.</li>
 <li><strong><code class="prettyprint">orderId</code></strong> (string) Unique ID for the Order, as a hexadecimal string.</li>
-<li><strong><code class="prettyprint">type</code></strong> (string) Type of trade. Valid values are &ldquo;buy&rdquo; and &ldquo;sell&rdquo;.</li>
+<li><strong><code class="prettyprint">type</code></strong> (string) Type of trade, from the perspective of the Order maker. Valid values are &ldquo;buy&rdquo; and &ldquo;sell&rdquo;.</li>
 <li><strong><code class="prettyprint">price</code></strong> (string) Price paid for trade, in attoETH.</li>
 <li><strong><code class="prettyprint">amount</code></strong> (string) Amount of Share Units that were bought/sold.</li>
 <li><strong><code class="prettyprint">maker</code></strong> (boolean) Whether the specified user is the order maker (as opposed to filler).</li>
@@ -15131,7 +15134,7 @@ Goals:
 
 <h2 id="participation-token">Participation Token</h2>
 
-<p>At any time during a <a href="#fee-window">Fee Window</a>, users can purchase Participation Tokens in exchange for <a href="#rep">REP</a>. Once the Fee Window ends, users can redeem their Participation Tokens for a portion of the <a href="#reporting-fee">Reporting Fees</a> (in Ether) that Augur collected during that Fee Window. The more Participation Tokens a user purchases, the bigger the portion of the Reporting Fees they will receive. Users are not required to purchase Participation Tokens, but their purpose is to incentivize users to be active on Augur in the even that they will be needed, such as when a <a href="#market">Market</a> <a href="#fork">Forks</a>.</p>
+<p>At any time during a <a href="#fee-window">Fee Window</a>, users can purchase Participation Tokens in exchange for <a href="#rep">REP</a>. Once the Fee Window ends, users can redeem their Participation Tokens for a portion of the <a href="#reporting-fee">Reporting Fees</a> (in Ether) that Augur collected during that Fee Window. The more Participation Tokens a user purchases, the bigger the portion of the Reporting Fees they will receive. Users are not required to purchase Participation Tokens, but their purpose is to incentivize users to be active on Augur in the event that they will be needed, such as when a <a href="#market">Market</a> <a href="#fork">Forks</a>.</p>
 
 <h2 id="payout-distribution-hash">Payout Distribution Hash</h2>
 
@@ -15242,7 +15245,7 @@ Note: When calculating the Payout Set for a Scalar Market using integer-only mat
 
 <h2 id="universe">Universe</h2>
 
-<p>All <a href="#market">Markets</a> created on Augur belong to a Universe. Augur has only one Universe at launch (the [Genesis Universe]), but more can be created in the rare event of a <a href="#fork">Fork</a>. The Universe in which a Fork occurs will become a <a href="#locked-universe">Locked Universe</a> and new <a href="#child-universes">Child Universes</a> will be created, one for each <a href="#outcome">Outcome</a> of the <a href="#forked-market">Forked Market</a>. Once a <a href="#fork-period">Fork Phase</a> begins, <a href="#rep">REP</a> holders can choose to migrate their REP to one of the new Child Universes. They don&rsquo;t have to migrate, but Locked Universes do not allow the creation of new Markets, and therefore there will be no Markets to <a href="#report">Report</a> on in the future and no <a href="#reporting-fees">Fees</a> to earn. All Child Universes can continue to operate after the <a href="#fork-period">Fork Phase</a> ends.</p>
+<p>All <a href="#market">Markets</a> created on Augur belong to a Universe. Augur has only one Universe at launch (the <a href="#genesis-universe">Genesis Universe</a>), but more can be created in the rare event of a <a href="#fork">Fork</a>. The Universe in which a Fork occurs will become a <a href="#locked-universe">Locked Universe</a> and new <a href="#child-universes">Child Universes</a> will be created, one for each <a href="#outcome">Outcome</a> of the <a href="#forked-market">Forked Market</a>. Once a <a href="#fork-period">Fork Phase</a> begins, <a href="#rep">REP</a> holders can choose to migrate their REP to one of the new Child Universes. They don&rsquo;t have to migrate, but Locked Universes do not allow the creation of new Markets, and therefore there will be no Markets to <a href="#report">Report</a> on in the future and no <a href="#reporting-fees">Fees</a> to earn. All Child Universes can continue to operate after the <a href="#fork-period">Fork Phase</a> ends.</p>
 
 <h2 id="validity-bond">Validity Bond</h2>
 
