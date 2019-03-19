@@ -2927,7 +2927,7 @@ NOTE: The account attempting to create the new market must have sufficient REP i
 
 ### augur.api.Universe.getInitialReportStakeSize(p, callback)
 
-Returns either the size of the [No-Show Bond](#no-show-rep-bond) or the size of the Stake placed on the [Designated Report](#designated-report) (whichever is greater).
+Returns either the size of the [No-Show Bond](#no-show-bond) or the size of the Stake placed on the [Designated Report](#designated-report) (whichever is greater).
 
 #### **Parameters:**
 
