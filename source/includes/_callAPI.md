@@ -158,7 +158,7 @@ Calculates the [Creator Fee](#creator-fee) that will be paid when settling a spe
 
 ### augur.api.ClaimTradingProceeds.calculateProceeds(p, callback)
 
-Calculates the amount of [attoETH](#atto-prefix) that a number of [Shares](#share) in a particular [Outcome](#outcome) of a given [Market](#market) are worth. (NOTE: This calculation does not deduct [Reporting Fees](#reporting-fees).
+Calculates the amount of [attoETH](#atto-prefix) that a number of [Shares](#share) in a particular [Outcome](#outcome) of a given [Market](#market) are worth. (NOTE: This calculation does not deduct [Reporting Fees](#reporting-fee).
 
 #### **Parameters:**
 
