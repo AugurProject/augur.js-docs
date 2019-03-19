@@ -2562,7 +2562,7 @@ Returns the cost for placing a specific trade.
 * **`p`** (Object) Parameters object.
     * **`p.displayPrice`**  (string) Normalized limit price for this trade, as a base-10 string.
     * **`p.displayAmount`**  (string) Number of [Shares](#share) to trade, as a base-10 string.
-    * **`p.sharesProvided`* (string) &lt;optional> Number of shares already owned and provided for this trade, as a base-10 string.
+    * **`p.sharesProvided`** (string) &lt;optional> Number of shares already owned and provided for this trade, as a base-10 string.
     * **`p.numTicks`**  (string) The [Number of Ticks](#number-of-ticks) for this [Market](#market).
     * **`p.maxDisplayPrice`**  (string) The [Maximum Display Price](#maximum-display-price) for this Market, as a base-10 string.
     * **`p.minDisplayPrice`**  (string) The [Minimum Display Price](#minimum-display-price) for this Market, as a base-10 string.
