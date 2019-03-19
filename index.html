@@ -4320,7 +4320,7 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
 
 <h3 id="augur-api-claimtradingproceeds-calculateproceeds-p-callback">augur.api.ClaimTradingProceeds.calculateProceeds(p, callback)</h3>
 
-<p>Calculates the amount of <a href="#atto-prefix">attoETH</a> that a number of <a href="#share">Shares</a> in a particular <a href="#outcome">Outcome</a> of a given <a href="#market">Market</a> are worth. (NOTE: This calculation does not deduct <a href="#reporting-fees">Reporting Fees</a>.</p>
+<p>Calculates the amount of <a href="#atto-prefix">attoETH</a> that a number of <a href="#share">Shares</a> in a particular <a href="#outcome">Outcome</a> of a given <a href="#market">Market</a> are worth. (NOTE: This calculation does not deduct <a href="#reporting-fee">Reporting Fees</a>.</p>
 
 <h4 id="strong-strong"><strong>Parameters:</strong></h4>
 
@@ -15245,7 +15245,7 @@ Note: When calculating the Payout Set for a Scalar Market using integer-only mat
 
 <h2 id="universe">Universe</h2>
 
-<p>All <a href="#market">Markets</a> created on Augur belong to a Universe. Augur has only one Universe at launch (the <a href="#genesis-universe">Genesis Universe</a>), but more can be created in the rare event of a <a href="#fork">Fork</a>. The Universe in which a Fork occurs will become a <a href="#locked-universe">Locked Universe</a> and new <a href="#child-universes">Child Universes</a> will be created, one for each <a href="#outcome">Outcome</a> of the <a href="#forked-market">Forked Market</a>. Once a <a href="#fork-period">Fork Phase</a> begins, <a href="#rep">REP</a> holders can choose to migrate their REP to one of the new Child Universes. They don&rsquo;t have to migrate, but Locked Universes do not allow the creation of new Markets, and therefore there will be no Markets to <a href="#report">Report</a> on in the future and no <a href="#reporting-fees">Fees</a> to earn. All Child Universes can continue to operate after the <a href="#fork-period">Fork Phase</a> ends.</p>
+<p>All <a href="#market">Markets</a> created on Augur belong to a Universe. Augur has only one Universe at launch (the <a href="#genesis-universe">Genesis Universe</a>), but more can be created in the rare event of a <a href="#fork">Fork</a>. The Universe in which a Fork occurs will become a <a href="#locked-universe">Locked Universe</a> and new <a href="#child-universes">Child Universes</a> will be created, one for each <a href="#outcome">Outcome</a> of the <a href="#forked-market">Forked Market</a>. Once a <a href="#fork-period">Fork Phase</a> begins, <a href="#rep">REP</a> holders can choose to migrate their REP to one of the new Child Universes. They don&rsquo;t have to migrate, but Locked Universes do not allow the creation of new Markets, and therefore there will be no Markets to <a href="#report">Report</a> on in the future and no <a href="#reporting-fee">Fees</a> to earn. All Child Universes can continue to operate after the <a href="#fork-period">Fork Phase</a> ends.</p>
 
 <h2 id="validity-bond">Validity Bond</h2>
 
