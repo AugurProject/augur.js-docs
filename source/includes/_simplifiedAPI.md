@@ -694,6 +694,7 @@ This transaction will fail if:
 * `p._feePerEthInWei` is greater than the maximum fee (0.5 ETH).
 * `p._endTime` has already passed.
 * The Universe is Forking.
+* A connection to an Augur Node has not been established.
 
 NOTE: The account attempting to create the new market must have sufficient REP in order for the market to be created. This is also true when calling `eth_estimateGas`, which essentially does a trial run of the transaction to determine what the gas cost would be to actually run it. 
 
@@ -730,6 +731,7 @@ This transaction will fail if:
 * `p._feePerEthInWei` is greater than the maximum fee (0.5 ETH).
 * `p._endTime` has already passed.
 * The Universe is Forking.
+* A connection to an Augur Node has not been established.
 
 NOTE: The account attempting to create the new market must have sufficient REP in order for the market to be created. This is also true when calling `eth_estimateGas`, which essentially does a trial run of the transaction to determine what the gas cost would be to actually run it. 
 
@@ -767,6 +769,7 @@ This transaction will fail if:
 * `p._feePerEthInWei` is greater than the maximum fee (0.5 ETH).
 * `p._endTime` has already passed.
 * The Universe is Forking.
+* A connection to an Augur Node has not been established.
 
 NOTE: The account attempting to create the new market must have sufficient REP in order for the market to be created. This is also true when calling `eth_estimateGas`, which essentially does a trial run of the transaction to determine what the gas cost would be to actually run it.
 
