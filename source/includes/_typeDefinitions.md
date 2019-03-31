@@ -377,7 +377,7 @@ Serves as an enum for the state of a Dispute Token.
 Authentication metadata for raw transactions.
 
 #### **Properties:** 
-* **`accountType`** (string) Type of account that is signing the transaction. Possible values include "privateKey", "ledger", "trezor", "edge", and "unlockedEthereumNode".
+* **`accountType`** (string) Type of account that is signing the transaction. Possible values include "privateKey", "ledger", "trezor", "edge", "metaMask" and "unlockedEthereumNode".
 * **`address`** (string) Ethereum address that is making the transaction, as a hexadecimal string.
 * **`signer`** (buffer|function) Private key buffer or a signing function provided by a hardware wallet, of the account initiating the transaction.
 
