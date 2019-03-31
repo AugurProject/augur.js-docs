@@ -89,7 +89,7 @@ The other properties that can be specified in the `tx` object are discussed in t
 
 ### The `meta` Object
 
-All Transaction API functions accept a `meta` object as a parameter in order to sign the transaction. The `meta` object contains a `signer` property, which should be set to the private key buffer or a signing function, provided by a hardware wallet, of the account that wishes to initiate the transaction. (When logged in using an Edge account, the private key buffer can be obtained by outputting the value `state.loginAccount.meta.signer`.) The `meta` object also contains an `accountType` property, which should be set to "privateKey", "ledger", "trezor", "edge", or "unlockedEthereumNode". The Transaction API functions attempt to modify information on the blockchain, which requires the transaction to be signed. The `meta` parameter is not required when calling Transaction API functions while using MetaMask (which will pop up a separate window asking to confirm the transaction).
+All Transaction API functions accept a `meta` object as a parameter in order to sign the transaction. The `meta` object contains a `signer` property, which should be set to the private key buffer or a signing function, provided by a hardware wallet, of the account that wishes to initiate the transaction. (When logged in using an Edge account, the private key buffer can be obtained by outputting the value `state.loginAccount.meta.signer`.) The `meta` object also contains an `accountType` property, which should be set to "privateKey", "ledger", "trezor", "edge", "metaMask", or "unlockedEthereumNode". The Transaction API functions attempt to modify information on the blockchain, which requires the transaction to be signed.
 
 ### Callbacks
 
