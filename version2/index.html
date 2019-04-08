@@ -1530,7 +1530,6 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
 <p>This transaction will fail if:</p>
 
 <ul>
-<li><code class="prettyprint">p._outcomes</code> contains fewer than 2 outcomes or more than 8 outcomes.</li>
 <li><code class="prettyprint">p._designatedReporterAddress</code> is set to the null address.</li>
 <li><code class="prettyprint">p._numTicks</code> is less than 2.</li>
 <li><code class="prettyprint">p._feePerEthInWei</code> is greater than the maximum fee (0.5 ETH).</li>
@@ -2037,7 +2036,7 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
 <li><strong><code class="prettyprint">p.creator</code></strong> (string) &lt;optional&gt; Ethereum address of a <a href="#market-creator">Market Creator</a> by which to filter the returned results, as a 20-byte hexadecimal string.</li>
 <li><strong><code class="prettyprint">p.category</code></strong> (string) &lt;optional&gt; Market category by which to filter the returned results.</li>
 <li><strong><code class="prettyprint">p.search</code></strong> (string) &lt;optional&gt; Query string used to determine which Markets are returned by <code class="prettyprint">augur.markets.getMarkets</code>. By default, a full-text search will be performed on this string. However, it is also possible to search across specific market properties, by specifying <code class="prettyprint">marketId</code>, <code class="prettyprint">category</code>, <code class="prettyprint">tags</code>, <code class="prettyprint">shortDescription</code>, <code class="prettyprint">longDescription</code>, <code class="prettyprint">resolutionSource</code>, and <code class="prettyprint">scalarDenomination</code>. For example, to search within market categories, <code class="prettyprint">p.search</code> can be set to &ldquo;category: ETH&rdquo;. More complex queries can be formed using &ldquo;AND&rdquo; and &ldquo;OR&rdquo;. For example, setting <code class="prettyprint">p.search</code> to &ldquo;category: Ethereum OR tags: ETH&rdquo; will search for all markets with the category &ldquo;Ethereum&rdquo; or the tag &ldquo;ETH&rdquo;. </li>
-<li><strong><code class="prettyprint">p.reportingState</code></strong> (string) &lt;optional&gt; <a href="#REPORTING_STATE">REPORTING_STATE</a> by which to filter the returned results.</li>
+<li><strong><code class="prettyprint">p.reportingState</code></strong> (string|Array&lt;string&gt;) &lt;optional&gt; <a href="#REPORTING_STATE">REPORTING_STATE</a> (or array of REPORTING_STATEs) by which to filter the returned results.</li>
 <li><strong><code class="prettyprint">p.feeWindow</code></strong> (string) &lt;optional&gt; Ethereum address of a <a href="#fee-window">Fee Window</a> by which to filter the returned results, as a 20-byte hexadecimal string.</li>
 <li><strong><code class="prettyprint">p.designatedReporter</code></strong> (string) &lt;optional&gt; Ethereum address of a <a href="#designated-reporter">Designated Reporter</a> by which to filter the returned results, as a 20-byte hexadecimal string.</li>
 <li><strong><code class="prettyprint">p.maxFee</code></strong> (number) &lt;optional&gt; Maximum trading <a href="#settlement-fees">Settlement Fee</a> by which to filter the returned results, as a decimal number. (For example, if the desired maximum Settlement Fee is 1.0201%, <code class="prettyprint">maxFee</code> should be set to 0.010201.)</li>
@@ -11696,7 +11695,6 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
 <p>This transaction will fail if:</p>
 
 <ul>
-<li><code class="prettyprint">p._outcomes</code> contains fewer than 2 outcomes or more than 8 outcomes.</li>
 <li><code class="prettyprint">p._designatedReporterAddress</code> is set to the null address.</li>
 <li><code class="prettyprint">p._numTicks</code> is less than 2.</li>
 <li><code class="prettyprint">p._feePerEthInWei</code> is greater than the maximum fee (0.5 ETH).</li>
