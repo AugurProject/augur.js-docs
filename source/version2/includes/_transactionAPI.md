@@ -2845,7 +2845,6 @@ Creates a new [Scalar Market](#scalar-market). This transaction will trigger a [
 
 This transaction will fail if:
 
-* `p._outcomes` contains fewer than 2 outcomes or more than 8 outcomes.
 * `p._designatedReporterAddress` is set to the null address.
 * `p._numTicks` is less than 2.
 * `p._feePerEthInWei` is greater than the maximum fee (0.5 ETH).
