@@ -510,8 +510,8 @@ Serves as an enum for the state of a Market.
 ### SingleSideOrderBook  (Object)
 
 #### **Properties:** 
- * **`buy`** (Object|null) Buy (bid) Order objects, keyed by Order ID.
- * **`sell`** (Object|null)  Sell (ask) Order objects, keyed by Order ID.
+ * **`buy`** (Object|null) Buy (bid) <a href="#Order">Order</a> objects, keyed by Order ID.
+ * **`sell`** (Object|null)  Sell (ask) <a href="#Order">Order</a> objects, keyed by Order ID.
 
 <a name="SingleOutcomePriceTimeSeries"></a>
 ### SingleOutcomePriceTimeSeries  (Object)
