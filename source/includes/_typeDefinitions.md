@@ -414,8 +414,10 @@ Authentication metadata for raw transactions.
 * **`fullPrecisionPrice`** (string) Full-precision (un-rounded) display price, as a base-10 number.
 * **`fullPrecisionAmount`** (string) Current full-precision (un-rounded) number of shares to trade, as a base-10 number.
 * **`originalFullPrecisionAmount`** (string)  Original full-precision (un-rounded) number of shares to trade, as a base-10 number.
-* **`tokensEscrowed`** (string) Number of the order maker's tokens held in escrow, as a base-10 number.
-* **`sharesEscrowed`** (string) Number of the order maker's shares held in escrow, as a base-10 number.
+* **`originalTokensEscrowed`** (string)  Original number of the order maker's tokens held in escrow, as a base-10 number.
+* **`originalSharesEscrowed`** (string)  Original number of the order maker's shares held in escrow, as a base-10 number.
+* **`tokensEscrowed`** (string) Current number of the order maker's tokens held in escrow, as a base-10 number.
+* **`sharesEscrowed`** (string) Current number of the order maker's shares held in escrow, as a base-10 number.
 * **`canceledBlockNumber`** (number|null) Block number in which the order cancellation took place (if any).
 * **`canceledTransactionHash`** (string|null) Transaction hash in which the order cancellation took place (if any).
 * **`canceledTime`** (number|null) Unix timestamp when the order was canceled (if any).
