@@ -3285,44 +3285,241 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
 <span class="p">]</span>
 
 <span class="nx">augur</span><span class="p">.</span><span class="nx">trading</span><span class="p">.</span><span class="nx">getUserTradingPositions</span><span class="p">({</span>
-  <span class="na">universe</span><span class="p">:</span> <span class="s2">"0x000000000000000000000000000000000000000b"</span><span class="p">,</span>
-  <span class="na">account</span><span class="p">:</span> <span class="s2">"0xffff000000000000000000000000000000000000"</span><span class="p">,</span>
-  <span class="na">marketId</span><span class="p">:</span> <span class="s2">"0x0000000000000000000000000000000000000ff1"</span><span class="p">,</span>
-  <span class="na">endTime</span><span class="p">:</span> <span class="mi">1534435013</span><span class="p">,</span>
+  <span class="na">universe</span><span class="p">:</span> <span class="s2">"0x02149d40d255fceac54a3ee3899807b0539bad60"</span><span class="p">,</span>
+  <span class="na">account</span><span class="p">:</span> <span class="s2">"0xE4EC477Bc4Abd2B18225Bb8CBa14BF57867f082B"</span><span class="p">,</span>
 <span class="p">},</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">error</span><span class="p">,</span> <span class="nx">result</span><span class="p">)</span> <span class="p">{</span>
   <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">result</span><span class="p">);</span>
 <span class="p">});</span>
 <span class="c1">// example output:</span>
-<span class="p">[</span>
-  <span class="p">{</span>
-    <span class="na">averagePrice</span><span class="p">:</span> <span class="s2">"0"</span><span class="p">,</span>
-    <span class="na">cost</span><span class="p">:</span> <span class="s2">"0.00809898762654670331"</span><span class="p">,</span>
-    <span class="na">marketId</span><span class="p">:</span> <span class="s2">"0x0000000000000000000000000000000000000ff1"</span><span class="p">,</span>
-    <span class="na">netPosition</span><span class="p">:</span> <span class="s2">"0"</span><span class="p">,</span>
-    <span class="na">numEscrowed</span><span class="p">:</span> <span class="s2">"0.0003"</span><span class="p">,</span>
-    <span class="na">outcome</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
-    <span class="na">position</span><span class="p">:</span> <span class="s2">"0.0003"</span><span class="p">,</span>
-    <span class="na">realized</span><span class="p">:</span> <span class="s2">"54999999999.56442531007152770894"</span><span class="p">,</span>
-    <span class="na">timestamp</span><span class="p">:</span> <span class="mi">1534435013</span><span class="p">,</span>
-    <span class="na">total</span><span class="p">:</span> <span class="s2">"54999999999.56442531007152770894"</span><span class="p">,</span>
-    <span class="na">totalPosition</span><span class="p">:</span> <span class="s2">"0.0006"</span><span class="p">,</span>
-    <span class="na">unrealized</span><span class="p">:</span> <span class="s2">"0"</span><span class="p">,</span>
+<span class="p">{</span>
+  <span class="nl">tradingPositions</span><span class="p">:</span> <span class="p">[</span>
+    <span class="p">{</span>
+      <span class="na">position</span><span class="p">:</span> <span class="s2">"0.901"</span><span class="p">,</span>
+      <span class="na">marketId</span><span class="p">:</span> <span class="s2">"0x37adbd757099107946ceebb1791c5c6acda635fe"</span><span class="p">,</span>
+      <span class="na">outcome</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+      <span class="na">timestamp</span><span class="p">:</span> <span class="mi">1556857905</span><span class="p">,</span>
+      <span class="na">netPosition</span><span class="p">:</span> <span class="s2">"0.901"</span><span class="p">,</span>
+      <span class="na">realized</span><span class="p">:</span> <span class="s2">"0"</span><span class="p">,</span>
+      <span class="na">unrealized</span><span class="p">:</span> <span class="s2">"0.4505"</span><span class="p">,</span>
+      <span class="na">total</span><span class="p">:</span> <span class="s2">"0.4505"</span><span class="p">,</span>
+      <span class="na">averagePrice</span><span class="p">:</span> <span class="s2">"0.5"</span><span class="p">,</span>
+      <span class="na">unrealizedCost</span><span class="p">:</span> <span class="s2">"0.4505"</span><span class="p">,</span>
+      <span class="na">realizedCost</span><span class="p">:</span> <span class="s2">"0"</span><span class="p">,</span>
+      <span class="na">totalCost</span><span class="p">:</span> <span class="s2">"0.4505"</span><span class="p">,</span>
+      <span class="na">realizedPercent</span><span class="p">:</span> <span class="s2">"0"</span><span class="p">,</span>
+      <span class="na">unrealizedPercent</span><span class="p">:</span> <span class="s2">"1"</span><span class="p">,</span>
+      <span class="na">totalPercent</span><span class="p">:</span> <span class="s2">"1"</span><span class="p">,</span>
+      <span class="na">unrealizedRevenue</span><span class="p">:</span> <span class="s2">"0.901"</span><span class="p">,</span>
+      <span class="na">frozenFunds</span><span class="p">:</span> <span class="s2">"0.4505"</span><span class="p">,</span>
+      <span class="na">lastTradePrice</span><span class="p">:</span> <span class="s2">"1"</span><span class="p">,</span>
+      <span class="na">lastTradePrice24hAgo</span><span class="p">:</span> <span class="s2">"1"</span><span class="p">,</span>
+      <span class="na">lastTradePrice24hChangePercent</span><span class="p">:</span> <span class="s2">"0"</span><span class="p">,</span>
+      <span class="na">unrealizedRevenue24hAgo</span><span class="p">:</span> <span class="s2">"0.901"</span><span class="p">,</span>
+      <span class="na">unrealizedRevenue24hChangePercent</span><span class="p">:</span> <span class="s2">"0"</span>
+    <span class="p">},</span>
+    <span class="p">{</span>
+      <span class="na">position</span><span class="p">:</span> <span class="s2">"0.011"</span><span class="p">,</span>
+      <span class="na">marketId</span><span class="p">:</span> <span class="s2">"0x76a0067b4d3a6db11187a849b50a076e030e95ce"</span><span class="p">,</span>
+      <span class="na">outcome</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+      <span class="na">timestamp</span><span class="p">:</span> <span class="mi">1556857905</span><span class="p">,</span>
+      <span class="na">netPosition</span><span class="p">:</span> <span class="s2">"0.011"</span><span class="p">,</span>
+      <span class="na">realized</span><span class="p">:</span> <span class="s2">"0"</span><span class="p">,</span>
+      <span class="na">unrealized</span><span class="p">:</span> <span class="s2">"0.00993999999999999999996"</span><span class="p">,</span>
+      <span class="na">total</span><span class="p">:</span> <span class="s2">"0.00993999999999999999996"</span><span class="p">,</span>
+      <span class="na">averagePrice</span><span class="p">:</span> <span class="s2">"0.09636363636363636364"</span><span class="p">,</span>
+      <span class="na">unrealizedCost</span><span class="p">:</span> <span class="s2">"0.00106000000000000000004"</span><span class="p">,</span>
+      <span class="na">realizedCost</span><span class="p">:</span> <span class="s2">"0"</span><span class="p">,</span>
+      <span class="na">totalCost</span><span class="p">:</span> <span class="s2">"0.00106000000000000000004"</span><span class="p">,</span>
+      <span class="na">realizedPercent</span><span class="p">:</span> <span class="s2">"0"</span><span class="p">,</span>
+      <span class="na">unrealizedPercent</span><span class="p">:</span> <span class="s2">"9.37735849056603773546"</span><span class="p">,</span>
+      <span class="na">totalPercent</span><span class="p">:</span> <span class="s2">"9.37735849056603773546"</span><span class="p">,</span>
+      <span class="na">unrealizedRevenue</span><span class="p">:</span> <span class="s2">"0.011"</span><span class="p">,</span>
+      <span class="na">frozenFunds</span><span class="p">:</span> <span class="s2">"0.00106"</span><span class="p">,</span>
+      <span class="na">lastTradePrice</span><span class="p">:</span> <span class="s2">"1"</span><span class="p">,</span>
+      <span class="na">lastTradePrice24hAgo</span><span class="p">:</span> <span class="s2">"1"</span><span class="p">,</span>
+      <span class="na">lastTradePrice24hChangePercent</span><span class="p">:</span> <span class="s2">"0"</span><span class="p">,</span>
+      <span class="na">unrealizedRevenue24hAgo</span><span class="p">:</span> <span class="s2">"0.011"</span><span class="p">,</span>
+      <span class="na">unrealizedRevenue24hChangePercent</span><span class="p">:</span> <span class="s2">"0"</span>
+    <span class="p">},</span>
+    <span class="p">{</span>
+      <span class="na">position</span><span class="p">:</span> <span class="s2">"0"</span><span class="p">,</span>
+      <span class="na">marketId</span><span class="p">:</span> <span class="s2">"0x448d1d8280844513c38b2b73bde8a539d0022954"</span><span class="p">,</span>
+      <span class="na">outcome</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+      <span class="na">timestamp</span><span class="p">:</span> <span class="mi">1556857905</span><span class="p">,</span>
+      <span class="na">netPosition</span><span class="p">:</span> <span class="s2">"-0.01"</span><span class="p">,</span>
+      <span class="na">realized</span><span class="p">:</span> <span class="s2">"0"</span><span class="p">,</span>
+      <span class="na">unrealized</span><span class="p">:</span> <span class="s2">"-0.0019"</span><span class="p">,</span>
+      <span class="na">total</span><span class="p">:</span> <span class="s2">"-0.0019"</span><span class="p">,</span>
+      <span class="na">averagePrice</span><span class="p">:</span> <span class="s2">"0.01"</span><span class="p">,</span>
+      <span class="na">unrealizedCost</span><span class="p">:</span> <span class="s2">"0.0099"</span><span class="p">,</span>
+      <span class="na">realizedCost</span><span class="p">:</span> <span class="s2">"0"</span><span class="p">,</span>
+      <span class="na">totalCost</span><span class="p">:</span> <span class="s2">"0.0099"</span><span class="p">,</span>
+      <span class="na">realizedPercent</span><span class="p">:</span> <span class="s2">"0"</span><span class="p">,</span>
+      <span class="na">unrealizedPercent</span><span class="p">:</span> <span class="s2">"-0.19191919191919191919"</span><span class="p">,</span>
+      <span class="na">totalPercent</span><span class="p">:</span> <span class="s2">"-0.19191919191919191919"</span><span class="p">,</span>
+      <span class="na">unrealizedRevenue</span><span class="p">:</span> <span class="s2">"0.008"</span><span class="p">,</span>
+      <span class="na">frozenFunds</span><span class="p">:</span> <span class="s2">"0.0099"</span><span class="p">,</span>
+      <span class="na">lastTradePrice</span><span class="p">:</span> <span class="s2">"0.2"</span><span class="p">,</span>
+      <span class="na">lastTradePrice24hAgo</span><span class="p">:</span> <span class="s2">"0.2"</span><span class="p">,</span>
+      <span class="na">lastTradePrice24hChangePercent</span><span class="p">:</span> <span class="s2">"0"</span><span class="p">,</span>
+      <span class="na">unrealizedRevenue24hAgo</span><span class="p">:</span> <span class="s2">"0.008"</span><span class="p">,</span>
+      <span class="na">unrealizedRevenue24hChangePercent</span><span class="p">:</span> <span class="s2">"0"</span>
+    <span class="p">},</span>
+    <span class="p">{</span>
+      <span class="na">position</span><span class="p">:</span> <span class="s2">"0"</span><span class="p">,</span>
+      <span class="na">marketId</span><span class="p">:</span> <span class="s2">"0x6f5a05c21ff65c476d4b91f886984cd9c6797576"</span><span class="p">,</span>
+      <span class="na">outcome</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+      <span class="na">timestamp</span><span class="p">:</span> <span class="mi">1556857905</span><span class="p">,</span>
+      <span class="na">netPosition</span><span class="p">:</span> <span class="s2">"-0.1"</span><span class="p">,</span>
+      <span class="na">realized</span><span class="p">:</span> <span class="s2">"0"</span><span class="p">,</span>
+      <span class="na">unrealized</span><span class="p">:</span> <span class="s2">"-0.21"</span><span class="p">,</span>
+      <span class="na">total</span><span class="p">:</span> <span class="s2">"-0.21"</span><span class="p">,</span>
+      <span class="na">averagePrice</span><span class="p">:</span> <span class="s2">"40"</span><span class="p">,</span>
+      <span class="na">unrealizedCost</span><span class="p">:</span> <span class="s2">"0.92"</span><span class="p">,</span>
+      <span class="na">realizedCost</span><span class="p">:</span> <span class="s2">"0"</span><span class="p">,</span>
+      <span class="na">totalCost</span><span class="p">:</span> <span class="s2">"0.92"</span><span class="p">,</span>
+      <span class="na">realizedPercent</span><span class="p">:</span> <span class="s2">"0"</span><span class="p">,</span>
+      <span class="na">unrealizedPercent</span><span class="p">:</span> <span class="s2">"-0.2282608695652173913"</span><span class="p">,</span>
+      <span class="na">totalPercent</span><span class="p">:</span> <span class="s2">"-0.2282608695652173913"</span><span class="p">,</span>
+      <span class="na">unrealizedRevenue</span><span class="p">:</span> <span class="s2">"0.71"</span><span class="p">,</span>
+      <span class="na">frozenFunds</span><span class="p">:</span> <span class="s2">"0.92"</span><span class="p">,</span>
+      <span class="na">lastTradePrice</span><span class="p">:</span> <span class="s2">"42.1"</span><span class="p">,</span>
+      <span class="na">lastTradePrice24hAgo</span><span class="p">:</span> <span class="s2">"75.9"</span><span class="p">,</span>
+      <span class="na">lastTradePrice24hChangePercent</span><span class="p">:</span> <span class="s2">"-0.8028503562945368171"</span><span class="p">,</span>
+      <span class="na">unrealizedRevenue24hAgo</span><span class="p">:</span> <span class="s2">"-2.67"</span><span class="p">,</span>
+      <span class="na">unrealizedRevenue24hChangePercent</span><span class="p">:</span> <span class="s2">"-1.26591760299625468165"</span>
+    <span class="p">},</span>
+    <span class="p">{</span>
+      <span class="na">position</span><span class="p">:</span> <span class="s2">"0"</span><span class="p">,</span>
+      <span class="na">marketId</span><span class="p">:</span> <span class="s2">"0x84c47b8af766f19f14d1deb9bbcd99782422bba4"</span><span class="p">,</span>
+      <span class="na">outcome</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+      <span class="na">timestamp</span><span class="p">:</span> <span class="mi">1556857905</span><span class="p">,</span>
+      <span class="na">netPosition</span><span class="p">:</span> <span class="s2">"-0.009"</span><span class="p">,</span>
+      <span class="na">realized</span><span class="p">:</span> <span class="s2">"0.0005"</span><span class="p">,</span>
+      <span class="na">unrealized</span><span class="p">:</span> <span class="s2">"-0.252"</span><span class="p">,</span>
+      <span class="na">total</span><span class="p">:</span> <span class="s2">"-0.2515"</span><span class="p">,</span>
+      <span class="na">averagePrice</span><span class="p">:</span> <span class="s2">"12"</span><span class="p">,</span>
+      <span class="na">unrealizedCost</span><span class="p">:</span> <span class="s2">"0.288"</span><span class="p">,</span>
+      <span class="na">realizedCost</span><span class="p">:</span> <span class="s2">"0.032"</span><span class="p">,</span>
+      <span class="na">totalCost</span><span class="p">:</span> <span class="s2">"0.32"</span><span class="p">,</span>
+      <span class="na">realizedPercent</span><span class="p">:</span> <span class="s2">"0.015625"</span><span class="p">,</span>
+      <span class="na">unrealizedPercent</span><span class="p">:</span> <span class="s2">"-0.875"</span><span class="p">,</span>
+      <span class="na">totalPercent</span><span class="p">:</span> <span class="s2">"-0.7859375"</span><span class="p">,</span>
+      <span class="na">unrealizedRevenue</span><span class="p">:</span> <span class="s2">"0.036"</span><span class="p">,</span>
+      <span class="na">frozenFunds</span><span class="p">:</span> <span class="s2">"0.321"</span><span class="p">,</span>
+      <span class="na">lastTradePrice</span><span class="p">:</span> <span class="s2">"40"</span><span class="p">,</span>
+      <span class="na">lastTradePrice24hAgo</span><span class="p">:</span> <span class="s2">"51"</span><span class="p">,</span>
+      <span class="na">lastTradePrice24hChangePercent</span><span class="p">:</span> <span class="s2">"-0.275"</span><span class="p">,</span>
+      <span class="na">unrealizedRevenue24hAgo</span><span class="p">:</span> <span class="s2">"-0.063"</span><span class="p">,</span>
+      <span class="na">unrealizedRevenue24hChangePercent</span><span class="p">:</span> <span class="s2">"-1.57142857142857142857"</span>
+    <span class="p">}</span>
+  <span class="p">],</span>
+  <span class="na">tradingPositionsPerMarket</span><span class="p">:</span> <span class="p">{</span>
+    <span class="s2">"0x37adbd757099107946ceebb1791c5c6acda635fe"</span><span class="p">:</span> <span class="p">{</span>
+      <span class="na">timestamp</span><span class="p">:</span> <span class="mi">1556857905</span><span class="p">,</span>
+      <span class="na">marketId</span><span class="p">:</span> <span class="s2">"0x37adbd757099107946ceebb1791c5c6acda635fe"</span><span class="p">,</span>
+      <span class="na">realizedPercent</span><span class="p">:</span> <span class="s2">"0"</span><span class="p">,</span>
+      <span class="na">unrealizedPercent</span><span class="p">:</span> <span class="s2">"1"</span><span class="p">,</span>
+      <span class="na">totalPercent</span><span class="p">:</span> <span class="s2">"1"</span><span class="p">,</span>
+      <span class="na">unrealizedRevenue24hChangePercent</span><span class="p">:</span> <span class="s2">"0"</span><span class="p">,</span>
+      <span class="na">realized</span><span class="p">:</span> <span class="s2">"0"</span><span class="p">,</span>
+      <span class="na">unrealized</span><span class="p">:</span> <span class="s2">"0.4505"</span><span class="p">,</span>
+      <span class="na">total</span><span class="p">:</span> <span class="s2">"0.4505"</span><span class="p">,</span>
+      <span class="na">unrealizedCost</span><span class="p">:</span> <span class="s2">"0.4505"</span><span class="p">,</span>
+      <span class="na">realizedCost</span><span class="p">:</span> <span class="s2">"0"</span><span class="p">,</span>
+      <span class="na">totalCost</span><span class="p">:</span> <span class="s2">"0.4505"</span><span class="p">,</span>
+      <span class="na">unrealizedRevenue</span><span class="p">:</span> <span class="s2">"0.901"</span><span class="p">,</span>
+      <span class="na">frozenFunds</span><span class="p">:</span> <span class="s2">"0.4505"</span><span class="p">,</span>
+      <span class="na">unrealizedRevenue24hAgo</span><span class="p">:</span> <span class="s2">"0.901"</span>
+    <span class="p">},</span>
+    <span class="s2">"0x76a0067b4d3a6db11187a849b50a076e030e95ce"</span><span class="p">:</span> <span class="p">{</span>
+      <span class="na">timestamp</span><span class="p">:</span> <span class="mi">1556857905</span><span class="p">,</span>
+      <span class="na">marketId</span><span class="p">:</span> <span class="s2">"0x76a0067b4d3a6db11187a849b50a076e030e95ce"</span><span class="p">,</span>
+      <span class="na">realizedPercent</span><span class="p">:</span> <span class="s2">"0"</span><span class="p">,</span>
+      <span class="na">unrealizedPercent</span><span class="p">:</span> <span class="s2">"9.37735849056603773546"</span><span class="p">,</span>
+      <span class="na">totalPercent</span><span class="p">:</span> <span class="s2">"9.37735849056603773546"</span><span class="p">,</span>
+      <span class="na">unrealizedRevenue24hChangePercent</span><span class="p">:</span> <span class="s2">"0"</span><span class="p">,</span>
+      <span class="na">realized</span><span class="p">:</span> <span class="s2">"0"</span><span class="p">,</span>
+      <span class="na">unrealized</span><span class="p">:</span> <span class="s2">"0.00993999999999999999996"</span><span class="p">,</span>
+      <span class="na">total</span><span class="p">:</span> <span class="s2">"0.00993999999999999999996"</span><span class="p">,</span>
+      <span class="na">unrealizedCost</span><span class="p">:</span> <span class="s2">"0.00106000000000000000004"</span><span class="p">,</span>
+      <span class="na">realizedCost</span><span class="p">:</span> <span class="s2">"0"</span><span class="p">,</span>
+      <span class="na">totalCost</span><span class="p">:</span> <span class="s2">"0.00106000000000000000004"</span><span class="p">,</span>
+      <span class="na">unrealizedRevenue</span><span class="p">:</span> <span class="s2">"0.011"</span><span class="p">,</span>
+      <span class="na">frozenFunds</span><span class="p">:</span> <span class="s2">"0.00106"</span><span class="p">,</span>
+      <span class="na">unrealizedRevenue24hAgo</span><span class="p">:</span> <span class="s2">"0.011"</span>
+    <span class="p">},</span>
+    <span class="s2">"0x448d1d8280844513c38b2b73bde8a539d0022954"</span><span class="p">:</span> <span class="p">{</span>
+      <span class="na">timestamp</span><span class="p">:</span> <span class="mi">1556857905</span><span class="p">,</span>
+      <span class="na">marketId</span><span class="p">:</span> <span class="s2">"0x448d1d8280844513c38b2b73bde8a539d0022954"</span><span class="p">,</span>
+      <span class="na">realizedPercent</span><span class="p">:</span> <span class="s2">"0"</span><span class="p">,</span>
+      <span class="na">unrealizedPercent</span><span class="p">:</span> <span class="s2">"-0.19191919191919191919"</span><span class="p">,</span>
+      <span class="na">totalPercent</span><span class="p">:</span> <span class="s2">"-0.19191919191919191919"</span><span class="p">,</span>
+      <span class="na">unrealizedRevenue24hChangePercent</span><span class="p">:</span> <span class="s2">"0"</span><span class="p">,</span>
+      <span class="na">realized</span><span class="p">:</span> <span class="s2">"0"</span><span class="p">,</span>
+      <span class="na">unrealized</span><span class="p">:</span> <span class="s2">"-0.0019"</span><span class="p">,</span>
+      <span class="na">total</span><span class="p">:</span> <span class="s2">"-0.0019"</span><span class="p">,</span>
+      <span class="na">unrealizedCost</span><span class="p">:</span> <span class="s2">"0.0099"</span><span class="p">,</span>
+      <span class="na">realizedCost</span><span class="p">:</span> <span class="s2">"0"</span><span class="p">,</span>
+      <span class="na">totalCost</span><span class="p">:</span> <span class="s2">"0.0099"</span><span class="p">,</span>
+      <span class="na">unrealizedRevenue</span><span class="p">:</span> <span class="s2">"0.008"</span><span class="p">,</span>
+      <span class="na">frozenFunds</span><span class="p">:</span> <span class="s2">"0.0099"</span><span class="p">,</span>
+      <span class="na">unrealizedRevenue24hAgo</span><span class="p">:</span> <span class="s2">"0.008"</span>
+    <span class="p">},</span>
+    <span class="s2">"0x6f5a05c21ff65c476d4b91f886984cd9c6797576"</span><span class="p">:</span> <span class="p">{</span>
+      <span class="na">timestamp</span><span class="p">:</span> <span class="mi">1556857905</span><span class="p">,</span>
+      <span class="na">marketId</span><span class="p">:</span> <span class="s2">"0x6f5a05c21ff65c476d4b91f886984cd9c6797576"</span><span class="p">,</span>
+      <span class="na">realizedPercent</span><span class="p">:</span> <span class="s2">"0"</span><span class="p">,</span>
+      <span class="na">unrealizedPercent</span><span class="p">:</span> <span class="s2">"-0.2282608695652173913"</span><span class="p">,</span>
+      <span class="na">totalPercent</span><span class="p">:</span> <span class="s2">"-0.2282608695652173913"</span><span class="p">,</span>
+      <span class="na">unrealizedRevenue24hChangePercent</span><span class="p">:</span> <span class="s2">"-1.26591760299625468165"</span><span class="p">,</span>
+      <span class="na">realized</span><span class="p">:</span> <span class="s2">"0"</span><span class="p">,</span>
+      <span class="na">unrealized</span><span class="p">:</span> <span class="s2">"-0.21"</span><span class="p">,</span>
+      <span class="na">total</span><span class="p">:</span> <span class="s2">"-0.21"</span><span class="p">,</span>
+      <span class="na">unrealizedCost</span><span class="p">:</span> <span class="s2">"0.92"</span><span class="p">,</span>
+      <span class="na">realizedCost</span><span class="p">:</span> <span class="s2">"0"</span><span class="p">,</span>
+      <span class="na">totalCost</span><span class="p">:</span> <span class="s2">"0.92"</span><span class="p">,</span>
+      <span class="na">unrealizedRevenue</span><span class="p">:</span> <span class="s2">"0.71"</span><span class="p">,</span>
+      <span class="na">frozenFunds</span><span class="p">:</span> <span class="s2">"0.92"</span><span class="p">,</span>
+      <span class="na">unrealizedRevenue24hAgo</span><span class="p">:</span> <span class="s2">"-2.67"</span>
+    <span class="p">},</span>
+    <span class="s2">"0x84c47b8af766f19f14d1deb9bbcd99782422bba4"</span><span class="p">:</span> <span class="p">{</span>
+      <span class="na">timestamp</span><span class="p">:</span> <span class="mi">1556857905</span><span class="p">,</span>
+      <span class="na">marketId</span><span class="p">:</span> <span class="s2">"0x84c47b8af766f19f14d1deb9bbcd99782422bba4"</span><span class="p">,</span>
+      <span class="na">realizedPercent</span><span class="p">:</span> <span class="s2">"0.015625"</span><span class="p">,</span>
+      <span class="na">unrealizedPercent</span><span class="p">:</span> <span class="s2">"-0.875"</span><span class="p">,</span>
+      <span class="na">totalPercent</span><span class="p">:</span> <span class="s2">"-0.7859375"</span><span class="p">,</span>
+      <span class="na">unrealizedRevenue24hChangePercent</span><span class="p">:</span> <span class="s2">"-1.57142857142857142857"</span><span class="p">,</span>
+      <span class="na">realized</span><span class="p">:</span> <span class="s2">"0.0005"</span><span class="p">,</span>
+      <span class="na">unrealized</span><span class="p">:</span> <span class="s2">"-0.252"</span><span class="p">,</span>
+      <span class="na">total</span><span class="p">:</span> <span class="s2">"-0.2515"</span><span class="p">,</span>
+      <span class="na">unrealizedCost</span><span class="p">:</span> <span class="s2">"0.288"</span><span class="p">,</span>
+      <span class="na">realizedCost</span><span class="p">:</span> <span class="s2">"0.032"</span><span class="p">,</span>
+      <span class="na">totalCost</span><span class="p">:</span> <span class="s2">"0.32"</span><span class="p">,</span>
+      <span class="na">unrealizedRevenue</span><span class="p">:</span> <span class="s2">"0.036"</span><span class="p">,</span>
+      <span class="na">frozenFunds</span><span class="p">:</span> <span class="s2">"0.321"</span><span class="p">,</span>
+      <span class="na">unrealizedRevenue24hAgo</span><span class="p">:</span> <span class="s2">"-0.063"</span>
+    <span class="p">}</span>
   <span class="p">},</span>
-  <span class="p">{</span>
-    <span class="na">averagePrice</span><span class="p">:</span> <span class="s2">"386.50168728908882781667"</span><span class="p">,</span>
-    <span class="na">cost</span><span class="p">:</span> <span class="s2">"0"</span><span class="p">,</span>
-    <span class="na">marketId</span><span class="p">:</span> <span class="s2">"0x0000000000000000000000000000000000000ff1"</span><span class="p">,</span>
-    <span class="na">netPosition</span><span class="p">:</span> <span class="s2">"-0.0006"</span><span class="p">,</span>
-    <span class="na">outcome</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
-    <span class="na">position</span><span class="p">:</span> <span class="s2">"0"</span><span class="p">,</span>
-    <span class="na">realized</span><span class="p">:</span> <span class="s2">"0"</span><span class="p">,</span>
-    <span class="na">timestamp</span><span class="p">:</span> <span class="mi">1534435013</span><span class="p">,</span>
-    <span class="na">total</span><span class="p">:</span> <span class="s2">"0.035401012373453296690002"</span><span class="p">,</span>
-    <span class="na">totalPosition</span><span class="p">:</span> <span class="s2">"0"</span><span class="p">,</span>
-    <span class="na">numEscrowed</span><span class="p">:</span> <span class="s2">"0"</span><span class="p">,</span>
-    <span class="na">unrealized</span><span class="p">:</span> <span class="s2">"0.035401012373453296690002"</span><span class="p">,</span>
+  <span class="na">tradingPositionsTotal</span><span class="p">:</span> <span class="p">{</span>
+    <span class="na">realizedPercent</span><span class="p">:</span> <span class="s2">"0.015625"</span><span class="p">,</span>
+    <span class="na">unrealizedPercent</span><span class="p">:</span> <span class="s2">"-0.00207252644567704527"</span><span class="p">,</span>
+    <span class="na">totalPercent</span><span class="p">:</span> <span class="s2">"-0.00173968239041764132"</span><span class="p">,</span>
+    <span class="na">unrealizedRevenue24hChangePercent</span><span class="p">:</span> <span class="s2">"-1.91891891891891891892"</span><span class="p">,</span>
+    <span class="na">realized</span><span class="p">:</span> <span class="s2">"0.0005"</span><span class="p">,</span>
+    <span class="na">unrealized</span><span class="p">:</span> <span class="s2">"-0.00346000000000000000004"</span><span class="p">,</span>
+    <span class="na">total</span><span class="p">:</span> <span class="s2">"-0.00296000000000000000004"</span><span class="p">,</span>
+    <span class="na">unrealizedCost</span><span class="p">:</span> <span class="s2">"1.66946000000000000000004"</span><span class="p">,</span>
+    <span class="na">realizedCost</span><span class="p">:</span> <span class="s2">"0.032"</span><span class="p">,</span>
+    <span class="na">totalCost</span><span class="p">:</span> <span class="s2">"1.70146000000000000000004"</span><span class="p">,</span>
+    <span class="na">unrealizedRevenue</span><span class="p">:</span> <span class="s2">"1.666"</span><span class="p">,</span>
+    <span class="na">frozenFunds</span><span class="p">:</span> <span class="s2">"1.70246"</span><span class="p">,</span>
+    <span class="na">unrealizedRevenue24hAgo</span><span class="p">:</span> <span class="s2">"-1.813"</span>
   <span class="p">},</span>
-<span class="p">]</span>
+  <span class="na">frozenFundsTotal</span><span class="p">:</span> <span class="p">{</span>
+    <span class="na">frozenFunds</span><span class="p">:</span> <span class="s2">"1.70246"</span>
+  <span class="p">}</span>
+<span class="p">}</span>
 
 <span class="nx">augur</span><span class="p">.</span><span class="nx">trading</span><span class="p">.</span><span class="nx">normalizePrice</span><span class="p">({</span>
   <span class="na">minPrice</span><span class="p">:</span> <span class="s2">"0"</span><span class="p">,</span>
@@ -3907,8 +4104,8 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
 
 <ul>
 <li><strong><code class="prettyprint">p.account</code></strong>  (string) Ethereum address of the user for which to retrieve trading positions, as a 20-byte hexadecimal string.</li>
-<li><strong><code class="prettyprint">p.universe</code></strong>  (string) &lt;optional&gt; Contract address of the <a href="#universe">Universe</a> in which to look up the trading positions, as a 20-byte hexadecimal string. Either this parameter or the Market ID must be specified.</li>
-<li><strong><code class="prettyprint">p.marketId</code></strong>  (string) &lt;optional&gt; Contract address of the <a href="#market">Market</a> in which to look up the trading positions, as a 20-byte hexadecimal string. Either this parameter or the Universe must be specified.</li>
+<li><strong><code class="prettyprint">p.universe</code></strong>  (string) &lt;optional&gt; Contract address of the <a href="#universe">Universe</a> in which to look up the trading positions, as a 20-byte hexadecimal string. Either this parameter or <code class="prettyprint">p.marketId</code> must be specified.</li>
+<li><strong><code class="prettyprint">p.marketId</code></strong>  (string) &lt;optional&gt; Contract address of the <a href="#market">Market</a> in which to look up the trading positions, as a 20-byte hexadecimal string. Either this parameter or <code class="prettyprint">p.universe</code> must be specified.</li>
 <li><strong><code class="prettyprint">p.outcome</code></strong>  (number) &lt;optional&gt; <a href="#outcome">Outcome</a> of the <a href="#share">Share</a> held for the Market. Valid values are in the range [0,7].</li>
 <li><strong><code class="prettyprint">p.endTime</code></strong>  (number) &lt;optional&gt; Unix timestamp after which user trading positions will be filtered from returned results. Defaults to the current timestamp.</li>
 <li><strong><code class="prettyprint">p.sortBy</code></strong>  (string) &lt;optional&gt; Field name by which to sort the trading positions.</li>
@@ -12714,6 +12911,29 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
 <li><strong><code class="prettyprint">isInternalTransfer</code></strong> (boolean) Whether the transfer was a trade/order transaction.</li>
 </ul>
 
+<p><a name="AggregatedTradingPosition"></a></p>
+
+<h3 id="aggregatedtradingposition-object">AggregatedTradingPosition  (Object)</h3>
+
+<h4 id="strong-strong"><strong>Properties:</strong></h4>
+
+<ul>
+<li><strong><code class="prettyprint">realized</code></strong> (string) Profit a user made for total historical positions which have <em>since been closed</em> in a market outcome (i.e., <code class="prettyprint">realized</code> is accrued profit for Shares a user previously owned).</li>
+<li><strong><code class="prettyprint">unrealized</code></strong> (string) Percent profit a user would have on just their current <code class="prettyprint">netPosition</code> if they were to close it at the last price for that Market Outcome. The last price is the most recent price paid by anyone trading on that Outcome.</li>
+<li><strong><code class="prettyprint">total</code></strong> (string) <code class="prettyprint">unrealized</code> plus <code class="prettyprint">realized</code> (i.e., is the profit a user made on previously owned Shares in a Market Outcome, plus what they could make if they closed their current <code class="prettyprint">netPosition</code> in that Outcome).</li>
+<li><strong><code class="prettyprint">unrealizedCost</code></strong> (string) Amount of ETH a user paid to open their current
+net position in that Market Outcome. This is a cashflow amount that the user remitted based on Share price not trade price. For example, if a user opens a short position for one Share in a YesNo Market at a trade price of 0.2, then the unrealized cost is <code class="prettyprint">MarketMaxPrice=1.0 - TradePrice=0.2 --&gt; SharePrice=0.8 * 1 share --&gt; UnrealizedCost=0.8</code>. In Categorical Markets, the user may pay Shares of other Outcomes in lieu of ETH, which doesn&rsquo;t change the calculation for <code class="prettyprint">unrealizedCost</code>, but it does mean that (in a Categorical Market) <code class="prettyprint">unrealizedCost</code> may be greater than the actual ETH a user remitted.</li>
+<li><strong><code class="prettyprint">realizedCost</code></strong> (string) Amount of ETH a user paid for the total historical cost to open all positions which have <em>since been closed</em> for that Market Outcome. (ie., <code class="prettyprint">realizedCost</code> is accrued cost for Shares a user previously owned). <code class="prettyprint">realizedCost</code> is a cashflow amount that the user remitted based on Share price not trade price).</li>
+<li><strong><code class="prettyprint">totalCost</code></strong> (string) <code class="prettyprint">unrealizedCost</code> plus <code class="prettyprint">realizedCost</code> (i.e., <code class="prettyprint">totalCost</code> is the cashflow amount the user remitted, based on Share price not trade price, for all shares they ever bought in this Market Outcome).</li>
+<li><strong><code class="prettyprint">realizedPercent</code></strong> (string) Percent profit a user made for total historical positions which have <em>since been closed</em> in a market outcome (i.e., <code class="prettyprint">realizedPercent</code> is accrued profit percent for Shares a user previously owned). <code class="prettyprint">realizedPercent</code> is <code class="prettyprint">realized</code> divided by <code class="prettyprint">realizedCost</code>.</li>
+<li><strong><code class="prettyprint">unrealizedPercent</code></strong> (string) Percent profit a user would have on just their current <code class="prettyprint">netPosition</code> if they were to close it at the last price for that Market Outcome. The last price is the most recent price paid by anyone trading on that Outcome. <code class="prettyprint">unrealizedPercent</code> is <code class="prettyprint">Unrealized</code> divided by <code class="prettyprint">unrealizedCost</code>.</li>
+<li><strong><code class="prettyprint">totalPercent</code></strong> (string) <code class="prettyprint">total</code> divided by <code class="prettyprint">totalCost</code> (i.e., <code class="prettyprint">totalPercent</code> is the total/final percent profit a user would make if they closed their <code class="prettyprint">netPosition</code> at the last price). In other words, TotalProfitPercent is what <code class="prettyprint">realizedPercent</code> <em>would become</em> if the user closed their <code class="prettyprint">netPosition</code> at the last price.</li>
+<li><strong><code class="prettyprint">unrealizedRevenue</code></strong> (string) amount of ETH a user would receive for their current <code class="prettyprint">netPosition</code> if they were to close that position at the last price for that Market Outcome. The last price is the most recent price paid by anyone trading on that Outcome. For example if a user has a long position of 10 Shares in a YesNo market, and the last price is 0.75, then <code class="prettyprint">NetPosition=10 * LastPrice=0.75 --&gt; UnrealizedRevenue=7.5</code>.</li>
+<li><strong><code class="prettyprint">unrealizedRevenue24hAgo</code></strong> (string) Same as <code class="prettyprint">unrealizedRevenue</code>, but calculated using the last trade price from 24 hours ago, as if the user held this position constant for the past 24 hours. But, if the user (further) opened their current position within the past 24 hours, then the price at which the position was opened is used instead of the actual last trade price from 24 hours ago.</li>
+<li><strong><code class="prettyprint">unrealizedRevenue24hChangePercent</code></strong> (string) Percent change in <code class="prettyprint">unrealizedRevenue</code> from 24 hours ago.</li>
+<li><strong><code class="prettyprint">frozenFunds</code></strong> (string) ETH that a user has given up (locked in escrow or given to a counterparty) to obtain their current position.</li>
+</ul>
+
 <p><a name="AugurEventLog"></a></p>
 
 <h3 id="augureventlog-object">AugurEventLog  (Object)</h3>
@@ -12971,6 +13191,16 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
 <li><strong><code class="prettyprint">universe</code></strong> (string) Ethereum contract address of the Universe to which the Fee Window belongs.</li>
 </ul>
 
+<p><a name="FrozenFunds"></a></p>
+
+<h3 id="frozenfunds-object">FrozenFunds  (Object)</h3>
+
+<h4 id="strong-strong"><strong>Properties:</strong></h4>
+
+<ul>
+<li><strong><code class="prettyprint">frozenFunds</code></strong> (string) ETH that a user has given up (locked in escrow or given to a counterparty) to obtain their current position.</li>
+</ul>
+
 <p><a name="GasEstimateInfo"></a></p>
 
 <h3 id="gasestimateinfo-object">GasEstimateInfo  (Object)</h3>
@@ -13188,6 +13418,31 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
 
 <ul>
 <li><strong><code class="prettyprint">Price</code></strong> (<a href="#SingleOutcomePriceTimeSeries">SingleOutcomePriceTimeSeries</a>) time-series for a single Outcome, keyed by Outcome ID.</li>
+</ul>
+
+<p><a name="MarketTradingPosition"></a></p>
+
+<h3 id="markettradingposition-object">MarketTradingPosition  (Object)</h3>
+
+<h4 id="strong-strong"><strong>Properties:</strong></h4>
+
+<ul>
+<li><strong><code class="prettyprint">realized</code></strong> (string) Profit a user made for total historical positions which have <em>since been closed</em> in a market outcome (i.e., <code class="prettyprint">realized</code> is accrued profit for Shares a user previously owned).</li>
+<li><strong><code class="prettyprint">unrealized</code></strong> (string) Percent profit a user would have on just their current <code class="prettyprint">netPosition</code> if they were to close it at the last price for that Market Outcome. The last price is the most recent price paid by anyone trading on that Outcome.</li>
+<li><strong><code class="prettyprint">total</code></strong> (string) <code class="prettyprint">unrealized</code> plus <code class="prettyprint">realized</code> (i.e., is the profit a user made on previously owned Shares in a Market Outcome, plus what they could make if they closed their current <code class="prettyprint">netPosition</code> in that Outcome).</li>
+<li><strong><code class="prettyprint">unrealizedCost</code></strong> (string) Amount of ETH a user paid to open their current
+net position in that Market Outcome. This is a cashflow amount that the user remitted based on Share price not trade price. For example, if a user opens a short position for one Share in a YesNo Market at a trade price of 0.2, then the unrealized cost is <code class="prettyprint">MarketMaxPrice=1.0 - TradePrice=0.2 --&gt; SharePrice=0.8 * 1 share --&gt; UnrealizedCost=0.8</code>. In Categorical Markets, the user may pay Shares of other Outcomes in lieu of ETH, which doesn&rsquo;t change the calculation for <code class="prettyprint">unrealizedCost</code>, but it does mean that (in a Categorical Market) <code class="prettyprint">unrealizedCost</code> may be greater than the actual ETH a user remitted.</li>
+<li><strong><code class="prettyprint">realizedCost</code></strong> (string) Amount of ETH a user paid for the total historical cost to open all positions which have <em>since been closed</em> for that Market Outcome. (ie., <code class="prettyprint">realizedCost</code> is accrued cost for Shares a user previously owned). <code class="prettyprint">realizedCost</code> is a cashflow amount that the user remitted based on Share price not trade price).</li>
+<li><strong><code class="prettyprint">totalCost</code></strong> (string) <code class="prettyprint">unrealizedCost</code> plus <code class="prettyprint">realizedCost</code> (i.e., <code class="prettyprint">totalCost</code> is the cashflow amount the user remitted, based on Share price not trade price, for all shares they ever bought in this Market Outcome).</li>
+<li><strong><code class="prettyprint">realizedPercent</code></strong> (string) Percent profit a user made for total historical positions which have <em>since been closed</em> in a market outcome (i.e., <code class="prettyprint">realizedPercent</code> is accrued profit percent for Shares a user previously owned). <code class="prettyprint">realizedPercent</code> is <code class="prettyprint">realized</code> divided by <code class="prettyprint">realizedCost</code>.</li>
+<li><strong><code class="prettyprint">unrealizedPercent</code></strong> (string) Percent profit a user would have on just their current <code class="prettyprint">netPosition</code> if they were to close it at the last price for that Market Outcome. The last price is the most recent price paid by anyone trading on that Outcome. <code class="prettyprint">unrealizedPercent</code> is <code class="prettyprint">Unrealized</code> divided by <code class="prettyprint">unrealizedCost</code>.</li>
+<li><strong><code class="prettyprint">totalPercent</code></strong> (string) <code class="prettyprint">total</code> divided by <code class="prettyprint">totalCost</code> (i.e., <code class="prettyprint">totalPercent</code> is the total/final percent profit a user would make if they closed their <code class="prettyprint">netPosition</code> at the last price). In other words, TotalProfitPercent is what <code class="prettyprint">realizedPercent</code> <em>would become</em> if the user closed their <code class="prettyprint">netPosition</code> at the last price.</li>
+<li><strong><code class="prettyprint">unrealizedRevenue</code></strong> (string) amount of ETH a user would receive for their current <code class="prettyprint">netPosition</code> if they were to close that position at the last price for that Market Outcome. The last price is the most recent price paid by anyone trading on that Outcome. For example if a user has a long position of 10 Shares in a YesNo market, and the last price is 0.75, then <code class="prettyprint">NetPosition=10 * LastPrice=0.75 --&gt; UnrealizedRevenue=7.5</code>.</li>
+<li><strong><code class="prettyprint">unrealizedRevenue24hAgo</code></strong> (string) Same as <code class="prettyprint">unrealizedRevenue</code>, but calculated using the last trade price from 24 hours ago, as if the user held this position constant for the past 24 hours. But, if the user (further) opened their current position within the past 24 hours, then the price at which the position was opened is used instead of the actual last trade price from 24 hours ago.</li>
+<li><strong><code class="prettyprint">unrealizedRevenue24hChangePercent</code></strong> (string) Percent change in <code class="prettyprint">unrealizedRevenue</code> from 24 hours ago.</li>
+<li><strong><code class="prettyprint">frozenFunds</code></strong> (string) ETH that a user has given up (locked in escrow or given to a counterparty) to obtain their current position.</li>
+<li><strong><code class="prettyprint">marketId</code></strong> (string) Ethereum address of the market in which the user holds this position.</li>
+<li><strong><code class="prettyprint">timestamp</code></strong> (number) Unix timestamp at which the user held this position.</li>
 </ul>
 
 <p><a name="Meta"></a></p>
@@ -13514,6 +13769,38 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
 <li><strong><code class="prettyprint">onChainPrice</code></strong> (string) On-chain price for this trade.</li>
 </ul>
 
+<p><a name="TradingPosition"></a></p>
+
+<h3 id="tradingposition-object">TradingPosition  (Object)</h3>
+
+<h4 id="strong-strong"><strong>Properties:</strong></h4>
+
+<ul>
+<li><strong><code class="prettyprint">realized</code></strong> (string) Profit a user made for total historical positions which have <em>since been closed</em> in a market outcome (i.e., <code class="prettyprint">realized</code> is accrued profit for Shares a user previously owned).</li>
+<li><strong><code class="prettyprint">unrealized</code></strong> (string) Percent profit a user would have on just their current <code class="prettyprint">netPosition</code> if they were to close it at the last price for that Market Outcome. The last price is the most recent price paid by anyone trading on that Outcome.</li>
+<li><strong><code class="prettyprint">total</code></strong> (string) <code class="prettyprint">unrealized</code> plus <code class="prettyprint">realized</code> (i.e., is the profit a user made on previously owned Shares in a Market Outcome, plus what they could make if they closed their current <code class="prettyprint">netPosition</code> in that Outcome).</li>
+<li><strong><code class="prettyprint">unrealizedCost</code></strong> (string) Amount of ETH a user paid to open their current
+net position in that Market Outcome. This is a cashflow amount that the user remitted based on Share price not trade price. For example, if a user opens a short position for one Share in a YesNo Market at a trade price of 0.2, then the unrealized cost is <code class="prettyprint">MarketMaxPrice=1.0 - TradePrice=0.2 --&gt; SharePrice=0.8 * 1 share --&gt; UnrealizedCost=0.8</code>. In Categorical Markets, the user may pay Shares of other Outcomes in lieu of ETH, which doesn&rsquo;t change the calculation for <code class="prettyprint">unrealizedCost</code>, but it does mean that (in a Categorical Market) <code class="prettyprint">unrealizedCost</code> may be greater than the actual ETH a user remitted.</li>
+<li><strong><code class="prettyprint">realizedCost</code></strong> (string) Amount of ETH a user paid for the total historical cost to open all positions which have <em>since been closed</em> for that Market Outcome. (ie., <code class="prettyprint">realizedCost</code> is accrued cost for Shares a user previously owned). <code class="prettyprint">realizedCost</code> is a cashflow amount that the user remitted based on Share price not trade price).</li>
+<li><strong><code class="prettyprint">totalCost</code></strong> (string) <code class="prettyprint">unrealizedCost</code> plus <code class="prettyprint">realizedCost</code> (i.e., <code class="prettyprint">totalCost</code> is the cashflow amount the user remitted, based on Share price not trade price, for all shares they ever bought in this Market Outcome).</li>
+<li><strong><code class="prettyprint">realizedPercent</code></strong> (string) Percent profit a user made for total historical positions which have <em>since been closed</em> in a market outcome (i.e., <code class="prettyprint">realizedPercent</code> is accrued profit percent for Shares a user previously owned). <code class="prettyprint">realizedPercent</code> is <code class="prettyprint">realized</code> divided by <code class="prettyprint">realizedCost</code>.</li>
+<li><strong><code class="prettyprint">unrealizedPercent</code></strong> (string) Percent profit a user would have on just their current <code class="prettyprint">netPosition</code> if they were to close it at the last price for that Market Outcome. The last price is the most recent price paid by anyone trading on that Outcome. <code class="prettyprint">unrealizedPercent</code> is <code class="prettyprint">Unrealized</code> divided by <code class="prettyprint">unrealizedCost</code>.</li>
+<li><strong><code class="prettyprint">totalPercent</code></strong> (string) <code class="prettyprint">total</code> divided by <code class="prettyprint">totalCost</code> (i.e., <code class="prettyprint">totalPercent</code> is the total/final percent profit a user would make if they closed their <code class="prettyprint">netPosition</code> at the last price). In other words, TotalProfitPercent is what <code class="prettyprint">realizedPercent</code> <em>would become</em> if the user closed their <code class="prettyprint">netPosition</code> at the last price.</li>
+<li><strong><code class="prettyprint">unrealizedRevenue</code></strong> (string) amount of ETH a user would receive for their current <code class="prettyprint">netPosition</code> if they were to close that position at the last price for that Market Outcome. The last price is the most recent price paid by anyone trading on that Outcome. For example if a user has a long position of 10 Shares in a YesNo market, and the last price is 0.75, then <code class="prettyprint">NetPosition=10 * LastPrice=0.75 --&gt; UnrealizedRevenue=7.5</code>.</li>
+<li><strong><code class="prettyprint">unrealizedRevenue24hAgo</code></strong> (string) Same as <code class="prettyprint">unrealizedRevenue</code>, but calculated using the last trade price from 24 hours ago, as if the user held this position constant for the past 24 hours. But, if the user (further) opened their current position within the past 24 hours, then the price at which the position was opened is used instead of the actual last trade price from 24 hours ago.</li>
+<li><strong><code class="prettyprint">unrealizedRevenue24hChangePercent</code></strong> (string) Percent change in <code class="prettyprint">unrealizedRevenue</code> from 24 hours ago.</li>
+<li><strong><code class="prettyprint">frozenFunds</code></strong> (string) ETH that a user has given up (locked in escrow or given to a counterparty) to obtain their current position.</li>
+<li><strong><code class="prettyprint">marketId</code></strong> (string) Ethereum address of the market in which the user holds this position.</li>
+<li><strong><code class="prettyprint">timestamp</code></strong> (number) Unix timestamp at which the user held this position.</li>
+<li><strong><code class="prettyprint">position</code></strong> (string) Shares the user has bought (&ldquo;long&rdquo; position) or sold (&ldquo;short&rdquo; position) in this Market Outcome.</li>
+<li><strong><code class="prettyprint">netPosition</code></strong> (string) Number of Shares a user currently owns in a Market Outcome. If <code class="prettyprint">netPosition</code> is positive (negative), the user has a &ldquo;long&rdquo; (&ldquo;short&rdquo;) position and earns money if the price goes up (down). If <code class="prettyprint">netPosition</code> is zero the position is said to be &ldquo;closed&rdquo;. In the context of a trade, <code class="prettyprint">netPosition</code> is prior to the trade being processed.</li>
+<li><strong><code class="prettyprint">outcome</code></strong> (number) Market Outcome in which the user has this position.</li>
+<li><strong><code class="prettyprint">averagePrice</code></strong> (string) Average per-Share trade price at which the user opened their position.</li>
+<li><strong><code class="prettyprint">lastTradePrice</code></strong> (string) Price in ETH at which a trade executed. A trade is always on a single Market Outcome. <code class="prettyprint">lastTradePrice</code> is the price shown in the UI looking at the Order Book or historical price chart.</li>
+<li><strong><code class="prettyprint">lastTradePrice24hAgo</code></strong> (string) As of 24 hours ago, the last (most recent) price in ETH at which this Outcome was traded by anybody.</li>
+<li><strong><code class="prettyprint">lastTradePrice24hChangePercent</code></strong> (string) Percent change in <code class="prettyprint">lastTradePrice</code> from 24 hours ago.</li>
+</ul>
+
 <p><a name="UnclaimedFeeWindowInfo"></a></p>
 
 <h3 id="unclaimedfeewindowinfo-object">UnclaimedFeeWindowInfo  (Object)</h3>
@@ -13553,21 +13840,17 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
 <li><strong><code class="prettyprint">tradeGroupId</code></strong> (number|null) ID logged with each trade transaction (can be used to group trades client-side), as a hexadecimal string.</li>
 </ul>
 
+<p><a name="UserTradePositionsInfo"></a></p>
+
+<h3 id="usertradeposition-object">UserTradePosition  (Object)</h3>
+
 <h4 id="strong-strong"><strong>Properties:</strong></h4>
 
 <ul>
-<li><strong><code class="prettyprint">averagePrice</code></strong> (string) Average price paid to acquire this position, in ETH. (This is always the price of the Long Position, even when for a Short Position.)</li>
-<li><strong><code class="prettyprint">cost</code></strong> (string) Cost per Share to acquire this position, in ETH.</li>
-<li><strong><code class="prettyprint">marketId</code></strong> (string) Contract address of the Market, as a hexadecimal string.</li>
-<li><strong><code class="prettyprint">netPosition</code></strong> (string) <code class="prettyprint">position</code> adjusted when a Short Position exists. For example, if the user has a Short Position (defined as having a <code class="prettyprint">totalPosition</code> &gt; 0 for all but one Outcome), the <code class="prettyprint">netPosition</code> of all <code class="prettyprint">totalPosition</code> &gt; 0 Outcomes is <code class="prettyprint">totalPosition</code> - min(<code class="prettyprint">totalPosition</code>s), and the <code class="prettyprint">netPosition</code> for the Outcome with a <code class="prettyprint">totalPosition</code> of 0 is min(<code class="prettyprint">totalPosition</code>s).</li>
-<li><strong><code class="prettyprint">numEscrowed</code></strong> (string) Number of Shares in <code class="prettyprint">outcome</code> the user has escrowed for Open Orders.</li>
-<li><strong><code class="prettyprint">outcome</code></strong> (number) Outcome of the Shares the user owns.</li>
-<li><strong><code class="prettyprint">position</code></strong> (string) Raw number of Shares in <code class="prettyprint">outcome</code> that the user holds.</li>
-<li><strong><code class="prettyprint">realized</code></strong> (string) ETH profit or loss the user took upon closing this Position (relative to the Outcome being traded).</li>
-<li><strong><code class="prettyprint">timestamp</code></strong> (number) Unix timestamp when user&rsquo;s trade position last changed. (If the user has no position, this is the current block time.)</li>
-<li><strong><code class="prettyprint">total</code></strong> (string) The sum of <code class="prettyprint">realized</code> and <code class="prettyprint">unrealized</code>.</li>
-<li><strong><code class="prettyprint">totalPosition</code></strong> (string) The sum of <code class="prettyprint">position</code> and <code class="prettyprint">numEscrowed</code>.</li>
-<li><strong><code class="prettyprint">unrealized</code></strong> (string) Profit or loss the user would take if they closed their position at the last trade price (using <code class="prettyprint">averagePrice</code>), in ETH.</li>
+<li><strong><code class="prettyprint">tradingPositions</code></strong> (Array<TradingPosition>)  Per-Outcome TradingPosition, where unrealized profit is relative to an Outcome&rsquo;s last price (as traded by anyone).</li>
+<li><strong><code class="prettyprint">tradingPositionsPerMarket</code></strong> (Array<MarketTradingPosition>)  Per-market aggregation of trading positions</li>
+<li><strong><code class="prettyprint">tradingPositionsTotal</code></strong> (AggregatedTradingPosition|undefined)  Portfolio-level aggregation of all of the user&rsquo;s trading positions. Undefined if and only if <code class="prettyprint">getUserTradingPositions</code> was filtered by marketId</li>
+<li><strong><code class="prettyprint">frozenFundsTotal</code></strong> (FrozenFunds|undefined)  User&rsquo;s total frozen funds. Undefined if and only if <code class="prettyprint">getUserTradingPositions</code> was filtered by marketId. WARNING - <code class="prettyprint">frozenFundsTotal</code> is greater than <code class="prettyprint">tradingPositionsTotal</code>.<code class="prettyprint">frozenFunds</code> (in general) because <code class="prettyprint">frozenFundsTotal</code> also includes the sum of Market Validity Bonds for active Markets this user created.</li>
 </ul>
 
 <p><a name="WebSocket"></a></p>
