@@ -2227,6 +2227,8 @@ augur.trading.getUserTradingHistory({
     marketCreatorFees: "0",
     reporterFees: "0",
     selfFilled: false,
+    creator: "0x0000000000000000000000000000000000000b0b",
+    filler: "0x000000000000000000000000000000000000d00d",
     settlementFees: "0",
     marketId: "0x0000000000000000000000000000000000000001",
     outcome: 0,
@@ -2244,6 +2246,8 @@ augur.trading.getUserTradingHistory({
     price: "4.2",
     reporterFees: "0",
     selfFilled: false,
+    creator: "0x0000000000000000000000000000000000000b0b",
+    filler: "0x000000000000000000000000000000000000d00d",
     settlementFees: "0",
     shareToken: "0x0100000000000000000000000000000000000000",
     timestamp: 1509065474,
@@ -2759,7 +2763,7 @@ This function will fail if:
 * **`p`** (Object) Parameters object.
     * **`p.account`**  (string) Ethereum address of the user for which to retrieve trading history, as a 20-byte hexadecimal string.
     * **`p.universe`**  (string) &lt;optional> Contract address of the [Universe](#universe) in which to look up the trading history, as a 20-byte hexadecimal string. Either this parameter or the [Market](#market) ID must be specified.
-    * **`p.marketId`**  (string) &lt;optional> Contract address of the Market in which to look up the trading history, as a 20-byte hexadecimal string. Either this parameter or the Universe must be specified.
+    * **`p.marketId`**  (string|Array&lt;string>) &lt;optional> Contract address(es) of the Market(s) in which to look up the trading history, as a 20-byte hexadecimal string. Either this parameter or the Universe must be specified.
     * **`p.outcome`**  (number) [Outcome](#outcome) of the [Share](#share) being bought/sold. Valid values are in the range [0,7].
     * **`p.orderType`**  (string) Type of trade. Valid values are "buy" and "sell".
     * **`p.ignoreSelfTrades`**  (boolean) &lt;optional> Whether to ignore trades a user made with himself/herself when retrieving results. Defaults to `false`.

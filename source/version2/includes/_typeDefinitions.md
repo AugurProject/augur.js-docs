@@ -628,13 +628,15 @@ Serves as an enum for the state of a Market.
 * **`transactionHash`** (string) Hash to look up the trade transaction receipt.
 * **`logIndex`** (number) Number of the log index position in the Ethereum block containing the trade transaction.
 * **`orderId`** (string) Unique ID for the Order, as a hexadecimal string.
-* **`type`** (string) Type of trade, from the perspective of the Order maker. Valid values are "buy" and "sell".
+* **`type`** (string) Type of trade, from the perspective of the specified account. Valid values are "buy" and "sell".
 * **`price`** (string) Price paid for trade, in attoETH.
 * **`amount`** (string) Amount of Share Units that were bought/sold.
 * **`maker`** (boolean) Whether the specified user is the order maker (as opposed to filler).
 * **`marketCreatorFees`** (string) Amount of fees paid to Market creator, in ETH.
 * **`reporterFees`** (string) Amount of fees paid to reporters, in attoETH.
 * **`selfFilled`** (boolean) Whether the user filled his/her own Order.
+* **`creator`** (string)  Ethereum address of the Order Creator, as a hexadecimal string.
+* **`filler`** (string)  Ethereum address of the Order Filler, as a hexadecimal string.
 * **`marketId`** (string) Contract address of the Market, as a hexadecimal string.
 * **`outcome`** (number) Outcome being bought/sold.
 * **`shareToken`** (string) Contract address of the share token that was bought or sold, as a hexadecimal string.
