@@ -263,8 +263,8 @@ Serves as an enum for the state of a Dispute Token.
 * **`isFinalized`** (boolean) Whether the non-Forked Market has been Finalized (i.e., its `Market.finalize` function has been called successfully).
 * **`isMigrated`** (boolean) Whether the non-Forked Market has been migrated to the Child Universe of its original Universe (i.e., its `Market.migrateThroughOneFork` function has been called successfully).
 * **`marketId`** (string) Ethereum contract address of the non-Forked Market, as a hexadecimal string.
-* **`unclaimedEthFees`** ()  
-* **`unclaimedRepTotal`** ()  
+* **`unclaimedEthFees`** (string)  Amount of unclaimed Reporting Fees the user has for the Market, in attoETH.
+* **`unclaimedRepTotal`** (string)  Amount of unclaimed REP the user has staked in the Market, in attoREP.
 
 <a name="GetReportingFeesTotal"></a>
 ### GetReportingFeesTotal  (Object)
