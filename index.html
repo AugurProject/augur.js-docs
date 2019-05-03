@@ -1845,7 +1845,13 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
     <span class="nx">resolutionSource</span><span class="p">:</span> <span class="s2">"https://www.trusted-third-party.com"</span><span class="p">,</span>
     <span class="nx">numTicks</span><span class="p">:</span> <span class="s2">"10000"</span><span class="p">,</span>
     <span class="nx">tickSize</span><span class="p">:</span> <span class="s2">"0.0001"</span><span class="p">,</span>
-    <span class="nx">consensus</span><span class="p">:</span> <span class="kc">null</span><span class="p">,</span>
+    <span class="nx">consensus</span><span class="p">:</span> <span class="p">{</span>
+      <span class="nl">isInvalid</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+      <span class="nx">payout</span><span class="p">:</span> <span class="p">[</span>
+        <span class="s2">"0"</span><span class="p">,</span>
+        <span class="s2">"10000"</span><span class="p">,</span>
+      <span class="p">],</span>
+    <span class="p">},</span>
     <span class="nx">outcomes</span><span class="p">:</span> <span class="p">[{</span>
       <span class="na">id</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
       <span class="na">volume</span><span class="p">:</span> <span class="s2">"100"</span><span class="p">,</span>
@@ -1928,7 +1934,13 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
     <span class="nx">designatedReportStake</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span>
     <span class="nx">resolutionSource</span><span class="p">:</span> <span class="s2">"http://www.trusted-third-party.com"</span><span class="p">,</span>
     <span class="nx">numTicks</span><span class="p">:</span> <span class="s2">"10000"</span><span class="p">,</span>
-    <span class="nx">consensus</span><span class="p">:</span> <span class="kc">null</span><span class="p">,</span>
+    <span class="nx">consensus</span><span class="p">:</span> <span class="p">{</span>
+      <span class="nl">isInvalid</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+      <span class="nx">payout</span><span class="p">:</span> <span class="p">[</span>
+        <span class="s2">"0"</span><span class="p">,</span>
+        <span class="s2">"10000"</span><span class="p">,</span>
+      <span class="p">],</span>
+    <span class="p">},</span>
     <span class="nx">outcomes</span><span class="p">:</span> <span class="p">[{</span>
       <span class="na">id</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
       <span class="na">volume</span><span class="p">:</span> <span class="mi">1000</span><span class="p">,</span>
@@ -2463,12 +2475,14 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
 <span class="c1">// example output:</span>
 <span class="p">{</span>
   <span class="nl">total</span><span class="p">:</span> <span class="p">{</span>
-    <span class="s2">"unclaimedEth"</span><span class="p">:</span> <span class="s2">"1200"</span><span class="p">,</span>
-    <span class="s2">"unclaimedRepEarned"</span><span class="p">:</span> <span class="s2">"0"</span><span class="p">,</span>
-    <span class="s2">"unclaimedRepStaked"</span><span class="p">:</span> <span class="s2">"391"</span><span class="p">,</span>
-    <span class="s2">"unclaimedForkEth"</span><span class="p">:</span> <span class="s2">"0"</span><span class="p">,</span>
-    <span class="s2">"unclaimedForkRepStaked"</span><span class="p">:</span> <span class="s2">"331"</span><span class="p">,</span>
-    <span class="s2">"lostRep"</span><span class="p">:</span> <span class="s2">"0"</span><span class="p">,</span>
+    <span class="nl">unclaimedEth</span><span class="p">:</span> <span class="s2">"1200"</span><span class="p">,</span>
+    <span class="na">unclaimedRepEarned</span><span class="p">:</span> <span class="s2">"0"</span><span class="p">,</span>
+    <span class="na">unclaimedRepStaked</span><span class="p">:</span> <span class="s2">"391"</span><span class="p">,</span>
+    <span class="na">unclaimedForkEth</span><span class="p">:</span> <span class="s2">"0"</span><span class="p">,</span>
+    <span class="na">unclaimedForkRepStaked</span><span class="p">:</span> <span class="s2">"331"</span><span class="p">,</span>
+    <span class="na">lostRep</span><span class="p">:</span> <span class="s2">"0"</span><span class="p">,</span>
+    <span class="na">participationTokenRepStaked</span><span class="p">:</span> <span class="s2">"60"</span><span class="p">,</span>
+    <span class="na">unclaimedParticipationTokenEthFees</span><span class="p">:</span> <span class="s2">"200"</span><span class="p">,</span>
   <span class="p">},</span>
   <span class="na">feeWindows</span><span class="p">:</span> <span class="p">[</span>
     <span class="s2">"0x1000000000000000000000000000000000000000"</span><span class="p">,</span>
@@ -2490,13 +2504,15 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
   <span class="p">},</span>
   <span class="na">nonforkedMarkets</span><span class="p">:</span> <span class="p">[</span>
     <span class="p">{</span>
-      <span class="s2">"marketId"</span><span class="p">:</span> <span class="s2">"0x0000000000000000000000000000000000000019"</span><span class="p">,</span>
-      <span class="s2">"crowdsourcers"</span><span class="p">:</span> <span class="p">[</span><span class="s2">"0x0000000000000000001000000000000000000003"</span><span class="p">],</span>
-      <span class="s2">"crowdsourcersAreDisavowed"</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
-      <span class="s2">"initialReporter"</span><span class="p">:</span> <span class="s2">"0x0000000000000000000000000000000000abe111"</span><span class="p">,</span>
-      <span class="s2">"isFinalized"</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
-      <span class="s2">"isMigrated"</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
-      <span class="s2">"universe"</span><span class="p">:</span> <span class="s2">"0x000000000000000000000000000000000000000b"</span><span class="p">,</span>
+      <span class="na">marketId</span><span class="p">:</span> <span class="s2">"0x0000000000000000000000000000000000000019"</span><span class="p">,</span>
+      <span class="na">crowdsourcers</span><span class="p">:</span> <span class="p">[</span><span class="s2">"0x0000000000000000001000000000000000000003"</span><span class="p">],</span>
+      <span class="na">crowdsourcersAreDisavowed</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+      <span class="na">initialReporter</span><span class="p">:</span> <span class="s2">"0x0000000000000000000000000000000000abe111"</span><span class="p">,</span>
+      <span class="na">isFinalized</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+      <span class="na">isMigrated</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+      <span class="na">universe</span><span class="p">:</span> <span class="s2">"0x000000000000000000000000000000000000000b"</span><span class="p">,</span>
+      <span class="na">unclaimedEthFees</span><span class="p">:</span> <span class="s2">"1000"</span><span class="p">,</span>
+      <span class="na">unclaimedRepTotal</span><span class="p">:</span> <span class="s2">"331"</span><span class="p">,</span>
     <span class="p">},</span>
   <span class="p">],</span>
 <span class="p">}</span>
@@ -2561,7 +2577,7 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
 <span class="c1">// example output:</span>
 <span class="p">{</span>
   <span class="s2">"AWAITING_FINALIZATION"</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
-  <span class="s2">"DESIGNATED_REPORTING"</span><span class="p">:</span> <span class="mi">9</span><span class="p">,</span>
+  <span class="s2">"DESIGNATED_REPORTING"</span><span class="p">:</span> <span class="mi">12</span><span class="p">,</span>
   <span class="s2">"CROWDSOURCING_DISPUTE"</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
   <span class="s2">"FINALIZED"</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
   <span class="s2">"PRE_REPORTING"</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
@@ -3135,6 +3151,8 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
           <span class="na">fullPrecisionPrice</span><span class="p">:</span> <span class="s2">"0.7"</span><span class="p">,</span>
           <span class="na">fullPrecisionAmount</span><span class="p">:</span> <span class="s2">"1"</span><span class="p">,</span>
           <span class="na">originalFullPrecisionAmount</span><span class="p">:</span> <span class="s2">"1"</span><span class="p">,</span>
+          <span class="na">originalTokensEscrowed</span><span class="p">:</span> <span class="s2">"0.7"</span><span class="p">,</span>
+          <span class="na">originalSharesEscrowed</span><span class="p">:</span> <span class="s2">"0"</span><span class="p">,</span>
           <span class="na">tokensEscrowed</span><span class="p">:</span> <span class="s2">"0.7"</span><span class="p">,</span>
           <span class="na">sharesEscrowed</span><span class="p">:</span> <span class="s2">"0"</span><span class="p">,</span>
         <span class="p">},</span>
@@ -3153,26 +3171,30 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
           <span class="na">fullPrecisionPrice</span><span class="p">:</span> <span class="s2">"0.600001"</span><span class="p">,</span>
           <span class="na">fullPrecisionAmount</span><span class="p">:</span> <span class="s2">"2"</span><span class="p">,</span>
           <span class="na">originalFullPrecisionAmount</span><span class="p">:</span> <span class="s2">"2"</span><span class="p">,</span>
+          <span class="na">originalTokensEscrowed</span><span class="p">:</span> <span class="s2">"1.200002"</span><span class="p">,</span>
+          <span class="na">originalSharesEscrowed</span><span class="p">:</span> <span class="s2">"0"</span><span class="p">,</span>
           <span class="na">tokensEscrowed</span><span class="p">:</span> <span class="s2">"1.200002"</span><span class="p">,</span>
           <span class="na">sharesEscrowed</span><span class="p">:</span> <span class="s2">"0"</span><span class="p">,</span>
         <span class="p">},</span>
         <span class="s2">"0x5000000000000000000000000000000000000000000000000000000000000000"</span><span class="p">:</span> <span class="p">{</span>
           <span class="na">orderId</span><span class="p">:</span> <span class="s2">"0x5000000000000000000000000000000000000000000000000000000000000000"</span><span class="p">,</span>
           <span class="na">shareToken</span><span class="p">:</span> <span class="s2">"0x0100000000000000000000000000000000000000"</span><span class="p">,</span>
-          <span class="na">amount</span><span class="p">:</span> <span class="s2">"1"</span><span class="p">,</span>
-          <span class="na">originalAmount</span><span class="p">:</span> <span class="s2">"1"</span><span class="p">,</span>
-          <span class="na">creationBlockNumber</span><span class="p">:</span> <span class="mi">1400001</span><span class="p">,</span>
-          <span class="na">creationTime</span><span class="p">:</span> <span class="mi">1506473500</span><span class="p">,</span>
           <span class="na">transactionHash</span><span class="p">:</span> <span class="s2">"0x0000000000000000000000000000000000000000000000000000000000000A06"</span><span class="p">,</span>
           <span class="na">logIndex</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+          <span class="na">owner</span><span class="p">:</span> <span class="s2">"0x0000000000000000000000000000000000000b0b"</span><span class="p">,</span>
+          <span class="na">creationTime</span><span class="p">:</span> <span class="mi">1506473500</span><span class="p">,</span>
+          <span class="na">creationBlockNumber</span><span class="p">:</span> <span class="mi">1400001</span><span class="p">,</span>
+          <span class="na">orderState</span><span class="p">:</span> <span class="s2">"OPEN"</span><span class="p">,</span>
+          <span class="na">price</span><span class="p">:</span> <span class="s2">"0.73"</span><span class="p">,</span>
+          <span class="na">amount</span><span class="p">:</span> <span class="s2">"1"</span><span class="p">,</span>
+          <span class="na">originalAmount</span><span class="p">:</span> <span class="s2">"1"</span><span class="p">,</span>
+          <span class="na">fullPrecisionPrice</span><span class="p">:</span> <span class="s2">"0.73"</span><span class="p">,</span>
           <span class="na">fullPrecisionAmount</span><span class="p">:</span> <span class="s2">"1"</span><span class="p">,</span>
           <span class="na">originalFullPrecisionAmount</span><span class="p">:</span> <span class="s2">"1"</span><span class="p">,</span>
-          <span class="na">fullPrecisionPrice</span><span class="p">:</span> <span class="s2">"0.73"</span><span class="p">,</span>
-          <span class="na">orderState</span><span class="p">:</span> <span class="s2">"OPEN"</span><span class="p">,</span>
-          <span class="na">owner</span><span class="p">:</span> <span class="s2">"0x0000000000000000000000000000000000000b0b"</span><span class="p">,</span>
-          <span class="na">price</span><span class="p">:</span> <span class="s2">"0.73"</span><span class="p">,</span>
-          <span class="na">sharesEscrowed</span><span class="p">:</span> <span class="s2">"0"</span><span class="p">,</span>
+          <span class="na">originalTokensEscrowed</span><span class="p">:</span> <span class="s2">"0.73"</span><span class="p">,</span>
+          <span class="na">originalSharesEscrowed</span><span class="p">:</span> <span class="s2">"0"</span><span class="p">,</span>
           <span class="na">tokensEscrowed</span><span class="p">:</span> <span class="s2">"0.73"</span><span class="p">,</span>
+          <span class="na">sharesEscrowed</span><span class="p">:</span> <span class="s2">"0"</span><span class="p">,</span>
         <span class="p">},</span>
       <span class="p">},</span>
     <span class="p">},</span>
@@ -3193,6 +3215,8 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
           <span class="na">fullPrecisionPrice</span><span class="p">:</span> <span class="s2">"0.6"</span><span class="p">,</span>
           <span class="na">fullPrecisionAmount</span><span class="p">:</span> <span class="s2">"2.0000001"</span><span class="p">,</span>
           <span class="na">originalFullPrecisionAmount</span><span class="p">:</span> <span class="s2">"2.0000001"</span><span class="p">,</span>
+          <span class="na">originalTokensEscrowed</span><span class="p">:</span> <span class="s2">"1.20000006"</span><span class="p">,</span>
+          <span class="na">originalSharesEscrowed</span><span class="p">:</span> <span class="s2">"0"</span><span class="p">,</span>
           <span class="na">tokensEscrowed</span><span class="p">:</span> <span class="s2">"1.20000006"</span><span class="p">,</span>
           <span class="na">sharesEscrowed</span><span class="p">:</span> <span class="s2">"0"</span><span class="p">,</span>
         <span class="p">},</span>
@@ -3232,6 +3256,8 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
     <span class="na">marketCreatorFees</span><span class="p">:</span> <span class="s2">"0"</span><span class="p">,</span>
     <span class="na">reporterFees</span><span class="p">:</span> <span class="s2">"0"</span><span class="p">,</span>
     <span class="na">selfFilled</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+    <span class="na">creator</span><span class="p">:</span> <span class="s2">"0x0000000000000000000000000000000000000b0b"</span><span class="p">,</span>
+    <span class="na">filler</span><span class="p">:</span> <span class="s2">"0x000000000000000000000000000000000000d00d"</span><span class="p">,</span>
     <span class="na">settlementFees</span><span class="p">:</span> <span class="s2">"0"</span><span class="p">,</span>
     <span class="na">marketId</span><span class="p">:</span> <span class="s2">"0x0000000000000000000000000000000000000001"</span><span class="p">,</span>
     <span class="na">outcome</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
@@ -3249,6 +3275,8 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
     <span class="na">price</span><span class="p">:</span> <span class="s2">"4.2"</span><span class="p">,</span>
     <span class="na">reporterFees</span><span class="p">:</span> <span class="s2">"0"</span><span class="p">,</span>
     <span class="na">selfFilled</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+    <span class="na">creator</span><span class="p">:</span> <span class="s2">"0x0000000000000000000000000000000000000b0b"</span><span class="p">,</span>
+    <span class="na">filler</span><span class="p">:</span> <span class="s2">"0x000000000000000000000000000000000000d00d"</span><span class="p">,</span>
     <span class="na">settlementFees</span><span class="p">:</span> <span class="s2">"0"</span><span class="p">,</span>
     <span class="na">shareToken</span><span class="p">:</span> <span class="s2">"0x0100000000000000000000000000000000000000"</span><span class="p">,</span>
     <span class="na">timestamp</span><span class="p">:</span> <span class="mi">1509065474</span><span class="p">,</span>
@@ -3847,7 +3875,7 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
 <ul>
 <li><strong><code class="prettyprint">p.account</code></strong>  (string) Ethereum address of the user for which to retrieve trading history, as a 20-byte hexadecimal string.</li>
 <li><strong><code class="prettyprint">p.universe</code></strong>  (string) &lt;optional&gt; Contract address of the <a href="#universe">Universe</a> in which to look up the trading history, as a 20-byte hexadecimal string. Either this parameter or the <a href="#market">Market</a> ID must be specified.</li>
-<li><strong><code class="prettyprint">p.marketId</code></strong>  (string) &lt;optional&gt; Contract address of the Market in which to look up the trading history, as a 20-byte hexadecimal string. Either this parameter or the Universe must be specified.</li>
+<li><strong><code class="prettyprint">p.marketId</code></strong>  (string|Array&lt;string&gt;) &lt;optional&gt; Contract address(es) of the Market(s) in which to look up the trading history, as a 20-byte hexadecimal string. Either this parameter or the Universe must be specified.</li>
 <li><strong><code class="prettyprint">p.outcome</code></strong>  (number) <a href="#outcome">Outcome</a> of the <a href="#share">Share</a> being bought/sold. Valid values are in the range [0,7].</li>
 <li><strong><code class="prettyprint">p.orderType</code></strong>  (string) Type of trade. Valid values are &ldquo;buy&rdquo; and &ldquo;sell&rdquo;.</li>
 <li><strong><code class="prettyprint">p.ignoreSelfTrades</code></strong>  (boolean) &lt;optional&gt; Whether to ignore trades a user made with himself/herself when retrieving results. Defaults to <code class="prettyprint">false</code>.</li>
@@ -13712,12 +13740,14 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
 <h3 id="getreportingfeesnonforkedmarket-object">GetReportingFeesNonforkedMarket  (Object)</h3>
 
 <ul>
-<li><strong><code class="prettyprint">marketId</code></strong> (string) Ethereum contract address of the non-Forked Market, as a hexadecimal string.</li>
+<li><strong><code class="prettyprint">crowdsourcers</code></strong> (Array.&lt;string&gt;) Array of Ethereum contract addresses of the non-Forked Market&rsquo;s Crowdsourcers in which a specified user has unclaimed Reporting Fees, as hexadecimal strings.</li>
 <li><strong><code class="prettyprint">crowdsourcersAreDisavowed</code></strong> (boolean) Whether the non-Forked Market&rsquo;s DisputeCrowdsourcers have been disavowed (i.e., its <code class="prettyprint">Market.disavowCrowdsourcers</code> function has been called successfully).</li>
+<li><strong><code class="prettyprint">initialReporter</code></strong> (string|null) Ethereum contract address of the non-Forked Market&rsquo;s InitialReporter in which a specified user has unclaimed Reporting Fees, as a hexadecimal string.</li>
 <li><strong><code class="prettyprint">isFinalized</code></strong> (boolean) Whether the non-Forked Market has been Finalized (i.e., its <code class="prettyprint">Market.finalize</code> function has been called successfully).</li>
 <li><strong><code class="prettyprint">isMigrated</code></strong> (boolean) Whether the non-Forked Market has been migrated to the Child Universe of its original Universe (i.e., its <code class="prettyprint">Market.migrateThroughOneFork</code> function has been called successfully).</li>
-<li><strong><code class="prettyprint">crowdsourcers</code></strong> (Array.&lt;string&gt;) Array of Ethereum contract addresses of the non-Forked Market&rsquo;s Crowdsourcers in which a specified user has unclaimed Reporting Fees, as hexadecimal strings.</li>
-<li><strong><code class="prettyprint">initialReporter</code></strong> (string|null) Ethereum contract address of the non-Forked Market&rsquo;s InitialReporter in which a specified user has unclaimed Reporting Fees, as a hexadecimal string.</li>
+<li><strong><code class="prettyprint">marketId</code></strong> (string) Ethereum contract address of the non-Forked Market, as a hexadecimal string.</li>
+<li><strong><code class="prettyprint">unclaimedEthFees</code></strong> (string)  Amount of unclaimed Reporting Fees the user has for the Market, in attoETH.</li>
+<li><strong><code class="prettyprint">unclaimedRepTotal</code></strong> (string)  Amount of unclaimed REP the user has staked in the Market, in attoREP.</li>
 </ul>
 
 <p><a name="GetReportingFeesTotal"></a></p>
@@ -13728,11 +13758,13 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
 
 <ul>
 <li><strong><code class="prettyprint">lostRep</code></strong> (string) AttoREP lost in losing Initial Reports/Crowdsourcers for Markets containing unclaimed ETH/REP.</li>
+<li><strong><code class="prettyprint">participationTokenRepStaked</code></strong> (string)  Total amount of REP the user currently has staked in Participation Tokens, in attoREP.</li>
 <li><strong><code class="prettyprint">unclaimedEth</code></strong> (string) Unclaimed attoETH fees from buying Participation Tokens or staking in Initial Reports/Crowdsourcers (even if the Outcome is not the Winning Outcome) of the specified Universe.</li>
 <li><strong><code class="prettyprint">unclaimedForkEth</code></strong> (string) Unclaimed attoETH fees for staking in the Initial Report/Crowdsourcers of the Forked Market (even if the Outcome is not the Winning Outcome) of the specified Universe.</li>
 <li><strong><code class="prettyprint">unclaimedForkRepStaked</code></strong> (string) Unclaimed attoREP Staked in the Initial Report/Crowsourcers of the Forked Market (where the Outcome is the Winning Outcome) of the specified Universe.</li>
-<li><strong><code class="prettyprint">unclaimedRepStaked</code></strong> (string) Unclaimed attoREP used to buy Participation Tokens or to stake in the Initial Report/Crowsourcers of the specified universe (where the Outcome is the Winning Outcome) of the specified Universe.</li>
+<li><strong><code class="prettyprint">unclaimedParticipationTokenEthFees</code></strong> (string)  Unclaimed ETH in Reporting Fees that the Reporter has earned from buying Participation Tokens, in attoETH.</li>
 <li><strong><code class="prettyprint">unclaimedRepEarned</code></strong> (string) Unclaimed attoREP used to stake in the Initial Report/Crowdsourcers of the specified universe (where the Outcome is Winning Outcome) of the specified Universe.</li>
+<li><strong><code class="prettyprint">unclaimedRepStaked</code></strong> (string) Unclaimed attoREP used to buy Participation Tokens or to stake in the Initial Report/Crowsourcers of the specified universe (where the Outcome is the Winning Outcome) of the specified Universe.</li>
 </ul>
 
 <p><a name="InitialReporter"></a></p>
@@ -13916,8 +13948,10 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
 <li><strong><code class="prettyprint">fullPrecisionPrice</code></strong> (string) Full-precision (un-rounded) display price, as a base-10 number.</li>
 <li><strong><code class="prettyprint">fullPrecisionAmount</code></strong> (string) Current full-precision (un-rounded) number of shares to trade, as a base-10 number.</li>
 <li><strong><code class="prettyprint">originalFullPrecisionAmount</code></strong> (string)  Original full-precision (un-rounded) number of shares to trade, as a base-10 number.</li>
-<li><strong><code class="prettyprint">tokensEscrowed</code></strong> (string) Number of the order maker&rsquo;s tokens held in escrow, as a base-10 number.</li>
-<li><strong><code class="prettyprint">sharesEscrowed</code></strong> (string) Number of the order maker&rsquo;s shares held in escrow, as a base-10 number.</li>
+<li><strong><code class="prettyprint">originalTokensEscrowed</code></strong> (string)  Original number of the order maker&rsquo;s tokens held in escrow, as a base-10 number.</li>
+<li><strong><code class="prettyprint">originalSharesEscrowed</code></strong> (string)  Original number of the order maker&rsquo;s shares held in escrow, as a base-10 number.</li>
+<li><strong><code class="prettyprint">tokensEscrowed</code></strong> (string) Current number of the order maker&rsquo;s tokens held in escrow, as a base-10 number.</li>
+<li><strong><code class="prettyprint">sharesEscrowed</code></strong> (string) Current number of the order maker&rsquo;s shares held in escrow, as a base-10 number.</li>
 <li><strong><code class="prettyprint">canceledBlockNumber</code></strong> (number|null) Block number in which the order cancellation took place (if any).</li>
 <li><strong><code class="prettyprint">canceledTransactionHash</code></strong> (string|null) Transaction hash in which the order cancellation took place (if any).</li>
 <li><strong><code class="prettyprint">canceledTime</code></strong> (number|null) Unix timestamp when the order was canceled (if any).</li>
@@ -14042,8 +14076,8 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
 <h4 id="strong-strong"><strong>Properties:</strong></h4>
 
 <ul>
-<li><strong><code class="prettyprint">buy</code></strong> (Object|null) Buy (bid) Order objects, keyed by Order ID.</li>
-<li><strong><code class="prettyprint">sell</code></strong> (Object|null)  Sell (ask) Order objects, keyed by Order ID.</li>
+<li><strong><code class="prettyprint">buy</code></strong> (Object|null) Buy (bid) <a href="#Order">Order</a> objects, keyed by Order ID.</li>
+<li><strong><code class="prettyprint">sell</code></strong> (Object|null)  Sell (ask) <a href="#Order">Order</a> objects, keyed by Order ID.</li>
 </ul>
 
 <p><a name="SingleOutcomePriceTimeSeries"></a></p>
@@ -14204,13 +14238,15 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
 <li><strong><code class="prettyprint">transactionHash</code></strong> (string) Hash to look up the trade transaction receipt.</li>
 <li><strong><code class="prettyprint">logIndex</code></strong> (number) Number of the log index position in the Ethereum block containing the trade transaction.</li>
 <li><strong><code class="prettyprint">orderId</code></strong> (string) Unique ID for the Order, as a hexadecimal string.</li>
-<li><strong><code class="prettyprint">type</code></strong> (string) Type of trade, from the perspective of the Order maker. Valid values are &ldquo;buy&rdquo; and &ldquo;sell&rdquo;.</li>
+<li><strong><code class="prettyprint">type</code></strong> (string) Type of trade, from the perspective of the specified account. Valid values are &ldquo;buy&rdquo; and &ldquo;sell&rdquo;.</li>
 <li><strong><code class="prettyprint">price</code></strong> (string) Price paid for trade, in attoETH.</li>
 <li><strong><code class="prettyprint">amount</code></strong> (string) Amount of Share Units that were bought/sold.</li>
 <li><strong><code class="prettyprint">maker</code></strong> (boolean) Whether the specified user is the order maker (as opposed to filler).</li>
 <li><strong><code class="prettyprint">marketCreatorFees</code></strong> (string) Amount of fees paid to Market creator, in ETH.</li>
 <li><strong><code class="prettyprint">reporterFees</code></strong> (string) Amount of fees paid to reporters, in attoETH.</li>
 <li><strong><code class="prettyprint">selfFilled</code></strong> (boolean) Whether the user filled his/her own Order.</li>
+<li><strong><code class="prettyprint">creator</code></strong> (string)  Ethereum address of the Order Creator, as a hexadecimal string.</li>
+<li><strong><code class="prettyprint">filler</code></strong> (string)  Ethereum address of the Order Filler, as a hexadecimal string.</li>
 <li><strong><code class="prettyprint">marketId</code></strong> (string) Contract address of the Market, as a hexadecimal string.</li>
 <li><strong><code class="prettyprint">outcome</code></strong> (number) Outcome being bought/sold.</li>
 <li><strong><code class="prettyprint">shareToken</code></strong> (string) Contract address of the share token that was bought or sold, as a hexadecimal string.</li>
