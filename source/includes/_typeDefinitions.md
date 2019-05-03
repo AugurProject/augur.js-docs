@@ -21,6 +21,25 @@ augur.js' functions accept and return a variety of different objects, which are 
 * **`outcome`** (number|null) Market Outcome with which the token is associated (if any).
 * **`isInternalTransfer`** (boolean) Whether the transfer was a trade/order transaction.
 
+<a name="AggregatedTradingPosition"></a>
+### AggregatedTradingPosition  (Object)
+
+#### **Properties:** 
+* **`realized`** (string) Profit a user made for total historical positions which have _since been closed_ in a market outcome (i.e., `realized` is accrued profit for Shares a user previously owned).
+* **`unrealized`** (string) Percent profit a user would have on just their current `netPosition` if they were to close it at the last price for that Market Outcome. The last price is the most recent price paid by anyone trading on that Outcome.
+* **`total`** (string) `unrealized` plus `realized` (i.e., is the profit a user made on previously owned Shares in a Market Outcome, plus what they could make if they closed their current `netPosition` in that Outcome).
+* **`unrealizedCost`** (string) Amount of ETH a user paid to open their current
+net position in that Market Outcome. This is a cashflow amount that the user remitted based on Share price not trade price. For example, if a user opens a short position for one Share in a YesNo Market at a trade price of 0.2, then the unrealized cost is `MarketMaxPrice=1.0 - TradePrice=0.2 --> SharePrice=0.8 * 1 share --> UnrealizedCost=0.8`. In Categorical Markets, the user may pay Shares of other Outcomes in lieu of ETH, which doesn't change the calculation for `unrealizedCost`, but it does mean that (in a Categorical Market) `unrealizedCost` may be greater than the actual ETH a user remitted.
+* **`realizedCost`** (string) Amount of ETH a user paid for the total historical cost to open all positions which have _since been closed_ for that Market Outcome. (ie., `realizedCost` is accrued cost for Shares a user previously owned). `realizedCost` is a cashflow amount that the user remitted based on Share price not trade price).
+* **`totalCost`** (string) `unrealizedCost` plus `realizedCost` (i.e., `totalCost` is the cashflow amount the user remitted, based on Share price not trade price, for all shares they ever bought in this Market Outcome).
+* **`realizedPercent`** (string) Percent profit a user made for total historical positions which have _since been closed_ in a market outcome (i.e., `realizedPercent` is accrued profit percent for Shares a user previously owned). `realizedPercent` is `realized` divided by `realizedCost`.
+* **`unrealizedPercent`** (string) Percent profit a user would have on just their current `netPosition` if they were to close it at the last price for that Market Outcome. The last price is the most recent price paid by anyone trading on that Outcome. `unrealizedPercent` is `Unrealized` divided by `unrealizedCost`.
+* **`totalPercent`** (string) `total` divided by `totalCost` (i.e., `totalPercent` is the total/final percent profit a user would make if they closed their `netPosition` at the last price). In other words, TotalProfitPercent is what `realizedPercent` _would become_ if the user closed their `netPosition` at the last price.
+* **`unrealizedRevenue`** (string) amount of ETH a user would receive for their current `netPosition` if they were to close that position at the last price for that Market Outcome. The last price is the most recent price paid by anyone trading on that Outcome. For example if a user has a long position of 10 Shares in a YesNo market, and the last price is 0.75, then `NetPosition=10 * LastPrice=0.75 --> UnrealizedRevenue=7.5`.
+* **`unrealizedRevenue24hAgo`** (string) Same as `unrealizedRevenue`, but calculated using the last trade price from 24 hours ago, as if the user held this position constant for the past 24 hours. But, if the user (further) opened their current position within the past 24 hours, then the price at which the position was opened is used instead of the actual last trade price from 24 hours ago.
+* **`unrealizedRevenue24hChangePercent`** (string) Percent change in `unrealizedRevenue` from 24 hours ago.
+* **`frozenFunds`** (string) ETH that a user has given up (locked in escrow or given to a counterparty) to obtain their current position.
+
 <a name="AugurEventLog"></a>
 ### AugurEventLog  (Object)
 
@@ -209,6 +228,12 @@ Serves as an enum for the state of a Dispute Token.
 * **`totalStake`** (string) &lt;optional> The total amount of attoREP `reporter` has Staked in the current Fee Window will be returned as `totalStake`. (This amount includes attoREP Staked on Initial Reports as well as on Dispute Crowdsourcers.) `participantContributions` and `participantTokens` should add up to `totalStake`. Returned if `reporter` was specified.
 * **`universe`** (string) Ethereum contract address of the Universe to which the Fee Window belongs.
 
+<a name="FrozenFunds"></a>
+### FrozenFunds  (Object)
+
+#### **Properties:** 
+* **`frozenFunds`** (string) ETH that a user has given up (locked in escrow or given to a counterparty) to obtain their current position.
+
 <a name="GasEstimateInfo"></a>
 ### GasEstimateInfo  (Object)
 
@@ -374,6 +399,27 @@ Serves as an enum for the state of a Dispute Token.
 
 #### **Properties:** 
 * **`Price`** (<a href="#SingleOutcomePriceTimeSeries">SingleOutcomePriceTimeSeries</a>) time-series for a single Outcome, keyed by Outcome ID.
+
+<a name="MarketTradingPosition"></a>
+### MarketTradingPosition  (Object)
+
+#### **Properties:** 
+* **`realized`** (string) Profit a user made for total historical positions which have _since been closed_ in a market outcome (i.e., `realized` is accrued profit for Shares a user previously owned).
+* **`unrealized`** (string) Percent profit a user would have on just their current `netPosition` if they were to close it at the last price for that Market Outcome. The last price is the most recent price paid by anyone trading on that Outcome.
+* **`total`** (string) `unrealized` plus `realized` (i.e., is the profit a user made on previously owned Shares in a Market Outcome, plus what they could make if they closed their current `netPosition` in that Outcome).
+* **`unrealizedCost`** (string) Amount of ETH a user paid to open their current
+net position in that Market Outcome. This is a cashflow amount that the user remitted based on Share price not trade price. For example, if a user opens a short position for one Share in a YesNo Market at a trade price of 0.2, then the unrealized cost is `MarketMaxPrice=1.0 - TradePrice=0.2 --> SharePrice=0.8 * 1 share --> UnrealizedCost=0.8`. In Categorical Markets, the user may pay Shares of other Outcomes in lieu of ETH, which doesn't change the calculation for `unrealizedCost`, but it does mean that (in a Categorical Market) `unrealizedCost` may be greater than the actual ETH a user remitted.
+* **`realizedCost`** (string) Amount of ETH a user paid for the total historical cost to open all positions which have _since been closed_ for that Market Outcome. (ie., `realizedCost` is accrued cost for Shares a user previously owned). `realizedCost` is a cashflow amount that the user remitted based on Share price not trade price).
+* **`totalCost`** (string) `unrealizedCost` plus `realizedCost` (i.e., `totalCost` is the cashflow amount the user remitted, based on Share price not trade price, for all shares they ever bought in this Market Outcome).
+* **`realizedPercent`** (string) Percent profit a user made for total historical positions which have _since been closed_ in a market outcome (i.e., `realizedPercent` is accrued profit percent for Shares a user previously owned). `realizedPercent` is `realized` divided by `realizedCost`.
+* **`unrealizedPercent`** (string) Percent profit a user would have on just their current `netPosition` if they were to close it at the last price for that Market Outcome. The last price is the most recent price paid by anyone trading on that Outcome. `unrealizedPercent` is `Unrealized` divided by `unrealizedCost`.
+* **`totalPercent`** (string) `total` divided by `totalCost` (i.e., `totalPercent` is the total/final percent profit a user would make if they closed their `netPosition` at the last price). In other words, TotalProfitPercent is what `realizedPercent` _would become_ if the user closed their `netPosition` at the last price.
+* **`unrealizedRevenue`** (string) amount of ETH a user would receive for their current `netPosition` if they were to close that position at the last price for that Market Outcome. The last price is the most recent price paid by anyone trading on that Outcome. For example if a user has a long position of 10 Shares in a YesNo market, and the last price is 0.75, then `NetPosition=10 * LastPrice=0.75 --> UnrealizedRevenue=7.5`.
+* **`unrealizedRevenue24hAgo`** (string) Same as `unrealizedRevenue`, but calculated using the last trade price from 24 hours ago, as if the user held this position constant for the past 24 hours. But, if the user (further) opened their current position within the past 24 hours, then the price at which the position was opened is used instead of the actual last trade price from 24 hours ago.
+* **`unrealizedRevenue24hChangePercent`** (string) Percent change in `unrealizedRevenue` from 24 hours ago.
+* **`frozenFunds`** (string) ETH that a user has given up (locked in escrow or given to a counterparty) to obtain their current position.
+* **`marketId`** (string) Ethereum address of the market in which the user holds this position.
+* **`timestamp`** (number) Unix timestamp at which the user held this position.
 
 <a name="Meta"></a>
 ### Meta  (Object)
@@ -613,6 +659,34 @@ Serves as an enum for the state of a Market.
 * **`onChainAmount`** (string) On-chain number of Shares for this trade.
 * **`onChainPrice`** (string) On-chain price for this trade.
 
+<a name="TradingPosition"></a>
+### TradingPosition  (Object)
+
+#### **Properties:** 
+* **`realized`** (string) Profit a user made for total historical positions which have _since been closed_ in a market outcome (i.e., `realized` is accrued profit for Shares a user previously owned).
+* **`unrealized`** (string) Percent profit a user would have on just their current `netPosition` if they were to close it at the last price for that Market Outcome. The last price is the most recent price paid by anyone trading on that Outcome.
+* **`total`** (string) `unrealized` plus `realized` (i.e., is the profit a user made on previously owned Shares in a Market Outcome, plus what they could make if they closed their current `netPosition` in that Outcome).
+* **`unrealizedCost`** (string) Amount of ETH a user paid to open their current
+net position in that Market Outcome. This is a cashflow amount that the user remitted based on Share price not trade price. For example, if a user opens a short position for one Share in a YesNo Market at a trade price of 0.2, then the unrealized cost is `MarketMaxPrice=1.0 - TradePrice=0.2 --> SharePrice=0.8 * 1 share --> UnrealizedCost=0.8`. In Categorical Markets, the user may pay Shares of other Outcomes in lieu of ETH, which doesn't change the calculation for `unrealizedCost`, but it does mean that (in a Categorical Market) `unrealizedCost` may be greater than the actual ETH a user remitted.
+* **`realizedCost`** (string) Amount of ETH a user paid for the total historical cost to open all positions which have _since been closed_ for that Market Outcome. (ie., `realizedCost` is accrued cost for Shares a user previously owned). `realizedCost` is a cashflow amount that the user remitted based on Share price not trade price).
+* **`totalCost`** (string) `unrealizedCost` plus `realizedCost` (i.e., `totalCost` is the cashflow amount the user remitted, based on Share price not trade price, for all shares they ever bought in this Market Outcome).
+* **`realizedPercent`** (string) Percent profit a user made for total historical positions which have _since been closed_ in a market outcome (i.e., `realizedPercent` is accrued profit percent for Shares a user previously owned). `realizedPercent` is `realized` divided by `realizedCost`.
+* **`unrealizedPercent`** (string) Percent profit a user would have on just their current `netPosition` if they were to close it at the last price for that Market Outcome. The last price is the most recent price paid by anyone trading on that Outcome. `unrealizedPercent` is `Unrealized` divided by `unrealizedCost`.
+* **`totalPercent`** (string) `total` divided by `totalCost` (i.e., `totalPercent` is the total/final percent profit a user would make if they closed their `netPosition` at the last price). In other words, TotalProfitPercent is what `realizedPercent` _would become_ if the user closed their `netPosition` at the last price.
+* **`unrealizedRevenue`** (string) amount of ETH a user would receive for their current `netPosition` if they were to close that position at the last price for that Market Outcome. The last price is the most recent price paid by anyone trading on that Outcome. For example if a user has a long position of 10 Shares in a YesNo market, and the last price is 0.75, then `NetPosition=10 * LastPrice=0.75 --> UnrealizedRevenue=7.5`.
+* **`unrealizedRevenue24hAgo`** (string) Same as `unrealizedRevenue`, but calculated using the last trade price from 24 hours ago, as if the user held this position constant for the past 24 hours. But, if the user (further) opened their current position within the past 24 hours, then the price at which the position was opened is used instead of the actual last trade price from 24 hours ago.
+* **`unrealizedRevenue24hChangePercent`** (string) Percent change in `unrealizedRevenue` from 24 hours ago.
+* **`frozenFunds`** (string) ETH that a user has given up (locked in escrow or given to a counterparty) to obtain their current position.
+* **`marketId`** (string) Ethereum address of the market in which the user holds this position.
+* **`timestamp`** (number) Unix timestamp at which the user held this position.
+* **`position`** (string) Shares the user has bought ("long" position) or sold ("short" position) in this Market Outcome.
+* **`netPosition`** (string) Number of Shares a user currently owns in a Market Outcome. If `netPosition` is positive (negative), the user has a "long" ("short") position and earns money if the price goes up (down). If `netPosition` is zero the position is said to be "closed". In the context of a trade, `netPosition` is prior to the trade being processed.
+* **`outcome`** (number) Market Outcome in which the user has this position.
+* **`averagePrice`** (string) Average per-Share trade price at which the user opened their position.
+* **`lastTradePrice`** (string) Price in ETH at which a trade executed. A trade is always on a single Market Outcome. `lastTradePrice` is the price shown in the UI looking at the Order Book or historical price chart.
+* **`lastTradePrice24hAgo`** (string) As of 24 hours ago, the last (most recent) price in ETH at which this Outcome was traded by anybody.
+* **`lastTradePrice24hChangePercent`** (string) Percent change in `lastTradePrice` from 24 hours ago.
+
 <a name="UnclaimedFeeWindowInfo"></a>
 ### UnclaimedFeeWindowInfo  (Object)
 
@@ -644,22 +718,14 @@ Serves as an enum for the state of a Market.
 * **`timestamp`** (number) Unix timestamp when the trade was placed.
 * **`tradeGroupId`** (number|null) ID logged with each trade transaction (can be used to group trades client-side), as a hexadecimal string.
 
-<a name="UserTradePosition"></a>
+<a name="UserTradePositionsInfo"></a>
 ### UserTradePosition  (Object)
 
 #### **Properties:** 
-* **`averagePrice`** (string) Average price paid to acquire this position, in ETH. (This is always the price of the Long Position, even when for a Short Position.)
-* **`cost`** (string) Cost per Share to acquire this position, in ETH.
-* **`marketId`** (string) Contract address of the Market, as a hexadecimal string.
-* **`netPosition`** (string) `position` adjusted when a Short Position exists. For example, if the user has a Short Position (defined as having a `totalPosition` > 0 for all but one Outcome), the `netPosition` of all `totalPosition` > 0 Outcomes is `totalPosition` - min(`totalPosition`s), and the `netPosition` for the Outcome with a `totalPosition` of 0 is min(`totalPosition`s).
-* **`numEscrowed`** (string) Number of Shares in `outcome` the user has escrowed for Open Orders.
-* **`outcome`** (number) Outcome of the Shares the user owns.
-* **`position`** (string) Raw number of Shares in `outcome` that the user holds.
-* **`realized`** (string) ETH profit or loss the user took upon closing this Position (relative to the Outcome being traded).
-* **`timestamp`** (number) Unix timestamp when user's trade position last changed. (If the user has no position, this is the current block time.)
-* **`total`** (string) The sum of `realized` and `unrealized`.
-* **`totalPosition`** (string) The sum of `position` and `numEscrowed`.
-* **`unrealized`** (string) Profit or loss the user would take if they closed their position at the last trade price (using `averagePrice`), in ETH.
+* **`tradingPositions`** (Array<TradingPosition>)  Per-Outcome TradingPosition, where unrealized profit is relative to an Outcome's last price (as traded by anyone).
+* **`tradingPositionsPerMarket`** (Array<MarketTradingPosition>)  Per-market aggregation of trading positions
+* **`tradingPositionsTotal`** (AggregatedTradingPosition|undefined)  Portfolio-level aggregation of all of the user's trading positions. Undefined if and only if `getUserTradingPositions` was filtered by marketId
+* **`frozenFundsTotal`** (FrozenFunds|undefined)  User's total frozen funds. Undefined if and only if `getUserTradingPositions` was filtered by marketId. WARNING - `frozenFundsTotal` is greater than `tradingPositionsTotal`.`frozenFunds` (in general) because `frozenFundsTotal` also includes the sum of Market Validity Bonds for active Markets this user created.
 
 <a name="WebSocket"></a>
 ### WebSocket  (Object)
