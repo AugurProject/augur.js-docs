@@ -257,23 +257,27 @@ Serves as an enum for the state of a Dispute Token.
 <a name="GetReportingFeesNonforkedMarket"></a>
 ### GetReportingFeesNonforkedMarket  (Object)
 
-* **`marketId`** (string) Ethereum contract address of the non-Forked Market, as a hexadecimal string.
+* **`crowdsourcers`** (Array.&lt;string>) Array of Ethereum contract addresses of the non-Forked Market's Crowdsourcers in which a specified user has unclaimed Reporting Fees, as hexadecimal strings.
 * **`crowdsourcersAreDisavowed`** (boolean) Whether the non-Forked Market's DisputeCrowdsourcers have been disavowed (i.e., its `Market.disavowCrowdsourcers` function has been called successfully).
+* **`initialReporter`** (string|null) Ethereum contract address of the non-Forked Market's InitialReporter in which a specified user has unclaimed Reporting Fees, as a hexadecimal string.
 * **`isFinalized`** (boolean) Whether the non-Forked Market has been Finalized (i.e., its `Market.finalize` function has been called successfully).
 * **`isMigrated`** (boolean) Whether the non-Forked Market has been migrated to the Child Universe of its original Universe (i.e., its `Market.migrateThroughOneFork` function has been called successfully).
-* **`crowdsourcers`** (Array.&lt;string>) Array of Ethereum contract addresses of the non-Forked Market's Crowdsourcers in which a specified user has unclaimed Reporting Fees, as hexadecimal strings.
-* **`initialReporter`** (string|null) Ethereum contract address of the non-Forked Market's InitialReporter in which a specified user has unclaimed Reporting Fees, as a hexadecimal string.
+* **`marketId`** (string) Ethereum contract address of the non-Forked Market, as a hexadecimal string.
+* **`unclaimedEthFees`** ()  
+* **`unclaimedRepTotal`** ()  
 
 <a name="GetReportingFeesTotal"></a>
 ### GetReportingFeesTotal  (Object)
 
 #### **Properties:** 
 * **`lostRep`** (string) AttoREP lost in losing Initial Reports/Crowdsourcers for Markets containing unclaimed ETH/REP.
+* **`participationTokenRepStaked`** (string)  Total amount of REP the user currently has staked in Participation Tokens, in attoREP.
 * **`unclaimedEth`** (string) Unclaimed attoETH fees from buying Participation Tokens or staking in Initial Reports/Crowdsourcers (even if the Outcome is not the Winning Outcome) of the specified Universe.
 * **`unclaimedForkEth`** (string) Unclaimed attoETH fees for staking in the Initial Report/Crowdsourcers of the Forked Market (even if the Outcome is not the Winning Outcome) of the specified Universe.
 * **`unclaimedForkRepStaked`** (string) Unclaimed attoREP Staked in the Initial Report/Crowsourcers of the Forked Market (where the Outcome is the Winning Outcome) of the specified Universe.
-* **`unclaimedRepStaked`** (string) Unclaimed attoREP used to buy Participation Tokens or to stake in the Initial Report/Crowsourcers of the specified universe (where the Outcome is the Winning Outcome) of the specified Universe.
+* **`unclaimedParticipationTokenEthFees`** (string)  Unclaimed ETH in Reporting Fees that the Reporter has earned from buying Participation Tokens, in attoETH.
 * **`unclaimedRepEarned`** (string) Unclaimed attoREP used to stake in the Initial Report/Crowdsourcers of the specified universe (where the Outcome is Winning Outcome) of the specified Universe.
+* **`unclaimedRepStaked`** (string) Unclaimed attoREP used to buy Participation Tokens or to stake in the Initial Report/Crowsourcers of the specified universe (where the Outcome is the Winning Outcome) of the specified Universe.
 
 <a name="InitialReporter"></a>
 ### InitialReporter  (Object)

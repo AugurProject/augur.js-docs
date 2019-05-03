@@ -999,7 +999,13 @@ augur.markets.getMarketsInfo({
     resolutionSource: "https://www.trusted-third-party.com",
     numTicks: "10000",
     tickSize: "0.0001",
-    consensus: null,
+    consensus: {
+      isInvalid: false,
+      payout: [
+        "0",
+        "10000",
+      ],
+    },
     outcomes: [{
       id: 0,
       volume: "100",
@@ -1082,7 +1088,13 @@ augur.markets.getMarketsInfo({
     designatedReportStake: 10,
     resolutionSource: "http://www.trusted-third-party.com",
     numTicks: "10000",
-    consensus: null,
+    consensus: {
+      isInvalid: false,
+      payout: [
+        "0",
+        "10000",
+      ],
+    },
     outcomes: [{
       id: 0,
       volume: 1000,
@@ -1565,12 +1577,14 @@ augur.reporting.getReportingFees({
 // example output:
 {
   total: {
-    "unclaimedEth": "1200",
-    "unclaimedRepEarned": "0",
-    "unclaimedRepStaked": "391",
-    "unclaimedForkEth": "0",
-    "unclaimedForkRepStaked": "331",
-    "lostRep": "0",
+    unclaimedEth: "1200",
+    unclaimedRepEarned: "0",
+    unclaimedRepStaked: "391",
+    unclaimedForkEth: "0",
+    unclaimedForkRepStaked: "331",
+    lostRep: "0",
+    participationTokenRepStaked: "60",
+    unclaimedParticipationTokenEthFees: "200",
   },
   feeWindows: [
     "0x1000000000000000000000000000000000000000",
@@ -1592,13 +1606,15 @@ augur.reporting.getReportingFees({
   },
   nonforkedMarkets: [
     {
-      "marketId": "0x0000000000000000000000000000000000000019",
-      "crowdsourcers": ["0x0000000000000000001000000000000000000003"],
-      "crowdsourcersAreDisavowed": false,
-      "initialReporter": "0x0000000000000000000000000000000000abe111",
-      "isFinalized": true,
-      "isMigrated": true,
-      "universe": "0x000000000000000000000000000000000000000b",
+      marketId: "0x0000000000000000000000000000000000000019",
+      crowdsourcers: ["0x0000000000000000001000000000000000000003"],
+      crowdsourcersAreDisavowed: false,
+      initialReporter: "0x0000000000000000000000000000000000abe111",
+      isFinalized: true,
+      isMigrated: true,
+      universe: "0x000000000000000000000000000000000000000b",
+      unclaimedEthFees: "1000",
+      unclaimedRepTotal: "331",
     },
   ],
 }
@@ -1663,7 +1679,7 @@ augur.reporting.getReportingSummary({
 // example output:
 {
   "AWAITING_FINALIZATION": 1,
-  "DESIGNATED_REPORTING": 9,
+  "DESIGNATED_REPORTING": 12,
   "CROWDSOURCING_DISPUTE": 2,
   "FINALIZED": 1,
   "PRE_REPORTING": 1,
