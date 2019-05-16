@@ -395,6 +395,11 @@ Opening a Short Position costs ((cost of a Complete Set - price per Share) * num
 
 For more information on trading, please refer to the [Trading](#trading) section.
 
+## Spread Percent
+
+Spread Percent is a liquidity metric for each of the [Outcomes](#outcome) in a [Market](#market).  It measures the difference between best [Bid Orders](#bid-order) and [Ask Orders](#ask-order) of the [Order Book](#order-book) for an Outcome. Lower Spread Percent is better and means that Outcome's best
+Bid Orders/Ask Orders on the Order Book are closer together and of higher quality from the standpoint of a taker/bettor. Spread Percent ranges from 0% (perfect spread) to 100% (empty Order Book). A Market's Spread Percent is defined as the max (worst) Spread Percent of its Outcomes.
+
 ## Tentative Outcome
 
 The Tentative Outcome is the currently reported [Outcome](#outcome) for a [Market](#market) that has not been [Finalized](#finalized-market) yet. In other words, it's either the Outcome that the [Designated Reporter](#designated-reporter) or [First Public Reporter](#first-public-reporter) has Staked [REP](#rep) on, or it's the Outcome that had enough REP Staked on it in the last [Dispute Round](#dispute-round) to [Challenge](#challenge) the previous Tentative Outcome and make it the new Tentative Outcome. If a Market completes a [Dispute Round](#dispute-round) without being Challenged and the [Fee Window](#fee-window) for that Dispute Round is over, or if the Market passes through the [Fork Phase](#fork-period), then the Market will become [Finalized](#finalized-market), and the Tentative Outcome will become a [Final Outcome](#final-outcome).
