@@ -1183,7 +1183,8 @@ This function will fail if:
     * **`p.feeWindow`** (string) &lt;optional> Ethereum address of a [Fee Window](#fee-window) by which to filter the returned results, as a 20-byte hexadecimal string.
     * **`p.designatedReporter`** (string) &lt;optional> Ethereum address of a [Designated Reporter](#designated-reporter) by which to filter the returned results, as a 20-byte hexadecimal string.
     * **`p.maxFee`** (number) &lt;optional> Maximum trading [Settlement Fee](#settlement-fees) by which to filter the returned results, as a decimal number. (For example, if the desired maximum Settlement Fee is 1.0201%, `maxFee` should be set to 0.010201.)
-    * **`p.maxSpreadPercent`** (string) &lt;optional> Maximum [Spread Percent](#spread-percent) by which to filter markets, as a decimal number from 0 to 1.
+    * **`p.maxEndTime`** (number) &lt;optional> Maximum [Market](#market) end time by which to filter Markets, as a Unix timestamp.
+    * **`p.maxSpreadPercent`** (number) &lt;optional> Maximum [Spread Percent](#spread-percent) by which to filter markets, as a decimal number from 0 to 1.
     * **`p.hasOrders`** (boolean) &lt;optional> If set to `true`, only Markets having [Open Orders](#open-order) on the [Order Book](#order-book) will be returned. Defaults to `false`.
     * **`p.sortBy`**  (string) &lt;optional> Field name by which to sort the Markets.
     * **`p.isSortDescending`**  (boolean) &lt;optional> Whether to sort the Markets in descending order by sortBy field.
