@@ -2464,7 +2464,7 @@ augur.api.Universe.getDisputeThresholdForDisputePacing
   console.log(disputeThresholdForDisputePacing); 
 });
 // example output:
-""
+"537109375000000000000"
 
 augur.api.Universe.getFeeWindow({ 
   _feeWindowId: "0x242",
