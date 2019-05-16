@@ -2053,6 +2053,7 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
 <li><strong><code class="prettyprint">p.feeWindow</code></strong> (string) &lt;optional&gt; Ethereum address of a <a href="#fee-window">Fee Window</a> by which to filter the returned results, as a 20-byte hexadecimal string.</li>
 <li><strong><code class="prettyprint">p.designatedReporter</code></strong> (string) &lt;optional&gt; Ethereum address of a <a href="#designated-reporter">Designated Reporter</a> by which to filter the returned results, as a 20-byte hexadecimal string.</li>
 <li><strong><code class="prettyprint">p.maxFee</code></strong> (number) &lt;optional&gt; Maximum trading <a href="#settlement-fees">Settlement Fee</a> by which to filter the returned results, as a decimal number. (For example, if the desired maximum Settlement Fee is 1.0201%, <code class="prettyprint">maxFee</code> should be set to 0.010201.)</li>
+<li><strong><code class="prettyprint">p.maxSpreadPercent</code></strong> (string) &lt;optional&gt; Maximum <a href="#spread-percent">Spread Percent</a> by which to filter markets, as a decimal number from 0 to 1.</li>
 <li><strong><code class="prettyprint">p.hasOrders</code></strong> (boolean) &lt;optional&gt; If set to <code class="prettyprint">true</code>, only Markets having <a href="#open-order">Open Orders</a> on the <a href="#order-book">Order Book</a> will be returned. Defaults to <code class="prettyprint">false</code>.</li>
 <li><strong><code class="prettyprint">p.sortBy</code></strong>  (string) &lt;optional&gt; Field name by which to sort the Markets.</li>
 <li><strong><code class="prettyprint">p.isSortDescending</code></strong>  (boolean) &lt;optional&gt; Whether to sort the Markets in descending order by sortBy field.</li>
@@ -15538,6 +15539,11 @@ Note: When calculating the Payout Set for a Scalar Market using integer-only mat
 <p>Opening a Short Position costs ((cost of a Complete Set - price per Share) * number of Shares), where a <a href="#complete-set">Complete Set</a> is a Share of every Outcome in a Market. For example, suppose a user thinks the &ldquo;Yes&rdquo; Outcome of a Yes/No Market is unlikely to happen and expects the price of a &ldquo;Yes&rdquo; Share in this Market to decrease in the future. If a Complete Set in this Market costs 1 ETH, and one Share of &ldquo;Yes&rdquo; costs 0.55 ETH, a Short Position in 1 Share of the &ldquo;Yes&rdquo; Outcome can be opened for (1 - 0.55) 1 = 0.45 ETH.</p>
 
 <p>For more information on trading, please refer to the <a href="#trading">Trading</a> section.</p>
+
+<h2 id="spread-percent">Spread Percent</h2>
+
+<p>Spread Percent is a liquidity metric for each of the <a href="#outcome">Outcomes</a> in a <a href="#market">Market</a>.  It measures the difference between best <a href="#bid-order">Bid Orders</a> and <a href="#ask-order">Ask Orders</a> of the <a href="#order-book">Order Book</a> for an Outcome. Lower Spread Percent is better and means that Outcome&rsquo;s best
+Bid Orders/Ask Orders on the Order Book are closer together and of higher quality from the standpoint of a taker/bettor. Spread Percent ranges from 0% (perfect spread) to 100% (empty Order Book). A Market&rsquo;s Spread Percent is defined as the max (worst) Spread Percent of its Outcomes.</p>
 
 <h2 id="tentative-outcome">Tentative Outcome</h2>
 
