@@ -2527,8 +2527,6 @@ var universeAddress = "0x1f732847fbbcc46ffe859f28e916d993b2b08831";
 // the function `augur.createMarket.getMarketCreationCost` and multiplying
 // the `etherRequiredToCreateMarket` value that's returned by 10^18 .
 var ethCostToCreateMarket = "0x58d15e17628000"; 
-// Use the Cash contract for `p._denominationToken` when creating new Markets.
-var cashAddress = "0xd2ee83a8a2a904181ccfddd8292f178614062aa0";
 
 var _extraInfo = {
   resolutionSource: "http://www.espn.com",
@@ -2539,7 +2537,6 @@ var _extraInfo = {
 augur.api.Universe.createCategoricalMarket({
   _endTime: "0x5bd7e550",
   _feePerEthInWei: "0x123456",
-  _denominationToken: cashAddress,
   _designatedReporterAddress: "0x01114f4bda09ed6c6715cf0baf606b5bce1dc96a",
   _outcomes: ["outcome1","outcome2"],
   _topic: "sports",
@@ -2591,7 +2588,6 @@ var _extraInfo = {
 augur.api.Universe.createScalarMarket({
   _endTime: "0x5b39b150",
   _feePerEthInWei: "0x123456",
-  _denominationToken: cashAddress,
   _designatedReporterAddress: "0x01114f4bda09ed6c6715cf0baf606b5bce1dc96a",
   _minPrice: "-10",
   _maxPrice: "0x78",
@@ -2625,7 +2621,6 @@ var _extraInfo = {
 augur.api.Universe.createYesNoMarket({
   _endTime: "0x5c2b1e00",
   _feePerEthInWei: "0x123456",
-  _denominationToken: cashAddress,
   _designatedReporterAddress: "0x01114f4bda09ed6c6715cf0baf606b5bce1dc96a",
   _topic: "space",
   _description: "Will SpaceX successfully complete a manned flight to the International Space Station by the end of 2018?",
@@ -2803,7 +2798,6 @@ NOTE: The account attempting to create the new market must have sufficient REP i
 * **`p`** (Object) Parameters object.
     * **`p._endTime`**  (string) Unix timestamp for the [End Time](#end-time) of the [Market](#market), as a hexadecimal string.
     * **`p._feePerEthInWei`**  (string) [Creator Fee](#creator-fee) (in Wei) that is collected for every 1 Ether worth of [Shares](#share) [Settled](#settlement), as a hexadecimal string.
-    * **`p._denominationToken`**  (string) Ethereum address of the token the Market is denominated in. Currently, Markets are only denominated in Ether (i.e., the [Cash](#cash) [contract](https://github.com/AugurProject/augur/blob/master/packages/augur-core/source/contracts/trading/Cash.sol) in Augur's smart contracts), but Augur is expected to support other tokens in the future.
     * **`p._designatedReporterAddress`**  (string) Ethereum address of the [Designated Reporter](#designated-reporter).
     * **`p._outcomes`**  (Array.&lt;string>) Array of names for all possible outcomes for the Market event.
     * **`p._topic`**  (string) Market [Topic](#topic).
@@ -2872,7 +2866,6 @@ NOTE: The account attempting to create the new market must have sufficient REP i
 * **`p`** (Object) Parameters object.
     * **`p._endTime`**  (string) Unix timestamp for the [End Time](#end-time) of the [Market](#market), as a hexadecimal string.
     * **`p._feePerEthInWei`**  (string) [Creator Fee](#creator-fee) (in [attoETH](atto-prefix)) that is collected for every 1 Ether worth of [Shares](#share) [Settled](#settlement).
-    * **`p._denominationToken`**  (string) Ethereum address of the token the Market is denominated in. Currently, Markets are only denominated in Ether (i.e., the [Cash](#cash) [contract](https://github.com/AugurProject/augur/blob/master/packages/augur-core/source/contracts/trading/Cash.sol) in Augur's smart contracts), but Augur is expected to support other tokens in the future.
     * **`p._designatedReporterAddress`**  (string) Ethereum address of the [Designated Reporter](#designated-reporter).
     * **`p._minPrice`**  (string) [Minimum Display Price](#minimum-display-price) for the Market, as a hexadecimal string.
     * **`p._maxPrice`**  (string) [Maximum Display Price](#maximum-display-price) for the Market, as a hexadecimal string.
@@ -2916,7 +2909,6 @@ NOTE: The account attempting to create the new market must have sufficient REP i
 * **`p`** (Object) Parameters object.
     * **`p._endTime`**  (string) Unix timestamp for the [End Time](#end-time) of the [Market](#market), as a hexadecimal string.
     * **`p._feePerEthInWei`**  (string) [Creator Fee](#creator-fee) (in Wei) that is collected for every 1 Ether worth of [Shares](#share) [Settled](#settlement), as a hexadecimal string.
-    * **`p._denominationToken`**  (string) Ethereum address of the token the Market is denominated in. Currently, Markets are only denominated in Ether (i.e., the [Cash](#cash) [contract](https://github.com/AugurProject/augur/blob/master/packages/augur-core/source/contracts/trading/Cash.sol) in Augur's smart contracts), but Augur is expected to support other tokens in the future.
     * **`p._designatedReporterAddress`**  (string) Ethereum address of the [Designated Reporter](#designated-reporter).
     * **`p._topic`**  (string) Market [Topic](#topic).
     * **`p._description`**  (string) Description of the Market event.
