@@ -2914,7 +2914,7 @@ Returns the Ethereum contract address of the [Reputation Token](#rep) for the sp
 
 ### augur.api.Universe.getTargetRepMarketCapInAttoeth(p, callback)
 
-Returns the [REP](#rep) market cap that Augur targets when calculating [Reporting Fees](#reporting-fee). Augur attempts to set Reporting Fees such that the REP market cap equals 7.5 times the amount of [Open Interest](#open-interest). 
+Returns the [REP](#rep) market cap that Augur targets when calculating [Reporting Fees](#reporting-fee). Augur attempts to set Reporting Fees such that the REP market cap equals 3 times the amount of [Open Interest](#open-interest). 
 
 #### **Parameters:**
 

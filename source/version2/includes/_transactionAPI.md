@@ -2781,7 +2781,7 @@ augur.api.Universe.redeemStake({
 ```
 Provides JavaScript bindings for the [Universe Solidity Contract](https://github.com/AugurProject/augur/blob/master/packages/augur-core/source/contracts/reporting/Universe.sol), which allows for the creation of [Markets](#market) and provides functions for obtaining information about a given [Universe](#universe).
 
-<!-- #### Notes: Transaction will fail if: the sender does not have enough ETH/REP to pay for the [Validity Bond](#validity-bond) & [No-Show Bond](#no-show-bond), `p._endTime` has already passed, `p._feesPerEthInWei` is less than 0 or greater than/equal to 0.5 ETH (5 * 10^18), `p._designatedReporterAddress` is the null address (0x0000000000000000000000000000000000000000), the length of `p._description` is not greater than 0 bytes, `value` in the `tx` object is not enough to cover the Market's Validity Bond and the estimated gas cost for the target amount of reporters to report. -->
+<!-- #### Notes: Transaction will fail if: the sender does not have enough ETH/REP to pay for the [Validity Bond](#validity-bond) & [No-Show Bond](#no-show-bond), `p._endTime` has already passed, `p._feesPerEthInWei` is less than 0 or greater than/equal to 0.15 ETH (15 * 10^16), `p._designatedReporterAddress` is the null address (0x0000000000000000000000000000000000000000), the length of `p._description` is not greater than 0 bytes, `value` in the `tx` object is not enough to cover the Market's Validity Bond and the estimated gas cost for the target amount of reporters to report. -->
 
 ### augur.api.Universe.createCategoricalMarket(p)
 
@@ -2791,7 +2791,7 @@ This transaction will fail if:
 
 * `p._outcomes` contains fewer than 2 outcomes or more than 8 outcomes.
 * `p._designatedReporterAddress` is set to the null address.
-* `p._feePerEthInWei` is greater than the maximum fee (0.5 ETH).
+* `p._feePerEthInWei` is greater than the maximum fee (0.15 ETH).
 * `p._endTime` has already passed.
 * `p._endTime` is further in the future than the maximum market duration (91 days). 
 * The Universe is Forking.
@@ -2859,7 +2859,7 @@ This transaction will fail if:
 
 * `p._designatedReporterAddress` is set to the null address.
 * `p._numTicks` is less than 2.
-* `p._feePerEthInWei` is greater than the maximum fee (0.5 ETH).
+* `p._feePerEthInWei` is greater than the maximum fee (0.15 ETH).
 * `p._endTime` has already passed.
 * `p._endTime` is further in the future than the maximum market duration (91 days). 
 * The Universe is Forking.
@@ -2903,7 +2903,7 @@ This transaction will fail if:
 
 * `p._outcomes` contains fewer than 2 outcomes or more than 8 outcomes.
 * `p._designatedReporterAddress` is set to the null address.
-* `p._feePerEthInWei` is greater than the maximum fee (0.5 ETH).
+* `p._feePerEthInWei` is greater than the maximum fee (0.15 ETH).
 * `p._endTime` has already passed.
 * `p._endTime` is further in the future than the maximum market duration (91 days). 
 * The Universe is Forking.

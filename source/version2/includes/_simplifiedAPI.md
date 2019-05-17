@@ -689,7 +689,7 @@ This transaction will fail if:
 
 * `p._outcomes` contains fewer than 2 outcomes or more than 8 outcomes.
 * `p._designatedReporterAddress` is set to the null address.
-* `p._feePerEthInWei` is greater than the maximum fee (0.5 ETH).
+* `p._feePerEthInWei` is greater than the maximum fee (0.15 ETH).
 * `p._endTime` has already passed.
 * `p._endTime` is further in the future than the maximum market duration (91 days). 
 * The Universe is Forking.
@@ -725,7 +725,7 @@ This transaction will fail if:
 
 * `p._designatedReporterAddress` is set to the null address.
 * `p._numTicks` is less than 2.
-* `p._feePerEthInWei` is greater than the maximum fee (0.5 ETH).
+* `p._feePerEthInWei` is greater than the maximum fee (0.15 ETH).
 * `p._endTime` has already passed.
 * `p._endTime` is further in the future than the maximum market duration (91 days). 
 * The Universe is Forking.
@@ -763,7 +763,7 @@ This transaction will fail if:
 
 * `p._outcomes` contains fewer than 2 outcomes or more than 8 outcomes.
 * `p._designatedReporterAddress` is set to the null address.
-* `p._feePerEthInWei` is greater than the maximum fee (0.5 ETH).
+* `p._feePerEthInWei` is greater than the maximum fee (0.15 ETH).
 * `p._endTime` has already passed.
 * `p._endTime` is further in the future than the maximum market duration (91 days). 
 * The Universe is Forking.
