@@ -921,7 +921,7 @@ If the Dispute Crowdsourcer's [Market](#market) has been [Finalized](#finalized)
 
 If the Dispute Crowdsourcer's [Market](#market) has been [Finalized](#finalized), and the Dispute Crowdsourcer did not fill its [Dispute Bond](#dispute-bond), the user will receive Reporting Fees for the Fee Window (but not the REP they originally Staked).
 
-If a Fork has occurred, all non-[Forked Markets](#forked-market) will have their [Tentative Outcome](#tentative-outcome) reset to the Outcome submitted in the [Initial Report](#initial-report) and be put back in the [Waiting for the Next Fee Window to Begin Phase](#waiting-for-the-next-fee-window-to-begin-phase). All non-[Forked Markets](#forked-market) will need to have `augur.api.Market.disavowCrowdsourcers` called before the `redeem` transaction can be called on any of their Dispute Crowdsourcers. Furthermore, all Dispute Crowdsourcers of the Forked Market will need to have `augur.api.DisputeCrowdsourcer.forkAndRedeem` called on them.
+If a Fork has occurred, all non-[Forked Markets](#forked-market) will have their [Tentative Outcome](#tentative-outcome) reset to the Outcome submitted in the [Initial Report](#initial-report) and be put back in the [Waiting for the Next Fee Window to Begin Phase](#waiting-for-the-next-fee-window-to-begin-phase). All non-Forked Markets will need to have `augur.api.Market.disavowCrowdsourcers` called before the `redeem` transaction can be called on any of their Dispute Crowdsourcers. Furthermore, all Dispute Crowdsourcers of the Forked Market will need to have `augur.api.DisputeCrowdsourcer.forkAndRedeem` called on them.
 
 When `redeem` is called on Dispute Crowdsourcers of non-Forked Markets, this transaction will redeem any [REP](#rep) that `p._redeemer` [Staked](#dispute-stake) on that Crowdsourcer, as well as any [Reporting Fees](#reporting-fee) (in Ether) that `p._redeemer` is owed, to the [Universe](#universe) containing the Forked Market.
 
@@ -1376,6 +1376,7 @@ var marketAddress = "0x9368ff3e9ce1c0459b309fac6dd4e69229b91a42";
 
 var _payoutNumerators = [ "0x0", "0x2710" ];
 var _invalid = false;
+var _description = "The outcome of this Market is 'Yes', as reported by the WSJ on May 15, 2019.";
 var _amount = "0x64";
 augur.api.Market.contribute({
   _payoutNumerators: _payoutNumerators,
@@ -1413,6 +1414,7 @@ augur.api.Market.disavowCrowdsourcers({
 augur.api.Market.doInitialReport({
   _payoutNumerators: _payoutNumerators,
   _invalid: _invalid,
+  _description: _description
   tx: { 
     to: marketAddress,
     gas: "0x632ea0" 
@@ -1460,6 +1462,9 @@ augur.api.Market.finalizeFork({
 augur.api.Market.migrateThroughOneFork({
   tx: { 
     to: marketAddress,
+    _payoutNumerators: _payoutNumerators, 
+    _invalid: _invalid, 
+    _description: "",
     gas: "0x632ea0" 
   }, 
   meta: {
@@ -1525,7 +1530,7 @@ This function will fail if:
 
 ### augur.api.Market.disavowCrowdsourcers(p)
 
-"Disavows" all [Dispute Crowdsourcers](#dispute-crowdsourcer) of a Market, meaning the Market's [Tentative Outcome](#tentative-outcome) is reset back to the [Outcome](#outcome) of the [Initial Report](#initial-report), and all [REP](#rep) [Staked](#dispute-stake) in the Crowdsourcers are redeemable by users who contributed to them using the function `augur.api.DisputeCrowdsourcer.redeem`. This transaction may only be called on non-[Forked Markets](#forked-market) in the event that another [Market](#market) in the same [Universe](#universe) [Forks](#fork).
+"Disavows" all [Dispute Crowdsourcers](#dispute-crowdsourcer) of a Market, meaning the Market's [Tentative Outcome](#tentative-outcome) is reset back to the [Outcome](#outcome) of the [Initial Report](#initial-report) (if one has been submitted), and all [REP](#rep) [Staked](#dispute-stake) in the Crowdsourcers are redeemable by users who contributed to them using the function `augur.api.DisputeCrowdsourcer.redeem`. If the Market's [No-Show Bond](#no-show-bond) has not yet been claimed, it will be paid back to the account that originally provided it. This transaction may only be called on non-[Forked Markets](#forked-market) in the event that another [Market](#market) in the same [Universe](#universe) [Forks](#fork).
 
 This transaction will trigger a [MarketParticipantsDisavowed](#MarketParticipantsDisavowed) event if the Market's InitialReporter and DisputeCrowdsourcers were disavowed without any errors.
 
@@ -1629,7 +1634,9 @@ This transaction will fail if:
 
 ### augur.api.Market.migrateThroughOneFork(p)
 
-Migrates the [Market](#market) into a winning [Child Universe](#child-universe) from a [Forked](#fork) [Parent Universe](#parent-universe). When a Fork occurs, there is a [Fork Period](#fork-period), wherein [REP](#rep) holders migrate their REP to the [Universe](#universe) they want to continue in. Once the Fork Period ends, the Child Universe with the most REP migrated to it is declared the [Winning Universe](#winning-universe). Calling this function attempts to move the Market from a Parent Universe to the Winning Universe after it's been decided. This function also migrates the [No-Show Bond](#no-show-bond) to the winning Universe and migrates REP staked in the InitialReporter contract to the ReputationToken contract associated with the Child Universe.
+Migrates the [Market](#market) into a winning [Child Universe](#child-universe) from a [Forked](#fork) [Parent Universe](#parent-universe). When a Fork occurs, there is a [Fork Period](#fork-period), wherein [REP](#rep) holders migrate their REP to the [Universe](#universe) they want to continue in. Once the Fork Period ends, the Child Universe with the most REP migrated to it is declared the [Winning Universe](#winning-universe). Calling this transaction calls `augur.api.Market.disavowCrowdsourcers` and then moves the Market from a Parent Universe to the Winning Universe after it's been decided. If the Market is a non-[Forked Markets](#forked-market) and has not had an [Initial Report](#initial-report) submitted yet, the owner of the Market will get paid the [No-Show Bond](#no-show-bond) using REP from the Market's former Universe. Regardless of whether the Market already has an Initial Report, the account that is performing the migration will place a new No-Show Bond (which could be a different size based on the new Universe).
+
+NOTE: If the End Time has elapsed, any existing Initial Report that has been submitted on the Market will be reset, and the parameter `p._payoutNumerators`, `p._invalid`, & `p._description` will be used to submit an [Initial Report](#initial-report) on the Market in the Market's new Universe. If the End Time has not elapsed, these parameters will not be used.
 
 This transaction will fail if:
 
@@ -1639,6 +1646,9 @@ This transaction will fail if:
 #### **Parameters:**
 
 * **`p`** (Object) Parameters object.
+    * **`p._payoutNumerators`**  (Array.&lt;number>|Array.&lt;string>) &lt;optional> Array representing the Market's Payout Set. (Required if the Market's End Time has elapsed; otherwise, unused.)
+    * **`p._invalid`**  (boolean) &lt;optional> Whether the Outcome of the Market is Invalid. (Required if the Market's End Time has elapsed; otherwise, unused.)
+    * **`p._description`** (string) &lt;optional> Explanation for why the Initial Reporter is Staking on this particular Outcome. (Used only if the Market's End Time has elapsed.)
     * **`p.tx`** (Object) Object containing details about how this transaction should be made.
         * **`p.tx.to`** (string) Ethereum contract address on which to call this function, as a 20-byte hexadecimal string.
         * **`p.tx.gas`** (string) Gas limit to use when submitting this transaction, as a hexadecimal string.
@@ -1933,6 +1943,7 @@ This transaction will fail if:
 
 * `p._attotokens` is not greater than 0.
 * `p._destination`'s [Universe](#universe) is not a [Child Universe](#child-universe) of `p.tx.to`'s Universe.
+* The [Parent Universe's](#parent-universe) [Fork Period](#fork-period) has ended (in which case, REP in the Parent Universe can no longer be migrated).
 
 #### **Parameters:**
 
@@ -1959,6 +1970,7 @@ This transaction will fail if:
 
 * `p._attotokens` is not greater than 0.
 * The Universe the ReputationToken contract belongs to does not have a Forked Market.
+* The [Parent Universe's](#parent-universe) [Fork Period](#fork-period) has ended (in which case, REP in the Parent Universe can no longer be migrated).
 
 #### **Parameters:**
 
