@@ -111,7 +111,7 @@ Note: Other properties will be present in this object, depending on what event t
 
 #### **Properties:** 
 * **`disavowCrowdsourcers`** (Array.&lt;<a href="#GasEstimateInfo">GasEstimateInfo</a>>) Array of GasEstimateInfo objects containing gas estimates for each `Market.disavowCrowdsourcers` call.
-* **`feeWindowRedeem`** (Array.&lt;<a href="#GasEstimateInfo">GasEstimateInfo</a>>) Array of GasEstimateInfo objects containing gas estimates for each `FeeWindow.redeem` call.
+* **`disputeWindowRedeem`** (Array.&lt;<a href="#GasEstimateInfo">GasEstimateInfo</a>>) Array of GasEstimateInfo objects containing gas estimates for each `DisputeWindow.redeem` call.
 * **`crowdsourcerRedeem`** (Array.&lt;<a href="#GasEstimateInfo">GasEstimateInfo</a>>) Array of GasEstimateInfo objects containing gas estimates for each `DisputeCrowdsourcer.redeem` call.
 * **`initialReporterRedeem`** (Array.&lt;<a href="#GasEstimateInfo">GasEstimateInfo</a>>) Array of GasEstimateInfo objects containing gas estimates for each `InitialReporter.redeem` call.
 * **`totals`** (<a href="#GasEstimatesNonforkedMarketsTotals">GasEstimatesNonforkedMarketsTotals</a>) Object containing gas estimate sums for each type of function call.
@@ -203,22 +203,22 @@ Serves as an enum for the state of a Dispute Token.
 
 #### **Properties:** 
 * **`disavowCrowdsourcers`** (Array.&lt;string>) Array of Market contract addresses that had failed calls to `Market.disavowCrowdsourcers`.
-* **`feeWindowRedeem`** (Array.&lt;string>) Array of FeeWindow contract addresses that had failed calls to `FeeWindow.redeem`.
+* **`disputeWindowRedeem`** (Array.&lt;string>) Array of DisputeWindow contract addresses that had failed calls to `DisputeWindow.redeem`.
 * **`crowdsourcerRedeem`** (Array.&lt;string>) Array of DisputeCrowdsourcer contract addresses that had failed calls to `DisputeCrowdsourcer.redeem`.
 * **`initialReporterRedeem`** (Array.&lt;string>) Array of InitialReporter contract addresses that had failed calls to `InitialReporter.redeem`.
 
-<a name="FeeWindowCurrent"></a>
-### FeeWindowCurrent  (Object)
+<a name="DisputeWindowCurrent"></a>
+### DisputeWindowCurrent  (Object)
 
 #### **Properties:** 
 * **`endTime`** (number) Unix timestamp for when the Fee Window begins.
 * **`feeToken`** (string) Ethereum address of the [Fee Token](#fee-token) for the current Fee Window.
-* **`feeWindow`** (string) Ethereum contract address of the Fee Window.
-* **`feeWindowEthFees`** (string) Amount of Reporting Fees the current Fee Window contains in its Reporting Fee Pool, in attoETH.
-* **`feeWindowFeeTokens`** (string) Number of Fee Tokens Staked in the current Fee Window.
-* **`feeWindowId`** (number) Unique numerical ID of the Fee Window.
-* **`feeWindowParticipationTokens`** (string) Number of [Participation Tokens](#participation-token) purchased by users in the current Fee Window.
-* **`feeWindowRepStaked`** (string) Amount of REP Staked in all DisputeCrowdsourcer and InitialReporter contracts in the current Fee Window.
+* **`disputeWindow`** (string) Ethereum contract address of the Fee Window.
+* **`disputeWindowEthFees`** (string) Amount of Reporting Fees the current Fee Window contains in its Reporting Fee Pool, in attoETH.
+* **`disputeWindowFeeTokens`** (string) Number of Fee Tokens Staked in the current Fee Window.
+* **`disputeWindowId`** (number) Unique numerical ID of the Fee Window.
+* **`disputeWindowParticipationTokens`** (string) Number of [Participation Tokens](#participation-token) purchased by users in the current Fee Window.
+* **`disputeWindowRepStaked`** (string) Amount of REP Staked in all DisputeCrowdsourcer and InitialReporter contracts in the current Fee Window.
 * **`participantContributions`** (string) &lt;optional> Total amount of attoREP `reporter` Staked in InitialReporter and DisputeCrowdsourcer contracts in the current Fee Window. Returned if `reporter` was specified.
 * **`participantContributionsCrowdsourcer`** (string) &lt;optional> Amount of attoREP `reporter` Staked in DisputeCrowdsourcer contracts in the current Fee Window. Returned if `reporter` was specified.
 * **`participantContributionsInitialReport`** (string) &lt;optional> Amount of attoREP `reporter` Staked in InitialReporter contracts in the current Fee Window. Returned if `reporter` was specified.
@@ -256,7 +256,7 @@ Serves as an enum for the state of a Dispute Token.
 
 #### **Properties:** 
 * **`disavowCrowdsourcers`** (string) Sum of gas estimates for all `Market.disavowCrowdsourcers` calls.
-* **`feeWindowRedeem`** (string) Sum of gas estimates for all `FeeWindow.redeem` calls.
+* **`disputeWindowRedeem`** (string) Sum of gas estimates for all `DisputeWindow.redeem` calls.
 * **`crowdsourcerRedeem`** (string) Sum of gas estimates for all `DisputeCrowdsourcer.redeem` calls.
 * **`initialReporterRedeem`** (string) Sum of gas estimates for all `InitialReporter.redeem` calls.
 * **`all`** (string) Sum of all gas estimates for all calls.
@@ -274,7 +274,7 @@ Serves as an enum for the state of a Dispute Token.
 ### GetReportingFeesInfo  (Object)
 
 #### **Properties:** 
-* **`feeWindows`** (Array.&lt;string>) Array of FeeWindow contract addresses with unclaimed REP, as hexadecimal strings.
+* **`disputeWindows`** (Array.&lt;string>) Array of DisputeWindow contract addresses with unclaimed REP, as hexadecimal strings.
 * **`forkedMarket`** (<a href="#GetReportingFeesForkedMarket">GetReportingFeesForkedMarket</a>|null) GetReportingFeesForkedMarket object containing information about the Forked Market (if one exists in the specified universe).
 * **`nonforkedMarkets`** (Array.&lt;<a href="#GetReportingFeesNonforkedMarket">GetReportingFeesNonforkedMarket</a>>) Array of GetReportingFeesNonforkedMarket objects containing unclaimed ETH/REP.
 * **`total`** (<a href="#GetReportingFeesTotal">GetReportingFeesTotal</a>) Object containing information about the unclaimed ETH/REP and lost REP a specific user has in the specified Universe.
@@ -377,7 +377,7 @@ Serves as an enum for the state of a Dispute Token.
 * **`reportingState`** (<a href="#REPORTING_STATE">REPORTING_STATE</a>|null) Reporting state name.
 * **`forking`** (boolean|number) Whether the Market has Forked.
 * **`needsMigration`** (boolean|number) Whether the Market needs to be migrated to its Universe's Child Universe (i.e., the Market is not Finalized, and the Forked Market in its Universe is Finalized).
-* **`feeWindow`** (string) Contract address of the Fee Window the Market is in, as a hexadecimal string.
+* **`disputeWindow`** (string) Contract address of the Fee Window the Market is in, as a hexadecimal string.
 * **`endTime`** (number) Timestamp when the Market event ends, in seconds.
 * **`finalizationBlockNumber`** (number|null) Ethereum block number in which the Market was Finalized.
 * **`finalizationTime`** (number|null) Timestamp when the Market was finalized (if any), in seconds.
@@ -519,7 +519,7 @@ Serves as an enum for the state of an order.
 * **`blockHash`** (string) Hash of the Ethereum block containing the reporting transaction.
 * **`creationTime`** (number) Timestamp, in seconds, when the Ethereum block containing the reporting transaction was created.
 * **`marketId`** (string) Contract address of the Market, as a hexadecimal string.
-* **`feeWindow`** (string) Fee Window the Market is in currently.
+* **`disputeWindow`** (string) Fee Window the Market is in currently.
 * **`payoutNumerators`** (Array.&lt;string>) Array representing the payout set.
 * **`amountStaked`** (string) attoREP the Reporter has Staked on the Outcome of their Report.
 * **`crowdsourcerId`** (string) Ethereum contract address of the Dispute Crowdsourcer, as a hexadecimal string.
@@ -609,7 +609,7 @@ Serves as an enum for the state of a Market.
 #### **Properties:** 
 
 * **`disavowCrowdsourcers`** (Array.&lt;string>) Array of Market contract addresses that had successful calls to `Market.disavowCrowdsourcers`.
-* **`feeWindowRedeem`** (Array.&lt;string>) Array of FeeWindow contract addresses that had successful calls to `FeeWindow.redeem`.
+* **`disputeWindowRedeem`** (Array.&lt;string>) Array of DisputeWindow contract addresses that had successful calls to `DisputeWindow.redeem`.
 * **`crowdsourcerRedeem`** (Array.&lt;string>) Array of DisputeCrowdsourcer contract addresses that had successful calls to `DisputeCrowdsourcer.redeem`.
 * **`initialReporterRedeem`** (Array.&lt;string>) Array of InitialReporter contract addresses that had successful calls to `InitialReporter.redeem`.
 
@@ -686,8 +686,8 @@ net position in that Market Outcome. This is a cashflow amount that the user rem
 * **`lastTradePrice24hAgo`** (string) As of 24 hours ago, the last (most recent) price in ETH at which this Outcome was traded by anybody.
 * **`lastTradePrice24hChangePercent`** (string) Percent change in `lastTradePrice` from 24 hours ago.
 
-<a name="UnclaimedFeeWindowInfo"></a>
-### UnclaimedFeeWindowInfo  (Object)
+<a name="UnclaimedDisputeWindowInfo"></a>
+### UnclaimedDisputeWindowInfo  (Object)
 
 #### **Properties:** 
 * **`startTime`** (number) Unix timestamp when the Fee Window begins.

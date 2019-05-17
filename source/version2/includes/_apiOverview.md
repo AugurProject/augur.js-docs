@@ -156,7 +156,7 @@ Debugging Options
 ----------------------------
 ```javascript
 augur.rpc.setDebugOptions({ broadcast: true });
-augur.api.Universe.getCurrentFeeWindow();
+augur.api.Universe.getCurrentDisputeWindow();
 // example output:
 packaged: {
   from: "0x56ddb80fe4e5aa05182d794526ab1eff78c90688", 

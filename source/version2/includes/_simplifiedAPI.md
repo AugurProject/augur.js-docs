@@ -794,7 +794,7 @@ NOTE: The account attempting to create the new market must have sufficient REP i
 
 Retrieves the [No-Show Bond](#no-show-bond) amount and total Ether required to create a new [Market](#market).
 
-Note: This function will send a transaction if needed to create the current [Fee Window](#fee-window).
+Note: This function will send a transaction if needed to create the current [Dispute Window](#dispute-window).
 
 #### **Parameters:**
 
@@ -810,7 +810,7 @@ Note: This function will send a transaction if needed to create the current [Fee
 
 Similar to `augur.createMarket.getMarketCreationCost`, but provides more detail about the ether costs required to create a new [Market](#market). These Ether costs are broken down by the gas cost paid to the [First Public Reporter](#first-public-reporter) and the cost of the [Validity Bond](#validity-bond).
 
-Note: This function will send a transaction if needed to create the current [Fee Window](#fee-window).
+Note: This function will send a transaction if needed to create the current [Dispute Window](#dispute-window).
 
 #### **Parameters:**
 
@@ -986,7 +986,7 @@ augur.markets.getMarketsInfo({
     reportingState: "DESIGNATED_REPORTING",
     forking: 0,
     needsMigration: 0,
-    feeWindow: "0x1000000000000000000000000000000000000000",
+    disputeWindow: "0x1000000000000000000000000000000000000000",
     endTime: 1506573470,
     finalizationBlockNumber: null,
     finalizationTime: null,
@@ -1076,7 +1076,7 @@ augur.markets.getMarketsInfo({
     reportingState: "DESIGNATED_REPORTING",
     forking: 0,
     needsMigration: 0,
-    feeWindow: "0x1000000000000000000000000000000000000000",
+    disputeWindow: "0x1000000000000000000000000000000000000000",
     endTime: 1506573480,
     finalizationBlockNumber: null,
     finalizationTime: null,
@@ -1180,7 +1180,7 @@ This function will fail if:
     * **`p.category`** (string) &lt;optional> Market category by which to filter the returned results.
     * **`p.search`** (string) &lt;optional> Query string used to determine which Markets are returned by `augur.markets.getMarkets`. By default, a full-text search will be performed on this string. However, it is also possible to search across specific market properties, by specifying `marketId`, `category`, `tags`, `shortDescription`, `longDescription`, `resolutionSource`, and `scalarDenomination`. For example, to search within market categories, `p.search` can be set to "category: ETH". More complex queries can be formed using "AND" and "OR". For example, setting `p.search` to "category: Ethereum OR tags: ETH" will search for all markets with the category "Ethereum" or the tag "ETH". 
     * **`p.reportingState`** (string|Array&lt;string>) &lt;optional> [REPORTING_STATE](#REPORTING_STATE) (or array of REPORTING_STATEs) by which to filter the returned results.
-    * **`p.feeWindow`** (string) &lt;optional> Ethereum address of a [Fee Window](#fee-window) by which to filter the returned results, as a 20-byte hexadecimal string.
+    * **`p.disputeWindow`** (string) &lt;optional> Ethereum address of a [Dispute Window](#dispute-window) by which to filter the returned results, as a 20-byte hexadecimal string.
     * **`p.designatedReporter`** (string) &lt;optional> Ethereum address of a [Designated Reporter](#designated-reporter) by which to filter the returned results, as a 20-byte hexadecimal string.
     * **`p.maxFee`** (number) &lt;optional> Maximum trading [Settlement Fee](#settlement-fees) by which to filter the returned results, as a decimal number. (For example, if the desired maximum Settlement Fee is 1.0201%, `maxFee` should be set to 0.010201.)
     * **`p.maxEndTime`** (number) &lt;optional> Maximum [Market](#market) end time by which to filter Markets, as a Unix timestamp.
@@ -1299,7 +1299,7 @@ augur.reporting.claimReportingFeesForkedMarket({
 
 augur.reporting.claimReportingFeesNonforkedMarkets({
   "redeemer": "0x913dA4198E6bE1D5f5E4a40D0667f70C0B5430Eb",
-  "feeWindows": [],
+  "disputeWindows": [],
   "nonforkedMarkets": [
     {
       "marketId": "0xbeb2f42f5f495c0581893117eb210e5e9666170e",
@@ -1318,7 +1318,7 @@ augur.reporting.claimReportingFeesNonforkedMarkets({
 {
   "successfulTransactions": {
     "disavowCrowdsourcers": [],
-    "feeWindowRedeem": [],
+    "disputeWindowRedeem": [],
     "crowdsourcerRedeem": [],
     "initialReporterRedeem": [
       "0x072e9db2836dc569f6173a8d56a25dfd4cbacc1c"
@@ -1339,9 +1339,9 @@ augur.reporting.finalizeMarket({
 });
 // This function does not return a value.
 
-var secondsInFeeWindow = 604800;
+var secondsInDisputeWindow = 604800;
 var currentTimestamp = 1518648436;
-augur.reporting.getCurrentPeriodProgress(secondsInFeeWindow, currentTimestamp);
+augur.reporting.getCurrentPeriodProgress(secondsInDisputeWindow, currentTimestamp);
 // example output:
 99.27843915343915
 
@@ -1473,7 +1473,7 @@ augur.reporting.getDisputeTokens({
   },
 }
 
-augur.reporting.getFeeWindowCurrent({
+augur.reporting.getDisputeWindowCurrent({
   universe: "0x000000000000000000000000000000000000000b",
   reporter: "0x0000000000000000000000000000000000000b0b",
 }, function (error, result) {
@@ -1483,12 +1483,12 @@ augur.reporting.getFeeWindowCurrent({
 {
   endTime: 1509670273,
   feeToken: "0x1230000000000000000000000000000000000000",
-  feeWindow: "0x2000000000000000000000000000000000000000",
-  feeWindowEthFees: "2000",
-  feeWindowFeeTokens: "100",
-  feeWindowId: 457,
-  feeWindowParticipationTokens: "1000",
-  feeWindowRepStaked: "1100",
+  disputeWindow: "0x2000000000000000000000000000000000000000",
+  disputeWindowEthFees: "2000",
+  disputeWindowFeeTokens: "100",
+  disputeWindowId: 457,
+  disputeWindowParticipationTokens: "1000",
+  disputeWindowRepStaked: "1100",
   participantContributions: "102",
   participantContributionsCrowdsourcer: "0",
   participantContributionsInitialReport: "102",
@@ -1499,7 +1499,7 @@ augur.reporting.getFeeWindowCurrent({
   universe: "0x000000000000000000000000000000000000000b",
 }
 
-augur.reporting.getFeeWindows({
+augur.reporting.getDisputeWindows({
   universe: "0x000000000000000000000000000000000000000b",
   account: "0x0000000000000000000000000000000000000021",
   includeCurrent: true,
@@ -1589,7 +1589,7 @@ augur.reporting.getReportingFees({
     participationTokenRepStaked: "60",
     unclaimedParticipationTokenEthFees: "200",
   },
-  feeWindows: [
+  disputeWindows: [
     "0x1000000000000000000000000000000000000000",
   ],
   forkedMarket: {
@@ -1640,7 +1640,7 @@ augur.reporting.getReportingHistory({
         blockHash: "0x1400051",
         creationTime: 1506474500,
         marketId: "0x0000000000000000000000000000000000000011",
-        feeWindow: "0x1000000000000000000000000000000000000000",
+        disputeWindow: "0x1000000000000000000000000000000000000000",
         payoutNumerators: ["0", "2"],
         amountStaked: "17",
         crowdsourcerId: "0x0000000000000000001000000000000000000001",
@@ -1661,7 +1661,7 @@ augur.reporting.getReportingHistory({
         blockHash: "0x1400052",
         creationTime: 1506474515,
         marketId: "0x0000000000000000000000000000000000000019",
-        feeWindow: "0x1000000000000000000000000000000000000000",
+        disputeWindow: "0x1000000000000000000000000000000000000000",
         payoutNumerators: ["10000", "0", "0", "0", "0"],
         amountStaked: "229",
         crowdsourcerId: "0x0000000000000000001000000000000000000003",
@@ -1675,7 +1675,7 @@ augur.reporting.getReportingHistory({
 }
 
 augur.reporting.getReportingSummary({
-  feeWindow: "0x1000000000000000000000000000000000000000"
+  disputeWindow: "0x1000000000000000000000000000000000000000"
 }, function (error, result) {
   console.log(result);
 });
@@ -1724,7 +1724,7 @@ The claiming process works as follows:
 
 ### augur.reporting.claimReportingFeesNonforkedMarkets(p)
 
-Claims unclaimed [Reporting Fees](#reporting-fee) a user has in the InitialReporter/DisputeCrowdsourcer contracts the specified non-[Forked Markets](#forked-market) or [Participation Tokens](#participation-token) of specified [Fee Windows](#fee-window). Alternatively, it can return gas estimates for claiming these fees if `p.estimateGas` is true.
+Claims unclaimed [Reporting Fees](#reporting-fee) a user has in the InitialReporter/DisputeCrowdsourcer contracts the specified non-[Forked Markets](#forked-market) or [Participation Tokens](#participation-token) of specified [Dispute Windows](#dispute-window). Alternatively, it can return gas estimates for claiming these fees if `p.estimateGas` is true.
 
 The claiming process works as follows:
 
@@ -1734,7 +1734,7 @@ The claiming process works as follows:
             * Call `Market.disavowCrowdsourcers`
 
 * Once the above has been completed:
-    * Call `FeeWindow.redeem` on all Fee Windows in the current Universe where the user has unclaimed Participation Tokens
+    * Call `DisputeWindow.redeem` on all Fee Windows in the current Universe where the user has unclaimed Participation Tokens
     * For InitialReporter/DisputeCrowdsourcer contracts of non-Forked Markets:
         * Call `DisputeCrowdsourcer.redeem`
         * For InitialReporter contracts of non-Forked Markets:
@@ -1746,7 +1746,7 @@ The claiming process works as follows:
 
 * **`p`** (Object) Parameters object.
     * **`p.redeemer`**  (string) Ethereum address attempting to redeem reporting fees, as a hexadecimal string.
-    * **`p.feeWindows`** (Array.&lt;string>) Array of Fee Window Ethereum contract addresses, as hexadecimal strings.
+    * **`p.disputeWindows`** (Array.&lt;string>) Array of Fee Window Ethereum contract addresses, as hexadecimal strings.
     * **`p.nonforkedMarkets`** (Array.&lt;<a href="#ClaimReportingFeesNonforkedMarket">ClaimReportingFeesNonforkedMarket</a>>) Array of ClaimReportingFeesNonforkedMarket objects.
     * **`p.estimateGas`**  (boolean) Whether to return gas estimates for the transactions instead of actually making the transactions.
     * **`p.meta`**  (<a href="#Meta">Meta</a>) &lt;optional> Authentication metadata for raw transactions.
@@ -1765,7 +1765,7 @@ The claiming process works as follows:
 This transaction will fail if:
 
 * The [Initial Report](#initial-report) has not been submitted.
-* The [Fee Window](#fee-window) has not ended.
+* The [Dispute Window](#dispute-window) has not ended.
 * The Market passed in is a [Forked Market](#forked-market).
 
 #### **Parameters:**
@@ -1783,7 +1783,7 @@ This transaction will fail if:
 
 ### augur.reporting.getCurrentPeriodProgress(reportingPeriodDurationInSeconds, timestamp) 
 
-Returns the percentage of the current [Fee Window](#fee-window) that has elapsed.
+Returns the percentage of the current [Dispute Window](#dispute-window) that has elapsed.
 
 #### **Parameters:**
 
@@ -1828,9 +1828,9 @@ This function will fail if:
 
 * (Array.&lt;<a href="#DisputeToken">DisputeToken</a>>) Dispute Token details, keyed by Dispute Token ID.
 
-### augur.reporting.getFeeWindowCurrent(p, callback)
+### augur.reporting.getDisputeWindowCurrent(p, callback)
 
-Returns information about the current [Fee Window](#fee-window). If `p.reporter` is specified, this returned information will also include the total amount of [attoREP](#atto-prefix) the [Reporter](#reporter) has Staked in the current Fee Window (this includes attoREP Staked in [Initial Reports](#initial-report), as well as attoREP Staked in [Dispute Crowdsourcers](#crowdsourcers)) and the amount of [Participation Tokens](#participation-token) the Reporter has purchased in the current Fee Window.
+Returns information about the current [Dispute Window](#dispute-window). If `p.reporter` is specified, this returned information will also include the total amount of [attoREP](#atto-prefix) the [Reporter](#reporter) has Staked in the current Fee Window (this includes attoREP Staked in [Initial Reports](#initial-report), as well as attoREP Staked in [Dispute Crowdsourcers](#crowdsourcers)) and the amount of [Participation Tokens](#participation-token) the Reporter has purchased in the current Fee Window.
 
 This function will fail if:
 
@@ -1845,11 +1845,11 @@ This function will fail if:
 
 #### **Returns:**
 
-* (<a href="#FeeWindowCurrent">FeeWindowCurrent</a>) Object containing information about the current Fee Window.
+* (<a href="#DisputeWindowCurrent">DisputeWindowCurrent</a>) Object containing information about the current Fee Window.
 
-### augur.reporting.getFeeWindows(p, callback)
+### augur.reporting.getDisputeWindows(p, callback)
 
-Returns the [Fee Windows](#fee-window) where a specific user has unclaimed [Reporting Fees](#reporting-fee).
+Returns the [Dispute Windows](#dispute-window) where a specific user has unclaimed [Reporting Fees](#reporting-fee).
 
 This function will fail if:
 
@@ -1865,7 +1865,7 @@ This function will fail if:
 
 #### **Returns:**
 
-* (Object) Object containing <a href="#UnclaimedFeeWindowInfo">UnclaimedFeeWindowInfo</a> objects, indexed by the Ethereum address of each FeeWindow contract.
+* (Object) Object containing <a href="#UnclaimedDisputeWindowInfo">UnclaimedDisputeWindowInfo</a> objects, indexed by the Ethereum address of each DisputeWindow contract.
 
 ### augur.reporting.getInitialReporters(p, callback)
 
@@ -1900,7 +1900,7 @@ Returns information about the unclaimed ETH and [REP](#rep) [Reporting Fees](#re
 
 ### augur.reporting.getReportingHistory(p, callback)
 
-Returns information about the [Reports](#report) submitted by a particular user. For [Fee Windows](#fee-window) that have ended, this includes the [Final Outcome](#final-outcome) of the [Market](#market), whether the user’s Report matched that Final Outcome, how much REP the user gained or lost from redistribution, and how much the user earned in [Reporting Fees](#reporting-fee).
+Returns information about the [Reports](#report) submitted by a particular user. For [Dispute Windows](#dispute-window) that have ended, this includes the [Final Outcome](#final-outcome) of the [Market](#market), whether the user’s Report matched that Final Outcome, how much REP the user gained or lost from redistribution, and how much the user earned in [Reporting Fees](#reporting-fee).
 
 This function will fail if:
 
@@ -1912,7 +1912,7 @@ This function will fail if:
     * **`p.reporter`**  (string) Ethereum address of the [Reporter](#reporter) for which to retrieve reporting history, as a 20-byte hexadecimal string.
     * **`p.universe`**  (string) &lt;optional> Contract address of the [Universe](#universe) in which to look up the reporting history, as a 20-byte hexadecimal string. Either this parameter, the Market ID, or the Fee Window must be specified.
     * **`p.marketId`**  (string) &lt;optional> Contract address of the Market in which to look up the reporting history, as a 20-byte hexadecimal string. Either this parameter, the Universe, or the Fee Window must be specified.
-    * **`p.feeWindow`**  (string) &lt;optional> Contract address of the Fee Window in which to look up the reporting history, as a 20-byte hexadecimal string. Either this parameter, the Universe, or the Market ID must be specified.
+    * **`p.disputeWindow`**  (string) &lt;optional> Contract address of the Fee Window in which to look up the reporting history, as a 20-byte hexadecimal string. Either this parameter, the Universe, or the Market ID must be specified.
     * **`p.earliestCreationTime`**  (number) &lt;optional> Earliest timestamp, in seconds, at which to truncate history results. (This timestamp is when the block on the Ethereum blockchain containing the report submission was created.)
     * **`p.latestCreationTime`**  (number) &lt;optional> Latest timestamp, in seconds, at which to truncate history results. (This timestamp is when the block on the Ethereum blockchain containing the report submission was created.)
     * **`p.sortBy`**  (string) &lt;optional> Field name by which to sort the reporting history.
@@ -1936,7 +1936,7 @@ This function will fail if:
 #### **Parameters:**
 
 * **`p`** (Object) Parameters object.
-    * **`p.feeWindow`**  (string) Contract address of the [Fee Window](#fee-window) for which to get the summary, as a 20-byte hexadecimal string.
+    * **`p.disputeWindow`**  (string) Contract address of the [Dispute Window](#dispute-window) for which to get the summary, as a 20-byte hexadecimal string.
 * **`callback`** (function) Called after the reporting summary has been retrieved.
 
 #### **Returns:**

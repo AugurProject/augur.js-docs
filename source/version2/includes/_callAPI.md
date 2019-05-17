@@ -231,10 +231,10 @@ Dispute Crowdsourcer Call API
 // by `augur.api.Market.getCrowdsourcer`.
 var disputeCrowdsourcer = "0xafa6eaefcfaf7ea1e17c4768a554d57800699ec5";
 
-augur.api.DisputeCrowdsourcer.getFeeWindow({ 
+augur.api.DisputeCrowdsourcer.getDisputeWindow({ 
   tx: { to: disputeCrowdsourcer } 
-}, function (error, feeWindow) { 
-  console.log(feeWindow); 
+}, function (error, disputeWindow) { 
+  console.log(disputeWindow); 
 });
 // example output:
 "0x1f90cc6b4e89303e451c9b852827b5791667f570"
@@ -306,9 +306,9 @@ true
 ```
 Provides JavaScript bindings for the [DisputeCrowdsourcer Solidity Contract](https://github.com/AugurProject/augur/blob/master/packages/augur-core/source/contracts/reporting/DisputeCrowdsourcer.sol), which allows users to [Stake](#dispute-stake) and redeem [REP](#rep) on [Outcomes](#outcome) other than a [Market's](#market) [Tentative Outcome](#tentative-outcome).
 
-### augur.api.DisputeCrowdsourcer.getFeeWindow(p, callback)
+### augur.api.DisputeCrowdsourcer.getDisputeWindow(p, callback)
 
-Gets the [Fee Window](#fee-window) to which a [Dispute Crowdsourcer](#crowdsourcer) belongs.
+Gets the [Dispute Window](#dispute-window) to which a [Dispute Crowdsourcer](#crowdsourcer) belongs.
 
 #### **Parameters:**
 
@@ -416,7 +416,7 @@ Gets the amount of [attoREP](#atto-prefix) that has been [Staked](#dispute-stake
 
 Returns whether a [Dispute Crowdsourcer](#crowdsourcer) has been "disavowed". A disavowed Dispute Crowdsourcer is one from which [Staked](#dispute-stake) [REP](#rep) and/or [Reporting Fees](#reporting-fee) can be redeemed (by calling `augur.api.DisputeCrowdsourcer.redeem`) and whose [Market](#market) has not necessarily been [Finalized](#finalized-market). A Dispute Crowdsourcer can become disavowed if any of the following occurs:
 
-1. Another Dispute Crowdsourcer belonging to the same Market and in the same [Fee Window](fee-window) successfully fills its [Dispute Bond](#dispute-bond).
+1. Another Dispute Crowdsourcer belonging to the same Market and in the same [Dispute Window](#dispute-window) successfully fills its [Dispute Bond](#dispute-bond).
 2. A Market other than the Dispute Crowdsourcer's Market causes a [Fork](#fork), and `augur.api.Market.disavowCrowdsourcers` is called on the Dispute Crowdsourcer's Market.
 3. The Dispute Crowdsourcer's Market Forks, and `augur.api.DisputeCrowdsourcer.fork` is called on the Dispute Crowdsourcer.
 
@@ -452,94 +452,94 @@ Fee Window Call API
 // Fee Window Contract Call API Examples:
 
 // Fee Window contract addresses can be obtained using a variety of Call API functions, 
-// including `augur.api.Universe.getCurrentFeeWindow` and `augur.api.Universe.getFeeWindowByTimestamp`.
-var feeWindow = "0x37a809f8139e5637fd94c7d34912cb15c6496111";
+// including `augur.api.Universe.getCurrentDisputeWindow` and `augur.api.Universe.getDisputeWindowByTimestamp`.
+var disputeWindow = "0x37a809f8139e5637fd94c7d34912cb15c6496111";
 
-augur.api.FeeWindow.getEndTime({ 
-  tx: { to: feeWindow } 
+augur.api.DisputeWindow.getEndTime({ 
+  tx: { to: disputeWindow } 
 }, function (error, endTime) { 
   console.log(endTime); 
 });
 // example output:
 "1517443200"
 
-augur.api.FeeWindow.getNumDesignatedReportNoShows({ 
-  tx: { to: feeWindow } 
+augur.api.DisputeWindow.getNumDesignatedReportNoShows({ 
+  tx: { to: disputeWindow } 
 }, function (error, numDesignatedReportNoShows) { 
   console.log(numDesignatedReportNoShows); 
 });
 // example output:
 "2"
 
-augur.api.FeeWindow.getNumIncorrectDesignatedReportMarkets({ 
-  tx: { to: feeWindow } 
+augur.api.DisputeWindow.getNumIncorrectDesignatedReportMarkets({ 
+  tx: { to: disputeWindow } 
 }, function (error, numIncorrectDesignatedReportMarkets) { 
   console.log(numIncorrectDesignatedReportMarkets); 
 });
 // example output:
 "10"
 
-augur.api.FeeWindow.getNumInvalidMarkets({ 
-  tx: { to: feeWindow } 
+augur.api.DisputeWindow.getNumInvalidMarkets({ 
+  tx: { to: disputeWindow } 
 }, function (error, numInvalidMarkets) { 
   console.log(numInvalidMarkets); 
 });
 // example output:
 "3"
 
-augur.api.FeeWindow.getNumMarkets({ 
-  tx: { to: feeWindow } 
+augur.api.DisputeWindow.getNumMarkets({ 
+  tx: { to: disputeWindow } 
 }, function (error, numMarkets) { 
   console.log(numMarkets); 
 });
 // example output:
 "65"
 
-augur.api.FeeWindow.getReputationToken({ 
-  tx: { to: feeWindow } 
+augur.api.DisputeWindow.getReputationToken({ 
+  tx: { to: disputeWindow } 
 }, function (error, reputationToken) { 
   console.log(reputationToken); 
 });
 // example output:
 "0x2a73cec0b62fcb8c3120bc80bdb2b1351c8c2d1e"
 
-augur.api.FeeWindow.getStartTime({ 
-  tx: { to: feeWindow } 
+augur.api.DisputeWindow.getStartTime({ 
+  tx: { to: disputeWindow } 
 }, function (error, startTime) { 
   console.log(startTime); 
 });
 // example output:
 "1516838400"
 
-augur.api.FeeWindow.getUniverse({ 
-  tx: { to: feeWindow } 
+augur.api.DisputeWindow.getUniverse({ 
+  tx: { to: disputeWindow } 
 }, function (error, universe) { 
   console.log(universe); 
 });
 // example output:
 "0x0920d1513057572be46580b7ef75d1d01a99a3e5"
 
-augur.api.FeeWindow.isActive({ 
-  tx: { to: feeWindow } 
+augur.api.DisputeWindow.isActive({ 
+  tx: { to: disputeWindow } 
 }, function (error, isActive) { 
   console.log(isActive); 
 });
 // example output:
 true
 
-augur.api.FeeWindow.isOver({ 
-  tx: { to: feeWindow } 
+augur.api.DisputeWindow.isOver({ 
+  tx: { to: disputeWindow } 
 }, function (error, isOver) { 
   console.log(isOver); 
 });
 // example output:
 false
 ```
-Provides JavaScript bindings for the [FeeWindow Solidity Contract](https://github.com/AugurProject/augur/blob/master/packages/augur-core/source/contracts/reporting/DisputeWindow.sol), which allows for the buying and redeeming of [Participation Tokens](#participation-token).
+Provides JavaScript bindings for the [DisputeWindow Solidity Contract](https://github.com/AugurProject/augur/blob/master/packages/augur-core/source/contracts/reporting/DisputeWindow.sol), which allows for the buying and redeeming of [Participation Tokens](#participation-token).
 
-### augur.api.FeeWindow.getEndTime(p, callback)
+### augur.api.DisputeWindow.getEndTime(p, callback)
 
-Returns a Unix timestamp for when the specified [Fee Window](#fee-window) will end. A Fee Window is considered active for a total of 7 days, then ends, and is no longer considered to be active.
+Returns a Unix timestamp for when the specified [Dispute Window](#dispute-window) will end. A Fee Window is considered active for a total of 7 days, then ends, and is no longer considered to be active.
 
 #### **Parameters:**
 
@@ -552,9 +552,9 @@ Returns a Unix timestamp for when the specified [Fee Window](#fee-window) will e
 
 * (string) Unix timestamp at which the Fee Window ends, as a stringified unsigned integer.
 
-### augur.api.FeeWindow.getNumDesignatedReportNoShows(p, callback)
+### augur.api.DisputeWindow.getNumDesignatedReportNoShows(p, callback)
 
-Returns the number of [Markets](#market) belonging to the specified [Fee Window](#fee-window), in which the [Designated Reporter](#designated-reporter) failed to [Report](#report) during the [Designated Reporting Phase](#designated-reporting-phase). These Markets will have a [No-Show Bond](#no-show-bond) up for grabs for the [First Public Reporter](#first-public-reporter) because these Markets have yet to receive a [Report](#report). This only includes Markets where Designated Reporters failed to Report, and does not include Markets where the Designated Reporter's [Tentative Outcome](#tentative-outcome) was [Challenged](#challenge).
+Returns the number of [Markets](#market) belonging to the specified [Dispute Window](#dispute-window), in which the [Designated Reporter](#designated-reporter) failed to [Report](#report) during the [Designated Reporting Phase](#designated-reporting-phase). These Markets will have a [No-Show Bond](#no-show-bond) up for grabs for the [First Public Reporter](#first-public-reporter) because these Markets have yet to receive a [Report](#report). This only includes Markets where Designated Reporters failed to Report, and does not include Markets where the Designated Reporter's [Tentative Outcome](#tentative-outcome) was [Challenged](#challenge).
 
 #### **Parameters:**
 
@@ -567,9 +567,9 @@ Returns the number of [Markets](#market) belonging to the specified [Fee Window]
 
 * (string) Number of Markets belonging to the Fee Window, where the Designated Reporter failed to Report during the Designated Reporting Phase, as a stringified unsigned integer.
 
-### augur.api.FeeWindow.getNumIncorrectDesignatedReportMarkets(p, callback)
+### augur.api.DisputeWindow.getNumIncorrectDesignatedReportMarkets(p, callback)
 
-Returns the number of [Unfinalized Markets](#finalized-market) belonging to the specified [Fee Window](#fee-window) in which [Designated Reporter's](#designated-reporter) [Tentative Outcome](#tentative-outcome) was [Challenged](#challenge) during the current [Dispute Round Phase](#dispute-round-phase), or the [Designated Reporter](#designated-reporter) failed to submit a [Designated Report](#designated-report).
+Returns the number of [Unfinalized Markets](#finalized-market) belonging to the specified [Dispute Window](#dispute-window) in which [Designated Reporter's](#designated-reporter) [Tentative Outcome](#tentative-outcome) was [Challenged](#challenge) during the current [Dispute Round Phase](#dispute-round-phase), or the [Designated Reporter](#designated-reporter) failed to submit a [Designated Report](#designated-report).
 
 #### **Parameters:**
 
@@ -582,9 +582,9 @@ Returns the number of [Unfinalized Markets](#finalized-market) belonging to the 
 
 * (string) Number of Markets in the Fee Window, where the Designated Report was Challenged in the current Dispute Round Phase or the Designated Reporter did not Report, as a stringified unsigned integer.
 
-### augur.api.FeeWindow.getNumInvalidMarkets(p, callback)
+### augur.api.DisputeWindow.getNumInvalidMarkets(p, callback)
 
-Returns the number of [Markets](#market) that were [Reported](#report) to be [Invalid](#invalid-outcome) during the specified [Fee Window](#fee-window). [Invalid](#invalid-outcome) Markets are Markets that aren't clearly defined or do not fit one of the [Outcomes](#outcome) set for this Market. [Reporters](#reporter) are encouraged to [Report](#report) the Market as Invalid if they can't confidently Stake their [REP](#rep) into a single Outcome for the Market.
+Returns the number of [Markets](#market) that were [Reported](#report) to be [Invalid](#invalid-outcome) during the specified [Dispute Window](#dispute-window). [Invalid](#invalid-outcome) Markets are Markets that aren't clearly defined or do not fit one of the [Outcomes](#outcome) set for this Market. [Reporters](#reporter) are encouraged to [Report](#report) the Market as Invalid if they can't confidently Stake their [REP](#rep) into a single Outcome for the Market.
 
 #### **Parameters:**
 
@@ -597,9 +597,9 @@ Returns the number of [Markets](#market) that were [Reported](#report) to be [In
 
 * (string) Number of Markets Reported as Invalid in the Fee Window, as a stringified unsigned integer.
 
-### augur.api.FeeWindow.getNumMarkets(p, callback)
+### augur.api.DisputeWindow.getNumMarkets(p, callback)
 
-Returns the total number of [Markets](#market) that are in the [Dispute Round Phase](#dispute-round-phase) for the specified [Fee Window](#fee-window).
+Returns the total number of [Markets](#market) that are in the [Dispute Round Phase](#dispute-round-phase) for the specified [Dispute Window](#dispute-window).
 
 #### **Parameters:**
 
@@ -612,9 +612,9 @@ Returns the total number of [Markets](#market) that are in the [Dispute Round Ph
 
 * (string) Number of Markets in the Dispute Round Phase for the Fee Window, as a stringified unsigned integer.
 
-### augur.api.FeeWindow.getReputationToken(p, callback)
+### augur.api.DisputeWindow.getReputationToken(p, callback)
 
-Returns the [Reputation Token (REP)](#rep) used by the specified [Fee Window](#fee-window). Every Fee Window has a [Dispute Phase](#dispute-phase) where [Reporters](#reporter) can [Challenge](#challenge) the [Tentative Outcome](#tentative-outcome) of [Markets](#market). In order to Challenge a Tentative Outcome, Reporters need to [Stake](#dispute-stake) REP. A Fee Window only accepts one REP contract as the source of Staked REP, and this function returns that contract's address.
+Returns the [Reputation Token (REP)](#rep) used by the specified [Dispute Window](#dispute-window). Every Fee Window has a [Dispute Phase](#dispute-phase) where [Reporters](#reporter) can [Challenge](#challenge) the [Tentative Outcome](#tentative-outcome) of [Markets](#market). In order to Challenge a Tentative Outcome, Reporters need to [Stake](#dispute-stake) REP. A Fee Window only accepts one REP contract as the source of Staked REP, and this function returns that contract's address.
 
 #### **Parameters:**
 
@@ -627,9 +627,9 @@ Returns the [Reputation Token (REP)](#rep) used by the specified [Fee Window](#f
 
 * (string) Ethereum contract address of the Reputation Token used by the Fee Window, as a 20-byte hexadecimal string.
 
-### augur.api.FeeWindow.getStartTime(p, callback)
+### augur.api.DisputeWindow.getStartTime(p, callback)
 
-Returns a Unix timestamp of when a [Fee Window](#fee-window) becomes active and starts. A Fee Window is considered active for a total of 7 days, then ends, and is no longer considered to be active. Only active Fee Windows allow [Reporters](#reporter) to [Challenge](#challenge) the [Tentative Outcomes](#tentative-outcome) of [Markets](#market) contained in the Fee Window.
+Returns a Unix timestamp of when a [Dispute Window](#dispute-window) becomes active and starts. A Fee Window is considered active for a total of 7 days, then ends, and is no longer considered to be active. Only active Fee Windows allow [Reporters](#reporter) to [Challenge](#challenge) the [Tentative Outcomes](#tentative-outcome) of [Markets](#market) contained in the Fee Window.
 
 #### **Parameters:**
 
@@ -642,9 +642,9 @@ Returns a Unix timestamp of when a [Fee Window](#fee-window) becomes active and 
 
 * (string) Unix timestamp at which the Fee Window starts, as a stringified unsigned integer.
 
-### augur.api.FeeWindow.getUniverse(p, callback)
+### augur.api.DisputeWindow.getUniverse(p, callback)
 
-Returns the [Universe](#universe) to which the specified [Fee Window](#fee-window) belongs. Every Fee Window belongs to a specific Universe in which they were created and can operate.
+Returns the [Universe](#universe) to which the specified [Dispute Window](#dispute-window) belongs. Every Fee Window belongs to a specific Universe in which they were created and can operate.
 
 #### **Parameters:**
 
@@ -657,9 +657,9 @@ Returns the [Universe](#universe) to which the specified [Fee Window](#fee-windo
 
 * (string) Ethereum contract address of the Universe to which the Fee Window belongs, as a 20-byte hexadecimal string.
 
-### augur.api.FeeWindow.isActive(p, callback)
+### augur.api.DisputeWindow.isActive(p, callback)
 
-Returns whether the specified [Fee Window](#fee-window) is currently active. Fee Windows are considered active during the Window's [Dispute Round Phase](#dispute-round-phase), which last a total of 7 days. 
+Returns whether the specified [Dispute Window](#dispute-window) is currently active. Fee Windows are considered active during the Window's [Dispute Round Phase](#dispute-round-phase), which last a total of 7 days. 
 
 #### **Parameters:**
 
@@ -672,9 +672,9 @@ Returns whether the specified [Fee Window](#fee-window) is currently active. Fee
 
 * `true` if the specified Fee Window is active, or `false` otherwise.
 
-### augur.api.FeeWindow.isOver(p, callback)
+### augur.api.DisputeWindow.isOver(p, callback)
 
-Returns whether the 7-day [Fee Window](#fee-window) specified has ended.
+Returns whether the 7-day [Dispute Window](#dispute-window) specified has ended.
 
 #### **Parameters:**
 
@@ -720,10 +720,10 @@ augur.api.InitialReporter.getDesignatedReporter({
 // example output:
 "0xca3edca4ed326bbcb77e914b379913b12d49654d"
 
-augur.api.InitialReporter.getFeeWindow({ 
+augur.api.InitialReporter.getDisputeWindow({ 
   tx: { to: initialReporter } 
-}, function (error, feeWindow) { 
-  console.log(feeWindow); 
+}, function (error, disputeWindow) { 
+  console.log(disputeWindow); 
 });
 // example output:
 "0x1f90cc6b4e89303e451c9b852827b5791667f570"
@@ -840,9 +840,9 @@ Returns the Ethereum address for the [Designated Reporter](#designated-reporter)
 
 * (string) Ethereum address of the Designated Reporter for the InitialReporter contract, as a 20-byte hexadecimal string.
 
-### augur.api.InitialReporter.getFeeWindow(p, callback)
+### augur.api.InitialReporter.getDisputeWindow(p, callback)
 
-Returns the Ethereum contract address of the [Fee Window](#fee-window) to which the InitialReporter contract belongs.
+Returns the Ethereum contract address of the [Dispute Window](#dispute-window) to which the InitialReporter contract belongs.
 
 #### **Parameters:**
 
@@ -1066,10 +1066,10 @@ augur.api.Market.getEndTime({
 // example output:
 "1500388730";
 
-augur.api.Market.getFeeWindow({ 
+augur.api.Market.getDisputeWindow({ 
   tx: { to: market }, 
-}, function (error, feeWindow) { 
-  console.log(feeWindow); 
+}, function (error, disputeWindow) { 
+  console.log(disputeWindow); 
 });
 // example output:
 "0x1f90cc6b4e89303e451c9b852827b5791667f570"
@@ -1408,9 +1408,9 @@ Returns the Unix timestamp for when the specified [Market's](#market) event has 
 
 * (string) Unix timestamp for when the specified [Market's](#market) event has come to pass, as a stringified unsigned integer.
 
-### augur.api.Market.getFeeWindow(p, callback)
+### augur.api.Market.getDisputeWindow(p, callback)
 
-Returns the Ethereum contract address of the [Market's](#market) [Fee Window](#fee-window).
+Returns the Ethereum contract address of the [Market's](#market) [Dispute Window](#dispute-window).
 
 #### **Parameters:**
 
@@ -2442,10 +2442,10 @@ augur.api.Universe.getChildUniverse({
 // example output:
 "0xb4e8c1f85c4382d64954aca187f9f386c8bb1a6c"
 
-augur.api.Universe.getCurrentFeeWindow({ 
+augur.api.Universe.getCurrentDisputeWindow({ 
   tx: { to: universe } 
-}, function (error, currFeeWindow) { 
-  console.log(currFeeWindow); 
+}, function (error, currDisputeWindow) { 
+  console.log(currDisputeWindow); 
 });
 // example output:
 "0x1f90cc6b4e89303e451c9b852827b5791667f570"
@@ -2466,29 +2466,29 @@ augur.api.Universe.getDisputeThresholdForDisputePacing
 // example output:
 "537109375000000000000"
 
-augur.api.Universe.getFeeWindow({ 
-  _feeWindowId: "0x242",
+augur.api.Universe.getDisputeWindow({ 
+  _disputeWindowId: "0x242",
   tx: { to: universe }, 
-}, function (error, feeWindow) { 
-  console.log(feeWindow); 
+}, function (error, disputeWindow) { 
+  console.log(disputeWindow); 
 });
 // example output:
 "0x1f90cc6b4e89303e451c9b852827b5791667f570"
 
-augur.api.Universe.getFeeWindowByTimestamp({ 
+augur.api.Universe.getDisputeWindowByTimestamp({ 
   _timestamp: "0x5a45710f",
   tx: { to: universe },
-}, function (error, feeWindow) { 
-  console.log(feeWindow); 
+}, function (error, disputeWindow) { 
+  console.log(disputeWindow); 
 });
 // example output:
 "0x1f90cc6b4e89303e451c9b852827b5791667f570"
 
-augur.api.Universe.getFeeWindowId({ 
+augur.api.Universe.getDisputeWindowId({ 
   _timestamp: "0x5a45710f",
   tx: { to: universe },
-}, function (error, feeWindowId) {
-  console.log(feeWindowId); 
+}, function (error, disputeWindowId) {
+  console.log(disputeWindowId); 
 });
 // example output:
 "578"
@@ -2517,10 +2517,10 @@ augur.api.Universe.getForkReputationGoal({
 // example output:
 "5500000000000000000000000"
 
-augur.api.Universe.getNextFeeWindow({ 
+augur.api.Universe.getNextDisputeWindow({ 
   tx: { to: universe } 
-}, function (error, nextFeeWindow) { 
-  console.log(nextFeeWindow); 
+}, function (error, nextDisputeWindow) { 
+  console.log(nextDisputeWindow); 
 });
 // example output:
 "0x45659544b89cce1dd53b1b566862189b25adec49"
@@ -2549,10 +2549,10 @@ augur.api.Universe.getParentUniverse({
 // example output:
 "0x63c59544b89cce1dd53b1b566862189b25adec41"
 
-augur.api.Universe.getPreviousFeeWindow({ 
+augur.api.Universe.getPreviousDisputeWindow({ 
   tx: { to: universe } 
-}, function (error, previousFeeWindow) { 
-  console.log(previousFeeWindow); 
+}, function (error, previousDisputeWindow) { 
+  console.log(previousDisputeWindow); 
 });
 // example output:
 "0xc0adccd7c65ea05c2e91a148af988d776e683643"
@@ -2598,11 +2598,11 @@ augur.api.Universe.isContainerForFeeToken({
 // example output:
 true
 
-augur.api.Universe.isContainerForFeeWindow({
-  _shadyFeeWindow: "0x1233cec0b62fcb8c3120bc80bdb2b1351c8c2d1e",
+augur.api.Universe.isContainerForDisputeWindow({
+  _shadyDisputeWindow: "0x1233cec0b62fcb8c3120bc80bdb2b1351c8c2d1e",
   tx: { to: universe },
-}, function (error, isContainerForFeeWindow) { 
-  console.log(isContainerForFeeWindow); 
+}, function (error, isContainerForDisputeWindow) { 
+  console.log(isContainerForDisputeWindow); 
 });
 // example output:
 true
@@ -2669,9 +2669,9 @@ Returns the Ethereum contract address of a [Universe's](#universe) [Child Univer
 
 * (string) Ethereum contract address of the Universe's Child Universe that has its Final Outcome set to the specified Payout Distribution Hash, as a 20-byte hexadecimal string. If no such Child Universe exists, the address "0x0000000000000000000000000000000000000000" will be returned.
 
-### augur.api.Universe.getCurrentFeeWindow(p, callback)
+### augur.api.Universe.getCurrentDisputeWindow(p, callback)
 
-Returns the Ethereum contract address of the current running [Fee Window](#fee-window) of a [Universe](#universe). Every Universe has a Fee Window that runs for a duration of 7 days before immediately starting the next Window.
+Returns the Ethereum contract address of the current running [Dispute Window](#dispute-window) of a [Universe](#universe). Every Universe has a Fee Window that runs for a duration of 7 days before immediately starting the next Window.
 
 #### **Parameters:**
 
@@ -2714,14 +2714,14 @@ Returns the [Dispute Pacing Threshold](#dispute-pacing-threshold) (in [attoREP](
 
 * (string) Amount of attoREP that a Market's Crowdsourcer must reach before Dispute Pacing begins, as a stringified unsigned integer.
 
-### augur.api.Universe.getFeeWindow(p, callback)
+### augur.api.Universe.getDisputeWindow(p, callback)
 
-Returns the Ethereum contract address of a given [Fee Window](#fee-window) in the specified [Universe](#universe).
+Returns the Ethereum contract address of a given [Dispute Window](#dispute-window) in the specified [Universe](#universe).
 
 #### **Parameters:**
 
 * **`p`** (Object) Parameters object.  
-    * **`p._feeWindowId`** (string) Fee Window ID, as a hexadecimal string.
+    * **`p._disputeWindowId`** (string) Fee Window ID, as a hexadecimal string.
     * **`p.tx`** (Object) Object containing details about how this function call should be made.
         * **`p.tx.to`** (string) Ethereum contract address of the Universe contract on which to call this function, as a 20-byte hexadecimal string.
 * **`callback`** (function) &lt;optional> Called after the function's result has been retrieved.
@@ -2730,9 +2730,9 @@ Returns the Ethereum contract address of a given [Fee Window](#fee-window) in th
 
 * (string) Ethereum contract address of the given Fee Window in the Universe, as a 20-byte hexadecimal string. If a Fee Window with the specified ID does not exist, the address "0x0000000000000000000000000000000000000000" will be returned.
 
-### augur.api.Universe.getFeeWindowByTimestamp(p, callback)
+### augur.api.Universe.getDisputeWindowByTimestamp(p, callback)
 
-Returns the Ethereum contract address of the [Fee Window](#fee-window) running at a given timestamp in the [Universe](#universe).
+Returns the Ethereum contract address of the [Dispute Window](#dispute-window) running at a given timestamp in the [Universe](#universe).
 
 #### **Parameters:**
 
@@ -2746,9 +2746,9 @@ Returns the Ethereum contract address of the [Fee Window](#fee-window) running a
 
 * (string) Ethereum contract address of the Fee Window running in the Universe at the specified timestamp, as a 20-byte hexadecimal string. If a Fee Window with the specified timestamp does not exist, the address "0x0000000000000000000000000000000000000000" will be returned.
 
-### augur.api.Universe.getFeeWindowId(p, callback)
+### augur.api.Universe.getDisputeWindowId(p, callback)
 
-Returns the [Fee Window](#fee-window) ID for the [Universe](#universe) at the specified timestamp. This ID is calculated by dividing the timestamp by the [Universe's](#universe) Fee Window duration in seconds.
+Returns the [Dispute Window](#dispute-window) ID for the [Universe](#universe) at the specified timestamp. This ID is calculated by dividing the timestamp by the [Universe's](#universe) Fee Window duration in seconds.
 
 #### **Parameters:**
 
@@ -2807,9 +2807,9 @@ Returns the estimated amount of [attoREP](#atto-prefix) that must be migrated to
 
 * (string) Estimated amount of attoREP that must be migrated to one Child Universe in order to allow a Fork in the specified Universe to be Finalized before the end of the Fork Phase, as a stringified unsigned integer.
 
-### augur.api.Universe.getNextFeeWindow(p, callback)
+### augur.api.Universe.getNextDisputeWindow(p, callback)
 
-Returns the Ethereum contract address of the [Fee Window](#fee-window) coming up after the current Fee Window ends in the specified [Universe](#universe).
+Returns the Ethereum contract address of the [Dispute Window](#dispute-window) coming up after the current Fee Window ends in the specified [Universe](#universe).
 
 #### **Parameters:**
 
@@ -2867,9 +2867,9 @@ Returns the Ethereum contract address of the [Parent Universe](#parent-universe)
 
 * (string) Ethereum contract address of the Parent Universe for the specified Universe. If the Universe does not have a Parent Universe (that is, it is a [Genesis Universe](#genesis-universe)), the address "0x0000000000000000000000000000000000000000" will be returned.
 
-### augur.api.Universe.getPreviousFeeWindow(p, callback)
+### augur.api.Universe.getPreviousDisputeWindow(p, callback)
 
-Returns the Ethereum contract address of the previous [Fee Window](#fee-window) for the specified [Universe](#universe).
+Returns the Ethereum contract address of the previous [Dispute Window](#dispute-window) for the specified [Universe](#universe).
 
 #### **Parameters:**
 
@@ -2884,7 +2884,7 @@ Returns the Ethereum contract address of the previous [Fee Window](#fee-window) 
 
 ### augur.api.Universe.getRepMarketCapInAttoeth(p, callback)
 
-Returns an estimate for the REP market cap of the specified [Universe](#universe). This estimate is updated manually by the Augur development team, roughly once every [Fee Window](#fee-window). It is used by Augur to set the price of the [Reporting Fee](#reporting-fee).
+Returns an estimate for the REP market cap of the specified [Universe](#universe). This estimate is updated manually by the Augur development team, roughly once every [Dispute Window](#dispute-window). It is used by Augur to set the price of the [Reporting Fee](#reporting-fee).
 
 #### **Parameters:**
 
@@ -2962,14 +2962,14 @@ This call will fail if:
 
 * (boolean) `true` if the Fee Token belongs to the Universe, or `false` otherwise.
 
-### augur.api.Universe.isContainerForFeeWindow(p, callback)
+### augur.api.Universe.isContainerForDisputeWindow(p, callback)
 
-Returns whether the given [Universe](#universe) is a container for a particular [Fee Window](#fee-window). Every Fee Window belongs to a [Universe](#universe), and this method is used to see if a specific Fee Window address belongs to the Universe in question.
+Returns whether the given [Universe](#universe) is a container for a particular [Dispute Window](#dispute-window). Every Fee Window belongs to a [Universe](#universe), and this method is used to see if a specific Fee Window address belongs to the Universe in question.
 
 #### **Parameters:**
 
 * **`p`** (Object) Parameters object.  
-    * **`p._shadyFeeWindow`** (string) Ethereum contract address of the Fee Window for which to check if it belongs to the Universe, as a 20-byte hexadecimal string.
+    * **`p._shadyDisputeWindow`** (string) Ethereum contract address of the Fee Window for which to check if it belongs to the Universe, as a 20-byte hexadecimal string.
     * **`p.tx`** (Object) Object containing details about how this function call should be made.
         * **`p.tx.to`** (string) Ethereum contract address of the Universe contract on which to call this function, as a 20-byte hexadecimal string.
 * **`callback`** (function) &lt;optional> Called after the function's result has been retrieved.

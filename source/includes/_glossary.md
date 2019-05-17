@@ -57,7 +57,7 @@ The heart of Augur is its Decentralized Oracle, which allows users and smart con
 
 ## Designated Report
 
-A Designated Report occurs when a [Designated Reporter](#designated-reporter) [Stakes](#designated-reporter-stake) [REP](#rep) on a particular [Outcome](#outcome) in a [Market](#market). This Outcome then becomes the [Tentative Outcome](#tentative-outcome) for the Market, and the Market changes to the [Waiting for the Next Fee Window to Begin Phase](#waiting-for-the-next-fee Window to Begin Phase). 
+A Designated Report occurs when a [Designated Reporter](#designated-reporter) [Stakes](#designated-reporter-stake) [REP](#rep) on a particular [Outcome](#outcome) in a [Market](#market). This Outcome then becomes the [Tentative Outcome](#tentative-outcome) for the Market, and the Market changes to the [Waiting for the Next Fee Window to Begin Phase](#waiting-for-the-next-fee-window-to-begin-phase). 
 
 ## Designated Reporter
 
@@ -97,7 +97,7 @@ Let <i>A<sub>n</sub></i> denote the total Stake over all of this Market’s Outc
 
 <i>B</i>(&omega;,<i>n</i>)=2<i>A<sub>n</sub></i>-<i>3S</i>(&omega;,<i>n</i>)
 
-The Dispute Bond sizes are chosen this way to ensure a fix ROI of 50% for [Reporters](#reporter) who successfully Dispute false outcomes.
+The Dispute Bond sizes are chosen this way to ensure a fixed ROI of 50% for [Reporters](#reporter) who successfully Dispute false outcomes.
 
 ## Dispute Round
 

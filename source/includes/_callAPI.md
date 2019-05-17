@@ -394,7 +394,7 @@ Gets the amount of [attoREP](#atto-prefix) that has been [Staked](#dispute-stake
 
 Returns whether a [Dispute Crowdsourcer](#crowdsourcer) has been "disavowed". A disavowed Dispute Crowdsourcer is one from which [Staked](#dispute-stake) [REP](#rep) and/or [Reporting Fees](#reporting-fee) can be redeemed (by calling `augur.api.DisputeCrowdsourcer.redeem`) and whose [Market](#market) has not necessarily been [Finalized](#finalized-market). A Dispute Crowdsourcer can become disavowed if any of the following occurs:
 
-1. Another Dispute Crowdsourcer belonging to the same Market and in the same [Fee Window](fee-window) successfully fills its [Dispute Bond](#dispute-bond).
+1. Another Dispute Crowdsourcer belonging to the same Market and in the same [Fee Window](#fee-window) successfully fills its [Dispute Bond](#dispute-bond).
 2. A Market other than the Dispute Crowdsourcer's Market causes a [Fork](#fork), and `augur.api.Market.disavowCrowdsourcers` is called on the Dispute Crowdsourcer's Market.
 3. The Dispute Crowdsourcer's Market Forks, and `augur.api.DisputeCrowdsourcer.fork` is called on the Dispute Crowdsourcer.
 
