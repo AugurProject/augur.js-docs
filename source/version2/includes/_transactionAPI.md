@@ -917,9 +917,9 @@ This transaction will trigger a [ReportingParticipantDisavowed](#ReportingPartic
 
 Redeems [REP](#rep) that `p._redeemer` [Staked](#dispute-stake) on a particular Dispute Crowdsourcer, as well as any [Reporting Fees](#reporting-fee) (in Ether) that `p._redeemer` is owed.
 
-If the Dispute Crowdsourcer's [Market](#market) has been [Finalized](#finalized), and the Dispute Crowdsourcer filled its [Dispute Bond](#dispute-bond), the user will receive their Reporting Fees for the [Dispute Window](#dispute-window) plus 1.5 times the amount of REP they Staked (if the Outcome of the Dispute Crowdsourcer is the [Final Outcome](#final-outcome) of the Market), or the user will just receive Reporting Fees for the Fee Window (if the Outcome of the Dispute Crowdsourcer is not the Final Outcome of the Market).
+If the Dispute Crowdsourcer's [Market](#market) has been [Finalized](#finalized), and the Dispute Crowdsourcer filled its [Dispute Bond](#dispute-bond), the user will receive their Reporting Fees for the [Dispute Window](#dispute-window) plus 1.5 times the amount of REP they Staked (if the Outcome of the Dispute Crowdsourcer is the [Final Outcome](#final-outcome) of the Market), or the user will just receive Reporting Fees for the Dispute Window (if the Outcome of the Dispute Crowdsourcer is not the Final Outcome of the Market).
 
-If the Dispute Crowdsourcer's [Market](#market) has been [Finalized](#finalized), and the Dispute Crowdsourcer did not fill its [Dispute Bond](#dispute-bond), the user will receive Reporting Fees for the Fee Window (but not the REP they originally Staked).
+If the Dispute Crowdsourcer's [Market](#market) has been [Finalized](#finalized), and the Dispute Crowdsourcer did not fill its [Dispute Bond](#dispute-bond), the user will receive Reporting Fees for the Dispute Window (but not the REP they originally Staked).
 
 If a Fork has occurred, all non-[Forked Markets](#forked-market) will have their [Tentative Outcome](#tentative-outcome) reset to the Outcome submitted in the [Initial Report](#initial-report) and be put back in the [Waiting for the Next Dispute Window to Begin Phase](#waiting-for-the-next-dispute-window-to-begin-phase). All non-Forked Markets will need to have `augur.api.Market.disavowCrowdsourcers` called before the `redeem` transaction can be called on any of their Dispute Crowdsourcers. Furthermore, all Dispute Crowdsourcers of the Forked Market will need to have `augur.api.DisputeCrowdsourcer.forkAndRedeem` called on them.
 
@@ -950,12 +950,12 @@ This transaction will fail if:
 
 * Return value cannot be obtained because Ethereum nodes [discard](#transaction-return-values) transaction return values.
 
-Fee Window Tx API
+Dispute Window Tx API
 -----------------
 ```javascript
-// Fee Window Transaction API Examples:
+// Dispute Window Transaction API Examples:
 
-// Fee Window contract addresses can be obtained using a variety of Call API functions, 
+// Dispute Window contract addresses can be obtained using a variety of Call API functions, 
 // including `augur.api.Universe.getCurrentDisputeWindow` and `augur.api.Universe.getDisputeWindowByTimestamp`.
 var disputeWindowAddress = "0xe5d6eaefcfaf7ea1e17c4768a554d57800699ea4";
 
@@ -1005,7 +1005,7 @@ This transaction will fail if:
 * Reporting is not currently active in the [Dispute Window](#dispute-window).
 * The [Dispute Window's](#dispute-window) [Universe](#universe) has a [Forked Market](#forked-market).
 
-These Participation Tokens can be redeemed later once the Fee Window is no longer active using the function `augur.api.DisputeWindow.redeem`.
+These Participation Tokens can be redeemed later once the Dispute Window is no longer active using the function `augur.api.DisputeWindow.redeem`.
 
 #### **Parameters:**
 
@@ -3050,7 +3050,7 @@ Gets the amount the [Market Creator](#market-creator) must pay for the [Validity
 
 ### augur.api.Universe.getOrCreateCurrentDisputeWindow(p)
 
-Gets the Ethereum contract address of the [Dispute Window](#dispute-window) that is currently active in the specified [Universe](#universe). If the contract address for the Fee Window does not exist yet, this function will create it.
+Gets the Ethereum contract address of the [Dispute Window](#dispute-window) that is currently active in the specified [Universe](#universe). If the contract address for the Dispute Window does not exist yet, this function will create it.
 
 #### Parameters:
 
@@ -3066,16 +3066,16 @@ Gets the Ethereum contract address of the [Dispute Window](#dispute-window) that
 
 #### **Returns:**
 
-* (null|string) Return value cannot be obtained when executed as a transaction because Ethereum nodes [discard](#transaction-return-values) transaction return values. However, if `p.tx.send` is set to `false`, this function will return the Ethereum contract address of the Fee Window that is currently active in the specified Universe, as a 20-byte hexadecimal string.
+* (null|string) Return value cannot be obtained when executed as a transaction because Ethereum nodes [discard](#transaction-return-values) transaction return values. However, if `p.tx.send` is set to `false`, this function will return the Ethereum contract address of the Dispute Window that is currently active in the specified Universe, as a 20-byte hexadecimal string.
 
 ### augur.api.Universe.getOrCreateDisputeWindowByTimestamp(p)
 
-Gets the Ethereum contract address of the active [Dispute Window](#dispute-window) at the specified Unix timestamp in a given [Universe](#universe). If the Ethereum contract address for the Fee Window does not already exist, this function will create it. This transaction will trigger a [`DisputeWindowCreated`](#DisputeWindowCreated) event if the Fee window is created without any errors.
+Gets the Ethereum contract address of the active [Dispute Window](#dispute-window) at the specified Unix timestamp in a given [Universe](#universe). If the Ethereum contract address for the Dispute Window does not already exist, this function will create it. This transaction will trigger a [`DisputeWindowCreated`](#DisputeWindowCreated) event if the Dispute Window is created without any errors.
 
 #### Parameters:
 
 * **`p`** (Object) Parameters object.
-    * **`p._timestamp`**  (string) Unix timestamp that falls within the desired Fee Window, as a hexadecimal string.
+    * **`p._timestamp`**  (string) Unix timestamp that falls within the desired Dispute Window, as a hexadecimal string.
     * **`p.tx`** (Object) Object containing details about how this transaction should be made.
         * **`p.tx.to`** (string) Ethereum contract address on which to call this function, as a 20-byte hexadecimal string.
         * **`p.tx.send`** (boolean) &lt;optional> Whether this function should be executed as a transaction. When set to `false`, this function will be executed as a call, which will simply return the last value that was cached (and will not use any gas). When set to `true`, this function will be executed as a transaction, which will use gas to re-calculate the value and cache it. (However, the return value will not be [obtainable](#transaction-return-values).)
@@ -3087,11 +3087,11 @@ Gets the Ethereum contract address of the active [Dispute Window](#dispute-windo
 
 #### **Returns:**
 
-* (null|string) Return value cannot be obtained when executed as a transaction because Ethereum nodes [discard](#transaction-return-values) transaction return values. However, if `p.tx.send` is set to `false`, this function will return the Ethereum contract address of the Fee Window for the specified timestamp, as a 20-byte hexadecimal string.
+* (null|string) Return value cannot be obtained when executed as a transaction because Ethereum nodes [discard](#transaction-return-values) transaction return values. However, if `p.tx.send` is set to `false`, this function will return the Ethereum contract address of the Dispute Window for the specified timestamp, as a 20-byte hexadecimal string.
 
 ### augur.api.Universe.getOrCreateNextDisputeWindow(p)
 
-Gets the Ethereum contract address of the [Dispute Window](#dispute-window) that will be active after the current Fee Window ends in the specified [Universe](#universe). If the contract address for the Fee Window does not exist yet, this function will create it.
+Gets the Ethereum contract address of the [Dispute Window](#dispute-window) that will be active after the current Dispute Window ends in the specified [Universe](#universe). If the contract address for the Dispute Window does not exist yet, this function will create it.
 
 #### Parameters:
 
@@ -3107,11 +3107,11 @@ Gets the Ethereum contract address of the [Dispute Window](#dispute-window) that
 
 #### **Returns:**
 
-* (null|string) Return value cannot be obtained when executed as a transaction because Ethereum nodes [discard](#transaction-return-values) transaction return values. However, if `p.tx.send` is set to `false`, this function will return the Ethereum contract address of the Fee Window that will be active after the current Fee Window ends in the specified Universe, as a 20-byte hexadecimal string.
+* (null|string) Return value cannot be obtained when executed as a transaction because Ethereum nodes [discard](#transaction-return-values) transaction return values. However, if `p.tx.send` is set to `false`, this function will return the Ethereum contract address of the Dispute Window that will be active after the current Dispute Window ends in the specified Universe, as a 20-byte hexadecimal string.
 
 ### augur.api.Universe.getOrCreatePreviousDisputeWindow(p)
 
-Gets the Ethereum contract address of the [Dispute Window](#dispute-window) that was active just before the current Fee Window in the specified [Universe](#universe). If the contract address for the Fee Window does not exist yet, this function will create it.
+Gets the Ethereum contract address of the [Dispute Window](#dispute-window) that was active just before the current Dispute Window in the specified [Universe](#universe). If the contract address for the Dispute Window does not exist yet, this function will create it.
 
 #### Parameters:
 
@@ -3127,11 +3127,11 @@ Gets the Ethereum contract address of the [Dispute Window](#dispute-window) that
 
 #### **Returns:**
 
-* (null|string) Return value cannot be obtained when executed as a transaction because Ethereum nodes [discard](#transaction-return-values) transaction return values. However, if `p.tx.send` is set to `false`, this function will return the Ethereum contract address of the Fee Window that was active just before the current Fee Window in the specified Universe, as a 20-byte hexadecimal string.
+* (null|string) Return value cannot be obtained when executed as a transaction because Ethereum nodes [discard](#transaction-return-values) transaction return values. However, if `p.tx.send` is set to `false`, this function will return the Ethereum contract address of the Dispute Window that was active just before the current Dispute Window in the specified Universe, as a 20-byte hexadecimal string.
 
 ### augur.api.Universe.redeemStake(p)
 
-Calls the `redeem` function for all Ethereum contract addresses in the arrays `p._reportingParticipants` and `p._disputeWindows` using the caller's Ethereum address as the redeemer. `p._reportingParticipants` can contain Ethereum contract addresses for [DisputeCrowdsourcers](#dispute-crowdsourcer-tx-api), [InitialReporters](#initial-reporter-tx-api), or both, as hexadecimal strings. `p._disputeWindows` can only contain the Ethereum contract addresses of [Dispute Windows](#dispute-window). This function is intended as easy way to redeem Staked REP and/or Ether in multiple [Dispute Crowdsourcers](#dispute-crowdsourcer), [Initial Reports](#initial-report), and Fee Windows at once.
+Calls the `redeem` function for all Ethereum contract addresses in the arrays `p._reportingParticipants` and `p._disputeWindows` using the caller's Ethereum address as the redeemer. `p._reportingParticipants` can contain Ethereum contract addresses for [DisputeCrowdsourcers](#dispute-crowdsourcer-tx-api), [InitialReporters](#initial-reporter-tx-api), or both, as hexadecimal strings. `p._disputeWindows` can only contain the Ethereum contract addresses of [Dispute Windows](#dispute-window). This function is intended as easy way to redeem Staked REP and/or Ether in multiple [Dispute Crowdsourcers](#dispute-crowdsourcer), [Initial Reports](#initial-report), and Dispute Windows at once.
 
 #### Parameters:
 

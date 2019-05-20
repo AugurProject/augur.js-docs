@@ -1734,7 +1734,7 @@ The claiming process works as follows:
             * Call `Market.disavowCrowdsourcers`
 
 * Once the above has been completed:
-    * Call `DisputeWindow.redeem` on all Fee Windows in the current Universe where the user has unclaimed Participation Tokens
+    * Call `DisputeWindow.redeem` on all Dispute Windows in the current Universe where the user has unclaimed Participation Tokens
     * For InitialReporter/DisputeCrowdsourcer contracts of non-Forked Markets:
         * Call `DisputeCrowdsourcer.redeem`
         * For InitialReporter contracts of non-Forked Markets:
@@ -1746,7 +1746,7 @@ The claiming process works as follows:
 
 * **`p`** (Object) Parameters object.
     * **`p.redeemer`**  (string) Ethereum address attempting to redeem reporting fees, as a hexadecimal string.
-    * **`p.disputeWindows`** (Array.&lt;string>) Array of Fee Window Ethereum contract addresses, as hexadecimal strings.
+    * **`p.disputeWindows`** (Array.&lt;string>) Array of Dispute Window Ethereum contract addresses, as hexadecimal strings.
     * **`p.nonforkedMarkets`** (Array.&lt;<a href="#ClaimReportingFeesNonforkedMarket">ClaimReportingFeesNonforkedMarket</a>>) Array of ClaimReportingFeesNonforkedMarket objects.
     * **`p.estimateGas`**  (boolean) Whether to return gas estimates for the transactions instead of actually making the transactions.
     * **`p.meta`**  (<a href="#Meta">Meta</a>) &lt;optional> Authentication metadata for raw transactions.
@@ -1787,12 +1787,12 @@ Returns the percentage of the current [Dispute Window](#dispute-window) that has
 
 #### **Parameters:**
 
-* **`reportingPeriodDurationInSeconds`** (number) Number of seconds in a Fee Window.
-* **`timestamp`** (number) &lt;optional> Unix timestamp at which to check what percentage of the Fee Window has elapsed. (If not specified, the current Unix timestamp will be used.)
+* **`reportingPeriodDurationInSeconds`** (number) Number of seconds in a Dispute Window.
+* **`timestamp`** (number) &lt;optional> Unix timestamp at which to check what percentage of the Dispute Window has elapsed. (If not specified, the current Unix timestamp will be used.)
 
 #### **Returns:**
 
-* (number) Percentage of the current Fee Window that has elapsed.
+* (number) Percentage of the current Dispute Window that has elapsed.
 
 ### augur.reporting.getDisputeInfo(p, callback)
 
@@ -1830,7 +1830,7 @@ This function will fail if:
 
 ### augur.reporting.getDisputeWindowCurrent(p, callback)
 
-Returns information about the current [Dispute Window](#dispute-window). If `p.reporter` is specified, this returned information will also include the total amount of [attoREP](#atto-prefix) the [Reporter](#reporter) has Staked in the current Fee Window (this includes attoREP Staked in [Initial Reports](#initial-report), as well as attoREP Staked in [Dispute Crowdsourcers](#crowdsourcers)) and the amount of [Participation Tokens](#participation-token) the Reporter has purchased in the current Fee Window.
+Returns information about the current [Dispute Window](#dispute-window). If `p.reporter` is specified, this returned information will also include the total amount of [attoREP](#atto-prefix) the [Reporter](#reporter) has Staked in the current Dispute Window (this includes attoREP Staked in [Initial Reports](#initial-report), as well as attoREP Staked in [Dispute Crowdsourcers](#crowdsourcers)) and the amount of [Participation Tokens](#participation-token) the Reporter has purchased in the current Dispute Window.
 
 This function will fail if:
 
@@ -1839,13 +1839,13 @@ This function will fail if:
 #### **Parameters:**
 
 * **`p`** (Object) Parameters object.
-    * **`p.universe`**  (string) Ethereum contract address of the Universe in which the Fee Windows exist, as a 20-byte hexadecimal string.
-    * **`p.reporter`**  (string) &lt;optional> Ethereum address of a [Reporter](#reporter) for which to return the amount of attoREP they have Staked in the current Fee Window.
-* **`callback`** (function) Called after the Fee Windows have been retrieved.
+    * **`p.universe`**  (string) Ethereum contract address of the Universe in which the Dispute Windows exist, as a 20-byte hexadecimal string.
+    * **`p.reporter`**  (string) &lt;optional> Ethereum address of a [Reporter](#reporter) for which to return the amount of attoREP they have Staked in the current Dispute Window.
+* **`callback`** (function) Called after the Dispute Windows have been retrieved.
 
 #### **Returns:**
 
-* (<a href="#DisputeWindowCurrent">DisputeWindowCurrent</a>) Object containing information about the current Fee Window.
+* (<a href="#DisputeWindowCurrent">DisputeWindowCurrent</a>) Object containing information about the current Dispute Window.
 
 ### augur.reporting.getDisputeWindows(p, callback)
 
@@ -1858,10 +1858,10 @@ This function will fail if:
 #### **Parameters:**
 
 * **`p`** (Object) Parameters object.
-    * **`p.universe`**  (string) Ethereum contract address of the Universe in which the Fee Windows exist, as a 20-byte hexadecimal string.
+    * **`p.universe`**  (string) Ethereum contract address of the Universe in which the Dispute Windows exist, as a 20-byte hexadecimal string.
     * **`p.account`**  (string) Ethereum address of the user who has unclaimed Reporting Fees, as a 20-byte hexadecimal string.
-    * **`p.includeCurrent`**  (boolean) &lt;optional> Whether to include the current Fee Window in the returned results.
-* **`callback`** (function) Called after the Fee Windows have been retrieved.
+    * **`p.includeCurrent`**  (boolean) &lt;optional> Whether to include the current Dispute Window in the returned results.
+* **`callback`** (function) Called after the Dispute Windows have been retrieved.
 
 #### **Returns:**
 
@@ -1910,9 +1910,9 @@ This function will fail if:
 
 * **`p`** (Object) Parameters object.
     * **`p.reporter`**  (string) Ethereum address of the [Reporter](#reporter) for which to retrieve reporting history, as a 20-byte hexadecimal string.
-    * **`p.universe`**  (string) &lt;optional> Contract address of the [Universe](#universe) in which to look up the reporting history, as a 20-byte hexadecimal string. Either this parameter, the Market ID, or the Fee Window must be specified.
-    * **`p.marketId`**  (string) &lt;optional> Contract address of the Market in which to look up the reporting history, as a 20-byte hexadecimal string. Either this parameter, the Universe, or the Fee Window must be specified.
-    * **`p.disputeWindow`**  (string) &lt;optional> Contract address of the Fee Window in which to look up the reporting history, as a 20-byte hexadecimal string. Either this parameter, the Universe, or the Market ID must be specified.
+    * **`p.universe`**  (string) &lt;optional> Contract address of the [Universe](#universe) in which to look up the reporting history, as a 20-byte hexadecimal string. Either this parameter, the Market ID, or the Dispute Window must be specified.
+    * **`p.marketId`**  (string) &lt;optional> Contract address of the Market in which to look up the reporting history, as a 20-byte hexadecimal string. Either this parameter, the Universe, or the Dispute Window must be specified.
+    * **`p.disputeWindow`**  (string) &lt;optional> Contract address of the Dispute Window in which to look up the reporting history, as a 20-byte hexadecimal string. Either this parameter, the Universe, or the Market ID must be specified.
     * **`p.earliestCreationTime`**  (number) &lt;optional> Earliest timestamp, in seconds, at which to truncate history results. (This timestamp is when the block on the Ethereum blockchain containing the report submission was created.)
     * **`p.latestCreationTime`**  (number) &lt;optional> Latest timestamp, in seconds, at which to truncate history results. (This timestamp is when the block on the Ethereum blockchain containing the report submission was created.)
     * **`p.sortBy`**  (string) &lt;optional> Field name by which to sort the reporting history.

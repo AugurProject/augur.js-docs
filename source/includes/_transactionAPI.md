@@ -3559,7 +3559,7 @@ Gets the Ethereum contract address of the [Fee Window](#fee-window) that is curr
 
 ### augur.api.Universe.getOrCreateFeeWindowByTimestamp(p)
 
-Gets the Ethereum contract address of the active [Fee Window](#fee-window) at the specified Unix timestamp in a given [Universe](#universe). If the Ethereum contract address for the Fee Window does not already exist, this function will create it. This transaction will trigger a [`FeeWindowCreated`](#FeeWindowCreated) event if the Fee window is created without any errors.
+Gets the Ethereum contract address of the active [Fee Window](#fee-window) at the specified Unix timestamp in a given [Universe](#universe). If the Ethereum contract address for the Fee Window does not already exist, this function will create it. This transaction will trigger a [`FeeWindowCreated`](#FeeWindowCreated) event if the Fee Window is created without any errors.
 
 #### Parameters:
 

@@ -211,22 +211,22 @@ Serves as an enum for the state of a Dispute Token.
 ### DisputeWindowCurrent  (Object)
 
 #### **Properties:** 
-* **`endTime`** (number) Unix timestamp for when the Fee Window begins.
-* **`feeToken`** (string) Ethereum address of the [Fee Token](#fee-token) for the current Fee Window.
-* **`disputeWindow`** (string) Ethereum contract address of the Fee Window.
-* **`disputeWindowEthFees`** (string) Amount of Reporting Fees the current Fee Window contains in its Reporting Fee Pool, in attoETH.
-* **`disputeWindowFeeTokens`** (string) Number of Fee Tokens Staked in the current Fee Window.
-* **`disputeWindowId`** (number) Unique numerical ID of the Fee Window.
-* **`disputeWindowParticipationTokens`** (string) Number of [Participation Tokens](#participation-token) purchased by users in the current Fee Window.
-* **`disputeWindowRepStaked`** (string) Amount of REP Staked in all DisputeCrowdsourcer and InitialReporter contracts in the current Fee Window.
-* **`participantContributions`** (string) &lt;optional> Total amount of attoREP `reporter` Staked in InitialReporter and DisputeCrowdsourcer contracts in the current Fee Window. Returned if `reporter` was specified.
-* **`participantContributionsCrowdsourcer`** (string) &lt;optional> Amount of attoREP `reporter` Staked in DisputeCrowdsourcer contracts in the current Fee Window. Returned if `reporter` was specified.
-* **`participantContributionsInitialReport`** (string) &lt;optional> Amount of attoREP `reporter` Staked in InitialReporter contracts in the current Fee Window. Returned if `reporter` was specified.
-* **`participationTokens`** (string) &lt;optional> Amount of attoREP that `reporter` has put into Fee Tokens in the current Fee Window. This number is the same as `participantParticipationTokens`, but exists for legacy reasons. Returned if `reporter` was specified.
-* **`participantParticipationTokens`** (string) &lt;optional> Amount of attoREP that `reporter` has put into Fee Tokens in the current Fee Window. Returned if `reporter` was specified.
-* **`startTime`** (number) Unix timestamp for when the Fee Window begins.
-* **`totalStake`** (string) &lt;optional> The total amount of attoREP `reporter` has Staked in the current Fee Window will be returned as `totalStake`. (This amount includes attoREP Staked on Initial Reports as well as on Dispute Crowdsourcers.) `participantContributions` and `participantTokens` should add up to `totalStake`. Returned if `reporter` was specified.
-* **`universe`** (string) Ethereum contract address of the Universe to which the Fee Window belongs.
+* **`endTime`** (number) Unix timestamp for when the Dispute Window begins.
+* **`feeToken`** (string) Ethereum address of the [Fee Token](#fee-token) for the current Dispute Window.
+* **`disputeWindow`** (string) Ethereum contract address of the Dispute Window.
+* **`disputeWindowEthFees`** (string) Amount of Reporting Fees the current Dispute Window contains in its Reporting Fee Pool, in attoETH.
+* **`disputeWindowFeeTokens`** (string) Number of Fee Tokens Staked in the current Dispute Window.
+* **`disputeWindowId`** (number) Unique numerical ID of the Dispute Window.
+* **`disputeWindowParticipationTokens`** (string) Number of [Participation Tokens](#participation-token) purchased by users in the current Dispute Window.
+* **`disputeWindowRepStaked`** (string) Amount of REP Staked in all DisputeCrowdsourcer and InitialReporter contracts in the current Dispute Window.
+* **`participantContributions`** (string) &lt;optional> Total amount of attoREP `reporter` Staked in InitialReporter and DisputeCrowdsourcer contracts in the current Dispute Window. Returned if `reporter` was specified.
+* **`participantContributionsCrowdsourcer`** (string) &lt;optional> Amount of attoREP `reporter` Staked in DisputeCrowdsourcer contracts in the current Dispute Window. Returned if `reporter` was specified.
+* **`participantContributionsInitialReport`** (string) &lt;optional> Amount of attoREP `reporter` Staked in InitialReporter contracts in the current Dispute Window. Returned if `reporter` was specified.
+* **`participationTokens`** (string) &lt;optional> Amount of attoREP that `reporter` has put into Fee Tokens in the current Dispute Window. This number is the same as `participantParticipationTokens`, but exists for legacy reasons. Returned if `reporter` was specified.
+* **`participantParticipationTokens`** (string) &lt;optional> Amount of attoREP that `reporter` has put into Fee Tokens in the current Dispute Window. Returned if `reporter` was specified.
+* **`startTime`** (number) Unix timestamp for when the Dispute Window begins.
+* **`totalStake`** (string) &lt;optional> The total amount of attoREP `reporter` has Staked in the current Dispute Window will be returned as `totalStake`. (This amount includes attoREP Staked on Initial Reports as well as on Dispute Crowdsourcers.) `participantContributions` and `participantTokens` should add up to `totalStake`. Returned if `reporter` was specified.
+* **`universe`** (string) Ethereum contract address of the Universe to which the Dispute Window belongs.
 
 <a name="FrozenFunds"></a>
 ### FrozenFunds  (Object)
@@ -363,7 +363,7 @@ Serves as an enum for the state of a Dispute Token.
 * **`creationBlock`** (number) Number of the Ethereum block containing the Market creation.
 * **`creationFee`** (string) Fee paid by the Market Creator to create the Market, in ETH.
 * **`settlementFee`** (string) Fee extracted when a Complete Set is Settled. It is the combination of the Creator Fee and the Reporting Fee.
-* **`reportingFeeRate`** (string) Percentage rate of ETH sent to the Fee Window containing the Market whenever shares are settled. Reporting Fees are later used to pay REP holders for Reporting on the Outcome of Markets.
+* **`reportingFeeRate`** (string) Percentage rate of ETH sent to the Dispute Window containing the Market whenever shares are settled. Reporting Fees are later used to pay REP holders for Reporting on the Outcome of Markets.
 * **`marketCreatorFeeRate`** (string) Percentage rate of ETH paid to the Market creator whenever shares are settled.
 * **`marketCreatorFeesBalance`** (string) Amount of claimable fees the Market creator has not collected from the Market, in ETH.
 * **`marketCreatorMailbox`** (string) Ethereum address of the Market Creator, as a hexadecimal string.
@@ -377,7 +377,7 @@ Serves as an enum for the state of a Dispute Token.
 * **`reportingState`** (<a href="#REPORTING_STATE">REPORTING_STATE</a>|null) Reporting state name.
 * **`forking`** (boolean|number) Whether the Market has Forked.
 * **`needsMigration`** (boolean|number) Whether the Market needs to be migrated to its Universe's Child Universe (i.e., the Market is not Finalized, and the Forked Market in its Universe is Finalized).
-* **`disputeWindow`** (string) Contract address of the Fee Window the Market is in, as a hexadecimal string.
+* **`disputeWindow`** (string) Contract address of the Dispute Window the Market is in, as a hexadecimal string.
 * **`endTime`** (number) Timestamp when the Market event ends, in seconds.
 * **`finalizationBlockNumber`** (number|null) Ethereum block number in which the Market was Finalized.
 * **`finalizationTime`** (number|null) Timestamp when the Market was finalized (if any), in seconds.
@@ -519,7 +519,7 @@ Serves as an enum for the state of an order.
 * **`blockHash`** (string) Hash of the Ethereum block containing the reporting transaction.
 * **`creationTime`** (number) Timestamp, in seconds, when the Ethereum block containing the reporting transaction was created.
 * **`marketId`** (string) Contract address of the Market, as a hexadecimal string.
-* **`disputeWindow`** (string) Fee Window the Market is in currently.
+* **`disputeWindow`** (string) Dispute Window the Market is in currently.
 * **`payoutNumerators`** (Array.&lt;string>) Array representing the payout set.
 * **`amountStaked`** (string) attoREP the Reporter has Staked on the Outcome of their Report.
 * **`crowdsourcerId`** (string) Ethereum contract address of the Dispute Crowdsourcer, as a hexadecimal string.
@@ -538,7 +538,7 @@ Serves as an enum for the state of a Market.
 * **`DESIGNATED_REPORTING`** (string) Market's end time has occurred, and it is pending a Designated Report.
 * **`OPEN_REPORTING`** (string) The Designated Reporter failed to submit a Designated Report within the allotted time, causing the Market to enter the Open Reporting Phase.
 * **`CROWDSOURCING_DISPUTE`** (string) An Initial Report for the Market has been submitted, and the Market's Tentative Outcome is open to being Disputed.
-* **`AWAITING_NEXT_WINDOW`** (string) Either the Market had an Initial Report submitted in the current Fee Window, or one of the Market's Dispute Crowdsourcers received enough REP to Challenge the Market's Tentative Outcome. In either case, the Market is awaiting the next Fee Window in order to enter another Dispute Round.
+* **`AWAITING_NEXT_WINDOW`** (string) Either the Market had an Initial Report submitted in the current Dispute Window, or one of the Market's Dispute Crowdsourcers received enough REP to Challenge the Market's Tentative Outcome. In either case, the Market is awaiting the next Dispute Window in order to enter another Dispute Round.
 * **`FINALIZED`** (string) An Outcome for the Market has been determined.
 * **`FORKING`** (string) The Dispute Crowdsourcer for one of the Market's Outcomes received enough REP to reach the Fork Threshold, causing a fork. Users can migrate their REP to the Universe of their choice.
 * **`AWAITING_FORK_MIGRATION`** (string) Market is waiting for another Market's Fork to be resolved. This means its Tentative Outcome has been reset to the Outcome submitted in the Initial Report, and all Stake in the Market's Dispute Crowdsourcers has been refunded to the users who Staked on them.
@@ -574,7 +574,7 @@ Serves as an enum for the state of a Market.
 #### **Properties:** 
 * **`payout`** (Array.&lt;number|string>) Payout Set for the Dispute Crowdsourcer.
 * **`isInvalid`** (boolean|number) Whether the Outcome is Invalid.
-* **`bondSizeCurrent`** (string|null) Amount of attoREP needed to successfully Dispute the Tentative Outcome of this Market in the current Fee Window. Is null if `tentativeWinning` is true.
+* **`bondSizeCurrent`** (string|null) Amount of attoREP needed to successfully Dispute the Tentative Outcome of this Market in the current Dispute Window. Is null if `tentativeWinning` is true.
 * **`bondSizeTotal`** (string|null) Total attoREP required to make this Outcome become the Tentative Outcome. (That is, the sum of `bondSizeCurrent` and `stakeCompleted`.) Is null if `tentativeWinning` is true.
 * **`stakeCurrent`** (string|null) Amount of attoREP Staked on this Outcome for the current Dispute Round. Is null if `tentativeWinning` is true.
 * **`stakeRemaining`** (string|null) Amount of attoREP that this Outcome must receive in order to become the Tentative Outcome for the Market. Is null if `tentativeWinning` is true.
@@ -690,10 +690,10 @@ net position in that Market Outcome. This is a cashflow amount that the user rem
 ### UnclaimedDisputeWindowInfo  (Object)
 
 #### **Properties:** 
-* **`startTime`** (number) Unix timestamp when the Fee Window begins.
-* **`endTime`** (number) Unix timestamp when the Fee Window ends.
-* **`balance`** (string) Balance the user has Staked in the Fee Window, in attoREP.
-* **`expectedFees`** (string) Expected Reporting Fees, in attoREP, that will be withdrawn when the user redeems their Stake in the Fee Window.
+* **`startTime`** (number) Unix timestamp when the Dispute Window begins.
+* **`endTime`** (number) Unix timestamp when the Dispute Window ends.
+* **`balance`** (string) Balance the user has Staked in the Dispute Window, in attoREP.
+* **`expectedFees`** (string) Expected Reporting Fees, in attoREP, that will be withdrawn when the user redeems their Stake in the Dispute Window.
 
 <a name="UserTrade"></a>
 ### UserTrade  (Object)
