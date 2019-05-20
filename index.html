@@ -2053,7 +2053,8 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
 <li><strong><code class="prettyprint">p.feeWindow</code></strong> (string) &lt;optional&gt; Ethereum address of a <a href="#fee-window">Fee Window</a> by which to filter the returned results, as a 20-byte hexadecimal string.</li>
 <li><strong><code class="prettyprint">p.designatedReporter</code></strong> (string) &lt;optional&gt; Ethereum address of a <a href="#designated-reporter">Designated Reporter</a> by which to filter the returned results, as a 20-byte hexadecimal string.</li>
 <li><strong><code class="prettyprint">p.maxFee</code></strong> (number) &lt;optional&gt; Maximum trading <a href="#settlement-fees">Settlement Fee</a> by which to filter the returned results, as a decimal number. (For example, if the desired maximum Settlement Fee is 1.0201%, <code class="prettyprint">maxFee</code> should be set to 0.010201.)</li>
-<li><strong><code class="prettyprint">p.maxSpreadPercent</code></strong> (string) &lt;optional&gt; Maximum <a href="#spread-percent">Spread Percent</a> by which to filter markets, as a decimal number from 0 to 1.</li>
+<li><strong><code class="prettyprint">p.maxEndTime</code></strong> (number) &lt;optional&gt; Maximum <a href="#market">Market</a> end time by which to filter Markets, as a Unix timestamp.</li>
+<li><strong><code class="prettyprint">p.maxSpreadPercent</code></strong> (number) &lt;optional&gt; Maximum <a href="#spread-percent">Spread Percent</a> by which to filter markets, as a decimal number from 0 to 1.</li>
 <li><strong><code class="prettyprint">p.hasOrders</code></strong> (boolean) &lt;optional&gt; If set to <code class="prettyprint">true</code>, only Markets having <a href="#open-order">Open Orders</a> on the <a href="#order-book">Order Book</a> will be returned. Defaults to <code class="prettyprint">false</code>.</li>
 <li><strong><code class="prettyprint">p.sortBy</code></strong>  (string) &lt;optional&gt; Field name by which to sort the Markets.</li>
 <li><strong><code class="prettyprint">p.isSortDescending</code></strong>  (boolean) &lt;optional&gt; Whether to sort the Markets in descending order by sortBy field.</li>
@@ -4859,7 +4860,7 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
 <p>Returns whether a <a href="#crowdsourcer">Dispute Crowdsourcer</a> has been &ldquo;disavowed&rdquo;. A disavowed Dispute Crowdsourcer is one from which <a href="#dispute-stake">Staked</a> <a href="#rep">REP</a> and/or <a href="#reporting-fee">Reporting Fees</a> can be redeemed (by calling <code class="prettyprint">augur.api.DisputeCrowdsourcer.redeem</code>) and whose <a href="#market">Market</a> has not necessarily been <a href="#finalized-market">Finalized</a>. A Dispute Crowdsourcer can become disavowed if any of the following occurs:</p>
 
 <ol>
-<li>Another Dispute Crowdsourcer belonging to the same Market and in the same <a href="fee-window">Fee Window</a> successfully fills its <a href="#dispute-bond">Dispute Bond</a>.</li>
+<li>Another Dispute Crowdsourcer belonging to the same Market and in the same <a href="#fee-window">Fee Window</a> successfully fills its <a href="#dispute-bond">Dispute Bond</a>.</li>
 <li>A Market other than the Dispute Crowdsourcer&rsquo;s Market causes a <a href="#fork">Fork</a>, and <code class="prettyprint">augur.api.Market.disavowCrowdsourcers</code> is called on the Dispute Crowdsourcer&rsquo;s Market.</li>
 <li>The Dispute Crowdsourcer&rsquo;s Market Forks, and <code class="prettyprint">augur.api.DisputeCrowdsourcer.fork</code> is called on the Dispute Crowdsourcer.</li>
 </ol>
@@ -12932,7 +12933,7 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
 
 <h3 id="augur-api-universe-getorcreatefeewindowbytimestamp-p">augur.api.Universe.getOrCreateFeeWindowByTimestamp(p)</h3>
 
-<p>Gets the Ethereum contract address of the active <a href="#fee-window">Fee Window</a> at the specified Unix timestamp in a given <a href="#universe">Universe</a>. If the Ethereum contract address for the Fee Window does not already exist, this function will create it. This transaction will trigger a <a href="#FeeWindowCreated"><code class="prettyprint">FeeWindowCreated</code></a> event if the Fee window is created without any errors.</p>
+<p>Gets the Ethereum contract address of the active <a href="#fee-window">Fee Window</a> at the specified Unix timestamp in a given <a href="#universe">Universe</a>. If the Ethereum contract address for the Fee Window does not already exist, this function will create it. This transaction will trigger a <a href="#FeeWindowCreated"><code class="prettyprint">FeeWindowCreated</code></a> event if the Fee Window is created without any errors.</p>
 
 <h4 id="parameters">Parameters:</h4>
 
@@ -15198,7 +15199,7 @@ Goals:
 
 <h2 id="designated-report">Designated Report</h2>
 
-<p>A Designated Report occurs when a <a href="#designated-reporter">Designated Reporter</a> <a href="#designated-reporter-stake">Stakes</a> <a href="#rep">REP</a> on a particular <a href="#outcome">Outcome</a> in a <a href="#market">Market</a>. This Outcome then becomes the <a href="#tentative-outcome">Tentative Outcome</a> for the Market, and the Market changes to the <a href="#waiting-for-the-next-fee Window to Begin Phase">Waiting for the Next Fee Window to Begin Phase</a>. </p>
+<p>A Designated Report occurs when a <a href="#designated-reporter">Designated Reporter</a> <a href="#designated-reporter-stake">Stakes</a> <a href="#rep">REP</a> on a particular <a href="#outcome">Outcome</a> in a <a href="#market">Market</a>. This Outcome then becomes the <a href="#tentative-outcome">Tentative Outcome</a> for the Market, and the Market changes to the <a href="#waiting-for-the-next-fee-window-to-begin-phase">Waiting for the Next Fee Window to Begin Phase</a>. </p>
 
 <h2 id="designated-reporter">Designated Reporter</h2>
 
@@ -15238,7 +15239,7 @@ Goals:
 
 <p><i>B</i>(&omega;,<i>n</i>)=2<i>A<sub>n</sub></i>-<i>3S</i>(&omega;,<i>n</i>)</p>
 
-<p>The Dispute Bond sizes are chosen this way to ensure a fix ROI of 50% for <a href="#reporter">Reporters</a> who successfully Dispute false outcomes.</p>
+<p>The Dispute Bond sizes are chosen this way to ensure a fixed ROI of 50% for <a href="#reporter">Reporters</a> who successfully Dispute false outcomes.</p>
 
 <h2 id="dispute-round">Dispute Round</h2>
 
@@ -15569,7 +15570,7 @@ Bid Orders/Ask Orders on the Order Book are closer together and of higher qualit
 
 <p>The Validity Bond is paid by the <a href="#market-creator">Market Creator</a> during <a href="#market">Market</a> creation. The bond is paid in ETH and is refunded to the Market Creator if the <a href="#final-outcome">Final Outcome</a> of the <a href="#market">Market</a> is not <a href="#invalid-outcome">Invalid</a>.</p>
 
-<p>The Validity Bond is a dynamic amount based on the percentage of Markets in Augur that are being <a href="#finalized-market">Finalized</a> as Invalid. Augur targets having 1% of its Markets Finalized as Invalid. During the very first <a href="#fee-window">Fee Window</a> after launch, the Validity Bond will be set at 0.01 ETH. Then, if more than 1% of the Finalized Markets in the previous Fee Window were Invalid, the Validity Bond will be increased. If less than 1% of the Finalized Markets in the previous Fee window were Invalid, then the Validity Bond will be decreased (but will never be lower than 0.01 ETH). In particular, we let ν be the proportion of Finalized Markets in the previous Fee Window that were Invalid, and b<sub>v</sub> be the amount of the Validity Bond from the previous Fee Window. Then the Validity Bond for the current window is max &#123;1/100, b<sub>v</sub>f(ν)&#125;.</p>
+<p>The Validity Bond is a dynamic amount based on the percentage of Markets in Augur that are being <a href="#finalized-market">Finalized</a> as Invalid. Augur targets having 1% of its Markets Finalized as Invalid. During the very first <a href="#fee-window">Fee Window</a> after launch, the Validity Bond will be set at 0.01 ETH. Then, if more than 1% of the Finalized Markets in the previous Fee Window were Invalid, the Validity Bond will be increased. If less than 1% of the Finalized Markets in the previous Fee Window were Invalid, then the Validity Bond will be decreased (but will never be lower than 0.01 ETH). In particular, we let ν be the proportion of Finalized Markets in the previous Fee Window that were Invalid, and b<sub>v</sub> be the amount of the Validity Bond from the previous Fee Window. Then the Validity Bond for the current window is max &#123;1/100, b<sub>v</sub>f(ν)&#125;.</p>
 
 <h2 id="waiting-for-the-next-fee-window-to-begin-phase">Waiting for the Next Fee Window to Begin Phase</h2>
 
