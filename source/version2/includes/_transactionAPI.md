@@ -1238,136 +1238,6 @@ This transaction will trigger an [`InitialReporterTransferred`](#InitialReporter
 
 * Return value cannot be obtained because Ethereum nodes [discard](#transaction-return-values) transaction return values.
 
-Mailbox Tx API
-----------------------
-```javascript
-// Mailbox Transaction API Examples:
-
-// The Ethereum address of a Market Creator's mailbox can be obtained
-// by calling `augur.api.Market.getMarketCreatorMailbox`.
-var mailboxAddress = "0x9368ff3e9ce1c0459b309fac6dd4e69229b91a42";
-
-augur.api.Mailbox.transferOwnership({
-  _newOwner: "0x8fa56abe36d8dc76cf85fecb6a3026733e0a12ac",
-  tx: { 
-    to: mailboxAddress,
-    gas: "0x632ea0" 
-  }, 
-  meta: {
-    accountType: "privateKey",
-    address: "0x913dA4198E6bE1D5f5E4a40D0667f70C0B5430Ec",
-    signer: [252, 111, 32, 94, 233, 213, 105, 71, 89, 162, 243, 247, 56, 81, 213, 103, 239, 75, 212, 240, 234, 95, 8, 201, 217, 55, 225, 0, 85, 109, 158, 25],
-  },
-  onSent: function (result) { console.log(result); },
-  onSuccess: function (result) { console.log(result); },
-  onFailed: function (result) { console.log(result); }
-});
-
-augur.api.Mailbox.withdrawEther({
-  tx: { 
-    to: mailboxAddress,
-    gas: "0x632ea0" 
-  }, 
-  meta: {
-    accountType: "privateKey",
-    address: "0x913dA4198E6bE1D5f5E4a40D0667f70C0B5430Ec",
-    signer: [252, 111, 32, 94, 233, 213, 105, 71, 89, 162, 243, 247, 56, 81, 213, 103, 239, 75, 212, 240, 234, 95, 8, 201, 217, 55, 225, 0, 85, 109, 158, 25],
-  },
-  onSent: function (result) { console.log(result); },
-  onSuccess: function (result) { console.log(result); },
-  onFailed: function (result) { console.log(result); }
-});
-
-var _repTokenAddress = "0x9368ff3e9ce1c0459b309fac6dd4e69229b91a42";
-augur.api.Mailbox.withdrawTokens({
-  _token: _repTokenAddress,
-  tx: { 
-    to: mailboxAddress,
-    gas: "0x632ea0" 
-  }, 
-  meta: {
-    accountType: "privateKey",
-    address: "0x913dA4198E6bE1D5f5E4a40D0667f70C0B5430Ec",
-    signer: [252, 111, 32, 94, 233, 213, 105, 71, 89, 162, 243, 247, 56, 81, 213, 103, 239, 75, 212, 240, 234, 95, 8, 201, 217, 55, 225, 0, 85, 109, 158, 25],
-  },
-  onSent: function (result) { console.log(result); },
-  onSuccess: function (result) { console.log(result); },
-  onFailed: function (result) { console.log(result); }
-});
-```
-Provides JavaScript bindings for the [Mailbox Solidity Contract](https://github.com/AugurProject/augur/tree/master/packages/augur-core/source/contracts/reporting/Mailbox.sol), which enables the functionality of the [Market Creator Mailbox](#market-creator-mailbox).
-
-### augur.api.Mailbox.transferOwnership(p)
-
-Changes the current owner of [Market Creator Mailbox](#market-creator-mailbox) to  `p._newOwner`. This transaction will trigger a [`MarketMailboxTransferred`](#MarketMailboxTransferred) event, which will record the Market Creator Mailbox, the [Market](#market) & [Universe](#universe) it belongs to, as well as the old owner's address and the new owner's address.
-
-This transaction will fail if:
-
-* `msg.sender` isn't the owner of the Market Creator Mailbox.
-
-#### **Parameters:**
-
-* **`p`** (Object) Parameters object.
-    * **`p._newOwner`** (string) Ethereum address of the desired new owner of the Mailbox, as a 20-byte hexadecimal value.
-    * **`p.tx`** (Object) Object containing details about how this transaction should be made.
-        * **`p.tx.to`** (string) Ethereum contract address on which to call this function, as a 20-byte hexadecimal string.
-        * **`p.tx.gas`** (string) Gas limit to use when submitting this transaction, as a hexadecimal string.
-    * **`p.meta`**  (<a href="#Meta">Meta</a>) &lt;optional> Authentication metadata for raw transactions.
-    * **`p.onSent`**  (function) Callback function that executes once the transaction has been sent.
-    * **`p.onSuccess`**  (function) &lt;optional> Callback function that executes if the transaction returned successfully.
-    * **`p.onFailed`**  (function) &lt;optional> Callback function that executes if the transaction failed.
-
-#### **Returns:**
-
-* Return value cannot be obtained because Ethereum nodes [discard](#transaction-return-values) transaction return values.
-
-### augur.api.Mailbox.withdrawEther(p)
-
-Transfers all Ether in the [Market Creator Mailbox](#market-creator-mailbox) to the [Market Creator's](#market-creator) Ethereum address.  
-
-This transaction will fail if:
-
-* `msg.sender` isn't the owner of the specified Mailbox.
-
-#### **Parameters:**
-
-* **`p`** (Object) Parameters object.
-    * **`p.tx`** (Object) Object containing details about how this transaction should be made.
-        * **`p.tx.to`** (string) Ethereum contract address on which to call this function, as a 20-byte hexadecimal string.
-        * **`p.tx.gas`** (string) Gas limit to use when submitting this transaction, as a hexadecimal string.
-    * **`p.meta`**  (<a href="#Meta">Meta</a>) &lt;optional> Authentication metadata for raw transactions.
-    * **`p.onSent`**  (function) Callback function that executes once the transaction has been sent.
-    * **`p.onSuccess`**  (function) &lt;optional> Callback function that executes if the transaction returned successfully.
-    * **`p.onFailed`**  (function) &lt;optional> Callback function that executes if the transaction failed.
-
-#### **Returns:**
-
-* Return value cannot be obtained because Ethereum nodes [discard](#transaction-return-values) transaction return values.
-
-### augur.api.Mailbox.withdrawTokens(p)
-
-Transfers all tokens of type `p._token` in the [Market Creator Mailbox](#market-creator-mailbox) to the [Market Creator's](#market-creator) Ethereum address.  
-
-This transaction will fail if:
-
-* `msg.sender` isn't the owner of the specified Mailbox.
-
-#### **Parameters:**
-
-* **`p`** (Object) Parameters object.
-    * **`p._token`** (string) Ethereum address of an [ERC20Basic](https://github.com/AugurProject/augur/blob/master/packages/augur-core/source/contracts/libraries/token/ERC20Basic.sol) token contract, as a 20-byte hexadecimal value.
-    * **`p.tx`** (Object) Object containing details about how this transaction should be made.
-        * **`p.tx.to`** (string) Ethereum contract address on which to call this function, as a 20-byte hexadecimal string.
-        * **`p.tx.gas`** (string) Gas limit to use when submitting this transaction, as a hexadecimal string.
-    * **`p.meta`**  (<a href="#Meta">Meta</a>) &lt;optional> Authentication metadata for raw transactions.
-    * **`p.onSent`**  (function) Callback function that executes once the transaction has been sent.
-    * **`p.onSuccess`**  (function) &lt;optional> Callback function that executes if the transaction returned successfully.
-    * **`p.onFailed`**  (function) &lt;optional> Callback function that executes if the transaction failed.
-
-#### **Returns:**
-
-* Return value cannot be obtained because Ethereum nodes [discard](#transaction-return-values) transaction return values.
-
 Market Tx API
 ----------------------
 ```javascript
@@ -1586,6 +1456,8 @@ This transaction will fail if:
 ### augur.api.Market.finalize(p)
 
 [Finalizes](#finalized-market) the [Market](#market), meaning it sets the winning [Payout Distribution Hash](#payout-distribution-hash) for the Market, redistributes [REP](#rep) Staked on non-winning [Outcomes](#outcome) to REP holders who Staked on the winning Outcome, and distributes the [Validity Bond](#validity-bond) based on whether the Market resolved as [Invalid](#invalid-outcome). Once the Market has been Finalized, users can [Settle](#settlement) their [Shares](#share). This transaction will trigger a [`MarketFinalized`](#MarketFinalized) event if the Market Finalized without any errors.
+
+If the market resolved to [Invalid](#invalid-outcome), the [Validity Bond](#validity-bond) gets sent to the [Auction](#auction); otherwise it gets returned to the [Market Creator](#market-creator).
 
 This transaction will fail if:
 

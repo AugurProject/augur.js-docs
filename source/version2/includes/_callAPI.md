@@ -48,6 +48,14 @@ augur.api.Augur.isKnownCrowdsourcer({
 // example output:
 true
 
+augur.api.Augur.isKnownFeeSender({ 
+  _feeSender: "0x22d6eaefcfaf7ea1e17c4768a554d57800699ecc"
+}, function (error, isKnownFeeSender) { 
+  console.log(isKnownFeeSender); 
+});
+// example output:
+true
+
 augur.api.Augur.isKnownShareToken({ 
   _token: "0x4446eaefcfaf7ea1e17c4768a554d57800699777"
 }, function (error, isKnownCrowdsourcer) { 
@@ -100,6 +108,20 @@ Augur keeps track of its [Crowdsourcers](#crowdsourcer) internally. This functio
 #### **Returns:**
 
 * (boolean) `true` if the specified Crowdsourcer is in Augur's list of known Crowdsoucers, or `false` otherwise.
+
+### augur.api.Augur.isKnownFeeSender(p, callback)
+
+Augur internally keeps track of which smart contracts are allowed to send [Reporting Fees](#reporting-fee) to be distributed to [Reporters](#reporter). (These contracts are CompleteSets, ClaimTradingProceeds, and the Market contract for each Market.) This function returns whether the specified contract address is one of these contracts.
+
+#### **Parameters:**
+
+* **`p`** (Object) Parameters object.  
+  * **`p._feeSender`** (string) Fee Sender contract address, as a 20-byte hexadecimal value.
+* **`callback`** (function) &lt;optional> Called after the function's result has been retrieved.
+
+#### **Returns:**
+
+* (boolean) `true` if the specified contract address is a known fee sender contract, or `false` otherwise.
 
 ### augur.api.Augur.isKnownShareToken(p, callback)
 
@@ -1114,14 +1136,6 @@ augur.api.Market.getInitialReporter({
 // example output:
 "0xaad0cc6b4e89303e451c9b852827b5791667fddd"
 
-augur.api.Market.getMarketCreatorMailbox({ 
-  tx: { to: market } 
-}, function (error, marketCreatorMailbox) { 
-  console.log(marketCreatorMailbox); 
-});
-// example output:
-"0xeabdeaefcfaf7ea1e17c4768a554d5780069eabd"
-
 augur.api.Market.getMarketCreatorSettlementFeeDivisor({ 
   tx: { to: market } 
 }, function (error, marketCreatorSettlementFee) { 
@@ -1483,21 +1497,6 @@ Returns the Ethereum address of the InitialReporter contract for a given [Market
 #### **Returns:**
 
 * (string) Ethereum address of the Market's InitialReporter contract, as a 20-byte hexadecimal string.
-
-### augur.api.Market.getMarketCreatorMailbox(p, callback)
-
-Returns the Ethereum address of the [Market Creator Mailbox](#market-creator-mailbox) for the specified Market. [Market Creators](#market-creator) can use this address to collect their fees.
-
-#### **Parameters:**
-
-* **`p`** (Object) Parameters object.  
-    * **`p.tx`** (Object) Object containing details about how this function call should be made.
-        * **`p.tx.to`** (string) Ethereum contract address of the Market contract on which to call this function, as a 20-byte hexadecimal string.
-* **`callback`** (function) &lt;optional> Called after the function's result has been retrieved.
-
-#### **Returns:**
-
-* (string) Ethereum address of the Market Creator Mailbox for the Market, as a 20-byte hexadecimal string.
 
 ### augur.api.Market.getMarketCreatorSettlementFeeDivisor(p, callback)
 
