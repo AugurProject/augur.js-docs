@@ -21,7 +21,7 @@ Atto- is a unit prefix in the metric system denoting a factor of 10^−18, or 0.
 
 ## Auction
 
-TBD
+!!!TBD!!! Add definition
 
 ## Bid Order
 
@@ -71,6 +71,7 @@ A Designated Reporter is a single Ethereum address designated to submit the [Ten
 
 When a [Designated Reporter](#designated-reporter) submits a [Report](#report), they must put up an amount of REP on an [Outcome](#outcome) that is equal to the Designated Reporter Stake. Note that this amount is calculated differently than the [No-Show Bond](#no-show-bond).
 
+!!!TBD!!! Update calculations (see Universe.calculateFloatingValue)
 During the very first [Dispute Window](#dispute-window) after launch, the amount of the Designated Reporter Stake will be set at 0.35 [REP](#rep). The amount of the Designated Reporter Stake is dynamically adjusted according to how many [Designated Reports](#designated-report) were incorrect (failed to concur with the [Market's](#market) [Final Outcome](#final-outcome)) during the previous Dispute Window. In particular, we let δ be the proportion of Designated Reports that were incorrect during the previous Dispute Window, and we let b<sub>d</sub> be the amount of the Designated Reporter Stake during the previous Dispute Window, then the amount of the Designated Reporter Stake for the current Dispute Window is max &#123;0.35, b<sub>d</sub>f(δ)&#125;.
 
 ## Designated Reporting
@@ -244,6 +245,7 @@ The Minimum Display Price (often seen as `minDisplayPrice`) is the minimum price
 
 The No-Show Bond is paid for using [REP](#rep) by the [Market Creator](#market-creator) during [Market](#market) creation. If the [Designated Reporter](#designed-reporter) submits a [Report](#report) during the [Designated Reporting Phase](#designated-reporting-phase), the Bond is refunded to the Market Creator. If the Designated Reporter fails to Report during the Designated Reporting Phase, then the No-Show Bond is applied as Stake on the [Tentative Outcome](#tentative-outcome) Reported by the [First Public Reporter](#first-public-reporter). If the Tentative Outcome selected by the First Public Reporter becomes the [Final Outcome](#final-outcome) of the Market, the First Public Reporter receives the No-Show Bond. If the Tentative Outcome selected by the First Public Reporter is [Disputed](#disputed) and then still becomes the [Final Outcome](#final-outcome) of the Market, the First Public Reporter receives the No-Show Bond plus an additional 50% of the Bond amount. This actually allows for someone to stake 0 REP for the [First Public Report](#first-public-report) because the Bond is added to whatever is staked. This means someone without any REP has the potential to Report and if the Market is eventually [Finalized](#finalized-market) the way that person Reported, then they can earn REP without having to purchase any. (Note that they will have to pay the gas cost to submit the Report.)
 
+!!!TBD!!! Update calculations (see Universe.calculateFloatingValue)
 During the very first [Dispute Window](#dispute-window) after launch, the No-Show Bond will be set at 0.35 REP. As with the [Validity Bond](#validity-bond), the No-Show Bond is adjusted up or down, targeting a 1% no-show rate with a floor of 0.35 REP. Specifically, we let ρ be the proportion of Markets in the previous Dispute Window whose Designated Reporters failed to Report on time, and we let b<sub>r</sub> be amount of the No-Show Bond from the previous Dispute Window. Then the amount of the No-Show Bond for the current Dispute Window is max &#123;0.35, b<sub>r</sub>f(ρ)&#125;.
 
 ## Number of Ticks
@@ -424,6 +426,7 @@ All [Markets](#market) created on Augur belong to a Universe. Augur has only one
 
 The Validity Bond is paid by the [Market Creator](#market-creator) during [Market](#market) creation. The bond is paid in ETH and is refunded to the Market Creator if the [Final Outcome](#final-outcome) of the [Market](#market) is not [Invalid](#invalid-outcome).
 
+!!!TBD!!! Update calculations (see Universe.calculateFloatingValue)
 The Validity Bond is a dynamic amount based on the percentage of Markets in Augur that are being [Finalized](#finalized-market) as Invalid. Augur targets having 1% of its Markets Finalized as Invalid. During the very first [Dispute Window](#dispute-window) after launch, the Validity Bond will be set at 0.01 ETH. Then, if more than 1% of the Finalized Markets in the previous Dispute Window were Invalid, the Validity Bond will be increased. If less than 1% of the Finalized Markets in the previous Dispute Window were Invalid, then the Validity Bond will be decreased (but will never be lower than 0.01 ETH). In particular, we let ν be the proportion of Finalized Markets in the previous Dispute Window that were Invalid, and b<sub>v</sub> be the amount of the Validity Bond from the previous Dispute Window. Then the Validity Bond for the current window is max &#123;1/100, b<sub>v</sub>f(ν)&#125;.
 
 ## Waiting for the Next Dispute Window to Begin Phase

@@ -295,6 +295,23 @@ augur.api.CancelOrder.cancelOrder({
   onSuccess: function (result) { console.log(result); },
   onFailed: function (result) { console.log(result); }
 });
+
+var _orderIds = ["0x7ca90ca9118db456d87e3d743b97782a857200b55039f7ffe8de94e5d920f870", "0x89790ca9118db456d87e3d743b97782a857200b55039f7ffe8de94e5d920f999"];
+augur.api.CancelOrder.cancelOrders({
+  _orderIds: _orderIds,
+  tx: { 
+    to: cancelOrderAddress,
+    gas: "0x632ea0" 
+  },
+  meta: {
+    accountType: "privateKey",
+    address: "0x913dA4198E6bE1D5f5E4a40D0667f70C0B5430Ec",
+    signer: [252, 111, 32, 94, 233, 213, 105, 71, 89, 162, 243, 247, 56, 81, 213, 103, 239, 75, 212, 240, 234, 95, 8, 201, 217, 55, 225, 0, 85, 109, 158, 25],
+  },
+  onSent: function (result) { console.log(result); },
+  onSuccess: function (result) { console.log(result); },
+  onFailed: function (result) { console.log(result); }
+});
 ```
 Provides JavaScript bindings for the [CancelOrder Solidity Contract](https://github.com/AugurProject/augur/blob/master/packages/augur-core/source/contracts/trading/CancelOrder.sol), which allows for cancellation of [Orders](#order) on the [Order Book](#order-book).
 
@@ -310,7 +327,32 @@ This function will fail if:
 #### **Parameters:**
 
 * **`p`** (Object) Parameters object.  
-    * **`p._orderId`** (string) ID of the Order to cancel, as a 32-byte hexadecimal value. (To get the order ID for a specific order, call the function `augur.api.Order.getOrderId`.)
+    * **`p._orderId`** (string) ID of the Order to cancel, as a 32-byte hexadecimal value. (To get the order ID for a specific Order, call the function `augur.api.Order.getOrderId`.)
+    * **`p.tx`** (Object) Object containing details about how this transaction should be made.
+        * **`p.tx.to`** (string) Ethereum contract address on which to call this function, as a 20-byte hexadecimal string.
+        * **`p.tx.gas`** (string) Gas limit to use when submitting this transaction, as a hexadecimal string.
+    * **`p.meta`**  (<a href="#Meta">Meta</a>) &lt;optional> Authentication metadata for raw transactions.
+    * **`p.onSent`**  (function) Callback function that executes once the transaction has been sent.
+    * **`p.onSuccess`**  (function) &lt;optional> Callback function that executes if the transaction returned successfully.
+    * **`p.onFailed`**  (function) &lt;optional> Callback function that executes if the transaction failed.
+
+#### **Returns:**
+
+* Return value cannot be obtained because Ethereum nodes [discard](#transaction-return-values) transaction return values.
+
+### augur.api.CancelOrder.cancelOrders(p)
+
+Cancels and refunds a existing [Orders](#order) on the [Order Book](#order-book) with IDs `p._orderIds`. This transaction will trigger [`OrderCanceled`](#OrderCanceled) events.
+
+This function will fail if:
+
+* `msg.sender` isn't the owner of an Order.
+* An Order in `p._orderIds` is undefined.
+
+#### **Parameters:**
+
+* **`p`** (Object) Parameters object.  
+    * **`p._orderIds`** (string) IDs of the Orders to cancel, as an array of 32-byte hexadecimal values. (To get the order ID for a specific Order, call the function `augur.api.Order.getOrderId`.)
     * **`p.tx`** (Object) Object containing details about how this transaction should be made.
         * **`p.tx.to`** (string) Ethereum contract address on which to call this function, as a 20-byte hexadecimal string.
         * **`p.tx.gas`** (string) Gas limit to use when submitting this transaction, as a hexadecimal string.
@@ -802,6 +844,27 @@ augur.api.CreateOrder.publicCreateOrder({
   onSuccess: function (result) { console.log(result); },
   onFailed: function (result) { console.log(result); }
 });
+
+augur.api.CreateOrder.publicCreateOrders({
+  _outcomes: ["0x0", "0x0"],
+  _types: ["0x0", "0x0"],
+  _attoshareAmounts: ["0x5af3107a4000", "0x5af3107a4000"],
+  _prices: ["0x64", "0x65"],
+  _market: "0xc4ba20cbafe3a3655a2f2e4df4ac7f942a722017",
+  _ignoreShares: true,
+  _tradeGroupId: "0x0000000000000000000000000000000000000000000000000000000000000000",
+  tx: { 
+    to: createOrderAddress,
+  },
+  meta: {
+    accountType: "privateKey",
+    address: "0x913dA4198E6bE1D5f5E4a40D0667f70C0B5430Ec",
+    signer: [252, 111, 32, 94, 233, 213, 105, 71, 89, 162, 243, 247, 56, 81, 213, 103, 239, 75, 212, 240, 234, 95, 8, 201, 217, 55, 225, 0, 85, 109, 158, 25],
+  },
+  onSent: function (result) { console.log(result); },
+  onSuccess: function (result) { console.log(result); },
+  onFailed: function (result) { console.log(result); }
+});
 ```
 Provides JavaScript bindings for the [CreateOrder Solidity Contract](https://github.com/AugurProject/augur/tree/master/packages/augur-core/source/contracts/trading/CreateOrder.sol), which enables new [Orders](#order) to be created.
 
@@ -814,21 +877,57 @@ This transaction will fail if:
 * `p._type` is not a valid value of 0 or 1.
 * `p._attoshares` is less than 0.
 * `p._market` is undefined.
-* `p._outcome` is less than 0 or greater than the total number of Outcomes for `p._market`.
-* `p._price` is below the `p._market`'s [Minimum Display Price](#minimum-display-price) or above the `market`'s [Maximum Display Price](#maximum-display-price).
+* `p._outcome` is less than 0 or greater than the total number of [Outcomes](#outcome) for `p._market`.
+* `p._price` is below `p._market`'s [Minimum Display Price](#minimum-display-price) or above `p.market`'s [Maximum Display Price](#maximum-display-price).
 
 #### **Parameters:**
 
 * **`p`** (Object) Parameters object.
     * **`p._type`** (string) Type of Order to create, as a hexadecimal string ("0x0" for a [Bid Order](#bid-order), "0x1" for an [Ask Order](#ask-order)).
     * **`p._attoshares`** (string) Number of [Share Units](#share-unit) to buy or sell, as a hexadecimal string.
-    * **`p._price`** (string) Desired price at which to purchase Shares, in [attoETH](#atto-prefix).
+    * **`p._price`** (string) Desired price at which to purchase [Shares](#share), in [attoETH](#atto-prefix).
     * **`p._market`** (string) Market contract address in which to place the Order, as a 20-byte hexadecimal value.
     * **`p._outcome`** (string) Outcome for which to place the Order, as a hexadecimal string.
     * **`p._betterOrderId`** (string) Order ID of an existing Order on the Order Book with the next-best price with respect to the Order this transaction is intending to create, as a 32-byte hexadecimal value. The Order ID for `p._betterOrderId` can be obtained by calling `augur.trading.getBetterWorseOrders`.
     * **`p._worseOrderId`** (string) Order ID of an existing Order on the Order Book with the next-worse price with respect to the Order this transaction is intending to create, as a 32-byte hexadecimal value. The Order ID for `p._worseOrderId` can be obtained by calling `augur.trading.getBetterWorseOrders`.
     * **`p._tradeGroupId`** (string) &lt;optional> ID used by the Augur UI to group transactions, as a 32-byte hexadecimal value.
-    * **`p._ignoreShares`** (boolean) Whether to ignore the creator's owned Shares when creating the Order.
+    * **`p._ignoreShares`** (boolean) Whether to ignore the [Creator's](#market-creator) owned Shares when creating the Order.
+    * **`p.tx`** (Object) Object containing details about how this transaction should be made.
+        * **`p.tx.to`** (string) Ethereum contract address on which to call this function, as a 20-byte hexadecimal string.
+        * **`p.tx.gas`** (string) Gas limit to use when submitting this transaction, as a hexadecimal string.
+    * **`p.meta`**  (<a href="#Meta">Meta</a>) &lt;optional> Authentication metadata for raw transactions.
+    * **`p.onSent`**  (function) Callback function that executes once the transaction has been sent.
+    * **`p.onSuccess`**  (function) &lt;optional> Callback function that executes if the transaction returned successfully.
+    * **`p.onFailed`**  (function) &lt;optional> Callback function that executes if the transaction failed.
+
+#### **Returns:**
+
+* Return value cannot be obtained because Ethereum nodes [discard](#transaction-return-values) transaction return values.
+
+### augur.api.CreateOrder.publicCreateOrders(p)
+
+Creates new [Bid Orders](#bid-order) or [Ask Orders](#ask-order) on the [Order Book](#order-book). This transaction will trigger [`OrderCreated`](#OrderCreated) events.
+
+This transaction will fail if:
+
+uint256[] _outcomes, Order.Types[] _types, uint256[] _attoshareAmounts, uint256[] _prices, IMarket _market, bool _ignoreShares, bytes32 _tradeGroupId
+
+* A value in `p._outcomes` is less than 0 or greater than the total number of Outcomes for `p._market`.
+* A value in `p._types` is not a valid value of 0 or 1.
+* A value in `p._attoshareAmounts` is less than 0.
+* A value in `p._prices` is below `p._market`'s [Minimum Display Price](#minimum-display-price) or above `p.market`'s [Maximum Display Price](#maximum-display-price).
+* `p._market` is undefined.
+
+#### **Parameters:**
+
+* **`p`** (Object) Parameters object.
+    * **`p._outcomes`** (Array.&lt;string>) Outcomes for which to place the Orders, as an array of hexadecimal strings.
+    * **`p._types`** (Array.&lt;string>) Types of Orders to create, as an array of hexadecimal strings ("0x0" for a [Bid Order](#bid-order), "0x1" for an [Ask Order](#ask-order)).
+    * **`p._attoshareAmounts`** (Array.&lt;string>) [Share Units](#share-unit) to buy or sell, as an array of hexadecimal strings.
+    * **`p._prices`** (Array.&lt;string>) Desired prices at which to purchase Shares, in [attoETH](#atto-prefix).
+    * **`p._market`** (string) Market contract address in which to place the Order, as a 20-byte hexadecimal value.
+    * **`p._ignoreShares`** (boolean) Whether to ignore the [Creator's](#market-creator) owned Shares when creating the Order.
+    * **`p._tradeGroupId`** (string) &lt;optional> ID used by the Augur UI to group transactions, as a 32-byte hexadecimal value.
     * **`p.tx`** (Object) Object containing details about how this transaction should be made.
         * **`p.tx.to`** (string) Ethereum contract address on which to call this function, as a 20-byte hexadecimal string.
         * **`p.tx.gas`** (string) Gas limit to use when submitting this transaction, as a hexadecimal string.
