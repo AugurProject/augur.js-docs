@@ -79,7 +79,7 @@ augur.accounts.getAccountTransferHistory({
 ```
 ### augur.accounts.approveAugur(p)
 
-Internally, Augur uses an ERC-20 token called Cash as a wrapper for ETH. Many of Augur's transactions require Augur to be able to spend Cash on behalf of the account executing the transaction. However, the account must first approve Augur to spend that amount of Cash on its behalf. This function calls the function `augur.api.Cash.approve` to approve Augur to spend up to `augur.constants.ETERNAL_APPROVAL_VALUE` Cash on behalf of the account. `augur.constants.ETERNAL_APPROVAL_VALUE` is equal to 2^256 - 1, or the maximum amount of Cash that can be approved. This value is used so that `augur.api.Cash.approve` does not have to be called multiple times in order to execute multiple transactions.
+Internally, Augur uses an [ERC-20](https://eips.ethereum.org/EIPS/eip-20)/[ERC-777](https://eips.ethereum.org/EIPS/eip-777) token called Cash as a wrapper for ETH. Many of Augur's transactions require Augur to be able to spend Cash on behalf of the account executing the transaction. However, the account must first approve Augur to spend that amount of Cash on its behalf. This function calls the function `augur.api.Cash.approve` to approve Augur to spend up to `augur.constants.ETERNAL_APPROVAL_VALUE` Cash on behalf of the account. `augur.constants.ETERNAL_APPROVAL_VALUE` is equal to 2^256 - 1, or the maximum amount of Cash that can be approved. This value is used so that `augur.api.Cash.approve` does not have to be called multiple times in order to execute multiple transactions.
 
 #### **Parameters:**
 

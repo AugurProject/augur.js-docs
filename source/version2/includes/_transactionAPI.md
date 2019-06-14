@@ -3,7 +3,7 @@ Transaction API
 ```javascript
 // Transaction API example:
 
-// Internally, Augur uses an ERC-20 token called Cash as a wrapper for ETH. 
+// Internally, Augur uses an ERC-20/ERC-777 token called Cash as a wrapper for ETH. 
 // Many of Augur's transactions require the Augur.sol contract to be able 
 // to spend Cash on behalf of the account executing the transaction. 
 // However, the account must first approve Augur to spend that amount of 
@@ -107,9 +107,9 @@ Fires when the transaction is successfully incorporated into a block and added t
 
 Fires if the transaction is unsuccessful. `failedResponse` has `error` (error code) and `message` (error description) fields, describing the way in which the transaction failed.
 
-### Approving Augur's ERC-20 Tokens
+### Approving Augur's ERC-20/ERC-777 Tokens
 
-Developers will need to grant the Augur.sol contract approval to spend [Cash](#cash) (which is an [ERC-20](https://en.wikipedia.org/wiki/ERC20) wrapper for ETH) before many of the Transaction API functions can be called. This can be done by calling the `augur.api.Cash.approve` function, as shown to the right. <b>Attempting to call many of Augur's Transaction API functions without doing this first will result in these transactions failing.</b>
+Developers will need to grant the Augur.sol contract approval to spend [Cash](#cash) (which is an [ERC-20](https://eips.ethereum.org/EIPS/eip-20)/[ERC-777](https://eips.ethereum.org/EIPS/eip-777) wrapper for ETH) before many of the Transaction API functions can be called. This can be done by calling the `augur.api.Cash.approve` function, as shown to the right. <b>Attempting to call many of Augur's Transaction API functions without doing this first will result in these transactions failing.</b>
 
 ### Transaction Return Values
 
@@ -451,7 +451,7 @@ augur.api.Cash.withdrawEtherToIfPossible({
   onFailed: function (result) { console.log(result); }
 });
 ```
-Provides JavaScript bindings for the [Cash Solidity Contract](https://github.com/AugurProject/augur/blob/master/packages/augur-core/source/contracts/Cash.sol), which is used internally by Augur as an ERC-20 wrapper for ETH.
+Provides JavaScript bindings for the [Cash Solidity Contract](https://github.com/AugurProject/augur/blob/master/packages/augur-core/source/contracts/Cash.sol), which is used internally by Augur as an [ERC-20](https://eips.ethereum.org/EIPS/eip-20)/[ERC-777](https://eips.ethereum.org/EIPS/eip-777) wrapper for ETH.
 
 ### augur.api.Cash.approve(p)
 
@@ -1875,7 +1875,7 @@ augur.api.ReputationToken.updateTotalTheoreticalSupply({
 ```
 Provides JavaScript bindings for the [ReputationToken Solidity Contract](https://github.com/AugurProject/augur/tree/master/packages/augur-core/source/contracts/reporting/ReputationToken.sol), which handles the approval, migration, and transfering of [Reputation Tokens](#rep).
 
-The Reputation Token, or REP, is an ERC-20 token that implements all of the required functions listed in the [ERC-20 Token Standard](https://eips.ethereum.org/EIPS/eip-20). It does not, however, implement the optional functions.
+The Reputation Token, or REP, is an ERC-20/ERC-777 token that implements all of the required functions listed in the [ERC-20](https://eips.ethereum.org/EIPS/eip-20)/[ERC-777](https://eips.ethereum.org/EIPS/eip-777). It does not, however, implement the optional functions.
 
 ### augur.api.ReputationToken.approve(p)
 
@@ -2187,7 +2187,7 @@ augur.api.ShareToken.transferFrom({
 ```
 Provides JavaScript bindings for the [ShareToken Solidity Code](https://github.com/AugurProject/augur/blob/master/packages/augur-core/source/contracts/trading/ShareToken.sol), which handles the approval and transferring of [Shares](#share) in Augur. 
 
-The Share Token is an ERC-20 token that implements all of the required functions listed in the [ERC-20 Token Standard](https://eips.ethereum.org/EIPS/eip-20). It does not, however, implement the optional functions. Within Augur, it represents [Shares](#share) in [Market](#market) [Outcomes](#outcome).
+The Share Token is an ERC-20/ERC-777 token that implements all of the required functions listed in the [ERC-20 Token Standard](https://eips.ethereum.org/EIPS/eip-20)/[ERC-777 Token Standard](https://eips.ethereum.org/EIPS/eip-777). It does not, however, implement the optional functions. Within Augur, it represents [Shares](#share) in [Market](#market) [Outcomes](#outcome).
 
 ### augur.api.ShareToken.approve(p)
 

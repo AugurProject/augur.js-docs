@@ -29,7 +29,7 @@ A Bid Order is an [Order](#order) indicating the desire of the [Order Creator](#
 
 ## Cash
 
-Cash is an ERC-20 token that is used within Augur's Solidity smart contracts and acts as a wrapper for ETH to facilitate some of Augur's functionality. Users do not interact directly with Cash tokens in Augur.
+Cash is an [ERC-20](https://eips.ethereum.org/EIPS/eip-20)/[ERC-777](https://eips.ethereum.org/EIPS/eip-777) token that is used within Augur's Solidity smart contracts and acts as a wrapper for ETH to facilitate some of Augur's functionality. Users do not interact directly with Cash tokens in Augur.
 
 ## Categorical Market
 
@@ -126,7 +126,7 @@ By design, the Dispute Bond sizes for each Dispute Round are chosen such that an
 
 ## Dispute Token
 
-When a user Stakes [REP](#rep) in a [Crowdsourcer](#crowdsourcer), that Crowdsourcer will allocate an equal amount of Dispute Tokens to that user. Then, when the Crowdsourcer's [Market](#market) is [Finalized](#finalized-market), these Dispute Tokens are used by Augur's smart contracts to determine the payout that user should receive. Dispute Tokens are only used internally by Augur, and users do not interact with them directly; however, they are implemented as ERC-20 tokens, so they potentially can be traded between users. (For example, a user might want to sell their Dispute Tokens to another user at a discounted price if a Market is being Disputed for a long time and the user wishes to cash out their Dispute Tokens before the Market is Finalized.)
+When a user Stakes [REP](#rep) in a [Crowdsourcer](#crowdsourcer), that Crowdsourcer will allocate an equal amount of Dispute Tokens to that user. Then, when the Crowdsourcer's [Market](#market) is [Finalized](#finalized-market), these Dispute Tokens are used by Augur's smart contracts to determine the payout that user should receive. Dispute Tokens are only used internally by Augur, and users do not interact with them directly; however, they are implemented as [ERC-20](https://eips.ethereum.org/EIPS/eip-20)/[ERC-777](https://eips.ethereum.org/EIPS/eip-777) tokens, so they potentially can be traded between users. (For example, a user might want to sell their Dispute Tokens to another user at a discounted price if a Market is being Disputed for a long time and the user wishes to cash out their Dispute Tokens before the Market is Finalized.)
 
 ## End Time
 

@@ -52,7 +52,7 @@ Object containing the default number of [Ticks](#tick) used when creating a new 
 
 ### augur.constants.ETERNAL_APPROVAL_VALUE (string)
 
-Used when calling the `approve` function for [Cash](#cash), which is an [ERC-20](https://en.wikipedia.org/wiki/ERC20) wrapper for ETH that Augur uses internally. It is equal to 2^256 - 1, which is the maximum amount of Cash that can be approved for Augur to spend on behalf of a particular account.
+Used when calling the `approve` function for [Cash](#cash), which is an [ERC-20](https://en.wikipedia.org/wiki/ERC20)/[ERC-777](https://eips.ethereum.org/EIPS/eip-777) wrapper for ETH that Augur uses internally. It is equal to 2^256 - 1, which is the maximum amount of Cash that can be approved for Augur to spend on behalf of a particular account.
 
 ### augur.constants.GET_LOGS_DEFAULT_FROM_BLOCK (string)
 
