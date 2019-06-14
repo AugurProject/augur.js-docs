@@ -1180,7 +1180,7 @@ Provides JavaScript bindings for the [FillOrder Solidity Contract](https://githu
 
 ### augur.api.FillOrder.publicFillOrder(p)
 
-Attempts to Fill `p._amountFillerWants` [Share Units](#share-unit) for [Order](#order) `p._orderId`. If `p._amountFillerWants` is enough to [Fill](#fill-order) the Order completely, the Order will be removed from the [Order Book](#order-book). Otherwise, it will be adjusted to only include the remaining amount after Filling the `p._amountFillerWants` value that the [Filler](#order-filler) requests. This transaction will trigger an [`OrderFilled`](#OrderFilled) event if the Order is Filled without any errors.
+Attempts to Fill `p._amountFillerWants` [Share Units](#share-unit) for [Order](#order) `p._orderId`. If `p._amountFillerWants` is enough to [Fill](#fill-order) the Order completely, the Order will be removed from the [Order Book](#order-book). Otherwise, it will be adjusted to only include the remaining amount after Filling the `p._amountFillerWants` value that the [Filler](#order-filler) requests. This transaction will trigger an [`OrderFilled`](#OrderFilled) event if the Order is Filled without any errors. Calling this function will also sell any [Complete Sets](#complete-set) the [Order Creator](#order-creator) or Filler would have otherwise ended up holding.
 
 This transaction will fail if:
 
@@ -1656,6 +1656,59 @@ This transaction will fail if:
 
 * Return value cannot be obtained because Ethereum nodes [discard](#transaction-return-values) transaction return values.
 
+Orders Tx API
+--------------------------------
+```javascript
+// Orders Transaction API Examples:
+var ordersAddress = "0xaaae83a8a2a904181ccfddd8292f17861406200b";
+
+augur.api.Orders.setOrderPrice({
+  _orderId: _augurContractAddress,
+  _price: "0xff",
+  _betterOrderId: "",
+  _worseOrderId: "",
+  tx: { 
+    to: ordersAddress,
+    gas: "0x632ea0" 
+  }, 
+  meta: {
+    accountType: "privateKey",
+    address: "0x913dA4198E6bE1D5f5E4a40D0667f70C0B5430Ec",
+    signer: [252, 111, 32, 94, 233, 213, 105, 71, 89, 162, 243, 247, 56, 81, 213, 103, 239, 75, 212, 240, 234, 95, 8, 201, 217, 55, 225, 0, 85, 109, 158, 25],
+  },
+  onSent: function (result) { console.log(result); },
+  onSuccess: function (result) { console.log(result); },
+  onFailed: function (result) { console.log(result); }
+});
+```
+
+### augur.api.Orders.setOrderPrice(p)
+
+
+
+This transaction will fail if:
+
+* `msg.sender` isn't the owner of the Market.
+
+#### **Parameters:**
+
+* **`p`** (Object) Parameters object.
+    * **`p._orderId`**  (string) Ethereum address of the desired new owner of the Market, as a 20-byte hexadecimal value.
+    * **`p._price`**  (string) 
+    * **`p._betterOrderId`**  (string) 
+    * **`p._worseOrderId`**  (string) 
+    * **`p.tx`** (Object) Object containing details about how this transaction should be made.
+        * **`p.tx.to`** (string) Ethereum contract address on which to call this function, as a 20-byte hexadecimal string.
+        * **`p.tx.gas`** (string) Gas limit to use when submitting this transaction, as a hexadecimal string.
+    * **`p.meta`**  (<a href="#Meta">Meta</a>) &lt;optional> Authentication metadata for raw transactions.
+    * **`p.onSent`**  (function) Callback function that executes once the transaction has been sent.
+    * **`p.onSuccess`**  (function) &lt;optional> Callback function that executes if the transaction returned successfully.
+    * **`p.onFailed`**  (function) &lt;optional> Callback function that executes if the transaction failed.
+
+#### **Returns:**
+
+* Return value cannot be obtained because Ethereum nodes [discard](#transaction-return-values) transaction return values.
+
 Reputation Token Tx API
 --------------------------------
 ```javascript
@@ -1822,7 +1875,7 @@ augur.api.ReputationToken.updateTotalTheoreticalSupply({
 ```
 Provides JavaScript bindings for the [ReputationToken Solidity Contract](https://github.com/AugurProject/augur/tree/master/packages/augur-core/source/contracts/reporting/ReputationToken.sol), which handles the approval, migration, and transfering of [Reputation Tokens](#rep).
 
-The Reputation Token, or REP, is an ERC-20 token that implements all of the required functions listed in the [ERC-20 Token Standard](https://github.com/ethereum/EIPs/blob/master/EIPS/eip-20-token-standard.md). It does not, however, implement the optional functions.
+The Reputation Token, or REP, is an ERC-20 token that implements all of the required functions listed in the [ERC-20 Token Standard](https://eips.ethereum.org/EIPS/eip-20). It does not, however, implement the optional functions.
 
 ### augur.api.ReputationToken.approve(p)
 
@@ -2134,7 +2187,7 @@ augur.api.ShareToken.transferFrom({
 ```
 Provides JavaScript bindings for the [ShareToken Solidity Code](https://github.com/AugurProject/augur/blob/master/packages/augur-core/source/contracts/trading/ShareToken.sol), which handles the approval and transferring of [Shares](#share) in Augur. 
 
-The Share Token is an ERC-20 token that implements all of the required functions listed in the [ERC-20 Token Standard](https://github.com/ethereum/EIPs/blob/master/EIPS/eip-20-token-standard.md). It does not, however, implement the optional functions. Within Augur, it represents [Shares](#share) in [Market](#market) [Outcomes](#outcome).
+The Share Token is an ERC-20 token that implements all of the required functions listed in the [ERC-20 Token Standard](https://eips.ethereum.org/EIPS/eip-20). It does not, however, implement the optional functions. Within Augur, it represents [Shares](#share) in [Market](#market) [Outcomes](#outcome).
 
 ### augur.api.ShareToken.approve(p)
 
