@@ -451,7 +451,7 @@ augur.api.Cash.withdrawEtherToIfPossible({
   onFailed: function (result) { console.log(result); }
 });
 ```
-Provides JavaScript bindings for the [Cash Solidity Contract](https://github.com/AugurProject/augur/tree/master/packages/augur-core/source/contracts/trading/Cash.sol), which is used internally by Augur as an ERC-20 wrapper for ETH.
+Provides JavaScript bindings for the [Cash Solidity Contract](https://github.com/AugurProject/augur/blob/master/packages/augur-core/source/contracts/Cash.sol), which is used internally by Augur as an ERC-20 wrapper for ETH.
 
 ### augur.api.Cash.approve(p)
 

@@ -183,7 +183,7 @@ augur.api.Cash.allowance({
 // example output:
 "115792089237316195423570985008687907853269984665640564039457584007913129639935"
 ```
-Provides JavaScript bindings for the [Cash Solidity Contract](https://github.com/AugurProject/augur/blob/master/packages/augur-core/source/contracts/trading/Cash.sol), which is used internally by Augur as an ERC-20 wrapper for ETH.
+Provides JavaScript bindings for the [Cash Solidity Contract](https://github.com/AugurProject/augur/blob/master/packages/augur-core/source/contracts/Cash.sol), which is used internally by Augur as an ERC-20 wrapper for ETH.
 
 ### augur.api.Cash.allowance(p, callback)
 
@@ -1365,7 +1365,7 @@ Note: Calling this function only works for retrieving a DisputeCrowdsourcer if t
 
 ### augur.api.Market.getDenominationToken(p, callback)
 
-Returns the Ethereum contract address of the token used to denominate the specified [Market](#market). A Denomination Token is the [ERC-20 Token](https://eips.ethereum.org/EIPS/eip-20) used as the currency to trade on the [Outcome](#outcome) of a [Market](#market). Currently, this function will always return the address of a [Cash](https://github.com/AugurProject/augur/blob/master/packages/augur-core/source/contracts/trading/Cash.sol) contract; however, Augur will eventually support other types of Denomination Tokens.
+Returns the Ethereum contract address of the token used to denominate the specified [Market](#market). A Denomination Token is the [ERC-20 Token](https://eips.ethereum.org/EIPS/eip-20) used as the currency to trade on the [Outcome](#outcome) of a [Market](#market). Currently, this function will always return the address of a [Cash](https://github.com/AugurProject/augur/blob/master/packages/augur-core/source/contracts/Cash.sol) contract; however, Augur will eventually support other types of Denomination Tokens.
 
 #### **Parameters:**
 
