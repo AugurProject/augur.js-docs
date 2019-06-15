@@ -1162,6 +1162,7 @@ augur.api.FillOrder.publicFillOrder({
   _amountFillerWants: _amountFillerWants,
   _tradeGroupId: _tradeGroupId,
   _ignoreShares: true,
+  _affiliateAddress: 0x1237f6af7b3b5fed8ca980414a97c62da2830abc,
   tx: { 
     to: fillOrderAddress,
     gas: "0x632ea0" 
@@ -1194,6 +1195,7 @@ This transaction will fail if:
     * **`p._amountFillerWants`** (string) Number of [Shares](#share) to Fill, as a hexadecimal string.
     * **`p._tradeGroupId`** (string) &lt;optional> ID used by the Augur UI to group transactions, as a 32-byte hexadecimal value.
     * **`p._ignoreShares`** (boolean) Whether to ignore the filler's owned Shares when filling the Order.
+    * **`p._affiliateAddress`** (string) &lt;optional> Ethereum address of the [Affiliate](#affiliate), as a 20-byte hexadecimal value.
     * **`p.tx`** (Object) Object containing details about how this transaction should be made.
         * **`p.tx.to`** (string) Ethereum contract address on which to call this function, as a 20-byte hexadecimal string.
         * **`p.tx.gas`** (string) Gas limit to use when submitting this transaction, as a hexadecimal string.
@@ -1461,6 +1463,22 @@ augur.api.Market.transferOwnership({
   onSuccess: function (result) { console.log(result); },
   onFailed: function (result) { console.log(result); }
 });
+
+augur.api.Market.withdrawAffiliateFees({
+  _affiliate: "0x00056abe36d8dc76cf85fecb6a3026733e0a1890",
+  tx: { 
+    to: marketAddress,
+    gas: "0x632ea0" 
+  }, 
+  meta: {
+    accountType: "privateKey",
+    address: "0x913dA4198E6bE1D5f5E4a40D0667f70C0B5430Ec",
+    signer: [252, 111, 32, 94, 233, 213, 105, 71, 89, 162, 243, 247, 56, 81, 213, 103, 239, 75, 212, 240, 234, 95, 8, 201, 217, 55, 225, 0, 85, 109, 158, 25],
+  },
+  onSent: function (result) { console.log(result); },
+  onSuccess: function (result) { console.log(result); },
+  onFailed: function (result) { console.log(result); }
+});
 ```
 Provides JavaScript bindings for the [Market Solidity Contract](https://github.com/AugurProject/augur/tree/master/packages/augur-core/source/contracts/reporting/Market.sol), which enables functionality for Augur's [Markets](#market).
 
@@ -1644,6 +1662,28 @@ This transaction will fail if:
 
 * **`p`** (Object) Parameters object.
     * **`p._newOwner`**  (string) Ethereum address of the desired new owner of the Market, as a 20-byte hexadecimal value.
+    * **`p.tx`** (Object) Object containing details about how this transaction should be made.
+        * **`p.tx.to`** (string) Ethereum contract address on which to call this function, as a 20-byte hexadecimal string.
+        * **`p.tx.gas`** (string) Gas limit to use when submitting this transaction, as a hexadecimal string.
+    * **`p.meta`**  (<a href="#Meta">Meta</a>) &lt;optional> Authentication metadata for raw transactions.
+    * **`p.onSent`**  (function) Callback function that executes once the transaction has been sent.
+    * **`p.onSuccess`**  (function) &lt;optional> Callback function that executes if the transaction returned successfully.
+    * **`p.onFailed`**  (function) &lt;optional> Callback function that executes if the transaction failed.
+
+#### **Returns:**
+
+* Return value cannot be obtained because Ethereum nodes [discard](#transaction-return-values) transaction return values.
+
+### augur.api.Market.withdrawAffiliateFees(p)
+
+Transfers an [Affiliate's](#affiliate) [Affiliate Fee](#affiliate-fee) from the [Market](#market) to the specified Affiliate address.
+
+This transaction will trigger a [`Transfer`](#Transfer) event, which will record the `from` address, `to` address, and `value` transferred, in attoETH. 
+
+#### **Parameters:**
+
+* **`p`** (Object) Parameters object.
+    * **`p._affiliate`**  (string) Ethereum address of the Affiliate, as a 20-byte hexadecimal value.
     * **`p.tx`** (Object) Object containing details about how this transaction should be made.
         * **`p.tx.to`** (string) Ethereum contract address on which to call this function, as a 20-byte hexadecimal string.
         * **`p.tx.gas`** (string) Gas limit to use when submitting this transaction, as a hexadecimal string.
@@ -2331,6 +2371,7 @@ augur.api.Trade.publicFillBestOrder({
   _tradeGroupId: _tradeGroupId,
   _loopLimit: _loopLimit,
   _ignoreShares: true,
+  _affiliateAddress: 0x1237f6af7b3b5fed8ca980414a97c62da2830abc,
   tx: { 
     to: tradeAddress,
     gas: "0x632ea0" 
@@ -2354,6 +2395,7 @@ augur.api.Trade.publicFillBestOrderWithTotalCost({
   _tradeGroupId: _tradeGroupId,
   _loopLimit: _loopLimit,
   _ignoreShares: true,
+  _affiliateAddress: 0x1237f6af7b3b5fed8ca980414a97c62da2830abc,
   tx: { 
     to: tradeAddress,
     gas: "0x632ea0" 
@@ -2379,6 +2421,7 @@ augur.api.Trade.publicTrade({
   _tradeGroupId: _tradeGroupId,
   _loopLimit: _loopLimit,
   _ignoreShares: true,
+  _affiliateAddress: 0x1237f6af7b3b5fed8ca980414a97c62da2830abc,
   tx: { 
     to: tradeAddress,
     gas: "0x632ea0" 
@@ -2404,6 +2447,7 @@ augur.api.Trade.publicTradeWithTotalCost({
   _tradeGroupId: _tradeGroupId,
   _loopLimit: _loopLimit,
   _ignoreShares: true,
+  _affiliateAddress: 0x1237f6af7b3b5fed8ca980414a97c62da2830abc,
   tx: { 
     to: tradeAddress,
     gas: "0x632ea0" 
@@ -2435,6 +2479,7 @@ Works similarly to `augur.api.Trade.publicTrade`, except it does not create an [
     * **`p._tradeGroupId`** (string) &lt;optional> ID used by the Augur UI to group transactions, as a 32-byte hexadecimal value.
     * **`p._loopLimit`** (string) Maximum number of [Fill Order](#fill-order) operations to make, as a stringified unsigned integer.
     * **`p._ignoreShares`** (boolean) Whether to ignore the filler's owned [Shares](#shares) when creating the Order.
+    * **`p._affiliateAddress`** (string) &lt;optional> Ethereum address of the [Affiliate](#affiliate), as a 20-byte hexadecimal value.
     * **`p.tx`** (Object) Object containing details about how this transaction should be made.
         * **`p.tx.to`** (string) Ethereum contract address on which to call this function, as a 20-byte hexadecimal string.
         * **`p.tx.gas`** (string) Gas limit to use when submitting this transaction, as a hexadecimal string.
@@ -2462,6 +2507,7 @@ Works like `augur.api.Trade.publicFillBestOrder`, but uses the parameter `p._tot
     * **`p._tradeGroupId`** (string) &lt;optional> ID used by the Augur UI to group transactions, as a 32-byte hexadecimal value.
     * **`p._loopLimit`** (string) Maximum number of Fill Order operations to make, as a stringified unsigned integer.
     * **`p._ignoreShares`** (boolean) Whether to ignore the filler's owned [Shares](#shares) when creating the Order.
+    * **`p._affiliateAddress`** (string) &lt;optional> Ethereum address of the [Affiliate](#affiliate), as a 20-byte hexadecimal value.
     * **`p.tx`** (Object) Object containing details about how this transaction should be made.
         * **`p.tx.to`** (string) Ethereum contract address on which to call this function, as a 20-byte hexadecimal string.
         * **`p.tx.gas`** (string) Gas limit to use when submitting this transaction, as a hexadecimal string.
@@ -2497,6 +2543,7 @@ This transaction will fail if:
     * **`p._tradeGroupId`** (string) &lt;optional> ID used by the Augur UI to group transactions, as a 32-byte hexadecimal value.
     * **`p._loopLimit`** (string) Maximum number of trade operations to make, as a stringified unsigned integer.
     * **`p._ignoreShares`** (boolean) Whether to ignore the trader's owned Shares when creating the Order.
+    * **`p._affiliateAddress`** (string) &lt;optional> Ethereum address of the [Affiliate](#affiliate), as a 20-byte hexadecimal value.
     * **`p.tx`** (Object) Object containing details about how this transaction should be made.
         * **`p.tx.to`** (string) Ethereum contract address on which to call this function, as a 20-byte hexadecimal string.
         * **`p.tx.gas`** (string) Gas limit to use when submitting this transaction, as a hexadecimal string.
@@ -2526,6 +2573,7 @@ Works like `augur.api.Trade.publicTrade`, but uses the parameter `p._totalCost` 
     * **`p._tradeGroupId`** (string) &lt;optional> ID used by the Augur UI to group transactions, as a 32-byte hexadecimal value.
     * **`p._loopLimit`** (string) Maximum number of trade operations to make, as a stringified unsigned integer.
     * **`p._ignoreShares`** (boolean) Whether to ignore the trader's owned [Shares](#shares) when creating the Order.
+    * **`p._affiliateAddress`** (string) &lt;optional> Ethereum address of the [Affiliate](#affiliate), as a 20-byte hexadecimal value.
     * **`p.tx`** (Object) Object containing details about how this transaction should be made.
         * **`p.tx.to`** (string) Ethereum contract address on which to call this function, as a 20-byte hexadecimal string.
         * **`p.tx.gas`** (string) Gas limit to use when submitting this transaction, as a hexadecimal string.
@@ -2561,6 +2609,7 @@ var _extraInfo = {
 augur.api.Universe.createCategoricalMarket({
   _endTime: "0x5bd7e550",
   _feePerEthInWei: "0x123456",
+  _affiliateFeeDivisor: "100",
   _designatedReporterAddress: "0x01114f4bda09ed6c6715cf0baf606b5bce1dc96a",
   _outcomes: ["outcome1","outcome2"],
   _topic: "sports",
@@ -2612,6 +2661,7 @@ var _extraInfo = {
 augur.api.Universe.createScalarMarket({
   _endTime: "0x5b39b150",
   _feePerEthInWei: "0x123456",
+  _affiliateFeeDivisor: "100",
   _designatedReporterAddress: "0x01114f4bda09ed6c6715cf0baf606b5bce1dc96a",
   _minPrice: "-10",
   _maxPrice: "0x78",
@@ -2645,6 +2695,7 @@ var _extraInfo = {
 augur.api.Universe.createYesNoMarket({
   _endTime: "0x5c2b1e00",
   _feePerEthInWei: "0x123456",
+  _affiliateFeeDivisor: "100",
   _designatedReporterAddress: "0x01114f4bda09ed6c6715cf0baf606b5bce1dc96a",
   _topic: "space",
   _description: "Will SpaceX successfully complete a manned flight to the International Space Station by the end of 2018?",
@@ -2822,6 +2873,7 @@ NOTE: The account attempting to create the new market must have sufficient REP i
 * **`p`** (Object) Parameters object.
     * **`p._endTime`**  (string) Unix timestamp for the [End Time](#end-time) of the [Market](#market), as a hexadecimal string.
     * **`p._feePerEthInWei`**  (string) [Creator Fee](#creator-fee) (in Wei) that is collected for every 1 Ether worth of [Shares](#share) [Settled](#settlement), as a hexadecimal string.
+    * **`p._affiliateFeeDivisor`** (number) Integer by  which to divide the [Creator Fee](#creator-fee) amongst [Affiliates](#affiliate).
     * **`p._designatedReporterAddress`**  (string) Ethereum address of the [Designated Reporter](#designated-reporter).
     * **`p._outcomes`**  (Array.&lt;string>) Array of names for all possible outcomes for the Market event.
     * **`p._topic`**  (string) Market [Topic](#topic).
@@ -2890,6 +2942,7 @@ NOTE: The account attempting to create the new market must have sufficient REP i
 * **`p`** (Object) Parameters object.
     * **`p._endTime`**  (string) Unix timestamp for the [End Time](#end-time) of the [Market](#market), as a hexadecimal string.
     * **`p._feePerEthInWei`**  (string) [Creator Fee](#creator-fee) (in [attoETH](atto-prefix)) that is collected for every 1 Ether worth of [Shares](#share) [Settled](#settlement).
+    * **`p._affiliateFeeDivisor`** (string) Integer by  which to divide the [Creator Fee](#creator-fee) amongst [Affiliates](#affiliate).
     * **`p._designatedReporterAddress`**  (string) Ethereum address of the [Designated Reporter](#designated-reporter).
     * **`p._minPrice`**  (string) [Minimum Display Price](#minimum-display-price) for the Market, as a hexadecimal string.
     * **`p._maxPrice`**  (string) [Maximum Display Price](#maximum-display-price) for the Market, as a hexadecimal string.
@@ -2933,6 +2986,7 @@ NOTE: The account attempting to create the new market must have sufficient REP i
 * **`p`** (Object) Parameters object.
     * **`p._endTime`**  (string) Unix timestamp for the [End Time](#end-time) of the [Market](#market), as a hexadecimal string.
     * **`p._feePerEthInWei`**  (string) [Creator Fee](#creator-fee) (in Wei) that is collected for every 1 Ether worth of [Shares](#share) [Settled](#settlement), as a hexadecimal string.
+    * **`p._affiliateFeeDivisor`** (number) Integer by  which to divide the [Creator Fee](#creator-fee) amongst [Affiliates](#affiliate). 
     * **`p._designatedReporterAddress`**  (string) Ethereum address of the [Designated Reporter](#designated-reporter).
     * **`p._topic`**  (string) Market [Topic](#topic).
     * **`p._description`**  (string) Description of the Market event.

@@ -11,6 +11,15 @@ Goals:
  -->
 This section of the documentation is dedicated to terms found and used throughout the rest of documentation. Below you will find sections about terms used in Augur. The goal is to explain everything that might be confusing in an easy-to-understand way.
 
+## Affilate
+
+An Affiliate is someone who promotes a particular Augur [Market](#market) via a URL link that contains the Affiliate's Ethereum address. If a user goes to the link and then places a trade on the Market, the Affiliate will collect an [Affiliate Fee](#affiliate-fee) (as specified by the [Market Creator](#market-creator) at the time of Market creation) when [Settlement Fees](#settlement-fees) are collected after the Market is [Finalized](#finalized-market).
+
+## Affiliate Fee
+
+<!--An Affiliate Fee is a portion of the [Creator Fee](#creator-fee) that a [Market Creator](#market-creator) can give to [Affiliates](#affiliate) who promote their [Market](#market). This portion can be specified at the time of Market Creation. Affiliates can promote the Market by linking to a URL for the Market that contains the Affiliate's Ethereum address. This address is then used to send them their Affiliate Fee when [Settlement Fees](#settlement-fees) are collected after the Market is [Finalized](#finalized-market).-->
+!!!TBD!!! Add definition (give better explanation of how this is calculated as per https://github.com/AugurProject/augur/pull/1074/files#diff-8ed676c60e9fab2fdbd79f09555a59beR300)
+
 ## Ask Order
 
 An Ask Order is an [Order](#order) indicating the desire of the [Order Creator](#order-creator) to sell [Shares](#share) of one or more [Outcomes](#outcome). This is the opposite of a [Bid Order](#bid-order).
