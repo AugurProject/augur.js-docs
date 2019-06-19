@@ -6048,7 +6048,7 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
 
 <h3 id="augur-api-market-getdenominationtoken-p-callback">augur.api.Market.getDenominationToken(p, callback)</h3>
 
-<p>Returns the Ethereum contract address of the token used to denominate the specified <a href="#market">Market</a>. A Denomination Token is the <a href="https://github.com/ethereum/EIPs/blob/master/EIPS/eip-20-token-standard.md">ERC-20 Token</a> used as the currency to trade on the <a href="#outcome">Outcome</a> of a <a href="#market">Market</a>. Currently, this function will always return the address of a <a href="https://github.com/AugurProject/augur-core/blob/master/source/contracts/trading/Cash.sol">Cash</a> contract; however, Augur will eventually support other types of Denomination Tokens.</p>
+<p>Returns the Ethereum contract address of the token used to denominate the specified <a href="#market">Market</a>. A Denomination Token is the <a href="https://eips.ethereum.org/EIPS/eip-20">ERC-20 Token</a> used as the currency to trade on the <a href="#outcome">Outcome</a> of a <a href="#market">Market</a>. Currently, this function will always return the address of a <a href="https://github.com/AugurProject/augur-core/blob/master/source/contracts/trading/Cash.sol">Cash</a> contract; however, Augur will eventually support other types of Denomination Tokens.</p>
 
 <h4 id="strong-strong"><strong>Parameters:</strong></h4>
 
@@ -7538,7 +7538,7 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
 </code></pre></div>
 <p>Provides JavaScript bindings for the <a href="https://github.com/AugurProject/augur-core/blob/master/source/contracts/reporting/ReputationToken.sol">ReputationToken Solidity Contract</a>, which handles the approval, migration, and transfering of <a href="#rep">Reputation Tokens</a>. </p>
 
-<p>The Reputation Token, or REP, is an ERC-20 token that implements all of the required functions listed in the <a href="https://github.com/ethereum/EIPs/blob/master/EIPS/eip-20-token-standard.md">ERC-20 Token Standard</a>. It does not, however, implement the optional functions.</p>
+<p>The Reputation Token, or REP, is an ERC-20 token that implements all of the required functions listed in the <a href="https://eips.ethereum.org/EIPS/eip-20">ERC-20 Token Standard</a>. It does not, however, implement the optional functions.</p>
 
 <h3 id="augur-api-reputationtoken-allowance-p-callback">augur.api.ReputationToken.allowance(p, callback)</h3>
 
@@ -7677,7 +7677,7 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
 </code></pre></div>
 <p>Provides JavaScript bindings for the <a href="https://github.com/AugurProject/augur-core/blob/master/source/contracts/trading/ShareToken.sol">ShareToken Solidity Code</a>, which handles the approval and transferring of <a href="#share">Shares</a> in Augur. </p>
 
-<p>The Share Token is an ERC-20 token that implements all of the required functions listed in the <a href="https://github.com/ethereum/EIPs/blob/master/EIPS/eip-20-token-standard.md">ERC-20 Token Standard</a>. It does not, however, implement the optional functions. Within Augur, it represents <a href="#share">Shares</a> in <a href="#market">Market</a> <a href="#outcome">Outcomes</a>.</p>
+<p>The Share Token is an ERC-20 token that implements all of the required functions listed in the <a href="https://eips.ethereum.org/EIPS/eip-20">ERC-20 Token Standard</a>. It does not, however, implement the optional functions. Within Augur, it represents <a href="#share">Shares</a> in <a href="#market">Market</a> <a href="#outcome">Outcomes</a>.</p>
 
 <h3 id="augur-api-sharetoken-allowance-p-callback">augur.api.ShareToken.allowance(p, callback)</h3>
 
@@ -8534,7 +8534,7 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
 
 <h3 id="augur-api-universe-iscontainerforsharetoken-p-callback">augur.api.Universe.isContainerForShareToken(p, callback)</h3>
 
-<p>Returns whether the specific <a href="#universe">Universe</a> is a container for a given Share Token. (<a href="#share">Shares</a> are represented within Augur&rsquo;s smart contracts as <a href="https://github.com/ethereum/EIPs/blob/master/EIPS/eip-20-token-standard.md">ERC-20</a> tokens called Share Tokens.)</p>
+<p>Returns whether the specific <a href="#universe">Universe</a> is a container for a given Share Token. (<a href="#share">Shares</a> are represented within Augur&rsquo;s smart contracts as <a href="https://eips.ethereum.org/EIPS/eip-20">ERC-20</a> tokens called Share Tokens.)</p>
 
 <h4 id="strong-strong"><strong>Parameters:</strong></h4>
 
@@ -10994,7 +10994,7 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
 </code></pre></div>
 <p>Provides JavaScript bindings for the <a href="https://github.com/AugurProject/augur-core/blob/master/source/contracts/reporting/ReputationToken.sol">ReputationToken Solidity Contract</a>, which handles the approval, migration, and transfering of <a href="#rep">Reputation Tokens</a>.</p>
 
-<p>The Reputation Token, or REP, is an ERC-20 token that implements all of the required functions listed in the <a href="https://github.com/ethereum/EIPs/blob/master/EIPS/eip-20-token-standard.md">ERC-20 Token Standard</a>. It does not, however, implement the optional functions.</p>
+<p>The Reputation Token, or REP, is an ERC-20 token that implements all of the required functions listed in the <a href="https://eips.ethereum.org/EIPS/eip-20">ERC-20 Token Standard</a>. It does not, however, implement the optional functions.</p>
 
 <h3 id="augur-api-reputationtoken-approve-p">augur.api.ReputationToken.approve(p)</h3>
 
@@ -11437,7 +11437,7 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
 </code></pre></div>
 <p>Provides JavaScript bindings for the <a href="https://github.com/AugurProject/augur-core/blob/master/source/contracts/trading/ShareToken.sol">ShareToken Solidity Code</a>, which handles the approval and transferring of <a href="#share">Shares</a> in Augur. </p>
 
-<p>The Share Token is an ERC-20 token that implements all of the required functions listed in the <a href="https://github.com/ethereum/EIPs/blob/master/EIPS/eip-20-token-standard.md">ERC-20 Token Standard</a>. It does not, however, implement the optional functions. Within Augur, it represents <a href="#share">Shares</a> in <a href="#market">Market</a> <a href="#outcome">Outcomes</a>.</p>
+<p>The Share Token is an ERC-20 token that implements all of the required functions listed in the <a href="https://eips.ethereum.org/EIPS/eip-20">ERC-20 Token Standard</a>. It does not, however, implement the optional functions. Within Augur, it represents <a href="#share">Shares</a> in <a href="#market">Market</a> <a href="#outcome">Outcomes</a>.</p>
 
 <h3 id="augur-api-sharetoken-approve-p">augur.api.ShareToken.approve(p)</h3>
 

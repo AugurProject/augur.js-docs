@@ -808,7 +808,7 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
 </code></pre></div>
 <h3 id="augur-accounts-approveaugur-p">augur.accounts.approveAugur(p)</h3>
 
-<p>Internally, Augur uses an ERC-20 token called Cash as a wrapper for ETH. Many of Augur&rsquo;s transactions require Augur to be able to spend Cash on behalf of the account executing the transaction. However, the account must first approve Augur to spend that amount of Cash on its behalf. This function calls the function <code class="prettyprint">augur.api.Cash.approve</code> to approve Augur to spend up to <code class="prettyprint">augur.constants.ETERNAL_APPROVAL_VALUE</code> Cash on behalf of the account. <code class="prettyprint">augur.constants.ETERNAL_APPROVAL_VALUE</code> is equal to 2^256 - 1, or the maximum amount of Cash that can be approved. This value is used so that <code class="prettyprint">augur.api.Cash.approve</code> does not have to be called multiple times in order to execute multiple transactions.</p>
+<p>Internally, Augur uses an <a href="https://eips.ethereum.org/EIPS/eip-20">ERC-20</a>/<a href="https://eips.ethereum.org/EIPS/eip-777">ERC-777</a> token called Cash as a wrapper for ETH. Many of Augur&rsquo;s transactions require Augur to be able to spend Cash on behalf of the account executing the transaction. However, the account must first approve Augur to spend that amount of Cash on its behalf. This function calls the function <code class="prettyprint">augur.api.Cash.approve</code> to approve Augur to spend up to <code class="prettyprint">augur.constants.ETERNAL_APPROVAL_VALUE</code> Cash on behalf of the account. <code class="prettyprint">augur.constants.ETERNAL_APPROVAL_VALUE</code> is equal to 2^256 - 1, or the maximum amount of Cash that can be approved. This value is used so that <code class="prettyprint">augur.api.Cash.approve</code> does not have to be called multiple times in order to execute multiple transactions.</p>
 
 <h4 id="strong-strong"><strong>Parameters:</strong></h4>
 
@@ -4412,6 +4412,14 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
 <span class="c1">// example output:</span>
 <span class="kc">true</span>
 
+<span class="nx">augur</span><span class="p">.</span><span class="nx">api</span><span class="p">.</span><span class="nx">Augur</span><span class="p">.</span><span class="nx">isKnownFeeSender</span><span class="p">({</span> 
+  <span class="na">_feeSender</span><span class="p">:</span> <span class="s2">"0x22d6eaefcfaf7ea1e17c4768a554d57800699ecc"</span>
+<span class="p">},</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">error</span><span class="p">,</span> <span class="nx">isKnownFeeSender</span><span class="p">)</span> <span class="p">{</span> 
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">isKnownFeeSender</span><span class="p">);</span> 
+<span class="p">});</span>
+<span class="c1">// example output:</span>
+<span class="kc">true</span>
+
 <span class="nx">augur</span><span class="p">.</span><span class="nx">api</span><span class="p">.</span><span class="nx">Augur</span><span class="p">.</span><span class="nx">isKnownShareToken</span><span class="p">({</span> 
   <span class="na">_token</span><span class="p">:</span> <span class="s2">"0x4446eaefcfaf7ea1e17c4768a554d57800699777"</span>
 <span class="p">},</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">error</span><span class="p">,</span> <span class="nx">isKnownCrowdsourcer</span><span class="p">)</span> <span class="p">{</span> 
@@ -4474,6 +4482,27 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
 
 <ul>
 <li>(boolean) <code class="prettyprint">true</code> if the specified Crowdsourcer is in Augur&rsquo;s list of known Crowdsoucers, or <code class="prettyprint">false</code> otherwise.</li>
+</ul>
+
+<h3 id="augur-api-augur-isknownfeesender-p-callback">augur.api.Augur.isKnownFeeSender(p, callback)</h3>
+
+<p>Augur internally keeps track of which smart contracts are allowed to send <a href="#reporting-fee">Reporting Fees</a> to be distributed to <a href="#reporter">Reporters</a>. (These contracts are CompleteSets, ClaimTradingProceeds, and the Market contract for each Market.) This function returns whether the specified contract address is one of these contracts.</p>
+
+<h4 id="strong-strong"><strong>Parameters:</strong></h4>
+
+<ul>
+<li><strong><code class="prettyprint">p</code></strong> (Object) Parameters object.<br>
+
+<ul>
+<li><strong><code class="prettyprint">p._feeSender</code></strong> (string) Fee Sender contract address, as a 20-byte hexadecimal value.</li>
+</ul></li>
+<li><strong><code class="prettyprint">callback</code></strong> (function) &lt;optional&gt; Called after the function&rsquo;s result has been retrieved.</li>
+</ul>
+
+<h4 id="strong-strong"><strong>Returns:</strong></h4>
+
+<ul>
+<li>(boolean) <code class="prettyprint">true</code> if the specified contract address is a known fee sender contract, or <code class="prettyprint">false</code> otherwise.</li>
 </ul>
 
 <h3 id="augur-api-augur-isknownsharetoken-p-callback">augur.api.Augur.isKnownShareToken(p, callback)</h3>
@@ -4555,7 +4584,7 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
 <span class="c1">// example output:</span>
 <span class="s2">"115792089237316195423570985008687907853269984665640564039457584007913129639935"</span>
 </code></pre></div>
-<p>Provides JavaScript bindings for the <a href="https://github.com/AugurProject/augur/blob/master/packages/augur-core/source/contracts/trading/Cash.sol">Cash Solidity Contract</a>, which is used internally by Augur as an ERC-20 wrapper for ETH.</p>
+<p>Provides JavaScript bindings for the <a href="https://github.com/AugurProject/augur/blob/master/packages/augur-core/source/contracts/Cash.sol">Cash Solidity Contract</a>, which is used internally by Augur as an <a href="https://eips.ethereum.org/EIPS/eip-20">ERC-20</a> and <a href="https://eips.ethereum.org/EIPS/eip-777">ERC-777</a> wrapper for ETH.</p>
 
 <h3 id="augur-api-cash-allowance-p-callback">augur.api.Cash.allowance(p, callback)</h3>
 
@@ -5829,14 +5858,6 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
 <span class="c1">// example output:</span>
 <span class="s2">"0xaad0cc6b4e89303e451c9b852827b5791667fddd"</span>
 
-<span class="nx">augur</span><span class="p">.</span><span class="nx">api</span><span class="p">.</span><span class="nx">Market</span><span class="p">.</span><span class="nx">getMarketCreatorMailbox</span><span class="p">({</span> 
-  <span class="na">tx</span><span class="p">:</span> <span class="p">{</span> <span class="na">to</span><span class="p">:</span> <span class="nx">market</span> <span class="p">}</span> 
-<span class="p">},</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">error</span><span class="p">,</span> <span class="nx">marketCreatorMailbox</span><span class="p">)</span> <span class="p">{</span> 
-  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">marketCreatorMailbox</span><span class="p">);</span> 
-<span class="p">});</span>
-<span class="c1">// example output:</span>
-<span class="s2">"0xeabdeaefcfaf7ea1e17c4768a554d5780069eabd"</span>
-
 <span class="nx">augur</span><span class="p">.</span><span class="nx">api</span><span class="p">.</span><span class="nx">Market</span><span class="p">.</span><span class="nx">getMarketCreatorSettlementFeeDivisor</span><span class="p">({</span> 
   <span class="na">tx</span><span class="p">:</span> <span class="p">{</span> <span class="na">to</span><span class="p">:</span> <span class="nx">market</span> <span class="p">}</span> 
 <span class="p">},</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">error</span><span class="p">,</span> <span class="nx">marketCreatorSettlementFee</span><span class="p">)</span> <span class="p">{</span> 
@@ -6115,7 +6136,7 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
 
 <h3 id="augur-api-market-getdenominationtoken-p-callback">augur.api.Market.getDenominationToken(p, callback)</h3>
 
-<p>Returns the Ethereum contract address of the token used to denominate the specified <a href="#market">Market</a>. A Denomination Token is the <a href="https://github.com/ethereum/EIPs/blob/master/EIPS/eip-20-token-standard.md">ERC-20 Token</a> used as the currency to trade on the <a href="#outcome">Outcome</a> of a <a href="#market">Market</a>. Currently, this function will always return the address of a <a href="https://github.com/AugurProject/augur/blob/master/packages/augur-core/source/contracts/trading/Cash.sol">Cash</a> contract; however, Augur will eventually support other types of Denomination Tokens.</p>
+<p>Returns the Ethereum contract address of the token used to denominate the specified <a href="#market">Market</a>. A Denomination Token is the <a href="https://eips.ethereum.org/EIPS/eip-20">ERC-20 Token</a>/<a href="https://eips.ethereum.org/EIPS/eip-777">ERC-777 Token</a> used as the currency to trade on the <a href="#outcome">Outcome</a> of a <a href="#market">Market</a>. Currently, this function will always return the address of a <a href="https://github.com/AugurProject/augur/blob/master/packages/augur-core/source/contracts/Cash.sol">Cash</a> contract; however, Augur will eventually support other types of Denomination Tokens.</p>
 
 <h4 id="strong-strong"><strong>Parameters:</strong></h4>
 
@@ -6336,31 +6357,6 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
 
 <ul>
 <li>(string) Ethereum address of the Market&rsquo;s InitialReporter contract, as a 20-byte hexadecimal string.</li>
-</ul>
-
-<h3 id="augur-api-market-getmarketcreatormailbox-p-callback">augur.api.Market.getMarketCreatorMailbox(p, callback)</h3>
-
-<p>Returns the Ethereum address of the <a href="#market-creator-mailbox">Market Creator Mailbox</a> for the specified Market. <a href="#market-creator">Market Creators</a> can use this address to collect their fees.</p>
-
-<h4 id="strong-strong"><strong>Parameters:</strong></h4>
-
-<ul>
-<li><strong><code class="prettyprint">p</code></strong> (Object) Parameters object.<br>
-
-<ul>
-<li><strong><code class="prettyprint">p.tx</code></strong> (Object) Object containing details about how this function call should be made.
-
-<ul>
-<li><strong><code class="prettyprint">p.tx.to</code></strong> (string) Ethereum contract address of the Market contract on which to call this function, as a 20-byte hexadecimal string.</li>
-</ul></li>
-</ul></li>
-<li><strong><code class="prettyprint">callback</code></strong> (function) &lt;optional&gt; Called after the function&rsquo;s result has been retrieved.</li>
-</ul>
-
-<h4 id="strong-strong"><strong>Returns:</strong></h4>
-
-<ul>
-<li>(string) Ethereum address of the Market Creator Mailbox for the Market, as a 20-byte hexadecimal string.</li>
 </ul>
 
 <h3 id="augur-api-market-getmarketcreatorsettlementfeedivisor-p-callback">augur.api.Market.getMarketCreatorSettlementFeeDivisor(p, callback)</h3>
@@ -7456,7 +7452,7 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
 </code></pre></div>
 <p>Provides JavaScript bindings for the <a href="https://github.com/AugurProject/augur/blob/master/packages/augur-core/source/contracts/reporting/ReputationToken.sol">ReputationToken Solidity Contract</a>, which handles the approval, migration, and transfering of <a href="#rep">Reputation Tokens</a>. </p>
 
-<p>The Reputation Token, or REP, is an ERC-20 token that implements all of the required functions listed in the <a href="https://github.com/ethereum/EIPs/blob/master/EIPS/eip-20-token-standard.md">ERC-20 Token Standard</a>. It does not, however, implement the optional functions.</p>
+<p>The Reputation Token, or REP, is an ERC-20 token that implements all of the required functions listed in the <a href="https://eips.ethereum.org/EIPS/eip-20">ERC-20 Token Standard</a>. It does not, however, implement the optional functions. It also implements the <a href="https://eips.ethereum.org/EIPS/eip-777">ERC-777 Token Standard</a>.</p>
 
 <h3 id="augur-api-reputationtoken-allowance-p-callback">augur.api.ReputationToken.allowance(p, callback)</h3>
 
@@ -7595,7 +7591,7 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
 </code></pre></div>
 <p>Provides JavaScript bindings for the <a href="https://github.com/AugurProject/augur/blob/master/packages/augur-core/source/contracts/trading/ShareToken.sol">ShareToken Solidity Code</a>, which handles the approval and transferring of <a href="#share">Shares</a> in Augur. </p>
 
-<p>The Share Token is an ERC-20 token that implements all of the required functions listed in the <a href="https://github.com/ethereum/EIPs/blob/master/EIPS/eip-20-token-standard.md">ERC-20 Token Standard</a>. It does not, however, implement the optional functions. Within Augur, it represents <a href="#share">Shares</a> in <a href="#market">Market</a> <a href="#outcome">Outcomes</a>.</p>
+<p>The Share Token is an ERC-20 token that implements all of the required functions listed in the <a href="https://eips.ethereum.org/EIPS/eip-20">ERC-20 Token Standard</a>. It does not, however, implement the optional functions. It also implements the <a href="https://eips.ethereum.org/EIPS/eip-777">ERC-777 Token Standard</a>. Within Augur, it represents <a href="#share">Shares</a> in <a href="#market">Market</a> <a href="#outcome">Outcomes</a>.</p>
 
 <h3 id="augur-api-sharetoken-allowance-p-callback">augur.api.ShareToken.allowance(p, callback)</h3>
 
@@ -8485,7 +8481,7 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
 
 <h3 id="augur-api-universe-iscontainerforsharetoken-p-callback">augur.api.Universe.isContainerForShareToken(p, callback)</h3>
 
-<p>Returns whether the specific <a href="#universe">Universe</a> is a container for a given Share Token. (<a href="#share">Shares</a> are represented within Augur&rsquo;s smart contracts as <a href="https://github.com/ethereum/EIPs/blob/master/EIPS/eip-20-token-standard.md">ERC-20</a> tokens called Share Tokens.)</p>
+<p>Returns whether the specific <a href="#universe">Universe</a> is a container for a given Share Token. (<a href="#share">Shares</a> are represented within Augur&rsquo;s smart contracts as <a href="https://eips.ethereum.org/EIPS/eip-20">ERC-20</a>/<a href="https://eips.ethereum.org/EIPS/eip-777">ERC-777</a> tokens called Share Tokens.)</p>
 
 <h4 id="strong-strong"><strong>Parameters:</strong></h4>
 
@@ -8563,7 +8559,7 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
           <h1 id="transaction-api">Transaction API</h1>
 <div class="highlight"><pre class="highlight javascript"><code><span class="c1">// Transaction API example:</span>
 
-<span class="c1">// Internally, Augur uses an ERC-20 token called Cash as a wrapper for ETH. </span>
+<span class="c1">// Internally, Augur uses an ERC-20/ERC-777 token called Cash as a wrapper for ETH. </span>
 <span class="c1">// Many of Augur's transactions require the Augur.sol contract to be able </span>
 <span class="c1">// to spend Cash on behalf of the account executing the transaction. </span>
 <span class="c1">// However, the account must first approve Augur to spend that amount of </span>
@@ -8669,9 +8665,9 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
 
 <p>Fires if the transaction is unsuccessful. <code class="prettyprint">failedResponse</code> has <code class="prettyprint">error</code> (error code) and <code class="prettyprint">message</code> (error description) fields, describing the way in which the transaction failed.</p>
 
-<h3 id="approving-augur-39-s-erc-20-tokens">Approving Augur&rsquo;s ERC-20 Tokens</h3>
+<h3 id="approving-augur-39-s-erc-20-erc-777-tokens">Approving Augur&rsquo;s ERC-20/ERC-777 Tokens</h3>
 
-<p>Developers will need to grant the Augur.sol contract approval to spend <a href="#cash">Cash</a> (which is an <a href="https://en.wikipedia.org/wiki/ERC20">ERC-20</a> wrapper for ETH) before many of the Transaction API functions can be called. This can be done by calling the <code class="prettyprint">augur.api.Cash.approve</code> function, as shown to the right. <b>Attempting to call many of Augur&rsquo;s Transaction API functions without doing this first will result in these transactions failing.</b></p>
+<p>Developers will need to grant the Augur.sol contract approval to spend <a href="#cash">Cash</a> (which is an <a href="https://eips.ethereum.org/EIPS/eip-20">ERC-20</a>/<a href="https://eips.ethereum.org/EIPS/eip-777">ERC-777</a> wrapper for ETH) before many of the Transaction API functions can be called. This can be done by calling the <code class="prettyprint">augur.api.Cash.approve</code> function, as shown to the right. <b>Attempting to call many of Augur&rsquo;s Transaction API functions without doing this first will result in these transactions failing.</b></p>
 
 <h3 id="transaction-return-values">Transaction Return Values</h3>
 
@@ -8862,6 +8858,23 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
   <span class="na">onSuccess</span><span class="p">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">result</span><span class="p">)</span> <span class="p">{</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">result</span><span class="p">);</span> <span class="p">},</span>
   <span class="na">onFailed</span><span class="p">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">result</span><span class="p">)</span> <span class="p">{</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">result</span><span class="p">);</span> <span class="p">}</span>
 <span class="p">});</span>
+
+<span class="kd">var</span> <span class="nx">_orderIds</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"0x7ca90ca9118db456d87e3d743b97782a857200b55039f7ffe8de94e5d920f870"</span><span class="p">,</span> <span class="s2">"0x89790ca9118db456d87e3d743b97782a857200b55039f7ffe8de94e5d920f999"</span><span class="p">];</span>
+<span class="nx">augur</span><span class="p">.</span><span class="nx">api</span><span class="p">.</span><span class="nx">CancelOrder</span><span class="p">.</span><span class="nx">cancelOrders</span><span class="p">({</span>
+  <span class="na">_orderIds</span><span class="p">:</span> <span class="nx">_orderIds</span><span class="p">,</span>
+  <span class="na">tx</span><span class="p">:</span> <span class="p">{</span> 
+    <span class="na">to</span><span class="p">:</span> <span class="nx">cancelOrderAddress</span><span class="p">,</span>
+    <span class="na">gas</span><span class="p">:</span> <span class="s2">"0x632ea0"</span> 
+  <span class="p">},</span>
+  <span class="na">meta</span><span class="p">:</span> <span class="p">{</span>
+    <span class="na">accountType</span><span class="p">:</span> <span class="s2">"privateKey"</span><span class="p">,</span>
+    <span class="na">address</span><span class="p">:</span> <span class="s2">"0x913dA4198E6bE1D5f5E4a40D0667f70C0B5430Ec"</span><span class="p">,</span>
+    <span class="na">signer</span><span class="p">:</span> <span class="p">[</span><span class="mi">252</span><span class="p">,</span> <span class="mi">111</span><span class="p">,</span> <span class="mi">32</span><span class="p">,</span> <span class="mi">94</span><span class="p">,</span> <span class="mi">233</span><span class="p">,</span> <span class="mi">213</span><span class="p">,</span> <span class="mi">105</span><span class="p">,</span> <span class="mi">71</span><span class="p">,</span> <span class="mi">89</span><span class="p">,</span> <span class="mi">162</span><span class="p">,</span> <span class="mi">243</span><span class="p">,</span> <span class="mi">247</span><span class="p">,</span> <span class="mi">56</span><span class="p">,</span> <span class="mi">81</span><span class="p">,</span> <span class="mi">213</span><span class="p">,</span> <span class="mi">103</span><span class="p">,</span> <span class="mi">239</span><span class="p">,</span> <span class="mi">75</span><span class="p">,</span> <span class="mi">212</span><span class="p">,</span> <span class="mi">240</span><span class="p">,</span> <span class="mi">234</span><span class="p">,</span> <span class="mi">95</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">201</span><span class="p">,</span> <span class="mi">217</span><span class="p">,</span> <span class="mi">55</span><span class="p">,</span> <span class="mi">225</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">85</span><span class="p">,</span> <span class="mi">109</span><span class="p">,</span> <span class="mi">158</span><span class="p">,</span> <span class="mi">25</span><span class="p">],</span>
+  <span class="p">},</span>
+  <span class="na">onSent</span><span class="p">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">result</span><span class="p">)</span> <span class="p">{</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">result</span><span class="p">);</span> <span class="p">},</span>
+  <span class="na">onSuccess</span><span class="p">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">result</span><span class="p">)</span> <span class="p">{</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">result</span><span class="p">);</span> <span class="p">},</span>
+  <span class="na">onFailed</span><span class="p">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">result</span><span class="p">)</span> <span class="p">{</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">result</span><span class="p">);</span> <span class="p">}</span>
+<span class="p">});</span>
 </code></pre></div>
 <p>Provides JavaScript bindings for the <a href="https://github.com/AugurProject/augur/blob/master/packages/augur-core/source/contracts/trading/CancelOrder.sol">CancelOrder Solidity Contract</a>, which allows for cancellation of <a href="#order">Orders</a> on the <a href="#order-book">Order Book</a>.</p>
 
@@ -8882,7 +8895,44 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
 <li><strong><code class="prettyprint">p</code></strong> (Object) Parameters object.<br>
 
 <ul>
-<li><strong><code class="prettyprint">p._orderId</code></strong> (string) ID of the Order to cancel, as a 32-byte hexadecimal value. (To get the order ID for a specific order, call the function <code class="prettyprint">augur.api.Order.getOrderId</code>.)</li>
+<li><strong><code class="prettyprint">p._orderId</code></strong> (string) ID of the Order to cancel, as a 32-byte hexadecimal value. (To get the order ID for a specific Order, call the function <code class="prettyprint">augur.api.Order.getOrderId</code>.)</li>
+<li><strong><code class="prettyprint">p.tx</code></strong> (Object) Object containing details about how this transaction should be made.
+
+<ul>
+<li><strong><code class="prettyprint">p.tx.to</code></strong> (string) Ethereum contract address on which to call this function, as a 20-byte hexadecimal string.</li>
+<li><strong><code class="prettyprint">p.tx.gas</code></strong> (string) Gas limit to use when submitting this transaction, as a hexadecimal string.</li>
+</ul></li>
+<li><strong><code class="prettyprint">p.meta</code></strong>  (<a href="#Meta">Meta</a>) &lt;optional&gt; Authentication metadata for raw transactions.</li>
+<li><strong><code class="prettyprint">p.onSent</code></strong>  (function) Callback function that executes once the transaction has been sent.</li>
+<li><strong><code class="prettyprint">p.onSuccess</code></strong>  (function) &lt;optional&gt; Callback function that executes if the transaction returned successfully.</li>
+<li><strong><code class="prettyprint">p.onFailed</code></strong>  (function) &lt;optional&gt; Callback function that executes if the transaction failed.</li>
+</ul></li>
+</ul>
+
+<h4 id="strong-strong"><strong>Returns:</strong></h4>
+
+<ul>
+<li>Return value cannot be obtained because Ethereum nodes <a href="#transaction-return-values">discard</a> transaction return values.</li>
+</ul>
+
+<h3 id="augur-api-cancelorder-cancelorders-p">augur.api.CancelOrder.cancelOrders(p)</h3>
+
+<p>Cancels and refunds a existing <a href="#order">Orders</a> on the <a href="#order-book">Order Book</a> with IDs <code class="prettyprint">p._orderIds</code>. This transaction will trigger <a href="#OrderCanceled"><code class="prettyprint">OrderCanceled</code></a> events.</p>
+
+<p>This function will fail if:</p>
+
+<ul>
+<li><code class="prettyprint">msg.sender</code> isn&rsquo;t the owner of an Order.</li>
+<li>An Order in <code class="prettyprint">p._orderIds</code> is undefined.</li>
+</ul>
+
+<h4 id="strong-strong"><strong>Parameters:</strong></h4>
+
+<ul>
+<li><strong><code class="prettyprint">p</code></strong> (Object) Parameters object.<br>
+
+<ul>
+<li><strong><code class="prettyprint">p._orderIds</code></strong> (string) IDs of the Orders to cancel, as an array of 32-byte hexadecimal values. (To get the order ID for a specific Order, call the function <code class="prettyprint">augur.api.Order.getOrderId</code>.)</li>
 <li><strong><code class="prettyprint">p.tx</code></strong> (Object) Object containing details about how this transaction should be made.
 
 <ul>
@@ -8986,7 +9036,7 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
   <span class="na">onFailed</span><span class="p">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">result</span><span class="p">)</span> <span class="p">{</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">result</span><span class="p">);</span> <span class="p">}</span>
 <span class="p">});</span>
 </code></pre></div>
-<p>Provides JavaScript bindings for the <a href="https://github.com/AugurProject/augur/tree/master/packages/augur-core/source/contracts/trading/Cash.sol">Cash Solidity Contract</a>, which is used internally by Augur as an ERC-20 wrapper for ETH.</p>
+<p>Provides JavaScript bindings for the <a href="https://github.com/AugurProject/augur/blob/master/packages/augur-core/source/contracts/Cash.sol">Cash Solidity Contract</a>, which is used internally by Augur as an <a href="https://eips.ethereum.org/EIPS/eip-20">ERC-20</a>/<a href="https://eips.ethereum.org/EIPS/eip-777">ERC-777</a> wrapper for ETH.</p>
 
 <h3 id="augur-api-cash-approve-p">augur.api.Cash.approve(p)</h3>
 
@@ -9479,6 +9529,27 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
   <span class="na">onSuccess</span><span class="p">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">result</span><span class="p">)</span> <span class="p">{</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">result</span><span class="p">);</span> <span class="p">},</span>
   <span class="na">onFailed</span><span class="p">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">result</span><span class="p">)</span> <span class="p">{</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">result</span><span class="p">);</span> <span class="p">}</span>
 <span class="p">});</span>
+
+<span class="nx">augur</span><span class="p">.</span><span class="nx">api</span><span class="p">.</span><span class="nx">CreateOrder</span><span class="p">.</span><span class="nx">publicCreateOrders</span><span class="p">({</span>
+  <span class="na">_outcomes</span><span class="p">:</span> <span class="p">[</span><span class="s2">"0x0"</span><span class="p">,</span> <span class="s2">"0x0"</span><span class="p">],</span>
+  <span class="na">_types</span><span class="p">:</span> <span class="p">[</span><span class="s2">"0x0"</span><span class="p">,</span> <span class="s2">"0x0"</span><span class="p">],</span>
+  <span class="na">_attoshareAmounts</span><span class="p">:</span> <span class="p">[</span><span class="s2">"0x5af3107a4000"</span><span class="p">,</span> <span class="s2">"0x5af3107a4000"</span><span class="p">],</span>
+  <span class="na">_prices</span><span class="p">:</span> <span class="p">[</span><span class="s2">"0x64"</span><span class="p">,</span> <span class="s2">"0x65"</span><span class="p">],</span>
+  <span class="na">_market</span><span class="p">:</span> <span class="s2">"0xc4ba20cbafe3a3655a2f2e4df4ac7f942a722017"</span><span class="p">,</span>
+  <span class="na">_ignoreShares</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+  <span class="na">_tradeGroupId</span><span class="p">:</span> <span class="s2">"0x0000000000000000000000000000000000000000000000000000000000000000"</span><span class="p">,</span>
+  <span class="na">tx</span><span class="p">:</span> <span class="p">{</span> 
+    <span class="na">to</span><span class="p">:</span> <span class="nx">createOrderAddress</span><span class="p">,</span>
+  <span class="p">},</span>
+  <span class="na">meta</span><span class="p">:</span> <span class="p">{</span>
+    <span class="na">accountType</span><span class="p">:</span> <span class="s2">"privateKey"</span><span class="p">,</span>
+    <span class="na">address</span><span class="p">:</span> <span class="s2">"0x913dA4198E6bE1D5f5E4a40D0667f70C0B5430Ec"</span><span class="p">,</span>
+    <span class="na">signer</span><span class="p">:</span> <span class="p">[</span><span class="mi">252</span><span class="p">,</span> <span class="mi">111</span><span class="p">,</span> <span class="mi">32</span><span class="p">,</span> <span class="mi">94</span><span class="p">,</span> <span class="mi">233</span><span class="p">,</span> <span class="mi">213</span><span class="p">,</span> <span class="mi">105</span><span class="p">,</span> <span class="mi">71</span><span class="p">,</span> <span class="mi">89</span><span class="p">,</span> <span class="mi">162</span><span class="p">,</span> <span class="mi">243</span><span class="p">,</span> <span class="mi">247</span><span class="p">,</span> <span class="mi">56</span><span class="p">,</span> <span class="mi">81</span><span class="p">,</span> <span class="mi">213</span><span class="p">,</span> <span class="mi">103</span><span class="p">,</span> <span class="mi">239</span><span class="p">,</span> <span class="mi">75</span><span class="p">,</span> <span class="mi">212</span><span class="p">,</span> <span class="mi">240</span><span class="p">,</span> <span class="mi">234</span><span class="p">,</span> <span class="mi">95</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">201</span><span class="p">,</span> <span class="mi">217</span><span class="p">,</span> <span class="mi">55</span><span class="p">,</span> <span class="mi">225</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">85</span><span class="p">,</span> <span class="mi">109</span><span class="p">,</span> <span class="mi">158</span><span class="p">,</span> <span class="mi">25</span><span class="p">],</span>
+  <span class="p">},</span>
+  <span class="na">onSent</span><span class="p">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">result</span><span class="p">)</span> <span class="p">{</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">result</span><span class="p">);</span> <span class="p">},</span>
+  <span class="na">onSuccess</span><span class="p">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">result</span><span class="p">)</span> <span class="p">{</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">result</span><span class="p">);</span> <span class="p">},</span>
+  <span class="na">onFailed</span><span class="p">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">result</span><span class="p">)</span> <span class="p">{</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">result</span><span class="p">);</span> <span class="p">}</span>
+<span class="p">});</span>
 </code></pre></div>
 <p>Provides JavaScript bindings for the <a href="https://github.com/AugurProject/augur/tree/master/packages/augur-core/source/contracts/trading/CreateOrder.sol">CreateOrder Solidity Contract</a>, which enables new <a href="#order">Orders</a> to be created.</p>
 
@@ -9492,8 +9563,8 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
 <li><code class="prettyprint">p._type</code> is not a valid value of 0 or 1.</li>
 <li><code class="prettyprint">p._attoshares</code> is less than 0.</li>
 <li><code class="prettyprint">p._market</code> is undefined.</li>
-<li><code class="prettyprint">p._outcome</code> is less than 0 or greater than the total number of Outcomes for <code class="prettyprint">p._market</code>.</li>
-<li><code class="prettyprint">p._price</code> is below the <code class="prettyprint">p._market</code>&rsquo;s <a href="#minimum-display-price">Minimum Display Price</a> or above the <code class="prettyprint">market</code>&rsquo;s <a href="#maximum-display-price">Maximum Display Price</a>.</li>
+<li><code class="prettyprint">p._outcome</code> is less than 0 or greater than the total number of <a href="#outcome">Outcomes</a> for <code class="prettyprint">p._market</code>.</li>
+<li><code class="prettyprint">p._price</code> is below <code class="prettyprint">p._market</code>&rsquo;s <a href="#minimum-display-price">Minimum Display Price</a> or above <code class="prettyprint">p.market</code>&rsquo;s <a href="#maximum-display-price">Maximum Display Price</a>.</li>
 </ul>
 
 <h4 id="strong-strong"><strong>Parameters:</strong></h4>
@@ -9504,13 +9575,61 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
 <ul>
 <li><strong><code class="prettyprint">p._type</code></strong> (string) Type of Order to create, as a hexadecimal string (&ldquo;0x0&rdquo; for a <a href="#bid-order">Bid Order</a>, &ldquo;0x1&rdquo; for an <a href="#ask-order">Ask Order</a>).</li>
 <li><strong><code class="prettyprint">p._attoshares</code></strong> (string) Number of <a href="#share-unit">Share Units</a> to buy or sell, as a hexadecimal string.</li>
-<li><strong><code class="prettyprint">p._price</code></strong> (string) Desired price at which to purchase Shares, in <a href="#atto-prefix">attoETH</a>.</li>
+<li><strong><code class="prettyprint">p._price</code></strong> (string) Desired price at which to purchase <a href="#share">Shares</a>, in <a href="#atto-prefix">attoETH</a>.</li>
 <li><strong><code class="prettyprint">p._market</code></strong> (string) Market contract address in which to place the Order, as a 20-byte hexadecimal value.</li>
 <li><strong><code class="prettyprint">p._outcome</code></strong> (string) Outcome for which to place the Order, as a hexadecimal string.</li>
 <li><strong><code class="prettyprint">p._betterOrderId</code></strong> (string) Order ID of an existing Order on the Order Book with the next-best price with respect to the Order this transaction is intending to create, as a 32-byte hexadecimal value. The Order ID for <code class="prettyprint">p._betterOrderId</code> can be obtained by calling <code class="prettyprint">augur.trading.getBetterWorseOrders</code>.</li>
 <li><strong><code class="prettyprint">p._worseOrderId</code></strong> (string) Order ID of an existing Order on the Order Book with the next-worse price with respect to the Order this transaction is intending to create, as a 32-byte hexadecimal value. The Order ID for <code class="prettyprint">p._worseOrderId</code> can be obtained by calling <code class="prettyprint">augur.trading.getBetterWorseOrders</code>.</li>
 <li><strong><code class="prettyprint">p._tradeGroupId</code></strong> (string) &lt;optional&gt; ID used by the Augur UI to group transactions, as a 32-byte hexadecimal value.</li>
-<li><strong><code class="prettyprint">p._ignoreShares</code></strong> (boolean) Whether to ignore the creator&rsquo;s owned Shares when creating the Order.</li>
+<li><strong><code class="prettyprint">p._ignoreShares</code></strong> (boolean) Whether to ignore the <a href="#market-creator">Creator&rsquo;s</a> owned Shares when creating the Order.</li>
+<li><strong><code class="prettyprint">p.tx</code></strong> (Object) Object containing details about how this transaction should be made.
+
+<ul>
+<li><strong><code class="prettyprint">p.tx.to</code></strong> (string) Ethereum contract address on which to call this function, as a 20-byte hexadecimal string.</li>
+<li><strong><code class="prettyprint">p.tx.gas</code></strong> (string) Gas limit to use when submitting this transaction, as a hexadecimal string.</li>
+</ul></li>
+<li><strong><code class="prettyprint">p.meta</code></strong>  (<a href="#Meta">Meta</a>) &lt;optional&gt; Authentication metadata for raw transactions.</li>
+<li><strong><code class="prettyprint">p.onSent</code></strong>  (function) Callback function that executes once the transaction has been sent.</li>
+<li><strong><code class="prettyprint">p.onSuccess</code></strong>  (function) &lt;optional&gt; Callback function that executes if the transaction returned successfully.</li>
+<li><strong><code class="prettyprint">p.onFailed</code></strong>  (function) &lt;optional&gt; Callback function that executes if the transaction failed.</li>
+</ul></li>
+</ul>
+
+<h4 id="strong-strong"><strong>Returns:</strong></h4>
+
+<ul>
+<li>Return value cannot be obtained because Ethereum nodes <a href="#transaction-return-values">discard</a> transaction return values.</li>
+</ul>
+
+<h3 id="augur-api-createorder-publiccreateorders-p">augur.api.CreateOrder.publicCreateOrders(p)</h3>
+
+<p>Creates new <a href="#bid-order">Bid Orders</a> or <a href="#ask-order">Ask Orders</a> on the <a href="#order-book">Order Book</a>. This transaction will trigger <a href="#OrderCreated"><code class="prettyprint">OrderCreated</code></a> events.</p>
+
+<p>This transaction will fail if:</p>
+
+<p>uint256[] _outcomes, Order.Types[] _types, uint256[] _attoshareAmounts, uint256[] _prices, IMarket _market, bool _ignoreShares, bytes32 _tradeGroupId</p>
+
+<ul>
+<li>A value in <code class="prettyprint">p._outcomes</code> is less than 0 or greater than the total number of Outcomes for <code class="prettyprint">p._market</code>.</li>
+<li>A value in <code class="prettyprint">p._types</code> is not a valid value of 0 or 1.</li>
+<li>A value in <code class="prettyprint">p._attoshareAmounts</code> is less than 0.</li>
+<li>A value in <code class="prettyprint">p._prices</code> is below <code class="prettyprint">p._market</code>&rsquo;s <a href="#minimum-display-price">Minimum Display Price</a> or above <code class="prettyprint">p.market</code>&rsquo;s <a href="#maximum-display-price">Maximum Display Price</a>.</li>
+<li><code class="prettyprint">p._market</code> is undefined.</li>
+</ul>
+
+<h4 id="strong-strong"><strong>Parameters:</strong></h4>
+
+<ul>
+<li><strong><code class="prettyprint">p</code></strong> (Object) Parameters object.
+
+<ul>
+<li><strong><code class="prettyprint">p._outcomes</code></strong> (Array.&lt;string&gt;) Outcomes for which to place the Orders, as an array of hexadecimal strings.</li>
+<li><strong><code class="prettyprint">p._types</code></strong> (Array.&lt;string&gt;) Types of Orders to create, as an array of hexadecimal strings (&ldquo;0x0&rdquo; for a <a href="#bid-order">Bid Order</a>, &ldquo;0x1&rdquo; for an <a href="#ask-order">Ask Order</a>).</li>
+<li><strong><code class="prettyprint">p._attoshareAmounts</code></strong> (Array.&lt;string&gt;) <a href="#share-unit">Share Units</a> to buy or sell, as an array of hexadecimal strings.</li>
+<li><strong><code class="prettyprint">p._prices</code></strong> (Array.&lt;string&gt;) Desired prices at which to purchase Shares, in <a href="#atto-prefix">attoETH</a>.</li>
+<li><strong><code class="prettyprint">p._market</code></strong> (string) Market contract address in which to place the Order, as a 20-byte hexadecimal value.</li>
+<li><strong><code class="prettyprint">p._ignoreShares</code></strong> (boolean) Whether to ignore the <a href="#market-creator">Creator&rsquo;s</a> owned Shares when creating the Order.</li>
+<li><strong><code class="prettyprint">p._tradeGroupId</code></strong> (string) &lt;optional&gt; ID used by the Augur UI to group transactions, as a 32-byte hexadecimal value.</li>
 <li><strong><code class="prettyprint">p.tx</code></strong> (Object) Object containing details about how this transaction should be made.
 
 <ul>
@@ -9792,6 +9911,7 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
   <span class="na">_amountFillerWants</span><span class="p">:</span> <span class="nx">_amountFillerWants</span><span class="p">,</span>
   <span class="na">_tradeGroupId</span><span class="p">:</span> <span class="nx">_tradeGroupId</span><span class="p">,</span>
   <span class="na">_ignoreShares</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+  <span class="na">_affiliateAddress</span><span class="p">:</span> <span class="mh">0x1237f6af7b3b5fed8ca980414a97c62da2830abc</span><span class="p">,</span>
   <span class="na">tx</span><span class="p">:</span> <span class="p">{</span> 
     <span class="na">to</span><span class="p">:</span> <span class="nx">fillOrderAddress</span><span class="p">,</span>
     <span class="na">gas</span><span class="p">:</span> <span class="s2">"0x632ea0"</span> 
@@ -9810,7 +9930,7 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
 
 <h3 id="augur-api-fillorder-publicfillorder-p">augur.api.FillOrder.publicFillOrder(p)</h3>
 
-<p>Attempts to Fill <code class="prettyprint">p._amountFillerWants</code> <a href="#share-unit">Share Units</a> for <a href="#order">Order</a> <code class="prettyprint">p._orderId</code>. If <code class="prettyprint">p._amountFillerWants</code> is enough to <a href="#fill-order">Fill</a> the Order completely, the Order will be removed from the <a href="#order-book">Order Book</a>. Otherwise, it will be adjusted to only include the remaining amount after Filling the <code class="prettyprint">p._amountFillerWants</code> value that the <a href="#order-filler">Filler</a> requests. This transaction will trigger an <a href="#OrderFilled"><code class="prettyprint">OrderFilled</code></a> event if the Order is Filled without any errors.</p>
+<p>Attempts to Fill <code class="prettyprint">p._amountFillerWants</code> <a href="#share-unit">Share Units</a> for <a href="#order">Order</a> <code class="prettyprint">p._orderId</code>. If <code class="prettyprint">p._amountFillerWants</code> is enough to <a href="#fill-order">Fill</a> the Order completely, the Order will be removed from the <a href="#order-book">Order Book</a>. Otherwise, it will be adjusted to only include the remaining amount after Filling the <code class="prettyprint">p._amountFillerWants</code> value that the <a href="#order-filler">Filler</a> requests. This transaction will trigger an <a href="#OrderFilled"><code class="prettyprint">OrderFilled</code></a> event if the Order is Filled without any errors. Calling this function will also sell any <a href="#complete-set">Complete Sets</a> the <a href="#order-creator">Order Creator</a> or Filler would have otherwise ended up holding.</p>
 
 <p>This transaction will fail if:</p>
 
@@ -9829,6 +9949,7 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
 <li><strong><code class="prettyprint">p._amountFillerWants</code></strong> (string) Number of <a href="#share">Shares</a> to Fill, as a hexadecimal string.</li>
 <li><strong><code class="prettyprint">p._tradeGroupId</code></strong> (string) &lt;optional&gt; ID used by the Augur UI to group transactions, as a 32-byte hexadecimal value.</li>
 <li><strong><code class="prettyprint">p._ignoreShares</code></strong> (boolean) Whether to ignore the filler&rsquo;s owned Shares when filling the Order.</li>
+<li><strong><code class="prettyprint">p._affiliateAddress</code></strong> (string) &lt;optional&gt; Ethereum address of the <a href="#affiliate">Affiliate</a>, as a 20-byte hexadecimal value.</li>
 <li><strong><code class="prettyprint">p.tx</code></strong> (Object) Object containing details about how this transaction should be made.
 
 <ul>
@@ -10011,170 +10132,6 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
 <li>Return value cannot be obtained because Ethereum nodes <a href="#transaction-return-values">discard</a> transaction return values.</li>
 </ul>
 
-<h2 id="mailbox-tx-api">Mailbox Tx API</h2>
-<div class="highlight"><pre class="highlight javascript"><code><span class="c1">// Mailbox Transaction API Examples:</span>
-
-<span class="c1">// The Ethereum address of a Market Creator's mailbox can be obtained</span>
-<span class="c1">// by calling `augur.api.Market.getMarketCreatorMailbox`.</span>
-<span class="kd">var</span> <span class="nx">mailboxAddress</span> <span class="o">=</span> <span class="s2">"0x9368ff3e9ce1c0459b309fac6dd4e69229b91a42"</span><span class="p">;</span>
-
-<span class="nx">augur</span><span class="p">.</span><span class="nx">api</span><span class="p">.</span><span class="nx">Mailbox</span><span class="p">.</span><span class="nx">transferOwnership</span><span class="p">({</span>
-  <span class="na">_newOwner</span><span class="p">:</span> <span class="s2">"0x8fa56abe36d8dc76cf85fecb6a3026733e0a12ac"</span><span class="p">,</span>
-  <span class="na">tx</span><span class="p">:</span> <span class="p">{</span> 
-    <span class="na">to</span><span class="p">:</span> <span class="nx">mailboxAddress</span><span class="p">,</span>
-    <span class="na">gas</span><span class="p">:</span> <span class="s2">"0x632ea0"</span> 
-  <span class="p">},</span> 
-  <span class="na">meta</span><span class="p">:</span> <span class="p">{</span>
-    <span class="na">accountType</span><span class="p">:</span> <span class="s2">"privateKey"</span><span class="p">,</span>
-    <span class="na">address</span><span class="p">:</span> <span class="s2">"0x913dA4198E6bE1D5f5E4a40D0667f70C0B5430Ec"</span><span class="p">,</span>
-    <span class="na">signer</span><span class="p">:</span> <span class="p">[</span><span class="mi">252</span><span class="p">,</span> <span class="mi">111</span><span class="p">,</span> <span class="mi">32</span><span class="p">,</span> <span class="mi">94</span><span class="p">,</span> <span class="mi">233</span><span class="p">,</span> <span class="mi">213</span><span class="p">,</span> <span class="mi">105</span><span class="p">,</span> <span class="mi">71</span><span class="p">,</span> <span class="mi">89</span><span class="p">,</span> <span class="mi">162</span><span class="p">,</span> <span class="mi">243</span><span class="p">,</span> <span class="mi">247</span><span class="p">,</span> <span class="mi">56</span><span class="p">,</span> <span class="mi">81</span><span class="p">,</span> <span class="mi">213</span><span class="p">,</span> <span class="mi">103</span><span class="p">,</span> <span class="mi">239</span><span class="p">,</span> <span class="mi">75</span><span class="p">,</span> <span class="mi">212</span><span class="p">,</span> <span class="mi">240</span><span class="p">,</span> <span class="mi">234</span><span class="p">,</span> <span class="mi">95</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">201</span><span class="p">,</span> <span class="mi">217</span><span class="p">,</span> <span class="mi">55</span><span class="p">,</span> <span class="mi">225</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">85</span><span class="p">,</span> <span class="mi">109</span><span class="p">,</span> <span class="mi">158</span><span class="p">,</span> <span class="mi">25</span><span class="p">],</span>
-  <span class="p">},</span>
-  <span class="na">onSent</span><span class="p">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">result</span><span class="p">)</span> <span class="p">{</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">result</span><span class="p">);</span> <span class="p">},</span>
-  <span class="na">onSuccess</span><span class="p">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">result</span><span class="p">)</span> <span class="p">{</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">result</span><span class="p">);</span> <span class="p">},</span>
-  <span class="na">onFailed</span><span class="p">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">result</span><span class="p">)</span> <span class="p">{</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">result</span><span class="p">);</span> <span class="p">}</span>
-<span class="p">});</span>
-
-<span class="nx">augur</span><span class="p">.</span><span class="nx">api</span><span class="p">.</span><span class="nx">Mailbox</span><span class="p">.</span><span class="nx">withdrawEther</span><span class="p">({</span>
-  <span class="na">tx</span><span class="p">:</span> <span class="p">{</span> 
-    <span class="na">to</span><span class="p">:</span> <span class="nx">mailboxAddress</span><span class="p">,</span>
-    <span class="na">gas</span><span class="p">:</span> <span class="s2">"0x632ea0"</span> 
-  <span class="p">},</span> 
-  <span class="na">meta</span><span class="p">:</span> <span class="p">{</span>
-    <span class="na">accountType</span><span class="p">:</span> <span class="s2">"privateKey"</span><span class="p">,</span>
-    <span class="na">address</span><span class="p">:</span> <span class="s2">"0x913dA4198E6bE1D5f5E4a40D0667f70C0B5430Ec"</span><span class="p">,</span>
-    <span class="na">signer</span><span class="p">:</span> <span class="p">[</span><span class="mi">252</span><span class="p">,</span> <span class="mi">111</span><span class="p">,</span> <span class="mi">32</span><span class="p">,</span> <span class="mi">94</span><span class="p">,</span> <span class="mi">233</span><span class="p">,</span> <span class="mi">213</span><span class="p">,</span> <span class="mi">105</span><span class="p">,</span> <span class="mi">71</span><span class="p">,</span> <span class="mi">89</span><span class="p">,</span> <span class="mi">162</span><span class="p">,</span> <span class="mi">243</span><span class="p">,</span> <span class="mi">247</span><span class="p">,</span> <span class="mi">56</span><span class="p">,</span> <span class="mi">81</span><span class="p">,</span> <span class="mi">213</span><span class="p">,</span> <span class="mi">103</span><span class="p">,</span> <span class="mi">239</span><span class="p">,</span> <span class="mi">75</span><span class="p">,</span> <span class="mi">212</span><span class="p">,</span> <span class="mi">240</span><span class="p">,</span> <span class="mi">234</span><span class="p">,</span> <span class="mi">95</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">201</span><span class="p">,</span> <span class="mi">217</span><span class="p">,</span> <span class="mi">55</span><span class="p">,</span> <span class="mi">225</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">85</span><span class="p">,</span> <span class="mi">109</span><span class="p">,</span> <span class="mi">158</span><span class="p">,</span> <span class="mi">25</span><span class="p">],</span>
-  <span class="p">},</span>
-  <span class="na">onSent</span><span class="p">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">result</span><span class="p">)</span> <span class="p">{</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">result</span><span class="p">);</span> <span class="p">},</span>
-  <span class="na">onSuccess</span><span class="p">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">result</span><span class="p">)</span> <span class="p">{</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">result</span><span class="p">);</span> <span class="p">},</span>
-  <span class="na">onFailed</span><span class="p">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">result</span><span class="p">)</span> <span class="p">{</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">result</span><span class="p">);</span> <span class="p">}</span>
-<span class="p">});</span>
-
-<span class="kd">var</span> <span class="nx">_repTokenAddress</span> <span class="o">=</span> <span class="s2">"0x9368ff3e9ce1c0459b309fac6dd4e69229b91a42"</span><span class="p">;</span>
-<span class="nx">augur</span><span class="p">.</span><span class="nx">api</span><span class="p">.</span><span class="nx">Mailbox</span><span class="p">.</span><span class="nx">withdrawTokens</span><span class="p">({</span>
-  <span class="na">_token</span><span class="p">:</span> <span class="nx">_repTokenAddress</span><span class="p">,</span>
-  <span class="na">tx</span><span class="p">:</span> <span class="p">{</span> 
-    <span class="na">to</span><span class="p">:</span> <span class="nx">mailboxAddress</span><span class="p">,</span>
-    <span class="na">gas</span><span class="p">:</span> <span class="s2">"0x632ea0"</span> 
-  <span class="p">},</span> 
-  <span class="na">meta</span><span class="p">:</span> <span class="p">{</span>
-    <span class="na">accountType</span><span class="p">:</span> <span class="s2">"privateKey"</span><span class="p">,</span>
-    <span class="na">address</span><span class="p">:</span> <span class="s2">"0x913dA4198E6bE1D5f5E4a40D0667f70C0B5430Ec"</span><span class="p">,</span>
-    <span class="na">signer</span><span class="p">:</span> <span class="p">[</span><span class="mi">252</span><span class="p">,</span> <span class="mi">111</span><span class="p">,</span> <span class="mi">32</span><span class="p">,</span> <span class="mi">94</span><span class="p">,</span> <span class="mi">233</span><span class="p">,</span> <span class="mi">213</span><span class="p">,</span> <span class="mi">105</span><span class="p">,</span> <span class="mi">71</span><span class="p">,</span> <span class="mi">89</span><span class="p">,</span> <span class="mi">162</span><span class="p">,</span> <span class="mi">243</span><span class="p">,</span> <span class="mi">247</span><span class="p">,</span> <span class="mi">56</span><span class="p">,</span> <span class="mi">81</span><span class="p">,</span> <span class="mi">213</span><span class="p">,</span> <span class="mi">103</span><span class="p">,</span> <span class="mi">239</span><span class="p">,</span> <span class="mi">75</span><span class="p">,</span> <span class="mi">212</span><span class="p">,</span> <span class="mi">240</span><span class="p">,</span> <span class="mi">234</span><span class="p">,</span> <span class="mi">95</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">201</span><span class="p">,</span> <span class="mi">217</span><span class="p">,</span> <span class="mi">55</span><span class="p">,</span> <span class="mi">225</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">85</span><span class="p">,</span> <span class="mi">109</span><span class="p">,</span> <span class="mi">158</span><span class="p">,</span> <span class="mi">25</span><span class="p">],</span>
-  <span class="p">},</span>
-  <span class="na">onSent</span><span class="p">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">result</span><span class="p">)</span> <span class="p">{</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">result</span><span class="p">);</span> <span class="p">},</span>
-  <span class="na">onSuccess</span><span class="p">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">result</span><span class="p">)</span> <span class="p">{</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">result</span><span class="p">);</span> <span class="p">},</span>
-  <span class="na">onFailed</span><span class="p">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">result</span><span class="p">)</span> <span class="p">{</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">result</span><span class="p">);</span> <span class="p">}</span>
-<span class="p">});</span>
-</code></pre></div>
-<p>Provides JavaScript bindings for the <a href="https://github.com/AugurProject/augur/tree/master/packages/augur-core/source/contracts/reporting/Mailbox.sol">Mailbox Solidity Contract</a>, which enables the functionality of the <a href="#market-creator-mailbox">Market Creator Mailbox</a>.</p>
-
-<h3 id="augur-api-mailbox-transferownership-p">augur.api.Mailbox.transferOwnership(p)</h3>
-
-<p>Changes the current owner of <a href="#market-creator-mailbox">Market Creator Mailbox</a> to  <code class="prettyprint">p._newOwner</code>. This transaction will trigger a <a href="#MarketMailboxTransferred"><code class="prettyprint">MarketMailboxTransferred</code></a> event, which will record the Market Creator Mailbox, the <a href="#market">Market</a> &amp; <a href="#universe">Universe</a> it belongs to, as well as the old owner&rsquo;s address and the new owner&rsquo;s address.</p>
-
-<p>This transaction will fail if:</p>
-
-<ul>
-<li><code class="prettyprint">msg.sender</code> isn&rsquo;t the owner of the Market Creator Mailbox.</li>
-</ul>
-
-<h4 id="strong-strong"><strong>Parameters:</strong></h4>
-
-<ul>
-<li><strong><code class="prettyprint">p</code></strong> (Object) Parameters object.
-
-<ul>
-<li><strong><code class="prettyprint">p._newOwner</code></strong> (string) Ethereum address of the desired new owner of the Mailbox, as a 20-byte hexadecimal value.</li>
-<li><strong><code class="prettyprint">p.tx</code></strong> (Object) Object containing details about how this transaction should be made.
-
-<ul>
-<li><strong><code class="prettyprint">p.tx.to</code></strong> (string) Ethereum contract address on which to call this function, as a 20-byte hexadecimal string.</li>
-<li><strong><code class="prettyprint">p.tx.gas</code></strong> (string) Gas limit to use when submitting this transaction, as a hexadecimal string.</li>
-</ul></li>
-<li><strong><code class="prettyprint">p.meta</code></strong>  (<a href="#Meta">Meta</a>) &lt;optional&gt; Authentication metadata for raw transactions.</li>
-<li><strong><code class="prettyprint">p.onSent</code></strong>  (function) Callback function that executes once the transaction has been sent.</li>
-<li><strong><code class="prettyprint">p.onSuccess</code></strong>  (function) &lt;optional&gt; Callback function that executes if the transaction returned successfully.</li>
-<li><strong><code class="prettyprint">p.onFailed</code></strong>  (function) &lt;optional&gt; Callback function that executes if the transaction failed.</li>
-</ul></li>
-</ul>
-
-<h4 id="strong-strong"><strong>Returns:</strong></h4>
-
-<ul>
-<li>Return value cannot be obtained because Ethereum nodes <a href="#transaction-return-values">discard</a> transaction return values.</li>
-</ul>
-
-<h3 id="augur-api-mailbox-withdrawether-p">augur.api.Mailbox.withdrawEther(p)</h3>
-
-<p>Transfers all Ether in the <a href="#market-creator-mailbox">Market Creator Mailbox</a> to the <a href="#market-creator">Market Creator&rsquo;s</a> Ethereum address.  </p>
-
-<p>This transaction will fail if:</p>
-
-<ul>
-<li><code class="prettyprint">msg.sender</code> isn&rsquo;t the owner of the specified Mailbox.</li>
-</ul>
-
-<h4 id="strong-strong"><strong>Parameters:</strong></h4>
-
-<ul>
-<li><strong><code class="prettyprint">p</code></strong> (Object) Parameters object.
-
-<ul>
-<li><strong><code class="prettyprint">p.tx</code></strong> (Object) Object containing details about how this transaction should be made.
-
-<ul>
-<li><strong><code class="prettyprint">p.tx.to</code></strong> (string) Ethereum contract address on which to call this function, as a 20-byte hexadecimal string.</li>
-<li><strong><code class="prettyprint">p.tx.gas</code></strong> (string) Gas limit to use when submitting this transaction, as a hexadecimal string.</li>
-</ul></li>
-<li><strong><code class="prettyprint">p.meta</code></strong>  (<a href="#Meta">Meta</a>) &lt;optional&gt; Authentication metadata for raw transactions.</li>
-<li><strong><code class="prettyprint">p.onSent</code></strong>  (function) Callback function that executes once the transaction has been sent.</li>
-<li><strong><code class="prettyprint">p.onSuccess</code></strong>  (function) &lt;optional&gt; Callback function that executes if the transaction returned successfully.</li>
-<li><strong><code class="prettyprint">p.onFailed</code></strong>  (function) &lt;optional&gt; Callback function that executes if the transaction failed.</li>
-</ul></li>
-</ul>
-
-<h4 id="strong-strong"><strong>Returns:</strong></h4>
-
-<ul>
-<li>Return value cannot be obtained because Ethereum nodes <a href="#transaction-return-values">discard</a> transaction return values.</li>
-</ul>
-
-<h3 id="augur-api-mailbox-withdrawtokens-p">augur.api.Mailbox.withdrawTokens(p)</h3>
-
-<p>Transfers all tokens of type <code class="prettyprint">p._token</code> in the <a href="#market-creator-mailbox">Market Creator Mailbox</a> to the <a href="#market-creator">Market Creator&rsquo;s</a> Ethereum address.  </p>
-
-<p>This transaction will fail if:</p>
-
-<ul>
-<li><code class="prettyprint">msg.sender</code> isn&rsquo;t the owner of the specified Mailbox.</li>
-</ul>
-
-<h4 id="strong-strong"><strong>Parameters:</strong></h4>
-
-<ul>
-<li><strong><code class="prettyprint">p</code></strong> (Object) Parameters object.
-
-<ul>
-<li><strong><code class="prettyprint">p._token</code></strong> (string) Ethereum address of an <a href="https://github.com/AugurProject/augur/blob/master/packages/augur-core/source/contracts/libraries/token/ERC20Basic.sol">ERC20Basic</a> token contract, as a 20-byte hexadecimal value.</li>
-<li><strong><code class="prettyprint">p.tx</code></strong> (Object) Object containing details about how this transaction should be made.
-
-<ul>
-<li><strong><code class="prettyprint">p.tx.to</code></strong> (string) Ethereum contract address on which to call this function, as a 20-byte hexadecimal string.</li>
-<li><strong><code class="prettyprint">p.tx.gas</code></strong> (string) Gas limit to use when submitting this transaction, as a hexadecimal string.</li>
-</ul></li>
-<li><strong><code class="prettyprint">p.meta</code></strong>  (<a href="#Meta">Meta</a>) &lt;optional&gt; Authentication metadata for raw transactions.</li>
-<li><strong><code class="prettyprint">p.onSent</code></strong>  (function) Callback function that executes once the transaction has been sent.</li>
-<li><strong><code class="prettyprint">p.onSuccess</code></strong>  (function) &lt;optional&gt; Callback function that executes if the transaction returned successfully.</li>
-<li><strong><code class="prettyprint">p.onFailed</code></strong>  (function) &lt;optional&gt; Callback function that executes if the transaction failed.</li>
-</ul></li>
-</ul>
-
-<h4 id="strong-strong"><strong>Returns:</strong></h4>
-
-<ul>
-<li>Return value cannot be obtained because Ethereum nodes <a href="#transaction-return-values">discard</a> transaction return values.</li>
-</ul>
-
 <h2 id="market-tx-api">Market Tx API</h2>
 <div class="highlight"><pre class="highlight javascript"><code><span class="c1">// Market Transaction API Examples:</span>
 <span class="kd">var</span> <span class="nx">marketAddress</span> <span class="o">=</span> <span class="s2">"0x9368ff3e9ce1c0459b309fac6dd4e69229b91a42"</span><span class="p">;</span>
@@ -10284,6 +10241,22 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
 
 <span class="nx">augur</span><span class="p">.</span><span class="nx">api</span><span class="p">.</span><span class="nx">Market</span><span class="p">.</span><span class="nx">transferOwnership</span><span class="p">({</span>
   <span class="na">_newOwner</span><span class="p">:</span> <span class="s2">"0x8fa56abe36d8dc76cf85fecb6a3026733e0a12ac"</span><span class="p">,</span>
+  <span class="na">tx</span><span class="p">:</span> <span class="p">{</span> 
+    <span class="na">to</span><span class="p">:</span> <span class="nx">marketAddress</span><span class="p">,</span>
+    <span class="na">gas</span><span class="p">:</span> <span class="s2">"0x632ea0"</span> 
+  <span class="p">},</span> 
+  <span class="na">meta</span><span class="p">:</span> <span class="p">{</span>
+    <span class="na">accountType</span><span class="p">:</span> <span class="s2">"privateKey"</span><span class="p">,</span>
+    <span class="na">address</span><span class="p">:</span> <span class="s2">"0x913dA4198E6bE1D5f5E4a40D0667f70C0B5430Ec"</span><span class="p">,</span>
+    <span class="na">signer</span><span class="p">:</span> <span class="p">[</span><span class="mi">252</span><span class="p">,</span> <span class="mi">111</span><span class="p">,</span> <span class="mi">32</span><span class="p">,</span> <span class="mi">94</span><span class="p">,</span> <span class="mi">233</span><span class="p">,</span> <span class="mi">213</span><span class="p">,</span> <span class="mi">105</span><span class="p">,</span> <span class="mi">71</span><span class="p">,</span> <span class="mi">89</span><span class="p">,</span> <span class="mi">162</span><span class="p">,</span> <span class="mi">243</span><span class="p">,</span> <span class="mi">247</span><span class="p">,</span> <span class="mi">56</span><span class="p">,</span> <span class="mi">81</span><span class="p">,</span> <span class="mi">213</span><span class="p">,</span> <span class="mi">103</span><span class="p">,</span> <span class="mi">239</span><span class="p">,</span> <span class="mi">75</span><span class="p">,</span> <span class="mi">212</span><span class="p">,</span> <span class="mi">240</span><span class="p">,</span> <span class="mi">234</span><span class="p">,</span> <span class="mi">95</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">201</span><span class="p">,</span> <span class="mi">217</span><span class="p">,</span> <span class="mi">55</span><span class="p">,</span> <span class="mi">225</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">85</span><span class="p">,</span> <span class="mi">109</span><span class="p">,</span> <span class="mi">158</span><span class="p">,</span> <span class="mi">25</span><span class="p">],</span>
+  <span class="p">},</span>
+  <span class="na">onSent</span><span class="p">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">result</span><span class="p">)</span> <span class="p">{</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">result</span><span class="p">);</span> <span class="p">},</span>
+  <span class="na">onSuccess</span><span class="p">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">result</span><span class="p">)</span> <span class="p">{</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">result</span><span class="p">);</span> <span class="p">},</span>
+  <span class="na">onFailed</span><span class="p">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">result</span><span class="p">)</span> <span class="p">{</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">result</span><span class="p">);</span> <span class="p">}</span>
+<span class="p">});</span>
+
+<span class="nx">augur</span><span class="p">.</span><span class="nx">api</span><span class="p">.</span><span class="nx">Market</span><span class="p">.</span><span class="nx">withdrawAffiliateFees</span><span class="p">({</span>
+  <span class="na">_affiliate</span><span class="p">:</span> <span class="s2">"0x00056abe36d8dc76cf85fecb6a3026733e0a1890"</span><span class="p">,</span>
   <span class="na">tx</span><span class="p">:</span> <span class="p">{</span> 
     <span class="na">to</span><span class="p">:</span> <span class="nx">marketAddress</span><span class="p">,</span>
     <span class="na">gas</span><span class="p">:</span> <span class="s2">"0x632ea0"</span> 
@@ -10428,6 +10401,8 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
 
 <p><a href="#finalized-market">Finalizes</a> the <a href="#market">Market</a>, meaning it sets the winning <a href="#payout-distribution-hash">Payout Distribution Hash</a> for the Market, redistributes <a href="#rep">REP</a> Staked on non-winning <a href="#outcome">Outcomes</a> to REP holders who Staked on the winning Outcome, and distributes the <a href="#validity-bond">Validity Bond</a> based on whether the Market resolved as <a href="#invalid-outcome">Invalid</a>. Once the Market has been Finalized, users can <a href="#settlement">Settle</a> their <a href="#share">Shares</a>. This transaction will trigger a <a href="#MarketFinalized"><code class="prettyprint">MarketFinalized</code></a> event if the Market Finalized without any errors.</p>
 
+<p>If the market resolved to <a href="#invalid-outcome">Invalid</a>, the <a href="#validity-bond">Validity Bond</a> gets sent to the <a href="#auction">Auction</a>; otherwise it gets returned to the <a href="#market-creator">Market Creator</a>.</p>
+
 <p>This transaction will fail if:</p>
 
 <ul>
@@ -10555,6 +10530,98 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
 
 <ul>
 <li><strong><code class="prettyprint">p._newOwner</code></strong>  (string) Ethereum address of the desired new owner of the Market, as a 20-byte hexadecimal value.</li>
+<li><strong><code class="prettyprint">p.tx</code></strong> (Object) Object containing details about how this transaction should be made.
+
+<ul>
+<li><strong><code class="prettyprint">p.tx.to</code></strong> (string) Ethereum contract address on which to call this function, as a 20-byte hexadecimal string.</li>
+<li><strong><code class="prettyprint">p.tx.gas</code></strong> (string) Gas limit to use when submitting this transaction, as a hexadecimal string.</li>
+</ul></li>
+<li><strong><code class="prettyprint">p.meta</code></strong>  (<a href="#Meta">Meta</a>) &lt;optional&gt; Authentication metadata for raw transactions.</li>
+<li><strong><code class="prettyprint">p.onSent</code></strong>  (function) Callback function that executes once the transaction has been sent.</li>
+<li><strong><code class="prettyprint">p.onSuccess</code></strong>  (function) &lt;optional&gt; Callback function that executes if the transaction returned successfully.</li>
+<li><strong><code class="prettyprint">p.onFailed</code></strong>  (function) &lt;optional&gt; Callback function that executes if the transaction failed.</li>
+</ul></li>
+</ul>
+
+<h4 id="strong-strong"><strong>Returns:</strong></h4>
+
+<ul>
+<li>Return value cannot be obtained because Ethereum nodes <a href="#transaction-return-values">discard</a> transaction return values.</li>
+</ul>
+
+<h3 id="augur-api-market-withdrawaffiliatefees-p">augur.api.Market.withdrawAffiliateFees(p)</h3>
+
+<p>Transfers an <a href="#affiliate">Affiliate&rsquo;s</a> <a href="#affiliate-fee">Affiliate Fee</a> from the <a href="#market">Market</a> to the specified Affiliate address.</p>
+
+<p>This transaction will trigger a <a href="#Transfer"><code class="prettyprint">Transfer</code></a> event, which will record the <code class="prettyprint">from</code> address, <code class="prettyprint">to</code> address, and <code class="prettyprint">value</code> transferred, in attoETH. </p>
+
+<h4 id="strong-strong"><strong>Parameters:</strong></h4>
+
+<ul>
+<li><strong><code class="prettyprint">p</code></strong> (Object) Parameters object.
+
+<ul>
+<li><strong><code class="prettyprint">p._affiliate</code></strong>  (string) Ethereum address of the Affiliate, as a 20-byte hexadecimal value.</li>
+<li><strong><code class="prettyprint">p.tx</code></strong> (Object) Object containing details about how this transaction should be made.
+
+<ul>
+<li><strong><code class="prettyprint">p.tx.to</code></strong> (string) Ethereum contract address on which to call this function, as a 20-byte hexadecimal string.</li>
+<li><strong><code class="prettyprint">p.tx.gas</code></strong> (string) Gas limit to use when submitting this transaction, as a hexadecimal string.</li>
+</ul></li>
+<li><strong><code class="prettyprint">p.meta</code></strong>  (<a href="#Meta">Meta</a>) &lt;optional&gt; Authentication metadata for raw transactions.</li>
+<li><strong><code class="prettyprint">p.onSent</code></strong>  (function) Callback function that executes once the transaction has been sent.</li>
+<li><strong><code class="prettyprint">p.onSuccess</code></strong>  (function) &lt;optional&gt; Callback function that executes if the transaction returned successfully.</li>
+<li><strong><code class="prettyprint">p.onFailed</code></strong>  (function) &lt;optional&gt; Callback function that executes if the transaction failed.</li>
+</ul></li>
+</ul>
+
+<h4 id="strong-strong"><strong>Returns:</strong></h4>
+
+<ul>
+<li>Return value cannot be obtained because Ethereum nodes <a href="#transaction-return-values">discard</a> transaction return values.</li>
+</ul>
+
+<h2 id="orders-tx-api">Orders Tx API</h2>
+<div class="highlight"><pre class="highlight javascript"><code><span class="c1">// Orders Transaction API Examples:</span>
+<span class="kd">var</span> <span class="nx">ordersAddress</span> <span class="o">=</span> <span class="s2">"0xaaae83a8a2a904181ccfddd8292f17861406200b"</span><span class="p">;</span>
+
+<span class="nx">augur</span><span class="p">.</span><span class="nx">api</span><span class="p">.</span><span class="nx">Orders</span><span class="p">.</span><span class="nx">setOrderPrice</span><span class="p">({</span>
+  <span class="na">_orderId</span><span class="p">:</span> <span class="nx">_augurContractAddress</span><span class="p">,</span>
+  <span class="na">_price</span><span class="p">:</span> <span class="s2">"0xff"</span><span class="p">,</span>
+  <span class="na">_betterOrderId</span><span class="p">:</span> <span class="s2">""</span><span class="p">,</span>
+  <span class="na">_worseOrderId</span><span class="p">:</span> <span class="s2">""</span><span class="p">,</span>
+  <span class="na">tx</span><span class="p">:</span> <span class="p">{</span> 
+    <span class="na">to</span><span class="p">:</span> <span class="nx">ordersAddress</span><span class="p">,</span>
+    <span class="na">gas</span><span class="p">:</span> <span class="s2">"0x632ea0"</span> 
+  <span class="p">},</span> 
+  <span class="na">meta</span><span class="p">:</span> <span class="p">{</span>
+    <span class="na">accountType</span><span class="p">:</span> <span class="s2">"privateKey"</span><span class="p">,</span>
+    <span class="na">address</span><span class="p">:</span> <span class="s2">"0x913dA4198E6bE1D5f5E4a40D0667f70C0B5430Ec"</span><span class="p">,</span>
+    <span class="na">signer</span><span class="p">:</span> <span class="p">[</span><span class="mi">252</span><span class="p">,</span> <span class="mi">111</span><span class="p">,</span> <span class="mi">32</span><span class="p">,</span> <span class="mi">94</span><span class="p">,</span> <span class="mi">233</span><span class="p">,</span> <span class="mi">213</span><span class="p">,</span> <span class="mi">105</span><span class="p">,</span> <span class="mi">71</span><span class="p">,</span> <span class="mi">89</span><span class="p">,</span> <span class="mi">162</span><span class="p">,</span> <span class="mi">243</span><span class="p">,</span> <span class="mi">247</span><span class="p">,</span> <span class="mi">56</span><span class="p">,</span> <span class="mi">81</span><span class="p">,</span> <span class="mi">213</span><span class="p">,</span> <span class="mi">103</span><span class="p">,</span> <span class="mi">239</span><span class="p">,</span> <span class="mi">75</span><span class="p">,</span> <span class="mi">212</span><span class="p">,</span> <span class="mi">240</span><span class="p">,</span> <span class="mi">234</span><span class="p">,</span> <span class="mi">95</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">201</span><span class="p">,</span> <span class="mi">217</span><span class="p">,</span> <span class="mi">55</span><span class="p">,</span> <span class="mi">225</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">85</span><span class="p">,</span> <span class="mi">109</span><span class="p">,</span> <span class="mi">158</span><span class="p">,</span> <span class="mi">25</span><span class="p">],</span>
+  <span class="p">},</span>
+  <span class="na">onSent</span><span class="p">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">result</span><span class="p">)</span> <span class="p">{</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">result</span><span class="p">);</span> <span class="p">},</span>
+  <span class="na">onSuccess</span><span class="p">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">result</span><span class="p">)</span> <span class="p">{</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">result</span><span class="p">);</span> <span class="p">},</span>
+  <span class="na">onFailed</span><span class="p">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">result</span><span class="p">)</span> <span class="p">{</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">result</span><span class="p">);</span> <span class="p">}</span>
+<span class="p">});</span>
+</code></pre></div>
+<h3 id="augur-api-orders-setorderprice-p">augur.api.Orders.setOrderPrice(p)</h3>
+
+<p>This transaction will fail if:</p>
+
+<ul>
+<li><code class="prettyprint">msg.sender</code> isn&rsquo;t the owner of the Market.</li>
+</ul>
+
+<h4 id="strong-strong"><strong>Parameters:</strong></h4>
+
+<ul>
+<li><strong><code class="prettyprint">p</code></strong> (Object) Parameters object.
+
+<ul>
+<li><strong><code class="prettyprint">p._orderId</code></strong>  (string) Ethereum address of the desired new owner of the Market, as a 20-byte hexadecimal value.</li>
+<li><strong><code class="prettyprint">p._price</code></strong>  (string) </li>
+<li><strong><code class="prettyprint">p._betterOrderId</code></strong>  (string) </li>
+<li><strong><code class="prettyprint">p._worseOrderId</code></strong>  (string) </li>
 <li><strong><code class="prettyprint">p.tx</code></strong> (Object) Object containing details about how this transaction should be made.
 
 <ul>
@@ -10738,7 +10805,7 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
 </code></pre></div>
 <p>Provides JavaScript bindings for the <a href="https://github.com/AugurProject/augur/tree/master/packages/augur-core/source/contracts/reporting/ReputationToken.sol">ReputationToken Solidity Contract</a>, which handles the approval, migration, and transfering of <a href="#rep">Reputation Tokens</a>.</p>
 
-<p>The Reputation Token, or REP, is an ERC-20 token that implements all of the required functions listed in the <a href="https://github.com/ethereum/EIPs/blob/master/EIPS/eip-20-token-standard.md">ERC-20 Token Standard</a>. It does not, however, implement the optional functions.</p>
+<p>The Reputation Token, or REP, is an ERC-20/ERC-777 token that implements all of the required functions listed in the <a href="https://eips.ethereum.org/EIPS/eip-20">ERC-20</a>/<a href="https://eips.ethereum.org/EIPS/eip-777">ERC-777</a>. It does not, however, implement the optional functions.</p>
 
 <h3 id="augur-api-reputationtoken-approve-p">augur.api.ReputationToken.approve(p)</h3>
 
@@ -11146,7 +11213,7 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
 </code></pre></div>
 <p>Provides JavaScript bindings for the <a href="https://github.com/AugurProject/augur/blob/master/packages/augur-core/source/contracts/trading/ShareToken.sol">ShareToken Solidity Code</a>, which handles the approval and transferring of <a href="#share">Shares</a> in Augur. </p>
 
-<p>The Share Token is an ERC-20 token that implements all of the required functions listed in the <a href="https://github.com/ethereum/EIPs/blob/master/EIPS/eip-20-token-standard.md">ERC-20 Token Standard</a>. It does not, however, implement the optional functions. Within Augur, it represents <a href="#share">Shares</a> in <a href="#market">Market</a> <a href="#outcome">Outcomes</a>.</p>
+<p>The Share Token is an ERC-20/ERC-777 token that implements all of the required functions listed in the <a href="https://eips.ethereum.org/EIPS/eip-20">ERC-20 Token Standard</a>/<a href="https://eips.ethereum.org/EIPS/eip-777">ERC-777 Token Standard</a>. It does not, however, implement the optional functions. Within Augur, it represents <a href="#share">Shares</a> in <a href="#market">Market</a> <a href="#outcome">Outcomes</a>.</p>
 
 <h3 id="augur-api-sharetoken-approve-p">augur.api.ShareToken.approve(p)</h3>
 
@@ -11342,6 +11409,7 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
   <span class="na">_tradeGroupId</span><span class="p">:</span> <span class="nx">_tradeGroupId</span><span class="p">,</span>
   <span class="na">_loopLimit</span><span class="p">:</span> <span class="nx">_loopLimit</span><span class="p">,</span>
   <span class="na">_ignoreShares</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+  <span class="na">_affiliateAddress</span><span class="p">:</span> <span class="mh">0x1237f6af7b3b5fed8ca980414a97c62da2830abc</span><span class="p">,</span>
   <span class="na">tx</span><span class="p">:</span> <span class="p">{</span> 
     <span class="na">to</span><span class="p">:</span> <span class="nx">tradeAddress</span><span class="p">,</span>
     <span class="na">gas</span><span class="p">:</span> <span class="s2">"0x632ea0"</span> 
@@ -11365,6 +11433,7 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
   <span class="na">_tradeGroupId</span><span class="p">:</span> <span class="nx">_tradeGroupId</span><span class="p">,</span>
   <span class="na">_loopLimit</span><span class="p">:</span> <span class="nx">_loopLimit</span><span class="p">,</span>
   <span class="na">_ignoreShares</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+  <span class="na">_affiliateAddress</span><span class="p">:</span> <span class="mh">0x1237f6af7b3b5fed8ca980414a97c62da2830abc</span><span class="p">,</span>
   <span class="na">tx</span><span class="p">:</span> <span class="p">{</span> 
     <span class="na">to</span><span class="p">:</span> <span class="nx">tradeAddress</span><span class="p">,</span>
     <span class="na">gas</span><span class="p">:</span> <span class="s2">"0x632ea0"</span> 
@@ -11390,6 +11459,7 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
   <span class="na">_tradeGroupId</span><span class="p">:</span> <span class="nx">_tradeGroupId</span><span class="p">,</span>
   <span class="na">_loopLimit</span><span class="p">:</span> <span class="nx">_loopLimit</span><span class="p">,</span>
   <span class="na">_ignoreShares</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+  <span class="na">_affiliateAddress</span><span class="p">:</span> <span class="mh">0x1237f6af7b3b5fed8ca980414a97c62da2830abc</span><span class="p">,</span>
   <span class="na">tx</span><span class="p">:</span> <span class="p">{</span> 
     <span class="na">to</span><span class="p">:</span> <span class="nx">tradeAddress</span><span class="p">,</span>
     <span class="na">gas</span><span class="p">:</span> <span class="s2">"0x632ea0"</span> 
@@ -11415,6 +11485,7 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
   <span class="na">_tradeGroupId</span><span class="p">:</span> <span class="nx">_tradeGroupId</span><span class="p">,</span>
   <span class="na">_loopLimit</span><span class="p">:</span> <span class="nx">_loopLimit</span><span class="p">,</span>
   <span class="na">_ignoreShares</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+  <span class="na">_affiliateAddress</span><span class="p">:</span> <span class="mh">0x1237f6af7b3b5fed8ca980414a97c62da2830abc</span><span class="p">,</span>
   <span class="na">tx</span><span class="p">:</span> <span class="p">{</span> 
     <span class="na">to</span><span class="p">:</span> <span class="nx">tradeAddress</span><span class="p">,</span>
     <span class="na">gas</span><span class="p">:</span> <span class="s2">"0x632ea0"</span> 
@@ -11449,6 +11520,7 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
 <li><strong><code class="prettyprint">p._tradeGroupId</code></strong> (string) &lt;optional&gt; ID used by the Augur UI to group transactions, as a 32-byte hexadecimal value.</li>
 <li><strong><code class="prettyprint">p._loopLimit</code></strong> (string) Maximum number of <a href="#fill-order">Fill Order</a> operations to make, as a stringified unsigned integer.</li>
 <li><strong><code class="prettyprint">p._ignoreShares</code></strong> (boolean) Whether to ignore the filler&rsquo;s owned <a href="#shares">Shares</a> when creating the Order.</li>
+<li><strong><code class="prettyprint">p._affiliateAddress</code></strong> (string) &lt;optional&gt; Ethereum address of the <a href="#affiliate">Affiliate</a>, as a 20-byte hexadecimal value.</li>
 <li><strong><code class="prettyprint">p.tx</code></strong> (Object) Object containing details about how this transaction should be made.
 
 <ul>
@@ -11486,6 +11558,7 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
 <li><strong><code class="prettyprint">p._tradeGroupId</code></strong> (string) &lt;optional&gt; ID used by the Augur UI to group transactions, as a 32-byte hexadecimal value.</li>
 <li><strong><code class="prettyprint">p._loopLimit</code></strong> (string) Maximum number of Fill Order operations to make, as a stringified unsigned integer.</li>
 <li><strong><code class="prettyprint">p._ignoreShares</code></strong> (boolean) Whether to ignore the filler&rsquo;s owned <a href="#shares">Shares</a> when creating the Order.</li>
+<li><strong><code class="prettyprint">p._affiliateAddress</code></strong> (string) &lt;optional&gt; Ethereum address of the <a href="#affiliate">Affiliate</a>, as a 20-byte hexadecimal value.</li>
 <li><strong><code class="prettyprint">p.tx</code></strong> (Object) Object containing details about how this transaction should be made.
 
 <ul>
@@ -11533,6 +11606,7 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
 <li><strong><code class="prettyprint">p._tradeGroupId</code></strong> (string) &lt;optional&gt; ID used by the Augur UI to group transactions, as a 32-byte hexadecimal value.</li>
 <li><strong><code class="prettyprint">p._loopLimit</code></strong> (string) Maximum number of trade operations to make, as a stringified unsigned integer.</li>
 <li><strong><code class="prettyprint">p._ignoreShares</code></strong> (boolean) Whether to ignore the trader&rsquo;s owned Shares when creating the Order.</li>
+<li><strong><code class="prettyprint">p._affiliateAddress</code></strong> (string) &lt;optional&gt; Ethereum address of the <a href="#affiliate">Affiliate</a>, as a 20-byte hexadecimal value.</li>
 <li><strong><code class="prettyprint">p.tx</code></strong> (Object) Object containing details about how this transaction should be made.
 
 <ul>
@@ -11572,6 +11646,7 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
 <li><strong><code class="prettyprint">p._tradeGroupId</code></strong> (string) &lt;optional&gt; ID used by the Augur UI to group transactions, as a 32-byte hexadecimal value.</li>
 <li><strong><code class="prettyprint">p._loopLimit</code></strong> (string) Maximum number of trade operations to make, as a stringified unsigned integer.</li>
 <li><strong><code class="prettyprint">p._ignoreShares</code></strong> (boolean) Whether to ignore the trader&rsquo;s owned <a href="#shares">Shares</a> when creating the Order.</li>
+<li><strong><code class="prettyprint">p._affiliateAddress</code></strong> (string) &lt;optional&gt; Ethereum address of the <a href="#affiliate">Affiliate</a>, as a 20-byte hexadecimal value.</li>
 <li><strong><code class="prettyprint">p.tx</code></strong> (Object) Object containing details about how this transaction should be made.
 
 <ul>
@@ -11612,6 +11687,7 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
 <span class="nx">augur</span><span class="p">.</span><span class="nx">api</span><span class="p">.</span><span class="nx">Universe</span><span class="p">.</span><span class="nx">createCategoricalMarket</span><span class="p">({</span>
   <span class="na">_endTime</span><span class="p">:</span> <span class="s2">"0x5bd7e550"</span><span class="p">,</span>
   <span class="na">_feePerEthInWei</span><span class="p">:</span> <span class="s2">"0x123456"</span><span class="p">,</span>
+  <span class="na">_affiliateFeeDivisor</span><span class="p">:</span> <span class="s2">"100"</span><span class="p">,</span>
   <span class="na">_designatedReporterAddress</span><span class="p">:</span> <span class="s2">"0x01114f4bda09ed6c6715cf0baf606b5bce1dc96a"</span><span class="p">,</span>
   <span class="na">_outcomes</span><span class="p">:</span> <span class="p">[</span><span class="s2">"outcome1"</span><span class="p">,</span><span class="s2">"outcome2"</span><span class="p">],</span>
   <span class="na">_topic</span><span class="p">:</span> <span class="s2">"sports"</span><span class="p">,</span>
@@ -11663,6 +11739,7 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
 <span class="nx">augur</span><span class="p">.</span><span class="nx">api</span><span class="p">.</span><span class="nx">Universe</span><span class="p">.</span><span class="nx">createScalarMarket</span><span class="p">({</span>
   <span class="na">_endTime</span><span class="p">:</span> <span class="s2">"0x5b39b150"</span><span class="p">,</span>
   <span class="na">_feePerEthInWei</span><span class="p">:</span> <span class="s2">"0x123456"</span><span class="p">,</span>
+  <span class="na">_affiliateFeeDivisor</span><span class="p">:</span> <span class="s2">"100"</span><span class="p">,</span>
   <span class="na">_designatedReporterAddress</span><span class="p">:</span> <span class="s2">"0x01114f4bda09ed6c6715cf0baf606b5bce1dc96a"</span><span class="p">,</span>
   <span class="na">_minPrice</span><span class="p">:</span> <span class="s2">"-10"</span><span class="p">,</span>
   <span class="na">_maxPrice</span><span class="p">:</span> <span class="s2">"0x78"</span><span class="p">,</span>
@@ -11696,6 +11773,7 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
 <span class="nx">augur</span><span class="p">.</span><span class="nx">api</span><span class="p">.</span><span class="nx">Universe</span><span class="p">.</span><span class="nx">createYesNoMarket</span><span class="p">({</span>
   <span class="na">_endTime</span><span class="p">:</span> <span class="s2">"0x5c2b1e00"</span><span class="p">,</span>
   <span class="na">_feePerEthInWei</span><span class="p">:</span> <span class="s2">"0x123456"</span><span class="p">,</span>
+  <span class="na">_affiliateFeeDivisor</span><span class="p">:</span> <span class="s2">"100"</span><span class="p">,</span>
   <span class="na">_designatedReporterAddress</span><span class="p">:</span> <span class="s2">"0x01114f4bda09ed6c6715cf0baf606b5bce1dc96a"</span><span class="p">,</span>
   <span class="na">_topic</span><span class="p">:</span> <span class="s2">"space"</span><span class="p">,</span>
   <span class="na">_description</span><span class="p">:</span> <span class="s2">"Will SpaceX successfully complete a manned flight to the International Space Station by the end of 2018?"</span><span class="p">,</span>
@@ -11878,6 +11956,7 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
 <ul>
 <li><strong><code class="prettyprint">p._endTime</code></strong>  (string) Unix timestamp for the <a href="#end-time">End Time</a> of the <a href="#market">Market</a>, as a hexadecimal string.</li>
 <li><strong><code class="prettyprint">p._feePerEthInWei</code></strong>  (string) <a href="#creator-fee">Creator Fee</a> (in Wei) that is collected for every 1 Ether worth of <a href="#share">Shares</a> <a href="#settlement">Settled</a>, as a hexadecimal string.</li>
+<li><strong><code class="prettyprint">p._affiliateFeeDivisor</code></strong> (number) Integer by  which to divide the <a href="#creator-fee">Creator Fee</a> amongst <a href="#affiliate">Affiliates</a>.</li>
 <li><strong><code class="prettyprint">p._designatedReporterAddress</code></strong>  (string) Ethereum address of the <a href="#designated-reporter">Designated Reporter</a>.</li>
 <li><strong><code class="prettyprint">p._outcomes</code></strong>  (Array.&lt;string&gt;) Array of names for all possible outcomes for the Market event.</li>
 <li><strong><code class="prettyprint">p._topic</code></strong>  (string) Market <a href="#topic">Topic</a>.</li>
@@ -11972,6 +12051,7 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
 <ul>
 <li><strong><code class="prettyprint">p._endTime</code></strong>  (string) Unix timestamp for the <a href="#end-time">End Time</a> of the <a href="#market">Market</a>, as a hexadecimal string.</li>
 <li><strong><code class="prettyprint">p._feePerEthInWei</code></strong>  (string) <a href="#creator-fee">Creator Fee</a> (in <a href="atto-prefix">attoETH</a>) that is collected for every 1 Ether worth of <a href="#share">Shares</a> <a href="#settlement">Settled</a>.</li>
+<li><strong><code class="prettyprint">p._affiliateFeeDivisor</code></strong> (string) Integer by  which to divide the <a href="#creator-fee">Creator Fee</a> amongst <a href="#affiliate">Affiliates</a>.</li>
 <li><strong><code class="prettyprint">p._designatedReporterAddress</code></strong>  (string) Ethereum address of the <a href="#designated-reporter">Designated Reporter</a>.</li>
 <li><strong><code class="prettyprint">p._minPrice</code></strong>  (string) <a href="#minimum-display-price">Minimum Display Price</a> for the Market, as a hexadecimal string.</li>
 <li><strong><code class="prettyprint">p._maxPrice</code></strong>  (string) <a href="#maximum-display-price">Maximum Display Price</a> for the Market, as a hexadecimal string.</li>
@@ -12029,6 +12109,7 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
 <ul>
 <li><strong><code class="prettyprint">p._endTime</code></strong>  (string) Unix timestamp for the <a href="#end-time">End Time</a> of the <a href="#market">Market</a>, as a hexadecimal string.</li>
 <li><strong><code class="prettyprint">p._feePerEthInWei</code></strong>  (string) <a href="#creator-fee">Creator Fee</a> (in Wei) that is collected for every 1 Ether worth of <a href="#share">Shares</a> <a href="#settlement">Settled</a>, as a hexadecimal string.</li>
+<li><strong><code class="prettyprint">p._affiliateFeeDivisor</code></strong> (number) Integer by  which to divide the <a href="#creator-fee">Creator Fee</a> amongst <a href="#affiliate">Affiliates</a>. </li>
 <li><strong><code class="prettyprint">p._designatedReporterAddress</code></strong>  (string) Ethereum address of the <a href="#designated-reporter">Designated Reporter</a>.</li>
 <li><strong><code class="prettyprint">p._topic</code></strong>  (string) Market <a href="#topic">Topic</a>.</li>
 <li><strong><code class="prettyprint">p._description</code></strong>  (string) Description of the Market event.</li>
@@ -12693,8 +12774,8 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
 </thead><tbody>
 <tr>
 <td><a name="Approval"></a>Approval</td>
-<td><a href="https://github.com/AugurProject/augur/blob/master/packages/augur-core/source/contracts/libraries/token/ERC20.sol">ERC20</a></td>
-<td><code class="prettyprint">spender</code> has been approved to spend <code class="prettyprint">value</code> amount of ERC20 tokens on behalf of <code class="prettyprint">owner</code>.</td>
+<td><a href="https://github.com/AugurProject/augur/blob/master/packages/augur-core/source/contracts/libraries/token/ERC20Token.sol">ERC20Token</a></td>
+<td><code class="prettyprint">spender</code> has been approved to spend <code class="prettyprint">value</code> amount of ERC-20 tokens on behalf of <code class="prettyprint">owner</code>.</td>
 <td>owner, spender</td>
 <td>value</td>
 </tr>
@@ -12804,13 +12885,6 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
 <td></td>
 </tr>
 <tr>
-<td><a name="MarketMailboxTransferred"></a>MarketMailboxTransferred</td>
-<td><a href="https://github.com/AugurProject/augur/blob/master/packages/augur-core/source/contracts/Augur.sol">Augur</a></td>
-<td>Ownership of Market Creator Mailbox <code class="prettyprint">mailbox</code> for <code class="prettyprint">market</code> in <code class="prettyprint">universe</code> was transferred from <code class="prettyprint">from</code> address to <code class="prettyprint">to</code> address.</td>
-<td>universe, market, mailbox</td>
-<td>from, to</td>
-</tr>
-<tr>
 <td><a name="MarketParticipantsDisavowed"></a>MarketParticipantsDisavowed</td>
 <td><a href="https://github.com/AugurProject/augur/blob/master/packages/augur-core/source/contracts/Augur.sol">Augur</a></td>
 <td>The DisputeCrowdsourcers belonging to <code class="prettyprint">market</code> in <code class="prettyprint">universe</code> has been disavowed.</td>
@@ -12830,6 +12904,13 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
 <td><code class="prettyprint">value</code> amount of brand new tokens were created for <code class="prettyprint">target</code>.</td>
 <td>target</td>
 <td>value</td>
+</tr>
+<tr>
+<td><a name="OrderPriceChanged"></a>OrderPriceChanged</td>
+<td><a href="https://github.com/AugurProject/augur/blob/master/packages/augur-core/source/contracts/Augur.sol">Augur</a></td>
+<td>The price for <code class="prettyprint">orderId</code> in <code class="prettyprint">universe</code> has been updated to <code class="prettyprint">price</code>.</td>
+<td>universe</td>
+<td>orderId, price</td>
 </tr>
 <tr>
 <td><a name="OrderCanceled"></a>OrderCanceled</td>
@@ -12896,7 +12977,7 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
 </tr>
 <tr>
 <td><a name="Transfer"></a>Transfer</td>
-<td><a href="https://github.com/AugurProject/augur/blob/master/packages/augur-core/source/contracts/libraries/token/ERC20Basic.sol">ERC20Basic</a></td>
+<td><a href="https://github.com/AugurProject/augur/blob/master/packages/augur-core/source/contracts/libraries/token/ERC20Token.sol">ERC20Token</a></td>
 <td>Transferred <code class="prettyprint">value</code> <a href="#atto-prefix">attotokens</a> between accounts <code class="prettyprint">from</code> and <code class="prettyprint">to</code>.</td>
 <td>from, to</td>
 <td>value</td>
@@ -13980,7 +14061,7 @@ net position in that Market Outcome. This is a cashflow amount that the user rem
 
 <h3 id="augur-constants-eternal_approval_value-string">augur.constants.ETERNAL_APPROVAL_VALUE (string)</h3>
 
-<p>Used when calling the <code class="prettyprint">approve</code> function for <a href="#cash">Cash</a>, which is an <a href="https://en.wikipedia.org/wiki/ERC20">ERC-20</a> wrapper for ETH that Augur uses internally. It is equal to 2^256 - 1, which is the maximum amount of Cash that can be approved for Augur to spend on behalf of a particular account.</p>
+<p>Used when calling the <code class="prettyprint">approve</code> function for <a href="#cash">Cash</a>, which is an <a href="https://en.wikipedia.org/wiki/ERC20">ERC-20</a>/<a href="https://eips.ethereum.org/EIPS/eip-777">ERC-777</a> wrapper for ETH that Augur uses internally. It is equal to 2^256 - 1, which is the maximum amount of Cash that can be approved for Augur to spend on behalf of a particular account.</p>
 
 <h3 id="augur-constants-get_logs_default_from_block-string">augur.constants.GET_LOGS_DEFAULT_FROM_BLOCK (string)</h3>
 
@@ -14481,6 +14562,16 @@ Goals:
 
 <p>This section of the documentation is dedicated to terms found and used throughout the rest of documentation. Below you will find sections about terms used in Augur. The goal is to explain everything that might be confusing in an easy-to-understand way.</p>
 
+<h2 id="affilate">Affilate</h2>
+
+<p>An Affiliate is someone who promotes a particular Augur <a href="#market">Market</a> via a URL link that contains the Affiliate&rsquo;s Ethereum address. If a user goes to the link and then places a trade on the Market, the Affiliate will collect an <a href="#affiliate-fee">Affiliate Fee</a> (as specified by the <a href="#market-creator">Market Creator</a> at the time of Market creation) when <a href="#settlement-fees">Settlement Fees</a> are collected after the Market is <a href="#finalized-market">Finalized</a>.</p>
+
+<h2 id="affiliate-fee">Affiliate Fee</h2>
+
+<!--An Affiliate Fee is a portion of the [Creator Fee](#creator-fee) that a [Market Creator](#market-creator) can give to [Affiliates](#affiliate) who promote their [Market](#market). This portion can be specified at the time of Market Creation. Affiliates can promote the Market by linking to a URL for the Market that contains the Affiliate's Ethereum address. This address is then used to send them their Affiliate Fee when [Settlement Fees](#settlement-fees) are collected after the Market is [Finalized](#finalized-market).-->
+
+<p>!!!TBD!!! Add definition (give better explanation of how this is calculated as per https://github.com/AugurProject/augur/pull/1074/files#diff-8ed676c60e9fab2fdbd79f09555a59beR300)</p>
+
 <h2 id="ask-order">Ask Order</h2>
 
 <p>An Ask Order is an <a href="#order">Order</a> indicating the desire of the <a href="#order-creator">Order Creator</a> to sell <a href="#share">Shares</a> of one or more <a href="#outcome">Outcomes</a>. This is the opposite of a <a href="#bid-order">Bid Order</a>.</p>
@@ -14489,13 +14580,17 @@ Goals:
 
 <p>Atto- is a unit prefix in the metric system denoting a factor of 10^−18, or 0.000000000000000001.  This prefix is used for a number of terms in Augur, including attoETH, attoREP, attotoken, etc.</p>
 
+<h2 id="auction">Auction</h2>
+
+<p>!!!TBD!!! Add definition</p>
+
 <h2 id="bid-order">Bid Order</h2>
 
 <p>A Bid Order is an <a href="#order">Order</a> indicating the desire of the <a href="#order-creator">Order Creator</a> to buy <a href="#share">Shares</a> of one or more <a href="#outcome">Outcomes</a>. This is the opposite of an <a href="#ask-order">Ask Order</a>.</p>
 
 <h2 id="cash">Cash</h2>
 
-<p>Cash is an ERC-20 token that is used within Augur&rsquo;s Solidity smart contracts and acts as a wrapper for ETH to facilitate some of Augur&rsquo;s functionality. Users do not interact directly with Cash tokens in Augur.</p>
+<p>Cash is an <a href="https://eips.ethereum.org/EIPS/eip-20">ERC-20</a>/<a href="https://eips.ethereum.org/EIPS/eip-777">ERC-777</a> token that is used within Augur&rsquo;s Solidity smart contracts and acts as a wrapper for ETH to facilitate some of Augur&rsquo;s functionality. Users do not interact directly with Cash tokens in Augur.</p>
 
 <h2 id="categorical-market">Categorical Market</h2>
 
@@ -14537,7 +14632,8 @@ Goals:
 
 <p>When a <a href="#designated-reporter">Designated Reporter</a> submits a <a href="#report">Report</a>, they must put up an amount of REP on an <a href="#outcome">Outcome</a> that is equal to the Designated Reporter Stake. Note that this amount is calculated differently than the <a href="#no-show-bond">No-Show Bond</a>.</p>
 
-<p>During the very first <a href="#dispute-window">Dispute Window</a> after launch, the amount of the Designated Reporter Stake will be set at 0.35 <a href="#rep">REP</a>. The amount of the Designated Reporter Stake is dynamically adjusted according to how many <a href="#designated-report">Designated Reports</a> were incorrect (failed to concur with the <a href="#market">Market&rsquo;s</a> <a href="#final-outcome">Final Outcome</a>) during the previous Dispute Window. In particular, we let δ be the proportion of Designated Reports that were incorrect during the previous Dispute Window, and we let b<sub>d</sub> be the amount of the Designated Reporter Stake during the previous Dispute Window, then the amount of the Designated Reporter Stake for the current Dispute Window is max &#123;0.35, b<sub>d</sub>f(δ)&#125;.</p>
+<p>!!!TBD!!! Update calculations (see Universe.calculateFloatingValue)
+During the very first <a href="#dispute-window">Dispute Window</a> after launch, the amount of the Designated Reporter Stake will be set at 0.35 <a href="#rep">REP</a>. The amount of the Designated Reporter Stake is dynamically adjusted according to how many <a href="#designated-report">Designated Reports</a> were incorrect (failed to concur with the <a href="#market">Market&rsquo;s</a> <a href="#final-outcome">Final Outcome</a>) during the previous Dispute Window. In particular, we let δ be the proportion of Designated Reports that were incorrect during the previous Dispute Window, and we let b<sub>d</sub> be the amount of the Designated Reporter Stake during the previous Dispute Window, then the amount of the Designated Reporter Stake for the current Dispute Window is max &#123;0.35, b<sub>d</sub>f(δ)&#125;.</p>
 
 <h2 id="designated-reporting">Designated Reporting</h2>
 
@@ -14591,7 +14687,7 @@ Goals:
 
 <h2 id="dispute-token">Dispute Token</h2>
 
-<p>When a user Stakes <a href="#rep">REP</a> in a <a href="#crowdsourcer">Crowdsourcer</a>, that Crowdsourcer will allocate an equal amount of Dispute Tokens to that user. Then, when the Crowdsourcer&rsquo;s <a href="#market">Market</a> is <a href="#finalized-market">Finalized</a>, these Dispute Tokens are used by Augur&rsquo;s smart contracts to determine the payout that user should receive. Dispute Tokens are only used internally by Augur, and users do not interact with them directly; however, they are implemented as ERC-20 tokens, so they potentially can be traded between users. (For example, a user might want to sell their Dispute Tokens to another user at a discounted price if a Market is being Disputed for a long time and the user wishes to cash out their Dispute Tokens before the Market is Finalized.)</p>
+<p>When a user Stakes <a href="#rep">REP</a> in a <a href="#crowdsourcer">Crowdsourcer</a>, that Crowdsourcer will allocate an equal amount of Dispute Tokens to that user. Then, when the Crowdsourcer&rsquo;s <a href="#market">Market</a> is <a href="#finalized-market">Finalized</a>, these Dispute Tokens are used by Augur&rsquo;s smart contracts to determine the payout that user should receive. Dispute Tokens are only used internally by Augur, and users do not interact with them directly; however, they are implemented as <a href="https://eips.ethereum.org/EIPS/eip-20">ERC-20</a>/<a href="https://eips.ethereum.org/EIPS/eip-777">ERC-777</a> tokens, so they potentially can be traded between users. (For example, a user might want to sell their Dispute Tokens to another user at a discounted price if a Market is being Disputed for a long time and the user wishes to cash out their Dispute Tokens before the Market is Finalized.)</p>
 
 <h2 id="end-time">End Time</h2>
 
@@ -14696,10 +14792,6 @@ Goals:
 
 <p>A Market Creator is a user who created a <a href="#market">Market</a>. They are charged a small fee to make a new Market but can set the <a href="#creator-fee">Creator Fee</a> for <a href="#settlement">Settlement</a> of <a href="#share">Shares</a> on that Market. Market Creators are incentivized to create popular Markets so as to generate the most amount of <a href="#settlement-fees">Settlement Fees</a> for themselves. Other information a Market requires is the actual question being posed, the type of Market (i.e., <a href="#yes-no-market">Yes/No</a>, <a href="#categorical-market">Categorical</a>, or <a href="#scalar-market">Scalar</a>), the number of <a href="#outcome">Outcomes</a>, <a href="#end-time">End Time</a>, and a <a href="#topic">Topic</a>.</p>
 
-<h2 id="market-creator-mailbox">Market Creator Mailbox</h2>
-
-<p>A Market Creator Mailbox is an address that belongs to the <a href="#market-creator">Creator</a> of a <a href="#market">Market</a>. All of the fees that a Market Creator can collect (whether as ETH or as tokens) get sent to this address, where the Creator can then withdraw them. Funds that are potentially refunded to the Market creator (such as <a href="#validity-bond">Validity Bonds</a> and <a href="#no-show-bond">No-Show Bond</a>) are also sent to the Market Creator Mailbox.</p>
-
 <h2 id="market-resolution">Market Resolution</h2>
 
 <p>Market Resolution is the process of <a href="#finalized-market">Finalizing</a> a <a href="#market">Market</a>. <a href="#designated-reporting">Designated Reporting</a>, <a href="#open-reporting">Open Reporting</a>, <a href="#dispute-round">Dispute Rounds</a> and <a href="#fork">Forks</a> are all examples of attempts at Market Resolution.</p>
@@ -14716,7 +14808,8 @@ Goals:
 
 <p>The No-Show Bond is paid for using <a href="#rep">REP</a> by the <a href="#market-creator">Market Creator</a> during <a href="#market">Market</a> creation. If the <a href="#designed-reporter">Designated Reporter</a> submits a <a href="#report">Report</a> during the <a href="#designated-reporting-phase">Designated Reporting Phase</a>, the Bond is refunded to the Market Creator. If the Designated Reporter fails to Report during the Designated Reporting Phase, then the No-Show Bond is applied as Stake on the <a href="#tentative-outcome">Tentative Outcome</a> Reported by the <a href="#first-public-reporter">First Public Reporter</a>. If the Tentative Outcome selected by the First Public Reporter becomes the <a href="#final-outcome">Final Outcome</a> of the Market, the First Public Reporter receives the No-Show Bond. If the Tentative Outcome selected by the First Public Reporter is <a href="#disputed">Disputed</a> and then still becomes the <a href="#final-outcome">Final Outcome</a> of the Market, the First Public Reporter receives the No-Show Bond plus an additional 50% of the Bond amount. This actually allows for someone to stake 0 REP for the <a href="#first-public-report">First Public Report</a> because the Bond is added to whatever is staked. This means someone without any REP has the potential to Report and if the Market is eventually <a href="#finalized-market">Finalized</a> the way that person Reported, then they can earn REP without having to purchase any. (Note that they will have to pay the gas cost to submit the Report.)</p>
 
-<p>During the very first <a href="#dispute-window">Dispute Window</a> after launch, the No-Show Bond will be set at 0.35 REP. As with the <a href="#validity-bond">Validity Bond</a>, the No-Show Bond is adjusted up or down, targeting a 1% no-show rate with a floor of 0.35 REP. Specifically, we let ρ be the proportion of Markets in the previous Dispute Window whose Designated Reporters failed to Report on time, and we let b<sub>r</sub> be amount of the No-Show Bond from the previous Dispute Window. Then the amount of the No-Show Bond for the current Dispute Window is max &#123;0.35, b<sub>r</sub>f(ρ)&#125;.</p>
+<p>!!!TBD!!! Update calculations (see Universe.calculateFloatingValue)
+During the very first <a href="#dispute-window">Dispute Window</a> after launch, the No-Show Bond will be set at 0.35 REP. As with the <a href="#validity-bond">Validity Bond</a>, the No-Show Bond is adjusted up or down, targeting a 1% no-show rate with a floor of 0.35 REP. Specifically, we let ρ be the proportion of Markets in the previous Dispute Window whose Designated Reporters failed to Report on time, and we let b<sub>r</sub> be amount of the No-Show Bond from the previous Dispute Window. Then the amount of the No-Show Bond for the current Dispute Window is max &#123;0.35, b<sub>r</sub>f(ρ)&#125;.</p>
 
 <h2 id="number-of-ticks">Number of Ticks</h2>
 
@@ -14898,7 +14991,8 @@ Bid Orders/Ask Orders on the Order Book are closer together and of higher qualit
 
 <p>The Validity Bond is paid by the <a href="#market-creator">Market Creator</a> during <a href="#market">Market</a> creation. The bond is paid in ETH and is refunded to the Market Creator if the <a href="#final-outcome">Final Outcome</a> of the <a href="#market">Market</a> is not <a href="#invalid-outcome">Invalid</a>.</p>
 
-<p>The Validity Bond is a dynamic amount based on the percentage of Markets in Augur that are being <a href="#finalized-market">Finalized</a> as Invalid. Augur targets having 1% of its Markets Finalized as Invalid. During the very first <a href="#dispute-window">Dispute Window</a> after launch, the Validity Bond will be set at 0.01 ETH. Then, if more than 1% of the Finalized Markets in the previous Dispute Window were Invalid, the Validity Bond will be increased. If less than 1% of the Finalized Markets in the previous Dispute Window were Invalid, then the Validity Bond will be decreased (but will never be lower than 0.01 ETH). In particular, we let ν be the proportion of Finalized Markets in the previous Dispute Window that were Invalid, and b<sub>v</sub> be the amount of the Validity Bond from the previous Dispute Window. Then the Validity Bond for the current window is max &#123;1/100, b<sub>v</sub>f(ν)&#125;.</p>
+<p>!!!TBD!!! Update calculations (see Universe.calculateFloatingValue)
+The Validity Bond is a dynamic amount based on the percentage of Markets in Augur that are being <a href="#finalized-market">Finalized</a> as Invalid. Augur targets having 1% of its Markets Finalized as Invalid. During the very first <a href="#dispute-window">Dispute Window</a> after launch, the Validity Bond will be set at 0.01 ETH. Then, if more than 1% of the Finalized Markets in the previous Dispute Window were Invalid, the Validity Bond will be increased. If less than 1% of the Finalized Markets in the previous Dispute Window were Invalid, then the Validity Bond will be decreased (but will never be lower than 0.01 ETH). In particular, we let ν be the proportion of Finalized Markets in the previous Dispute Window that were Invalid, and b<sub>v</sub> be the amount of the Validity Bond from the previous Dispute Window. Then the Validity Bond for the current window is max &#123;1/100, b<sub>v</sub>f(ν)&#125;.</p>
 
 <h2 id="waiting-for-the-next-dispute-window-to-begin-phase">Waiting for the Next Dispute Window to Begin Phase</h2>
 
