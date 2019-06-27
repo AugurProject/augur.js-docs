@@ -1728,6 +1728,37 @@ var _orderId = "0x7ca90ca9118db456d87e3d743b97782a857200b55039f7ffe8de94e5d920f8
 var _type = "0x1";
 var _market = "0x9368ff3e9ce1c0459b309fac6dd4e69229b91a42";
 var _outcome = "0x1";
+var _price = "0x63eb89da4ed0000"; // 0.45
+
+augur.api.Orders.ascendOrderList({
+  _type: _type,
+  _price: _price,
+  _lowestOrderId: _orderId
+}, function (error, ascendingOrderList) { console.log(ascendingOrderList); });
+// example output:
+[ "0x7ca90ca9118db456d87e3d743b97782a857200b55039f7ffe8de94e5d920f870",
+  "0x4a8d07c2c9cd996484c04b7077d1fc4aeaeb8aa4750d7f26f2a896c4393fb6b0" ]
+
+augur.api.Orders.descendOrderList({
+  _type: _type,
+  _price: _price,
+  _highestOrderId: _orderId
+}, function (error, decendingOrderList) { console.log(decendingOrderList); });
+// example output:
+[ "0x09502d4c2765d61a8e47fd4ada696966f3bc3bce6b780ecedded035e616c272e",
+  "0x7ca90ca9118db456d87e3d743b97782a857200b55039f7ffe8de94e5d920f870"]
+
+augur.api.Orders.findBoundingOrders({
+  _type: _type,
+  _price: _price,
+  _bestOrderId: _orderId,
+  _worstOrderId: "0x0",
+  _betterOrderId: "0x0",
+  _worseOrderId: "0x0"
+}, function (error, boundingOrders) { console.log(boundingOrders); });
+// example output:
+[ "0x4a8d07c2c9cd996484c04b7077d1fc4aeaeb8aa4750d7f26f2a896c4393fb6b0",
+  "0x09502d4c2765d61a8e47fd4ada696966f3bc3bce6b780ecedded035e616c272e" ]
 
 augur.api.Orders.getAmount({ 
   _orderId: _orderId 
@@ -1868,6 +1899,57 @@ augur.api.Orders.isWorsePrice({
 true
 ```
 Provides JavaScript bindings for the [Orders Solidity Contract](https://github.com/AugurProject/augur/blob/master/packages/augur-core/source/contracts/trading/Orders.sol), which handles functionality related to the [Order Book](#order-book).
+
+### augur.api.Orders.ascendOrderList(p, callback)
+
+Traverses the [Order Book](#order-book) in ascending order and returns an array containing the better [Order](#order) ID and worse Order ID, respectively, for a specified price and Order type.
+
+#### **Parameters:**
+
+* **`p`** (Object) Parameters object.  
+    * **`p._type`** (string) Type of Order, as a hexadecimal string ("0x0" for a [Bid Order](#bid-order), "0x1" for an [Ask Order](#ask-order)). 
+    * **`p._price`** (string) Price (in [attoETH](#atto-prefix)) in the Order Book for which to find a better Order ID and worse Order ID, as a hexadecimal string.
+    * **`p._lowestOrderId`** (string) Order ID expected to be a worse price than `p._price`, as a 32-byte hexadecimal string.
+* **`callback`** (function) &lt;optional> Called after the function's result has been retrieved.
+
+#### **Returns:**
+
+* (Array.&lt;string>) Array containing the better Order ID and worse Order ID, respectively, for the specified price and Order type.
+
+### augur.api.Orders.descendOrderList(p, callback)
+
+Traverses the [Order Book](#order-book) in descending order and returns an array containing the better [Order](#order) ID and worse Order ID, respectively, for a specified price and Order type.
+
+#### **Parameters:**
+
+* **`p`** (Object) Parameters object.  
+    * **`p._type`** (string) Type of Order, as a hexadecimal string ("0x0" for a [Bid Order](#bid-order), "0x1" for an [Ask Order](#ask-order)). 
+    * **`p._price`** (string) Price (in [attoETH](#atto-prefix)) in the Order Book for which to find a better Order ID and worse Order ID, as a hexadecimal string.
+    * **`p._highestOrderId`** (string) Order ID expected to be a better price than `p._price`, as a 32-byte hexadecimal string.
+* **`callback`** (function) &lt;optional> Called after the function's result has been retrieved.
+
+#### **Returns:**
+
+* (Array.&lt;string>) Array containing the better Order ID and worse Order ID, respectively, for the specified price and Order type.
+
+### augur.api.Orders.findBoundingOrders(p, callback)
+
+Returns an array containing the [Order](#order) IDs from the [Order Book](#order-book) that should be set to better Order ID and worse Order ID, respectively, for an Order placed with price `p._price`.
+
+#### **Parameters:**
+
+* **`p`** (Object) Parameters object.  
+    * **`p._type`** (string) Type of Order, as a hexadecimal string ("0x0" for a [Bid Order](#bid-order), "0x1" for an [Ask Order](#ask-order)). 
+    * **`p._price`** (string) Price (in [attoETH](#atto-prefix)) to compare `p._orderId` to, as a hexadecimal string.
+    * **`p._bestOrderId`** (string) Best Order ID on the Order Book for `p._type`, as a 32-byte hexadecimal string.
+    * **`p._worstOrderId`** (string) Worst Order ID on the Order Book for `p._type`, as a 32-byte hexadecimal string.
+    * **`p._betterOrderId`** (string) Order ID with a better price than `p._price`, as a 32-byte-hexadecimal string.
+    * **`p._worseOrderId`** (string) Order ID with a worse price than `p._price`, as a 32-byte-hexadecimal string.
+* **`callback`** (function) &lt;optional> Called after the function's result has been retrieved.
+
+#### **Returns:**
+
+* (Array.&lt;string>) Array containing the better Order ID and worse Order ID, respectively, for the specified price and Order type.
 
 ### augur.api.Orders.getAmount(p, callback)
 
@@ -2101,99 +2183,6 @@ Returns whether a given price is less than/equal to the price of a particular [O
 #### **Returns:**
 
 * (boolean) `true` if the price is less than the Order price (for Bid Orders), or if the price is greater than the Order price (for Ask Orders). Otherwise, the function will return `false`.
-
-Orders Fetcher Call API
------------------------
-```javascript
-// Orders Fetcher Contract Call API Examples:
-var _orderId = "0x7ca90ca9118db456d87e3d743b97782a857200b55039f7ffe8de94e5d920f870";
-var _type = "0x1";
-var _market = "0x9368ff3e9ce1c0459b309fac6dd4e69229b91a42";
-var _outcome = "0x1";
-var _price = "0x63eb89da4ed0000"; // 0.45
-
-augur.api.OrdersFetcher.ascendOrderList({
-  _type: _type,
-  _price: _price,
-  _lowestOrderId: _orderId
-}, function (error, ascendingOrderList) { console.log(ascendingOrderList); });
-// example output:
-[ "0x7ca90ca9118db456d87e3d743b97782a857200b55039f7ffe8de94e5d920f870",
-  "0x4a8d07c2c9cd996484c04b7077d1fc4aeaeb8aa4750d7f26f2a896c4393fb6b0" ]
-
-augur.api.OrdersFetcher.descendOrderList({
-  _type: _type,
-  _price: _price,
-  _highestOrderId: _orderId
-}, function (error, decendingOrderList) { console.log(decendingOrderList); });
-// example output:
-[ "0x09502d4c2765d61a8e47fd4ada696966f3bc3bce6b780ecedded035e616c272e",
-  "0x7ca90ca9118db456d87e3d743b97782a857200b55039f7ffe8de94e5d920f870"]
-
-augur.api.OrdersFetcher.findBoundingOrders({
-  _type: _type,
-  _price: _price,
-  _bestOrderId: _orderId,
-  _worstOrderId: "0x0",
-  _betterOrderId: "0x0",
-  _worseOrderId: "0x0"
-}, function (error, boundingOrders) { console.log(boundingOrders); });
-// example output:
-[ "0x4a8d07c2c9cd996484c04b7077d1fc4aeaeb8aa4750d7f26f2a896c4393fb6b0",
-  "0x09502d4c2765d61a8e47fd4ada696966f3bc3bce6b780ecedded035e616c272e" ]
-```
-Provides JavaScript bindings for the [OrdersFetcher Solidity Contract](https://github.com/AugurProject/augur-core/blob/master/source/contracts/trading/OrdersFetcher.sol), which handles functionality related retrieving [Orders](#order) from the [Order Book](#order-book).
-
-### augur.api.OrdersFetcher.ascendOrderList(p, callback)
-
-Traverses the [Order Book](#order-book) in ascending order and returns an array containing the better [Order](#order) ID and worse Order ID, respectively, for a specified price and Order type.
-
-#### **Parameters:**
-
-* **`p`** (Object) Parameters object.  
-    * **`p._type`** (string) Type of Order, as a hexadecimal string ("0x0" for a [Bid Order](#bid-order), "0x1" for an [Ask Order](#ask-order)). 
-    * **`p._price`** (string) Price (in [attoETH](#atto-prefix)) in the Order Book for which to find a better Order ID and worse Order ID, as a hexadecimal string.
-    * **`p._lowestOrderId`** (string) Order ID expected to be a worse price than `p._price`, as a 32-byte hexadecimal string.
-* **`callback`** (function) &lt;optional> Called after the function's result has been retrieved.
-
-#### **Returns:**
-
-* (Array.&lt;string>) Array containing the better Order ID and worse Order ID, respectively, for the specified price and Order type.
-
-### augur.api.OrdersFetcher.descendOrderList(p, callback)
-
-Traverses the [Order Book](#order-book) in descending order and returns an array containing the better [Order](#order) ID and worse Order ID, respectively, for a specified price and Order type.
-
-#### **Parameters:**
-
-* **`p`** (Object) Parameters object.  
-    * **`p._type`** (string) Type of Order, as a hexadecimal string ("0x0" for a [Bid Order](#bid-order), "0x1" for an [Ask Order](#ask-order)). 
-    * **`p._price`** (string) Price (in [attoETH](#atto-prefix)) in the Order Book for which to find a better Order ID and worse Order ID, as a hexadecimal string.
-    * **`p._highestOrderId`** (string) Order ID expected to be a better price than `p._price`, as a 32-byte hexadecimal string.
-* **`callback`** (function) &lt;optional> Called after the function's result has been retrieved.
-
-#### **Returns:**
-
-* (Array.&lt;string>) Array containing the better Order ID and worse Order ID, respectively, for the specified price and Order type.
-
-### augur.api.OrdersFetcher.findBoundingOrders(p, callback)
-
-Returns an array containing the [Order](#order) IDs from the [Order Book](#order-book) that should be set to better Order ID and worse Order ID, respectively, for an Order placed with price `p._price`.
-
-#### **Parameters:**
-
-* **`p`** (Object) Parameters object.  
-    * **`p._type`** (string) Type of Order, as a hexadecimal string ("0x0" for a [Bid Order](#bid-order), "0x1" for an [Ask Order](#ask-order)). 
-    * **`p._price`** (string) Price (in [attoETH](#atto-prefix)) to compare `p._orderId` to, as a hexadecimal string.
-    * **`p._bestOrderId`** (string) Best Order ID on the Order Book for `p._type`, as a 32-byte hexadecimal string.
-    * **`p._worstOrderId`** (string) Worst Order ID on the Order Book for `p._type`, as a 32-byte hexadecimal string.
-    * **`p._betterOrderId`** (string) Order ID with a better price than `p._price`, as a 32-byte-hexadecimal string.
-    * **`p._worseOrderId`** (string) Order ID with a worse price than `p._price`, as a 32-byte-hexadecimal string.
-* **`callback`** (function) &lt;optional> Called after the function's result has been retrieved.
-
-#### **Returns:**
-
-* (Array.&lt;string>) Array containing the better Order ID and worse Order ID, respectively, for the specified price and Order type.
 
 Reputation Token Call API
 -------------------------

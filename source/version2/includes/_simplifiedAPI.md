@@ -249,7 +249,6 @@ augur.augurNode.getSyncData(
     FillOrder: "0x0c77f6af7b3b5fed8ca980414a97c62da283098a",
     Order: "0x4811d582f64e68e657bec21834012af38ef093bc",
     Orders: "0x1ba5cf0ce546bf7d7943c4d4fb21ea59f6bb0eee",
-    OrdersFetcher: "0xb9f2cf78542de87ba7542d92e2937d0eedec5feb",
     ShareToken: "0x925bee44fec28deb228d2251e1a9d32f7c73ebed",
     Trade: "0x0dec7fd04933b8673cef99b64978113065b03926",
   },

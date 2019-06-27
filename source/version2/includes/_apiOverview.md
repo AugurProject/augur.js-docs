@@ -60,7 +60,6 @@ augur.connect({ ethereumNode, augurNode }, function (err, connectionInfo) { /* .
       FillOrder: "0x57972b23e4e97cf33b456d292411308b1053d835",
       Order: "0x86416fd9eb6ca7797f799ccc2e08a4da4083ac17",
       Orders: "0x452cbdba8559a9b0199bb15105a42fc7ae373983",
-      OrdersFetcher: "0xc9d0126e1aa921056af5981016904690ad73c0d3",
       ShareToken: "0x5c8b3117b65af65405980f3700542c03709a6436",
       Trade: "0x8d0677ee9f5330fd65db56da6c31711fd6810434",
     },
