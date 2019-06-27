@@ -1718,19 +1718,21 @@ augur.api.Orders.setOrderPrice({
 
 ### augur.api.Orders.setOrderPrice(p)
 
-
+Updates the price of an existing [Order](#order). If the [Order Creator](#order-creator) is owed a refund from the amount they originally escrowed, this amount will be transferred back to the Order Creator from the Market. If the Order Creator must escrow a larger amount to update the Order price, this additional amount will be transferred from their account to the Market.  This transaction will trigger an [`OrderPriceChanged`](#OrderPriceChanged) event if the Order's price is updated without any errors.
 
 This transaction will fail if:
 
-* `msg.sender` isn't the owner of the Market.
+* `msg.sender` isn't the Order Creator.
+* `p._price` is greater than or equal to the Market's [Number of Ticks](#number-of-ticks).
+* `p._price` is equal to the Order's current price.
 
 #### **Parameters:**
 
 * **`p`** (Object) Parameters object.
-    * **`p._orderId`**  (string) Ethereum address of the desired new owner of the Market, as a 20-byte hexadecimal value.
-    * **`p._price`**  (string) 
-    * **`p._betterOrderId`**  (string) 
-    * **`p._worseOrderId`**  (string) 
+    * **`p._orderId`** (string) ID of the Order for which to set the price, as a 32-byte hexadecimal value. (To get the order ID for a specific Order, call the function `augur.api.Order.getOrderId`.)
+    * **`p._price`**  (string) New price with which to update the Order.
+    * **`p._betterOrderId`** (string) Order ID of an existing Order on the Order Book with the next-best price with respect to the Order this transaction is intending to create, as a 32-byte hexadecimal value. Can be obtained by calling `augur.trading.getBetterWorseOrders`.
+    * **`p._worseOrderId`** (string) Order ID of an existing Order on the Order Book with the next-worse price with respect to the Order this transaction is intending to create, as a 32-byte hexadecimal value. Can be obtained by calling `augur.trading.getBetterWorseOrders`.
     * **`p.tx`** (Object) Object containing details about how this transaction should be made.
         * **`p.tx.to`** (string) Ethereum contract address on which to call this function, as a 20-byte hexadecimal string.
         * **`p.tx.gas`** (string) Gas limit to use when submitting this transaction, as a hexadecimal string.
