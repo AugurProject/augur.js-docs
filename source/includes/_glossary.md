@@ -204,6 +204,10 @@ If the [Outcome](#outcome) of a Market is Invalid, [Reporters](#reporters) can [
 
 Legacy [Reputation Tokens](#rep), or Legacy REP, are REP that exist in the [Legacy REP smart contract](https://github.com/AugurProject/augur-core/blob/master/source/contracts/LegacyReputationToken.sol) and have not been migrated to the [Reputation Token smart contract](https://github.com/AugurProject/augur-core/blob/master/source/contracts/reporting/ReputationToken.sol), for a particular [Universe](#universe). Legacy REP must be migrated to the Reputation Token smart contract by calling the `augur.api.ReputationToken.migrateFromLegacyReputationToken` function before they can be used within Augur.
 
+## Liquidity Token
+
+Each [Market](#market) has a Liquidity Token value for a given [Spread Percent](#spread-percent). These Liquidity Tokens are an accrued/running total revenue for [Complete Sets](#complete-set) sold into the [Order Book](#order-book).
+
 ## Long Position
 
 In Augur, opening a [Long Position](#long-position) in the [Outcome](#outcome) of a [Market](#market) means purchasing [Shares](#share) in that Outcome. Opening a Long Position costs (price per Share * number of Shares). For more information on trading, please refer to the [Trading](#trading) section.
