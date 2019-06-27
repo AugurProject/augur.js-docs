@@ -2389,6 +2389,19 @@ Universe Call API
 // can be obtained by calling `augur.augurNode.getSyncData`.
 var universe = "0x0920d1513057572be46580b7ef75d1d01a99a3e5";
 
+augur.api.Universe.calculateFloatingValue({
+  _badMarkets: "",
+  _totalMarkets: "",
+  _targetDivisor: "",
+  _previousValue: "",
+  _floor: "",
+  tx: { to: universe },
+}, function (error, floatingValue) { 
+  console.log(floatingValue); 
+});
+// example output:
+""
+
 augur.api.Universe.getChildUniverse({
   _parentPayoutDistributionHash: "0x4480ed40f94e2cb2ca244eb862df2d350300904a96039eb53cba0e34b8ace90a",
   tx: { to: universe },
@@ -2608,6 +2621,26 @@ augur.api.Universe.isParentOf({
 true
 ```
 Provides JavaScript bindings for the [Universe Solidity Contract](https://github.com/AugurProject/augur/blob/master/packages/augur-core/source/contracts/reporting/Universe.sol), which allows for the creation of [Markets](#market) and provides functions for obtaining information about a given [Universe](#universe).
+
+### augur.api.Universe.calculateFloatingValue(p, callback)
+
+!!!TBD!!! Add description & sample code
+
+#### **Parameters:**
+
+* **`p`** (Object) Parameters object.  
+    * **`p._badMarkets`** (string) 
+    * **`p._totalMarkets`** (string) 
+    * **`p._targetDivisor`** (string) 
+    * **`p._previousValue`** (string) 
+    * **`p._floor`** (string) 
+    * **`p.tx`** (Object) Object containing details about how this function call should be made.
+        * **`p.tx.to`** (string) Ethereum contract address of the Universe contract on which to call this function, as a 20-byte hexadecimal string.
+* **`callback`** (function) &lt;optional> Called after the function's result has been retrieved.
+
+#### **Returns:**
+
+* (string) 
 
 ### augur.api.Universe.getChildUniverse(p, callback)
 
