@@ -1730,21 +1730,44 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
 <span class="p">});</span>
 <span class="c1">// example output:</span>
 <span class="p">[</span>
-  <span class="p">{</span><span class="s2">"categoryName"</span><span class="p">:</span> <span class="s2">"AUGUR"</span><span class="p">,</span> <span class="s2">"nonFinalizedOpenInterest"</span><span class="p">:</span> <span class="s2">"0"</span><span class="p">,</span> <span class="s2">"openInterest"</span><span class="p">:</span> <span class="s2">"3"</span><span class="p">,</span> <span class="s2">"tags"</span><span class="p">:</span> <span class="p">[]},</span>
-  <span class="p">{</span><span class="s2">"categoryName"</span><span class="p">:</span> <span class="s2">"ETHEREUM"</span><span class="p">,</span> <span class="s2">"nonFinalizedOpenInterest"</span><span class="p">:</span> <span class="s2">"4.5"</span><span class="p">,</span> <span class="s2">"openInterest"</span><span class="p">:</span> <span class="s2">"4.5"</span><span class="p">,</span> <span class="s2">"tags"</span><span class="p">:</span> <span class="p">[]},</span>
-  <span class="p">{</span><span class="s2">"categoryName"</span><span class="p">:</span> <span class="s2">"FINANCE"</span><span class="p">,</span> <span class="s2">"nonFinalizedOpenInterest"</span><span class="p">:</span> <span class="s2">"2.5"</span><span class="p">,</span> <span class="s2">"openInterest"</span><span class="p">:</span> <span class="s2">"2.6"</span><span class="p">,</span> <span class="s2">"tags"</span><span class="p">:</span> <span class="p">[]},</span>
-  <span class="p">{</span><span class="s2">"categoryName"</span><span class="p">:</span> <span class="s2">"POLITICS"</span><span class="p">,</span> <span class="s2">"nonFinalizedOpenInterest"</span><span class="p">:</span> <span class="s2">"3"</span><span class="p">,</span> <span class="s2">"openInterest"</span><span class="p">:</span> <span class="s2">"12"</span><span class="p">,</span> <span class="s2">"tags"</span><span class="p">:</span> <span class="p">[]},</span>
-  <span class="p">{</span><span class="s2">"categoryName"</span><span class="p">:</span> <span class="s2">"TEST CATEGORY"</span><span class="p">,</span> <span class="s2">"nonFinalizedOpenInterest"</span><span class="p">:</span> <span class="s2">"0"</span><span class="p">,</span> <span class="s2">"openInterest"</span><span class="p">:</span> <span class="s2">"0"</span><span class="p">,</span> <span class="s2">"tags"</span><span class="p">:</span> <span class="p">[</span>
-    <span class="p">{</span><span class="s2">"nonFinalizedOpenInterest"</span><span class="p">:</span> <span class="s2">"0"</span><span class="p">,</span> <span class="s2">"numberOfMarketsWithThisTag"</span><span class="p">:</span> <span class="mi">6</span><span class="p">,</span> <span class="s2">"openInterest"</span><span class="p">:</span> <span class="s2">"0"</span><span class="p">,</span> <span class="s2">"tagName"</span><span class="p">:</span> <span class="s2">"test tag 1"</span><span class="p">},</span>
-    <span class="p">{</span><span class="s2">"nonFinalizedOpenInterest"</span><span class="p">:</span> <span class="s2">"0"</span><span class="p">,</span> <span class="s2">"numberOfMarketsWithThisTag"</span><span class="p">:</span> <span class="mi">6</span><span class="p">,</span> <span class="s2">"openInterest"</span><span class="p">:</span> <span class="s2">"0"</span><span class="p">,</span> <span class="s2">"tagName"</span><span class="p">:</span> <span class="s2">"test tag 2"</span><span class="p">},</span>
-    <span class="p">{</span><span class="s2">"nonFinalizedOpenInterest"</span><span class="p">:</span> <span class="s2">"0"</span><span class="p">,</span> <span class="s2">"numberOfMarketsWithThisTag"</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="s2">"openInterest"</span><span class="p">:</span> <span class="s2">"0"</span><span class="p">,</span> <span class="s2">"tagName"</span><span class="p">:</span> <span class="s2">"Finance"</span><span class="p">},</span>
-    <span class="p">{</span><span class="s2">"nonFinalizedOpenInterest"</span><span class="p">:</span> <span class="s2">"0"</span><span class="p">,</span> <span class="s2">"numberOfMarketsWithThisTag"</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="s2">"openInterest"</span><span class="p">:</span> <span class="s2">"0"</span><span class="p">,</span> <span class="s2">"tagName"</span><span class="p">:</span> <span class="s2">"Augur"</span><span class="p">},</span>
-    <span class="p">{</span><span class="s2">"nonFinalizedOpenInterest"</span><span class="p">:</span> <span class="s2">"0"</span><span class="p">,</span> <span class="s2">"numberOfMarketsWithThisTag"</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s2">"openInterest"</span><span class="p">:</span> <span class="s2">"0"</span><span class="p">,</span> <span class="s2">"tagName"</span><span class="p">:</span> <span class="s2">"politics"</span><span class="p">},</span>
-    <span class="p">{</span><span class="s2">"nonFinalizedOpenInterest"</span><span class="p">:</span> <span class="s2">"0"</span><span class="p">,</span> <span class="s2">"numberOfMarketsWithThisTag"</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s2">"openInterest"</span><span class="p">:</span> <span class="s2">"0"</span><span class="p">,</span> <span class="s2">"tagName"</span><span class="p">:</span> <span class="s2">"ethereum"</span><span class="p">},</span>
-    <span class="p">{</span><span class="s2">"nonFinalizedOpenInterest"</span><span class="p">:</span> <span class="s2">"0"</span><span class="p">,</span> <span class="s2">"numberOfMarketsWithThisTag"</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span> <span class="s2">"openInterest"</span><span class="p">:</span> <span class="s2">"0"</span><span class="p">,</span> <span class="s2">"tagName"</span><span class="p">:</span> <span class="s2">"tagging it"</span><span class="p">},</span>
-    <span class="p">{</span><span class="s2">"nonFinalizedOpenInterest"</span><span class="p">:</span> <span class="s2">"0"</span><span class="p">,</span> <span class="s2">"numberOfMarketsWithThisTag"</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span> <span class="s2">"openInterest"</span><span class="p">:</span> <span class="s2">"0"</span><span class="p">,</span> <span class="s2">"tagName"</span><span class="p">:</span> <span class="s2">"tagged it"</span><span class="p">},</span>
-  <span class="p">]},</span>
-  <span class="p">{</span><span class="s2">"categoryName"</span><span class="p">:</span> <span class="s2">"ethereum"</span><span class="p">,</span> <span class="s2">"nonFinalizedOpenInterest"</span><span class="p">:</span> <span class="s2">"0"</span><span class="p">,</span> <span class="s2">"openInterest"</span><span class="p">:</span> <span class="s2">"0"</span><span class="p">,</span> <span class="s2">"tags"</span><span class="p">:</span> <span class="p">[]},</span>
+  <span class="p">{</span>
+    <span class="s2">"categoryName"</span><span class="p">:</span> <span class="s2">"TEST CATEGORY"</span><span class="p">,</span>
+    <span class="s2">"nonFinalizedOpenInterest"</span><span class="p">:</span> <span class="s2">"4.16"</span><span class="p">,</span>
+    <span class="s2">"openInterest"</span><span class="p">:</span> <span class="s2">"4.16"</span><span class="p">,</span>
+    <span class="s2">"liquidityTokens"</span><span class="p">:</span> <span class="s2">"16"</span><span class="p">,</span>
+    <span class="s2">"tags"</span><span class="p">:</span> <span class="p">[</span>
+      <span class="p">{</span><span class="s2">"nonFinalizedOpenInterest"</span><span class="p">:</span> <span class="s2">"0"</span><span class="p">,</span> <span class="s2">"numberOfMarketsWithThisTag"</span><span class="p">:</span> <span class="mi">6</span><span class="p">,</span> <span class="s2">"openInterest"</span><span class="p">:</span> <span class="s2">"0"</span><span class="p">,</span> <span class="s2">"liquidityTokens"</span><span class="p">:</span> <span class="s2">"6"</span><span class="p">,</span> <span class="s2">"tagName"</span><span class="p">:</span> <span class="s2">"test tag 1"</span><span class="p">},</span>
+      <span class="p">{</span><span class="s2">"nonFinalizedOpenInterest"</span><span class="p">:</span> <span class="s2">"0"</span><span class="p">,</span> <span class="s2">"numberOfMarketsWithThisTag"</span><span class="p">:</span> <span class="mi">6</span><span class="p">,</span> <span class="s2">"openInterest"</span><span class="p">:</span> <span class="s2">"0"</span><span class="p">,</span> <span class="s2">"liquidityTokens"</span><span class="p">:</span> <span class="s2">"6"</span><span class="p">,</span> <span class="s2">"tagName"</span><span class="p">:</span> <span class="s2">"test tag 2"</span><span class="p">},</span>
+      <span class="p">{</span><span class="s2">"nonFinalizedOpenInterest"</span><span class="p">:</span> <span class="s2">"0"</span><span class="p">,</span> <span class="s2">"numberOfMarketsWithThisTag"</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="s2">"openInterest"</span><span class="p">:</span> <span class="s2">"0"</span><span class="p">,</span> <span class="s2">"liquidityTokens"</span><span class="p">:</span> <span class="s2">"2"</span><span class="p">,</span> <span class="s2">"tagName"</span><span class="p">:</span> <span class="s2">"Finance"</span><span class="p">},</span>
+      <span class="p">{</span><span class="s2">"nonFinalizedOpenInterest"</span><span class="p">:</span> <span class="s2">"0"</span><span class="p">,</span> <span class="s2">"numberOfMarketsWithThisTag"</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="s2">"openInterest"</span><span class="p">:</span> <span class="s2">"0"</span><span class="p">,</span> <span class="s2">"liquidityTokens"</span><span class="p">:</span> <span class="s2">"2"</span><span class="p">,</span> <span class="s2">"tagName"</span><span class="p">:</span> <span class="s2">"Augur"</span><span class="p">},</span>
+      <span class="p">{</span><span class="s2">"nonFinalizedOpenInterest"</span><span class="p">:</span> <span class="s2">"0"</span><span class="p">,</span> <span class="s2">"numberOfMarketsWithThisTag"</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s2">"openInterest"</span><span class="p">:</span> <span class="s2">"0"</span><span class="p">,</span> <span class="s2">"liquidityTokens"</span><span class="p">:</span> <span class="s2">"1"</span><span class="p">,</span> <span class="s2">"tagName"</span><span class="p">:</span> <span class="s2">"politics"</span><span class="p">},</span>
+      <span class="p">{</span><span class="s2">"nonFinalizedOpenInterest"</span><span class="p">:</span> <span class="s2">"0"</span><span class="p">,</span> <span class="s2">"numberOfMarketsWithThisTag"</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s2">"openInterest"</span><span class="p">:</span> <span class="s2">"0"</span><span class="p">,</span> <span class="s2">"liquidityTokens"</span><span class="p">:</span> <span class="s2">"1"</span><span class="p">,</span> <span class="s2">"tagName"</span><span class="p">:</span> <span class="s2">"ethereum"</span><span class="p">},</span>
+      <span class="p">{</span><span class="s2">"nonFinalizedOpenInterest"</span><span class="p">:</span> <span class="s2">"0"</span><span class="p">,</span> <span class="s2">"numberOfMarketsWithThisTag"</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span> <span class="s2">"openInterest"</span><span class="p">:</span> <span class="s2">"0"</span><span class="p">,</span> <span class="s2">"liquidityTokens"</span><span class="p">:</span> <span class="s2">"5"</span><span class="p">,</span> <span class="s2">"tagName"</span><span class="p">:</span> <span class="s2">"tagging it"</span><span class="p">},</span>
+      <span class="p">{</span><span class="s2">"nonFinalizedOpenInterest"</span><span class="p">:</span> <span class="s2">"0"</span><span class="p">,</span> <span class="s2">"numberOfMarketsWithThisTag"</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span> <span class="s2">"openInterest"</span><span class="p">:</span> <span class="s2">"0"</span><span class="p">,</span> <span class="s2">"liquidityTokens"</span><span class="p">:</span> <span class="s2">"5"</span><span class="p">,</span> <span class="s2">"tagName"</span><span class="p">:</span> <span class="s2">"tagged it"</span><span class="p">},</span>
+    <span class="p">]</span>
+  <span class="p">},</span>
+  <span class="p">{</span>
+    <span class="s2">"categoryName"</span><span class="p">:</span> <span class="s2">"TeSt CaTeGoRy"</span><span class="p">,</span>
+    <span class="s2">"nonFinalizedOpenInterest"</span><span class="p">:</span> <span class="s2">"0"</span><span class="p">,</span>
+    <span class="s2">"openInterest"</span><span class="p">:</span> <span class="s2">"0"</span><span class="p">,</span>
+    <span class="s2">"liquidityTokens"</span><span class="p">:</span> <span class="s2">"1"</span><span class="p">,</span>
+    <span class="s2">"tags"</span><span class="p">:</span> <span class="p">[</span>
+      <span class="p">{</span>
+        <span class="s2">"nonFinalizedOpenInterest"</span><span class="p">:</span> <span class="s2">"0"</span><span class="p">,</span>
+        <span class="s2">"numberOfMarketsWithThisTag"</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+        <span class="s2">"openInterest"</span><span class="p">:</span> <span class="s2">"0"</span><span class="p">,</span>
+        <span class="s2">"liquidityTokens"</span><span class="p">:</span> <span class="s2">"1"</span><span class="p">,</span>
+        <span class="s2">"tagName"</span><span class="p">:</span> <span class="s2">"tEsT tag 1"</span><span class="p">,</span>
+      <span class="p">},</span>
+      <span class="p">{</span>
+        <span class="s2">"nonFinalizedOpenInterest"</span><span class="p">:</span> <span class="s2">"0"</span><span class="p">,</span>
+        <span class="s2">"numberOfMarketsWithThisTag"</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+        <span class="s2">"openInterest"</span><span class="p">:</span> <span class="s2">"0"</span><span class="p">,</span>
+        <span class="s2">"liquidityTokens"</span><span class="p">:</span> <span class="s2">"1"</span><span class="p">,</span>
+        <span class="s2">"tagName"</span><span class="p">:</span> <span class="s2">"test tag 2"</span><span class="p">,</span>
+      <span class="p">},</span>
+    <span class="p">],</span>
+  <span class="p">},</span>
 <span class="p">]</span>
 
 <span class="nx">augur</span><span class="p">.</span><span class="nx">markets</span><span class="p">.</span><span class="nx">getMarketPriceHistory</span><span class="p">({</span>
@@ -4749,14 +4772,6 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
 <span class="p">});</span>
 <span class="c1">// example output:</span>
 <span class="kc">true</span>
-
-<span class="nx">augur</span><span class="p">.</span><span class="nx">api</span><span class="p">.</span><span class="nx">DisputeCrowdsourcer</span><span class="p">.</span><span class="nx">isInvalid</span><span class="p">({</span> 
-  <span class="na">tx</span><span class="p">:</span> <span class="p">{</span> <span class="na">to</span><span class="p">:</span> <span class="nx">disputeCrowdsourcer</span> <span class="p">}</span> 
-<span class="p">},</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">error</span><span class="p">,</span> <span class="nx">isInvalid</span><span class="p">)</span> <span class="p">{</span> 
-  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">isInvalid</span><span class="p">);</span> 
-<span class="p">});</span>
-<span class="c1">// example output:</span>
-<span class="kc">true</span>
 </code></pre></div>
 <p>Provides JavaScript bindings for the <a href="https://github.com/AugurProject/augur/blob/master/packages/augur-core/source/contracts/reporting/DisputeCrowdsourcer.sol">DisputeCrowdsourcer Solidity Contract</a>, which allows users to <a href="#dispute-stake">Stake</a> and redeem <a href="#rep">REP</a> on <a href="#outcome">Outcomes</a> other than a <a href="#market">Market&rsquo;s</a> <a href="#tentative-outcome">Tentative Outcome</a>.</p>
 
@@ -4965,31 +4980,6 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
 
 <ul>
 <li>(boolean) <code class="prettyprint">true</code> if the Dispute Crowdsourcer has been disavowed, or <code class="prettyprint">false</code> otherwise.</li>
-</ul>
-
-<h3 id="augur-api-disputecrowdsourcer-isinvalid-p-callback">augur.api.DisputeCrowdsourcer.isInvalid(p, callback)</h3>
-
-<p>Returns whether a <a href="#crowdsourcer">Dispute Crowdsourcer</a> represents the <a href="#invalid-outcome">Invalid Outcome</a> for its <a href="#market">Market</a>.</p>
-
-<h4 id="strong-strong"><strong>Parameters:</strong></h4>
-
-<ul>
-<li><strong><code class="prettyprint">p</code></strong> (Object) Parameters object.<br>
-
-<ul>
-<li><strong><code class="prettyprint">p.tx</code></strong> (Object) Object containing details about how this function call should be made.
-
-<ul>
-<li><strong><code class="prettyprint">p.tx.to</code></strong> (string) Ethereum contract address of the Dispute Crowdsourcer on which to call this function, as a 20-byte hexadecimal string.</li>
-</ul></li>
-</ul></li>
-<li><strong><code class="prettyprint">callback</code></strong> (function) &lt;optional&gt; Called after the function&rsquo;s result has been retrieved.</li>
-</ul>
-
-<h4 id="strong-strong"><strong>Returns:</strong></h4>
-
-<ul>
-<li>(boolean)  <code class="prettyprint">true</code> if the Dispute Crowdsourcer represents the Invalid Outcome for its Market, or <code class="prettyprint">false</code> otherwise.</li>
 </ul>
 
 <h2 id="dispute-window-call-api">Dispute Window Call API</h2>
@@ -5426,14 +5416,6 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
 <span class="p">});</span>
 <span class="c1">// example output:</span>
 <span class="s2">"78000"</span>
-
-<span class="nx">augur</span><span class="p">.</span><span class="nx">api</span><span class="p">.</span><span class="nx">InitialReporter</span><span class="p">.</span><span class="nx">isInvalid</span><span class="p">({</span> 
-  <span class="na">tx</span><span class="p">:</span> <span class="p">{</span> <span class="na">to</span><span class="p">:</span> <span class="nx">initialReporter</span> <span class="p">}</span> 
-<span class="p">},</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">error</span><span class="p">,</span> <span class="nx">isInvalid</span><span class="p">)</span> <span class="p">{</span> 
-  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">isInvalid</span><span class="p">);</span> 
-<span class="p">});</span>
-<span class="c1">// example output:</span>
-<span class="kc">true</span>
 </code></pre></div>
 <p>Provides JavaScript bindings for the <a href="https://github.com/AugurProject/augur/blob/master/packages/augur-core/source/contracts/reporting/InitialReporter.sol">InitialReporter Solidity Contract</a>, which enables functionality related to <a href="#initial-report">Initial Reports</a>.</p>
 
@@ -5713,31 +5695,6 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
 <li>(string) Amount of attoREP Staked on the Initial Report for the Market of the specified InitialReporter contract, as a stringified unsigned integer.</li>
 </ul>
 
-<h3 id="augur-api-initialreporter-isinvalid-p-callback">augur.api.InitialReporter.isInvalid(p, callback)</h3>
-
-<p>Returns whether the submitted <a href="#initial-report">Initial Report</a> said the<a href="#market">Market</a> for the InitialReporter contract was <a href="#invalid-outcome">Invalid</a>.</p>
-
-<h4 id="strong-strong"><strong>Parameters:</strong></h4>
-
-<ul>
-<li><strong><code class="prettyprint">p</code></strong> (Object) Parameters object.<br>
-
-<ul>
-<li><strong><code class="prettyprint">p.tx</code></strong> (Object) Object containing details about how this function call should be made.
-
-<ul>
-<li><strong><code class="prettyprint">p.tx.to</code></strong> (string) Ethereum contract address of the InitialReporter contract on which to call this function, as a 20-byte hexadecimal string.</li>
-</ul></li>
-</ul></li>
-<li><strong><code class="prettyprint">callback</code></strong> (function) &lt;optional&gt; Called after the function&rsquo;s result has been retrieved.</li>
-</ul>
-
-<h4 id="strong-strong"><strong>Returns:</strong></h4>
-
-<ul>
-<li>(boolean) <code class="prettyprint">true</code> if the Initial Report said the Market for the InitialReporter contract was Invalid, or <code class="prettyprint">false</code> otherwise.</li>
-</ul>
-
 <h2 id="market-call-api">Market Call API</h2>
 <div class="highlight"><pre class="highlight javascript"><code><span class="c1">// Market Contract Call API Examples:</span>
 <span class="kd">var</span> <span class="nx">market</span> <span class="o">=</span> <span class="s2">"0x9368ff3e9ce1c0459b309fac6dd4e69229b91a42"</span><span class="p">;</span>
@@ -5752,8 +5709,7 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
 <span class="s2">"1"</span>
 
 <span class="nx">augur</span><span class="p">.</span><span class="nx">api</span><span class="p">.</span><span class="nx">Market</span><span class="p">.</span><span class="nx">derivePayoutDistributionHash</span><span class="p">({</span>
-  <span class="na">_payoutNumerators</span><span class="p">:</span> <span class="p">[</span> <span class="s2">"0x0"</span><span class="p">,</span> <span class="s2">"0x2710"</span> <span class="p">],</span>
-  <span class="na">_invalid</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+  <span class="na">_payoutNumerators</span><span class="p">:</span> <span class="p">[</span> <span class="s2">"0x0"</span><span class="p">,</span> <span class="s2">"0x0"</span><span class="p">,</span> <span class="s2">"0x2710"</span> <span class="p">],</span>
   <span class="na">tx</span><span class="p">:</span> <span class="p">{</span> <span class="na">to</span><span class="p">:</span> <span class="nx">market</span> <span class="p">},</span>
 <span class="p">},</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">error</span><span class="p">,</span> <span class="nx">payoutDistributionHash</span><span class="p">)</span> <span class="p">{</span> 
   <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">payoutDistributionHash</span><span class="p">);</span> 
@@ -6025,12 +5981,12 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
 
 <h3 id="augur-api-market-derivepayoutdistributionhash-p-callback">augur.api.Market.derivePayoutDistributionHash(p, callback)</h3>
 
-<p>Returns the <a href="#payout-distribution-hash">Payout Distribution Hash</a> of the specified <a href="#market">Market</a> by hashing <a href="#payout-set">Payout Numerators</a> <code class="prettyprint">_payoutNumerators</code> and <a href="#invalid-outcome">Invalid</a> status <code class="prettyprint">_invalid</code> using the keccak256 algorithm.</p>
+<p>Returns the <a href="#payout-distribution-hash">Payout Distribution Hash</a> of the specified <a href="#market">Market</a> by hashing <a href="#payout-set">Payout Numerators</a> <code class="prettyprint">p._payoutNumerators</code> using the keccak256 algorithm.</p>
 
 <p>This call will fail if:</p>
 
 <ul>
-<li><code class="prettyprint">p._invalid</code> is <code class="prettyprint">true</code> and the values in <code class="prettyprint">p._payoutNumerators</code> are not all the same.</li>
+<li><code class="prettyprint">p._payoutNumerators</code> is not specified correctly. (For information on what the Payout Set should look like, refer to the <a href="#payout-set">Payout Set glossary entry</a>.)</li>
 </ul>
 
 <h4 id="strong-strong"><strong>Parameters:</strong></h4>
@@ -6040,7 +5996,6 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
 
 <ul>
 <li><strong><code class="prettyprint">p._payoutNumerators</code></strong> (Array.&lt;string&gt;) Payout Numerators, as hexadecimal strings, from which to derive the Payout Distribution Hash.</li>
-<li><strong><code class="prettyprint">p._invalid</code></strong> (boolean) Whether the Market is Invalid.</li>
 <li><strong><code class="prettyprint">p.tx</code></strong> (Object) Object containing details about how this function call should be made.
 
 <ul>
@@ -10136,13 +10091,11 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
 <div class="highlight"><pre class="highlight javascript"><code><span class="c1">// Market Transaction API Examples:</span>
 <span class="kd">var</span> <span class="nx">marketAddress</span> <span class="o">=</span> <span class="s2">"0x9368ff3e9ce1c0459b309fac6dd4e69229b91a42"</span><span class="p">;</span>
 
-<span class="kd">var</span> <span class="nx">_payoutNumerators</span> <span class="o">=</span> <span class="p">[</span> <span class="s2">"0x0"</span><span class="p">,</span> <span class="s2">"0x2710"</span> <span class="p">];</span>
-<span class="kd">var</span> <span class="nx">_invalid</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
+<span class="kd">var</span> <span class="nx">_payoutNumerators</span> <span class="o">=</span> <span class="p">[</span> <span class="s2">"0x0"</span><span class="p">,</span> <span class="s2">"0x0"</span><span class="p">,</span> <span class="s2">"0x2710"</span> <span class="p">];</span>
 <span class="kd">var</span> <span class="nx">_description</span> <span class="o">=</span> <span class="s2">"The outcome of this Market is 'Yes', as reported by the WSJ on May 15, 2019."</span><span class="p">;</span>
 <span class="kd">var</span> <span class="nx">_amount</span> <span class="o">=</span> <span class="s2">"0x64"</span><span class="p">;</span>
 <span class="nx">augur</span><span class="p">.</span><span class="nx">api</span><span class="p">.</span><span class="nx">Market</span><span class="p">.</span><span class="nx">contribute</span><span class="p">({</span>
   <span class="na">_payoutNumerators</span><span class="p">:</span> <span class="nx">_payoutNumerators</span><span class="p">,</span>
-  <span class="na">_invalid</span><span class="p">:</span> <span class="nx">_invalid</span><span class="p">,</span>
   <span class="na">_amount</span><span class="p">:</span> <span class="nx">_amount</span><span class="p">,</span>
   <span class="na">tx</span><span class="p">:</span> <span class="p">{</span> 
     <span class="na">to</span><span class="p">:</span> <span class="nx">marketAddress</span><span class="p">,</span>
@@ -10175,7 +10128,6 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
 
 <span class="nx">augur</span><span class="p">.</span><span class="nx">api</span><span class="p">.</span><span class="nx">Market</span><span class="p">.</span><span class="nx">doInitialReport</span><span class="p">({</span>
   <span class="na">_payoutNumerators</span><span class="p">:</span> <span class="nx">_payoutNumerators</span><span class="p">,</span>
-  <span class="na">_invalid</span><span class="p">:</span> <span class="nx">_invalid</span><span class="p">,</span>
   <span class="na">_description</span><span class="p">:</span> <span class="nx">_description</span>
   <span class="na">tx</span><span class="p">:</span> <span class="p">{</span> 
     <span class="na">to</span><span class="p">:</span> <span class="nx">marketAddress</span><span class="p">,</span>
@@ -10225,7 +10177,6 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
   <span class="na">tx</span><span class="p">:</span> <span class="p">{</span> 
     <span class="na">to</span><span class="p">:</span> <span class="nx">marketAddress</span><span class="p">,</span>
     <span class="na">_payoutNumerators</span><span class="p">:</span> <span class="nx">_payoutNumerators</span><span class="p">,</span> 
-    <span class="na">_invalid</span><span class="p">:</span> <span class="nx">_invalid</span><span class="p">,</span> 
     <span class="na">_description</span><span class="p">:</span> <span class="s2">""</span><span class="p">,</span>
     <span class="na">gas</span><span class="p">:</span> <span class="s2">"0x632ea0"</span> 
   <span class="p">},</span> 
@@ -10275,7 +10226,7 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
 
 <h3 id="augur-api-market-contribute-p">augur.api.Market.contribute(p)</h3>
 
-<p>Contributes <code class="prettyprint">p._amount</code> <a href="#rep">REP</a> to the <a href="#crowdsourcer">Dispute Crowdsourcer</a> represented by <a href="#payout-set">Payout Set</a> <code class="prettyprint">p._payoutNumerators</code> and <code class="prettyprint">p._invalid</code> in order to help <a href="#challenge">Challenge</a> the <a href="#market">Market</a>&rsquo;s <a href="#tentative-outcome">Tentative Outcome</a>. If the amount of REP in the Dispute Crowdsourcer plus <code class="prettyprint">p._amount</code> is greater than the total REP required to fill the <a href="#dispute-bond">Dispute Bond</a>, this function will only contribute the remaining amount of REP required to fill the Dispute Bond on behalf of the caller.</p>
+<p>Contributes <code class="prettyprint">p._amount</code> <a href="#rep">REP</a> to the <a href="#crowdsourcer">Dispute Crowdsourcer</a> represented by <a href="#payout-set">Payout Set</a> <code class="prettyprint">p._payoutNumerators</code> in order to help <a href="#challenge">Challenge</a> the <a href="#market">Market</a>&rsquo;s <a href="#tentative-outcome">Tentative Outcome</a>. If the amount of REP in the Dispute Crowdsourcer plus <code class="prettyprint">p._amount</code> is greater than the total REP required to fill the <a href="#dispute-bond">Dispute Bond</a>, this function will only contribute the remaining amount of REP required to fill the Dispute Bond on behalf of the caller.</p>
 
 <p>This transaction will trigger a <a href="#DisputeCrowdsourcerContribution"><code class="prettyprint">DisputeCrowdsourcerContribution</code></a> event if it executes without any errors. It will also trigger a <code class="prettyprint">DisputeCrowdsourcerCompleted</code> event if the Dispute Bond is successfullly filled, and it will trigger a <a href="#UniverseForked"><code class="prettyprint">UniverseForked</code></a> event if enough REP has been <a href="#dispute-stake">Staked</a> in the Dispute Crowdsourcer to cause the Market to <a href="#fork">Fork</a>.</p>
 
@@ -10285,8 +10236,8 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
 <li>No <a href="#initial-report">Initial Report</a> has been submitted on the Market.</li>
 <li>The Market&rsquo;s <a href="#dispute-window">Dispute Window</a> has ended.</li>
 <li>The Market&rsquo;s <a href="#universe">Universe</a> has a <a href="#forked-market">Forked Market</a>.</li>
-<li>The <a href="#outcome">Outcome</a> specified by <code class="prettyprint">p._payoutNumerators</code> and <code class="prettyprint">p._invalid</code> is already the Tentative Outcome of the Market.</li>
-<li><code class="prettyprint">p._invalid</code> is true and the Numerators in <code class="prettyprint">p._payoutNumerators</code> are not all the same value. (For information about what the Payout Set should look like for an Invalid Market, refer to the <a href="#invalid-outcome">Invalid Outcome glossary entry</a>.)</li>
+<li>The <a href="#outcome">Outcome</a> specified by <code class="prettyprint">p._payoutNumerators</code> is already the Tentative Outcome of the Market.</li>
+<li><code class="prettyprint">p._payoutNumerators</code> is not specified correctly. (For information on what the Payout Set should look like, refer to the <a href="#payout-set">Payout Set glossary entry</a>.)</li>
 </ul>
 
 <h4 id="strong-strong"><strong>Parameters:</strong></h4>
@@ -10296,7 +10247,6 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
 
 <ul>
 <li><strong><code class="prettyprint">p._payoutNumerators</code></strong>  (Array.&lt;number&gt;|Array.&lt;string&gt;) Array representing the Market&rsquo;s Payout Set.</li>
-<li><strong><code class="prettyprint">p._invalid</code></strong>  (boolean) Whether the Outcome of the Market is Invalid.</li>
 <li><strong><code class="prettyprint">p._amount</code></strong>  (string) Amount to contribute to the Dispute Crowdsourcer, in <a href="#atto-prefix">attoREP</a>.</li>
 <li><strong><code class="prettyprint">p._description</code></strong> (string) &lt;optional&gt; Explanation for why the contributor is Staking on this particular Outcome.</li>
 <li><strong><code class="prettyprint">p.tx</code></strong> (Object) Object containing details about how this transaction should be made.
@@ -10366,7 +10316,7 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
 <ul>
 <li>The Market&rsquo;s event end time has not passed.</li>
 <li>The caller of the function is not the <a href="#designated-reporter">Designated Reporter</a> and the <a href="#designated-reporting-phase">Designated Reporting Phase</a> has not ended.</li>
-<li><code class="prettyprint">p._invalid</code> is true and the Numerators in <code class="prettyprint">p._payoutNumerators</code> are not all the same value. (For information about what the <a href="#payout-set">Payout Set</a> should look like for an Invalid Market, refer to the <a href="#invalid-outcome">Invalid Outcome glossary entry</a>.)</li>
+<li><code class="prettyprint">p._payoutNumerators</code> is not specified correctly. (For information on what the Payout Set should look like, refer to the <a href="#payout-set">Payout Set glossary entry</a>.)</li>
 </ul>
 
 <h4 id="strong-strong"><strong>Parameters:</strong></h4>
@@ -10376,7 +10326,6 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
 
 <ul>
 <li><strong><code class="prettyprint">p._payoutNumerators</code></strong>  (Array.&lt;number&gt;|Array.&lt;string&gt;) Array representing the Market&rsquo;s Payout Set.</li>
-<li><strong><code class="prettyprint">p._invalid</code></strong>  (boolean) Whether the Outcome of the Market is Invalid.</li>
 <li><strong><code class="prettyprint">p._description</code></strong> (string) &lt;optional&gt; Explanation for why the Initial Reporter is Staking on this particular Outcome.</li>
 <li><strong><code class="prettyprint">p.tx</code></strong> (Object) Object containing details about how this transaction should be made.
 
@@ -10476,13 +10425,14 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
 
 <p>Migrates the <a href="#market">Market</a> into a winning <a href="#child-universe">Child Universe</a> from a <a href="#fork">Forked</a> <a href="#parent-universe">Parent Universe</a>. When a Fork occurs, there is a <a href="#fork-period">Fork Period</a>, wherein <a href="#rep">REP</a> holders migrate their REP to the <a href="#universe">Universe</a> they want to continue in. Once the Fork Period ends, the Child Universe with the most REP migrated to it is declared the <a href="#winning-universe">Winning Universe</a>. Calling this transaction calls <code class="prettyprint">augur.api.Market.disavowCrowdsourcers</code> and then moves the Market from a Parent Universe to the Winning Universe after it&rsquo;s been decided. If the Market is a non-<a href="#forked-market">Forked Markets</a> and has not had an <a href="#initial-report">Initial Report</a> submitted yet, the owner of the Market will get paid the <a href="#no-show-bond">No-Show Bond</a> using REP from the Market&rsquo;s former Universe. Regardless of whether the Market already has an Initial Report, the account that is performing the migration will place a new No-Show Bond (which could be a different size based on the new Universe).</p>
 
-<p>NOTE: If the End Time has elapsed, any existing Initial Report that has been submitted on the Market will be reset, and the parameter <code class="prettyprint">p._payoutNumerators</code>, <code class="prettyprint">p._invalid</code>, &amp; <code class="prettyprint">p._description</code> will be used to submit an <a href="#initial-report">Initial Report</a> on the Market in the Market&rsquo;s new Universe. If the End Time has not elapsed, these parameters will not be used.</p>
+<p>NOTE: If the End Time has elapsed, any existing Initial Report that has been submitted on the Market will be reset, and the parameter <code class="prettyprint">p._payoutNumerators</code> &amp; <code class="prettyprint">p._description</code> will be used to submit an <a href="#initial-report">Initial Report</a> on the Market in the Market&rsquo;s new Universe. If the End Time has not elapsed, these parameters will not be used.</p>
 
 <p>This transaction will fail if:</p>
 
 <ul>
 <li>The Market is <a href="#finalized-market">Finalized</a>.</li>
 <li>The <a href="#forked-market">Forked Market</a> is not Finalized (i.e., the Fork Period is not over, so there is no Winning Universe to migrate to).</li>
+<li><code class="prettyprint">p._payoutNumerators</code> is not specified correctly. (For information on what the Payout Set should look like, refer to the <a href="#payout-set">Payout Set glossary entry</a>.)</li>
 </ul>
 
 <h4 id="strong-strong"><strong>Parameters:</strong></h4>
@@ -10492,7 +10442,6 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
 
 <ul>
 <li><strong><code class="prettyprint">p._payoutNumerators</code></strong>  (Array.&lt;number&gt;|Array.&lt;string&gt;) &lt;optional&gt; Array representing the Market&rsquo;s Payout Set. (Required if the Market&rsquo;s End Time has elapsed; otherwise, unused.)</li>
-<li><strong><code class="prettyprint">p._invalid</code></strong>  (boolean) &lt;optional&gt; Whether the Outcome of the Market is Invalid. (Required if the Market&rsquo;s End Time has elapsed; otherwise, unused.)</li>
 <li><strong><code class="prettyprint">p._description</code></strong> (string) &lt;optional&gt; Explanation for why the Initial Reporter is Staking on this particular Outcome. (Used only if the Market&rsquo;s End Time has elapsed.)</li>
 <li><strong><code class="prettyprint">p.tx</code></strong> (Object) Object containing details about how this transaction should be made.
 
@@ -10736,8 +10685,7 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
 <span class="p">});</span>
 
 <span class="nx">augur</span><span class="p">.</span><span class="nx">api</span><span class="p">.</span><span class="nx">ReputationToken</span><span class="p">.</span><span class="nx">migrateOutByPayout</span><span class="p">({</span>
-  <span class="na">_payoutNumerators</span><span class="p">:</span> <span class="p">[</span><span class="s2">"0x1"</span><span class="p">,</span> <span class="s2">"0x270F"</span><span class="p">],</span>
-  <span class="na">_invalid</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+  <span class="na">_payoutNumerators</span><span class="p">:</span> <span class="p">[</span><span class="s2">"0x0"</span><span class="p">,</span> <span class="s2">"0x1"</span><span class="p">,</span> <span class="s2">"0x270F"</span><span class="p">],</span>
   <span class="na">_attotokens</span><span class="p">:</span> <span class="s2">"0xa"</span><span class="p">,</span>
   <span class="na">tx</span><span class="p">:</span> <span class="p">{</span> 
     <span class="na">to</span><span class="p">:</span> <span class="nx">reputationTokenAddress</span><span class="p">,</span>
@@ -10970,7 +10918,7 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
 
 <h3 id="augur-api-reputationtoken-migrateoutbypayout-p">augur.api.ReputationToken.migrateOutByPayout(p)</h3>
 
-<p>Creates a <a href="#child-universe">Child Universe</a> (if it does not already exist) for the ReputationToken contract&rsquo;s <a href="#universe">Universe</a>, where the <a href="#forked-market">Forked Market</a> has the <a href="#payout-set">Payout Set</a> <code class="prettyprint">p._payoutNumerators</code>. If the Forked Market is deemed to have an <a href="#invalid-outcome">Invalid Outcome</a>, <code class="prettyprint">p._invalid</code> should be set to <code class="prettyprint">true</code>; otherwise, it should be set to <code class="prettyprint">false</code>. Once the Child Universe exists, the function will migrate <code class="prettyprint">p._attotokens</code> REP from the ReputationToken contract of the Parent Universe to the ReputationToken contract of the Child Universe.</p>
+<p>Creates a <a href="#child-universe">Child Universe</a> (if it does not already exist) for the ReputationToken contract&rsquo;s <a href="#universe">Universe</a>, where the <a href="#forked-market">Forked Market</a> has the <a href="#payout-set">Payout Set</a> <code class="prettyprint">p._payoutNumerators</code>. Once the Child Universe exists, the function will migrate <code class="prettyprint">p._attotokens</code> REP from the ReputationToken contract of the Parent Universe to the ReputationToken contract of the Child Universe.</p>
 
 <p>This transaction will fail if:</p>
 
@@ -10978,6 +10926,7 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
 <li><code class="prettyprint">p._attotokens</code> is not greater than 0.</li>
 <li>The Universe the ReputationToken contract belongs to does not have a Forked Market.</li>
 <li>The <a href="#parent-universe">Parent Universe&rsquo;s</a> <a href="#fork-period">Fork Period</a> has ended (in which case, REP in the Parent Universe can no longer be migrated).</li>
+<li><code class="prettyprint">p._payoutNumerators</code> is not specified correctly. (For information on what the Payout Set should look like, refer to the <a href="#payout-set">Payout Set glossary entry</a>.)</li>
 </ul>
 
 <h4 id="strong-strong"><strong>Parameters:</strong></h4>
@@ -10987,7 +10936,6 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
 
 <ul>
 <li><strong><code class="prettyprint">p._payoutNumerators</code></strong>  (Array.&lt;string&gt;) Payout Set of the Forked Market in the Child Universe.</li>
-<li><strong><code class="prettyprint">p._invalid</code></strong>  (boolean) Whether the Forked Market is deemed to have an Invalid Outomce in the Child Universe.</li>
 <li><strong><code class="prettyprint">p._attotokens</code></strong>  (string) Number of REP to migrate to the Child Universe&rsquo;s ReputationToken contract, in <a href="#atto-prefix">attoREP</a>, as a hexadecimal string.</li>
 <li><strong><code class="prettyprint">p.tx</code></strong> (Object) Object containing details about how this transaction should be made.
 
@@ -11711,11 +11659,9 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
   <span class="na">onFailed</span><span class="p">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">result</span><span class="p">)</span> <span class="p">{</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"onFailed result:"</span><span class="p">,</span> <span class="nx">result</span><span class="p">);</span> <span class="p">},</span>
 <span class="p">});</span>
 
-<span class="kd">var</span> <span class="nx">_parentPayoutNumerators</span> <span class="o">=</span> <span class="p">[</span> <span class="s2">"0x0"</span><span class="p">,</span> <span class="s2">"0x2710"</span> <span class="p">];</span>
-<span class="kd">var</span> <span class="nx">_parentInvalid</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
+<span class="kd">var</span> <span class="nx">_parentPayoutNumerators</span> <span class="o">=</span> <span class="p">[</span> <span class="s2">"0x0"</span><span class="p">,</span> <span class="s2">"0x0"</span><span class="p">,</span> <span class="s2">"0x2710"</span> <span class="p">];</span>
 <span class="nx">augur</span><span class="p">.</span><span class="nx">api</span><span class="p">.</span><span class="nx">Universe</span><span class="p">.</span><span class="nx">createChildUniverse</span><span class="p">({</span>
   <span class="na">_parentPayoutNumerators</span><span class="p">:</span> <span class="nx">_parentPayoutNumerators</span><span class="p">,</span>
-  <span class="na">_parentInvalid</span><span class="p">:</span> <span class="nx">_parentInvalid</span><span class="p">,</span>
   <span class="na">tx</span><span class="p">:</span> <span class="p">{</span> 
     <span class="na">to</span><span class="p">:</span> <span class="nx">universeAddress</span><span class="p">,</span>
     <span class="na">gas</span><span class="p">:</span> <span class="s2">"0x632ea0"</span> 
@@ -11990,13 +11936,13 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
 
 <h3 id="augur-api-universe-createchilduniverse-p">augur.api.Universe.createChildUniverse(p)</h3>
 
-<p>Creates a new <a href="#child-universe">Child Universe</a> (if it does not already exist) with the given <a href="#payout-set">Payout Set</a> <code class="prettyprint">p._parentPayoutNumerators</code> and <code class="prettyprint">p._parentInvalid</code>. This transaction will trigger a <a href="#UniverseCreated"><code class="prettyprint">UniverseCreated</code></a> event if the Child Universe has not been created yet.</p>
+<p>Creates a new <a href="#child-universe">Child Universe</a> (if it does not already exist) with the given <a href="#payout-set">Payout Set</a> <code class="prettyprint">p._parentPayoutNumerators</code>. This transaction will trigger a <a href="#UniverseCreated"><code class="prettyprint">UniverseCreated</code></a> event if the Child Universe has not been created yet.</p>
 
 <p>This transaction will fail if:</p>
 
 <ul>
 <li>The Universe does not have a <a href="#forked-market">Forked Market</a>.</li>
-<li><code class="prettyprint">p._parentInvalid</code> is true and the Numerators in <code class="prettyprint">p._parentPayoutNumerators</code> are not all the same value. (For information about what the Payout Set should look like for an Invalid <a href="#market">Market</a>, refer to the <a href="#invalid-outcome">Invalid Outcome glossary entry</a>.)</li>
+<li><code class="prettyprint">p._parentPayoutNumerators</code> is not specified correctly. (For information on what the Payout Set should look like, refer to the <a href="#payout-set">Payout Set glossary entry</a>.)</li>
 </ul>
 
 <h4 id="strong-strong"><strong>Parameters:</strong></h4>
@@ -12006,7 +11952,6 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
 
 <ul>
 <li><strong><code class="prettyprint">p._parentPayoutNumerators</code></strong>  (Array.&lt;number&gt;) Payout Set of the Parent Universe&rsquo;s Parent Universe&rsquo;s Forked Market.</li>
-<li><strong><code class="prettyprint">p._parentInvalid</code></strong>  (boolean) Whether the Parent Universe&rsquo;s Forked Market is <a href="#invalid-outcome">Invalid</a>.</li>
 <li><strong><code class="prettyprint">p.tx</code></strong> (Object) Object containing details about how this transaction should be made.
 
 <ul>
@@ -12985,9 +12930,9 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
 <tr>
 <td><a name="UniverseCreated"></a>UniverseCreated</td>
 <td><a href="https://github.com/AugurProject/augur/blob/master/packages/augur-core/source/contracts/Augur.sol">Augur</a></td>
-<td><code class="prettyprint">childUniverse</code> has been created from <code class="prettyprint">parentUniverse</code> where <code class="prettyprint">payoutNumerators</code> and <code class="prettyprint">invalid</code> represent the Payout Set of the Forking Market in <code class="prettyprint">parentUniverse</code> and whether it was determined to be an Invalid Market.</td>
+<td><code class="prettyprint">childUniverse</code> has been created from <code class="prettyprint">parentUniverse</code> where <code class="prettyprint">payoutNumerators</code> represents the Payout Set of the Forking Market in <code class="prettyprint">parentUniverse</code> and whether it was determined to be an Invalid Market.</td>
 <td>parentUniverse, childUniverse</td>
-<td>payoutNumerators, invalid</td>
+<td>payoutNumerators</td>
 </tr>
 <tr>
 <td><a name="UniverseForked"></a>UniverseForked</td>
@@ -13088,6 +13033,7 @@ net position in that Market Outcome. This is a cashflow amount that the user rem
 <li><strong><code class="prettyprint">category</code></strong> (string) Name of the Category.</li>
 <li><strong><code class="prettyprint">nonFinalizedOpenInterest</code></strong> (string) Sum of Open Interest in non-Finalized Markets in this aggregation, in ETH.</li>
 <li><strong><code class="prettyprint">openInterest</code></strong> (string) Sum of Open Interest in all Markets in this aggregation, in ETH.</li>
+<li><strong><code class="prettyprint">liquidityTokens</code></strong> (string) Sum of <a href="#liquidity-token">Liquidity Tokens</a> for all Markets in this aggregation for a given <a href="#spread-percent">Spread Percent</a> (because a Market has one Liquidity Token per Spread Percent.)</li>
 <li><strong><code class="prettyprint">tags</code></strong> (Array.&lt;<a href="#Tag">Tag</a>&gt;) Array containing information about Markets with <a href="#Tag">Tags</a> in this Category.</li>
 </ul>
 
@@ -13202,6 +13148,8 @@ net position in that Market Outcome. This is a cashflow amount that the user rem
 <p><a name="DisputeToken"></a></p>
 
 <h3 id="disputetoken-object">DisputeToken  (Object)</h3>
+
+<p>!!!TBD!!! Remove <code class="prettyprint">isInvalid</code> &amp; add <code class="prettyprint">payout8</code>?</p>
 
 <h4 id="strong-strong"><strong>Properties:</strong></h4>
 
@@ -13519,7 +13467,7 @@ net position in that Market Outcome. This is a cashflow amount that the user rem
 <li><strong><code class="prettyprint">resolutionSource</code></strong> (string|null) Reference source used to determine the Outcome of the Market event.</li>
 <li><strong><code class="prettyprint">numTicks</code></strong> (string) Number of possible prices, or ticks, between a Market&rsquo;s minimum price and maximum price.</li>
 <li><strong><code class="prettyprint">tickSize</code></strong> (string) Smallest recognized amount by which a price of a security or future may fluctuate in the Market.</li>
-<li><strong><code class="prettyprint">consensus</code></strong> (<a href="#NormalizedPayout">NormalizedPayout</a>|null) Consensus Outcome for the Market.</li>
+<li><strong><code class="prettyprint">consensus</code></strong> (Array.&lt;string&gt;|null) Winning Payout Numerators representing the consensus Outcome for the Market.</li>
 <li><strong><code class="prettyprint">outcomes</code></strong> (Array.&lt;<a href="#OutcomeInfo">OutcomeInfo</a>&gt;) Array of OutcomeInfo objects.</li>
 </ul>
 
@@ -13582,17 +13530,6 @@ net position in that Market Outcome. This is a cashflow amount that the user rem
 <li><strong><code class="prettyprint">address</code></strong> (string) This account&rsquo;s Ethereum address, as a hexadecimal string.</li>
 <li><strong><code class="prettyprint">privateKey</code></strong> (buffer) The private key for this account.</li>
 <li><strong><code class="prettyprint">derivedKey</code></strong> (buffer) The secret key (derived from the password) used to encrypt this account&rsquo;s private key.</li>
-</ul>
-
-<p><a name="NormalizedPayout"></a></p>
-
-<h3 id="normalizedpayout-object">NormalizedPayout  (Object)</h3>
-
-<h4 id="strong-strong"><strong>Properties:</strong></h4>
-
-<ul>
-<li><strong><code class="prettyprint">isInvalid</code></strong> (boolean|number) Whether the Outcome is Invalid.</li>
-<li><strong><code class="prettyprint">payout</code></strong> (Array.&lt;number|string&gt;) Payout Set for the Dispute Crowdsourcer.</li>
 </ul>
 
 <p><a name="Order"></a></p>
@@ -13682,6 +13619,8 @@ net position in that Market Outcome. This is a cashflow amount that the user rem
 
 <h3 id="reportingparticipant-object">ReportingParticipant  (Object)</h3>
 
+<p>!!!TBD!!! Remove <code class="prettyprint">isInvalid</code>?</p>
+
 <h4 id="strong-strong"><strong>Properties:</strong></h4>
 
 <ul>
@@ -13697,7 +13636,7 @@ net position in that Market Outcome. This is a cashflow amount that the user rem
 <li><strong><code class="prettyprint">crowdsourcerId</code></strong> (string) Ethereum contract address of the Dispute Crowdsourcer, as a hexadecimal string.</li>
 <li><strong><code class="prettyprint">isCategorical</code></strong> (boolean) Whether the Market is a Categorical Market.</li>
 <li><strong><code class="prettyprint">isScalar</code></strong> (boolean) Whether the Market is a Scalar Market.</li>
-<li><strong><code class="prettyprint">isInvalid</code></strong> (boolean) Whether the Market is <a href="#invalid-outcome">Invalid</a>.</li>
+<li><strong><code class="prettyprint">isInvalid</code></strong> (boolean) Whether the Market is Invalid.</li>
 <li><strong><code class="prettyprint">isSubmitted</code></strong> (boolean) Whether the Report has been submitted. (This property is vestigial and is always set to true.)</li>
 </ul>
 
@@ -13760,6 +13699,8 @@ net position in that Market Outcome. This is a cashflow amount that the user rem
 <p><a name="StakeDetails"></a></p>
 
 <h3 id="stakedetails-object">StakeDetails  (Object)</h3>
+
+<p>!!!TBD!!! Remove <code class="prettyprint">isInvalid</code>?</p>
 
 <h4 id="strong-strong"><strong>Properties:</strong></h4>
 
@@ -14580,10 +14521,6 @@ Goals:
 
 <p>Atto- is a unit prefix in the metric system denoting a factor of 10^−18, or 0.000000000000000001.  This prefix is used for a number of terms in Augur, including attoETH, attoREP, attotoken, etc.</p>
 
-<h2 id="auction">Auction</h2>
-
-<p>!!!TBD!!! Add definition</p>
-
 <h2 id="bid-order">Bid Order</h2>
 
 <p>A Bid Order is an <a href="#order">Order</a> indicating the desire of the <a href="#order-creator">Order Creator</a> to buy <a href="#share">Shares</a> of one or more <a href="#outcome">Outcomes</a>. This is the opposite of an <a href="#ask-order">Ask Order</a>.</p>
@@ -14594,7 +14531,7 @@ Goals:
 
 <h2 id="categorical-market">Categorical Market</h2>
 
-<p>A Categorical Market is a <a href="#market">Market</a> with more than 2 potential <a href="#outcome">Outcomes</a>, but no more than 8. As with all Markets, <a href="#invalid-outcome">Invalid</a> is also a potential Outcome, but it does not count toward the 8-Outcome maximum. Categorical Markets are best for multiple choice questions, such as &ldquo;Which team will win Tournament X?&rdquo; or &ldquo;What color tie will the U.S. President wear at the next presidential press conference?&rdquo;. If a Market is based around a simple yes-or-no question, it is better to use a <a href="#yes-no-market">Yes/No Market</a>. For a Market about what a particular stock price will be on a given date, a <a href="#scalar-market">Scalar Market</a> should be used, as 8 potential outcomes would not be sufficient.</p>
+<p>A Categorical Market is a <a href="#market">Market</a> with more than 2 potential <a href="#outcome">Outcomes</a>, but no more than 8. (These numbers do not include <a href="#invalid-outcome">Invalid</a>.) Categorical Markets are best for multiple choice questions, such as &ldquo;Which team will win Tournament X?&rdquo; or &ldquo;What color tie will the U.S. President wear at the next presidential press conference?&rdquo;. If a Market is based around a simple yes-or-no question, it is better to use a <a href="#yes-no-market">Yes/No Market</a>. For a Market about what a particular stock price will be on a given date, a <a href="#scalar-market">Scalar Market</a> should be used, as 8 potential outcomes (excluding <code class="prettyprint">Invalid</code>) would not be sufficient.</p>
 
 <h2 id="challenge">Challenge</h2>
 
@@ -14689,6 +14626,10 @@ During the very first <a href="#dispute-window">Dispute Window</a> after launch,
 
 <p>When a user Stakes <a href="#rep">REP</a> in a <a href="#crowdsourcer">Crowdsourcer</a>, that Crowdsourcer will allocate an equal amount of Dispute Tokens to that user. Then, when the Crowdsourcer&rsquo;s <a href="#market">Market</a> is <a href="#finalized-market">Finalized</a>, these Dispute Tokens are used by Augur&rsquo;s smart contracts to determine the payout that user should receive. Dispute Tokens are only used internally by Augur, and users do not interact with them directly; however, they are implemented as <a href="https://eips.ethereum.org/EIPS/eip-20">ERC-20</a>/<a href="https://eips.ethereum.org/EIPS/eip-777">ERC-777</a> tokens, so they potentially can be traded between users. (For example, a user might want to sell their Dispute Tokens to another user at a discounted price if a Market is being Disputed for a long time and the user wishes to cash out their Dispute Tokens before the Market is Finalized.)</p>
 
+<h2 id="dispute-window">Dispute Window</h2>
+
+<p>Augur’s <a href="#report">Reporting</a> system runs on a cycle of consecutive 7-day long <a href="#dispute-windows">Dispute Windows</a>. Any fees collected by Augur during a given Dispute Window are added to a <a href="#reporting-fee-pool">Reporting Fee Pool</a> for that Dispute Window. The Reporting Fee Pool is used to reward <a href="#rep">REP</a> holders who participate in Augur’s Reporting process. REP holders who <a href="#dispute-stake">Stake</a> REP during a given Dispute Window will receive an amount of fees from the Reporting Fee Pool that is proportionate to the amount of REP they Staked. In this way, all REP holders who participate during a Dispute Window will receive a portion of the fees collected during that Window. Participation includes <a href="#designated-reporting">Designated</a> or <a href="#open-reporting">Open Reporting</a>, <a href="#dispute">Disputing</a> an <a href="#outcome">Outcome</a>, or simply purchasing <a href="#participation-token">Participation Tokens</a> directly.</p>
+
 <h2 id="end-time">End Time</h2>
 
 <p>End Time is the date and time that a <a href="#market">Market</a>&rsquo;s event will have come to pass and should be known. After this date and time has passed the Market will get <a href="#report">Reported</a> on and eventually <a href="#finalized-market">Finalized</a>.</p>
@@ -14696,10 +14637,6 @@ During the very first <a href="#dispute-window">Dispute Window</a> after launch,
 <h2 id="fee-token">Fee Token</h2>
 
 <p>Fee Tokens are not tokens that users interact with directly; however, they are used internally by Augur&rsquo;s Solidity smart contracts to allow users to redeem <a href="#rep">REP</a> Staked either in a <a href="#first-public-report">First Public Report</a> or in a <a href="#crowdsourcer">Crowdsourcer</a>. When a <a href="#first-public-reporter">First Public Reporter</a> submits a First Public Report in a given <a href="#dispute-window">Dispute Window</a>, Augur creates an amount of Fee Tokens equal to the amount of REP they Staked and associates those Fee Tokens with the Ethereum address of the First Public Reporter. Similarly, when a user Stakes REP in a Crowdsourcer to <a href="#challenge">Challenge</a> a <a href="#tentative-outcome">Tentative Outcome</a>, Augur creates an amount of Fee Tokens equal to the amount of REP they Staked and associates those Fee Tokens with the Ethereum address of that user. Once the Dispute Window is over, and a user redeems their Staked REP, Augur uses the amount of Fee Tokens associated their Ethereum address to determine what proportion of the Dispute Window&rsquo;s <a href="#reporting-fee">Reporting Fees</a> (in ETH) to distribute to them.</p>
-
-<h2 id="dispute-window">Dispute Window</h2>
-
-<p>Augur’s <a href="#report">Reporting</a> system runs on a cycle of consecutive 7-day long <a href="#dispute-windows">Dispute Windows</a>. Any fees collected by Augur during a given Dispute Window are added to a <a href="#reporting-fee-pool">Reporting Fee Pool</a> for that Dispute Window. The Reporting Fee Pool is used to reward <a href="#rep">REP</a> holders who participate in Augur’s Reporting process. REP holders who <a href="#dispute-stake">Stake</a> REP during a given Dispute Window will receive an amount of fees from the Reporting Fee Pool that is proportionate to the amount of REP they Staked. In this way, all REP holders who participate during a Dispute Window will receive a portion of the fees collected during that Window. Participation includes <a href="#designated-reporting">Designated</a> or <a href="#open-reporting">Open Reporting</a>, <a href="#dispute">Disputing</a> an <a href="#outcome">Outcome</a>, or simply purchasing <a href="#participation-token">Participation Tokens</a> directly.</p>
 
 <h2 id="fill-order">Fill Order</h2>
 
@@ -14757,6 +14694,10 @@ During the very first <a href="#dispute-window">Dispute Window</a> after launch,
 
 <p>The Initial Reporter is the person who submits the <a href="#initial-report">Initial Report</a> on a <a href="#market">Market</a>. Generally, the Initial Reporter will be the <a href="#designated-reporter">Designated Reporter</a>, however if the Designated Reporter fails to <a href="#report">Report</a>, then the Initial Reporter will become whoever submits the First Public Report during the <a href="#open-reporting-phase">Open Reporting Phase</a> for this Market.</p>
 
+<h2 id="invalid-market-payout-numerator">Invalid Market Payout Numerator</h2>
+
+<p>In a <a href="#payout-set">Payout Set</a>, the 0th index is used to represent the <a href="#invalid-outcome">Invalid Outcome</a>.  The Payout Set for an Invalid <a href="#market">Market</a> will have the first Numerator set to the Market&rsquo;s <a href="#number-of-ticks">Number of Ticks</a> and the other Numerators set to 0.</p>
+
 <h2 id="invalid-outcome">Invalid Outcome</h2>
 
 <p>A <a href="#market">Market</a> should be considered Invalid if any of the following are true:</p>
@@ -14770,11 +14711,15 @@ During the very first <a href="#dispute-window">Dispute Window</a> after launch,
 <li>The resolution source provides different answers to different viewers.</li>
 </ul>
 
-<p>If the <a href="#outcome">Outcome</a> of a Market is Invalid, <a href="#reporters">Reporters</a> can <a href="#report">Report</a> its <a href="#tentative-outcome">Tentative Outcome</a> as Invalid. Additionally, if the Market is in a <a href="#dispute-round">Dispute Round</a>, users can <a href="#dispute-stake">Stake</a> <a href="#rep">REP</a> on Invalid as the Tentative Outcome, or if the Market has <a href="#fork">Forked</a>, users can migrate their REP to the <a href="#child-universe">Child Universe</a> where the Outcome is Invalid. If the Market&rsquo;s <a href="#final-outcome">Final Outcome</a> becomes Invalid, its <a href="#payout-set">Payout Set</a> will be the <a href="#number-of-ticks">Number of Ticks</a> divided evenly among each Outcome. For example, in a <a href="#categorical-market">Categorical Market</a> with 10,000 <a href="#tick">Ticks</a> and 4 potential Outcomes, the Payout Set would be [2500, 2500, 2500, 2500]. This is done to ensure that the holders for each type of <a href="#share">Share</a> in the Market receive the same payout during <a href="#settlement">Settlement</a>.</p>
+<p>If the <a href="#outcome">Outcome</a> of a Market is Invalid, <a href="#reporters">Reporters</a> can <a href="#report">Report</a> its <a href="#tentative-outcome">Tentative Outcome</a> as Invalid. Additionally, if the Market is in a <a href="#dispute-round">Dispute Round</a>, users can <a href="#dispute-stake">Stake</a> <a href="#rep">REP</a> on Invalid as the Tentative Outcome, or if the Market has <a href="#fork">Forked</a>, users can migrate their REP to the <a href="#child-universe">Child Universe</a> where the Outcome is Invalid. If the Market&rsquo;s <a href="#final-outcome">Final Outcome</a> becomes Invalid, its <a href="#payout-set">Payout Set</a> will have the <a href="#invalid-market-payout-numerator">Invalid Market Payout Numerator</a> set to the <a href="#number-of-ticks">Number of Ticks</a>. For example, in a <a href="#categorical-market">Categorical Market</a> with 10,000 <a href="#tick">Ticks</a> and 4 potential Outcomes (excluding <code class="prettyprint">Invalid</code>), the Payout Set would be [10000, 0, 0, 0, 0].</p>
 
 <h2 id="legacy-rep">Legacy REP</h2>
 
 <p>Legacy <a href="#rep">Reputation Tokens</a>, or Legacy REP, are REP that exist in the <a href="https://github.com/AugurProject/augur/tree/master/packages/augur-core/source/contracts/LegacyReputationToken.sol">Legacy REP smart contract</a> and have not been migrated to the <a href="https://github.com/AugurProject/augur/tree/master/packages/augur-core/source/contracts/reporting/ReputationToken.sol">Reputation Token smart contract</a>, for a particular <a href="#universe">Universe</a>. Legacy REP must be migrated to the Reputation Token smart contract by calling the <code class="prettyprint">augur.api.ReputationToken.migrateFromLegacyReputationToken</code> function before they can be used within Augur.</p>
+
+<h2 id="liquidity-token">Liquidity Token</h2>
+
+<p>Each <a href="#market">Market</a> has a Liquidity Token value for a given <a href="#spread-percent">Spread Percent</a>. These Liquidity Tokens are an accrued/running total revenue for <a href="#complete-set">Complete Sets</a> sold into the <a href="#order-book">Order Book</a>.</p>
 
 <h2 id="long-position">Long Position</h2>
 
@@ -14815,7 +14760,7 @@ During the very first <a href="#dispute-window">Dispute Window</a> after launch,
 
 <p>A <a href="#market">Market&rsquo;s</a> Number of Ticks can be thought of as the number of possible prices, or <a href="#tick">Ticks</a>, between the <a href="#minimum-display-price">Minimum Display Price</a> and <a href="#maximum-display-price">Maximum Display Price</a> for that Market. It is also the amount of <a href="#atto-prefix">attoETH</a> that must be escrowed with the Market contract to purchase a single <a href="#complete-set">Complete Set</a> of indivisible <a href="#share">Shares</a> for a Market. Each Outcome in the <a href="#payout-set">Payout Set</a> of an <a href="#invalid-outcome">Invalid</a> Market is set to the Number of Ticks divided by the number of Outcomes (in order to ensure that the holders of each type of <a href="#share">Share</a> in the Market receive the same payout during <a href="#settlement">Settlement</a>). </p>
 
-<p>After Market <a href="#finalized-market">Finalization</a>, each winning Share can be Settled by sending it to the Market contract in exchange for an amount of attoETH equal to the Number of Ticks. In the event that the Market Finalizes as Invalid, each Share of the Market can be returned to the Market contract in exchange for an amount of attoETH equal to (Number of Ticks / Number of Outcomes). In cases where (Number of Ticks / Number of Outcomes) does not equal a whole number, the remainder will be subtracted equally from each Outcome and left on the Market contract as &ldquo;dust&rdquo; ETH. For example, if a 3-Outcome Market with no Creator Fee resolves to Invalid, the Payout Set would be [3333, 3333, 3333].</p>
+<p>After Market <a href="#finalized-market">Finalization</a>, each winning Share can be Settled by sending it to the Market contract in exchange for an amount of attoETH equal to the Number of Ticks. In the event that the Market Finalizes as <code class="prettyprint">Invalid</code>, Shares of <code class="prettyprint">Invalid</code> the Market can be returned to the Market contract in exchange for an amount of attoETH equal to Number of Ticks. For example, if a 3-Outcome Market with no Creator Fee and 10,000 as the Number of Ticks resolves to <code class="prettyprint">Invalid</code>, the Payout Set would be [10000, 0, 0, 0].</p>
 
 <p>The <a href="#atto-prefix">attoETH</a> yielded when a Complete Set of Shares is Settled is what <a href="#settlement-fees">Settlement Fees</a> are extracted from prior to paying out traders for their closed <a href="#position">Positions</a>. Settlement Fees are paid proportionally so that the trader set to receive more payout will have to pay more Fees. The price of an Order can be set to anywhere between 0 and the Number of Ticks set for the Market.</p>
 
@@ -14881,21 +14826,21 @@ During the very first <a href="#dispute-window">Dispute Window</a> after launch,
 
 <h2 id="payout-set">Payout Set</h2>
 
-<p>A Payout Set, sometimes referred to as &ldquo;Payout Numerators&rdquo; in Augur&rsquo;s smart contract functions, is an array with a length equal to the number of <a href="#outcome">Outcomes</a> for a <a href="#market">Market</a>. Each value in the array is required to be 0 or a positive number that does not exceed the <a href="#number-of-ticks">Number of Ticks</a> for the Market. Further, the total sum of all the values contained within the Payout Set array should be equal to the Number of Ticks for the Market. </p>
+<p>A Payout Set, sometimes referred to as &ldquo;Payout Numerators&rdquo; in Augur&rsquo;s smart contract functions, is an array with a length that is one greater to the number of <a href="#outcome">Outcomes</a> for a <a href="#market">Market</a>. (This is because the Invalid Market Payout Numerator](#invalid-market-payout-numerator) &ndash; that is, the 0th index of the array &ndash; is used to designate whether the Market is <a href="#invalid-outcome">Invalid</a>.) Each value in the array is required to be 0 or a positive number that does not exceed the <a href="#number-of-ticks">Number of Ticks</a> for the Market. Further, the total sum of all the values contained within the Payout Set array should be equal to the Number of Ticks for the Market. </p>
 
-<p>For example, in a <a href="#yes-no-market">Yes/No Market</a> with 1000 <a href="#tick">Ticks</a>, a <a href="#report">Report</a> that Stakes <a href="#rep">REP</a> on Outcome <code class="prettyprint">0</code> would submit a Payout Set that looks like <code class="prettyprint">[1000, 0]</code>. Payout Sets are a breakdown of the Payout Distribution, or how Markets should pay out for each <a href="#share">Share</a> when <a href="#finalized-market">Finalized</a>. In the example above, the Payout Numerators are the values 1000 and 0, and only <a href="#share">Shares</a> of Outcome 0 (index 0 of the array) will pay out on the Finalized Market because the Payout Numerator for Outcome 1 is <code class="prettyprint">0</code>. Valid Payout Sets are hashed using the SHA-3 hashing algorithm, which is a <a href="#payout-distribution-hash">Payout Distribution Hash</a>.</p>
+<p>For example, in a <a href="#yes-no-market">Yes/No Market</a> with 1000 <a href="#tick">Ticks</a>, a <a href="#report">Report</a> that Stakes <a href="#rep">REP</a> on Outcome <code class="prettyprint">No</code> would submit a Payout Set that looks like <code class="prettyprint">[0, 1000, 0]</code>. Payout Sets are a breakdown of the Payout Distribution, or how Markets should pay out for each <a href="#share">Share</a> when <a href="#finalized-market">Finalized</a>. In the example above, the Payout Numerators are the values 0, 1000 and 0, and only <a href="#share">Shares</a> of Outcome <code class="prettyprint">No</code> (index 1 of the array) will pay out on the Finalized Market because the Payout Numerator for Outcome <code class="prettyprint">Invalid</code> and <code class="prettyprint">Yes</code> are <code class="prettyprint">0</code>. Similarly, a Report that Stakes REP on Outcome <code class="prettyprint">Yes</code> would submit a Payout Set that looks like <code class="prettyprint">[0, 0, 1000]</code>, and a Report that Stakes REP on Outcome <code class="prettyprint">Invalid</code> would submit one like <code class="prettyprint">[1000, 0, 0]</code>. Valid Payout Sets are hashed using the SHA-3 hashing algorithm, which is a <a href="#payout-distribution-hash">Payout Distribution Hash</a>.</p>
 
-<p>The Payout Set for a <a href="#categorical-market">Categorical Market</a> is similar to that of a Yes/No Market, except that Categorical Markets can have up to 8 Outcomes, so an example Payout Set for a Categorical Market with 8,000 Ticks might look like <code class="prettyprint">[0, 0, 8000, 0, 0, 0, 0, 0]</code>. The same Categorical Market with an <a href="#invalid-outcome">Invalid Outcome</a> would have a Payout Set like <code class="prettyprint">[1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000]</code>. This is because each Outcome in the Payout Set of an Invalid Market is set to the Number of Ticks divided by the number of Outcomes, in order to ensure that the holders of each type of <a href="#share">Share</a> in the Market receive the same payout during <a href="#settlement">Settlement</a>. (In cases where Number of Ticks / Outcomes is not a whole number, the remainder will be deducted from each Outcome in the Payout Set and left on the Market contract as &ldquo;dust&rdquo; ETH. For example, a 3-Outcome Market with no Creator Fee that resolves to Invalid will have a Payout Set of [3333, 3333, 3333].)</p>
+<p>The Payout Set for a <a href="#categorical-market">Categorical Market</a> is similar to that of a Yes/No Market, except that Categorical Markets can have up to 8 Outcomes, so an example Payout Set for a Categorical Market with 8000 Ticks might look like <code class="prettyprint">[0, 0, 0, 8000, 0, 0, 0, 0, 0]</code>. The same Categorical Market with an Invalid Outcome would have a Payout Set like <code class="prettyprint">[8000, 0, 0, 0, 0, 0, 0, 0, 0]</code>.</p>
 
-<p>The Payout Set for a <a href="#scalar-market">Scalar Market</a> is determined differently than for Yes/No Markets and Categorical Markets. Scalar Markets have just 2 possible Outcomes: 0 (for a <a href="#short-position">Short Position</a>) and 1 (for a <a href="#long-position">Long Position</a>). Suppose that a Scalar Market exists with $0 as the <a href="#minimum-display-price">Minimum Display Price</a>, $100 as the <a href="#maximum-display-price">Maximum Display Price</a>, 10,000 as the Number of Ticks, and $75 as the reported Outcome. The Payout Set for this Market would be determined as follows:</p>
+<p>The Payout Set for a <a href="#scalar-market">Scalar Market</a> is determined differently than for Yes/No Markets and Categorical Markets. Scalar Markets have 3 possible Outcomes: Invalid, 0 (for a <a href="#short-position">Short Position</a>) and 1 (for a <a href="#long-position">Long Position</a>). Suppose that a Scalar Market exists with $0 as the <a href="#minimum-display-price">Minimum Display Price</a>, $100 as the <a href="#maximum-display-price">Maximum Display Price</a>, 10,000 as the Number of Ticks, and $75 as the reported Outcome. The Payout Set for this Market would be determined as follows:</p>
 
 <ol>
 <li>Normalize the reported Outcome to the Minimum Display Price by subtracting the Minimum Display Price from the reported Outcome: 75 - 0 = 75.</li>
 <li>Scale the reported outcome to be between 0 and 1 by dividing by (maxPrice - minPrice): 75 / (100 - 0) = 0.75.</li>
 <li>Scale the reported Outcome to the Number of Ticks by multiplying by the Number of Ticks: 0.75 * 10000 = 7500.</li>
 <li>Calculate the other Outcome by subtracting the result from the Number of Ticks: 10000 - 7500 = 2500.</li>
-<li>Put them in an array where the zero index is the Short Position, and one index is the Long Position: <code class="prettyprint">[2500, 7500]</code>.
-Note: When calculating the Payout Set for a Scalar Market using integer-only math, the order of steps (2) and (3) should be switched (i.e., always multiply before dividing in integer math).</li>
+<li>Put them in an array where the 0th index is Invalid, the 1st index is the Short Position, and the 2nd index is the Long Position: <code class="prettyprint">[0, 2500, 7500]</code>.
+Note: When calculating the Payout Set for a Scalar Market using integer-only math, the order of steps (2) and (3) should be switched (i.e., always multiply before dividing in integer math). For an Invalid Scalar Market with 10,000 as the Number of Ticks, the Payout Set would look like <code class="prettyprint">[10000, 0, 0]</code>.</li>
 </ol>
 
 <h2 id="position">Position</h2>
