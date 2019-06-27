@@ -874,11 +874,11 @@ Creates a new [Bid Order](#bid-order) or [Ask Order](#ask-order) on the [Order B
 
 This transaction will fail if:
 
+* `p._market` is not a Market known to Augur.
 * `p._type` is not a valid value of 0 or 1.
-* `p._attoshares` is less than 0.
-* `p._market` is undefined.
-* `p._outcome` is less than 0 or greater than the total number of [Outcomes](#outcome) for `p._market`.
-* `p._price` is below `p._market`'s [Minimum Display Price](#minimum-display-price) or above `p.market`'s [Maximum Display Price](#maximum-display-price).
+* `p._attoshares` is less than or equal to 0.
+* `p._outcome` is less than 0 or greater than or equal to the total number of [Outcomes](#outcome) for `p._market` (including [Invalid](#invalid-outcome)).
+* `p._price` is equal to 0 or is below `p._market`'s [Minimum Display Price](#minimum-display-price) or above `p.market`'s [Maximum Display Price](#maximum-display-price).
 
 #### **Parameters:**
 
@@ -912,7 +912,7 @@ This transaction will fail if:
 
 uint256[] _outcomes, Order.Types[] _types, uint256[] _attoshareAmounts, uint256[] _prices, IMarket _market, bool _ignoreShares, bytes32 _tradeGroupId
 
-* A value in `p._outcomes` is less than 0 or greater than the total number of Outcomes for `p._market`.
+* A value in `p._outcomes` is less than 0 or greater than the total number of Outcomes for `p._market` (including [Invalid](#invalid-outcome)).
 * A value in `p._types` is not a valid value of 0 or 1.
 * A value in `p._attoshareAmounts` is less than 0.
 * A value in `p._prices` is below `p._market`'s [Minimum Display Price](#minimum-display-price) or above `p.market`'s [Maximum Display Price](#maximum-display-price).

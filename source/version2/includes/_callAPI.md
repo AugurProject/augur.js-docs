@@ -1467,7 +1467,7 @@ Returns the [Creator Fee](#creator-fee) set by the [Market Creator](#market-crea
 
 ### augur.api.Market.getNumberOfOutcomes(p, callback)
 
-Returns the number of [Outcomes](#outcome) for the specified [Market](#market). The number of Outcomes is the number of potential results for the [Market](#market) event.
+Returns the number of [Outcomes](#outcome) for the specified [Market](#market). The number of Outcomes is the number of potential results for the [Market](#market) event (including [Invalid](#invalid-outcome)).
 
 #### **Parameters:**
 
@@ -1478,7 +1478,7 @@ Returns the number of [Outcomes](#outcome) for the specified [Market](#market). 
 
 #### **Returns:**
 
-* (string) Number of Outcomes for the Market, as a stringified unsigned integer.
+* (string) Number of Outcomes for the Market (including Invalid), as a stringified unsigned integer.
 
 ### augur.api.Market.getNumTicks(p, callback)
 
