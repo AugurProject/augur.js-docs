@@ -70,6 +70,7 @@ Note: Other properties will be present in this object, depending on what event t
 * **`category`** (string) Name of the Category.
 * **`nonFinalizedOpenInterest`** (string) Sum of Open Interest in non-Finalized Markets in this aggregation, in ETH.
 * **`openInterest`** (string) Sum of Open Interest in all Markets in this aggregation, in ETH.
+* **`liquidityTokens`** (string) Sum of [Liquidity Tokens](#liquidity-token) for all Markets in this aggregation for a given [Spread Percent](#spread-percent) (because a Market has one Liquidity Token per Spread Percent.)
 * **`tags`** (Array.&lt;<a href="#Tag">Tag</a>>) Array containing information about Markets with [Tags](#Tag) in this Category.
 
 <a name="ClaimReportingFeesForkedMarket"></a>
