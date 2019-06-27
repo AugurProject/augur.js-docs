@@ -333,14 +333,6 @@ augur.api.DisputeCrowdsourcer.isDisavowed({
 });
 // example output:
 true
-
-augur.api.DisputeCrowdsourcer.isInvalid({ 
-  tx: { to: disputeCrowdsourcer } 
-}, function (error, isInvalid) { 
-  console.log(isInvalid); 
-});
-// example output:
-true
 ```
 Provides JavaScript bindings for the [DisputeCrowdsourcer Solidity Contract](https://github.com/AugurProject/augur/blob/master/packages/augur-core/source/contracts/reporting/DisputeCrowdsourcer.sol), which allows users to [Stake](#dispute-stake) and redeem [REP](#rep) on [Outcomes](#outcome) other than a [Market's](#market) [Tentative Outcome](#tentative-outcome).
 
@@ -468,21 +460,6 @@ Returns whether a [Dispute Crowdsourcer](#crowdsourcer) has been "disavowed". A 
 #### **Returns:**
 
 * (boolean) `true` if the Dispute Crowdsourcer has been disavowed, or `false` otherwise.
-
-### augur.api.DisputeCrowdsourcer.isInvalid(p, callback)
-
-Returns whether a [Dispute Crowdsourcer](#crowdsourcer) represents the [Invalid Outcome](#invalid-outcome) for its [Market](#market).
-
-#### **Parameters:**
-
-* **`p`** (Object) Parameters object.  
-    * **`p.tx`** (Object) Object containing details about how this function call should be made.
-        * **`p.tx.to`** (string) Ethereum contract address of the Dispute Crowdsourcer on which to call this function, as a 20-byte hexadecimal string.
-* **`callback`** (function) &lt;optional> Called after the function's result has been retrieved.
-
-#### **Returns:**
-
-* (boolean)  `true` if the Dispute Crowdsourcer represents the Invalid Outcome for its Market, or `false` otherwise.
 
 Dispute Window Call API
 -------------------------
@@ -822,14 +799,6 @@ augur.api.InitialReporter.getStake({
 });
 // example output:
 "78000"
-
-augur.api.InitialReporter.isInvalid({ 
-  tx: { to: initialReporter } 
-}, function (error, isInvalid) { 
-  console.log(isInvalid); 
-});
-// example output:
-true
 ```
 Provides JavaScript bindings for the [InitialReporter Solidity Contract](https://github.com/AugurProject/augur/blob/master/packages/augur-core/source/contracts/reporting/InitialReporter.sol), which enables functionality related to [Initial Reports](#initial-report).
 
@@ -999,21 +968,6 @@ Returns the amount of [attoREP](#atto-prefix) [Staked](#dispute-stake) on the [R
 
 * (string) Amount of attoREP Staked on the Initial Report for the Market of the specified InitialReporter contract, as a stringified unsigned integer.
 
-### augur.api.InitialReporter.isInvalid(p, callback)
-
-Returns whether the submitted [Initial Report](#initial-report) said the[Market](#market) for the InitialReporter contract was [Invalid](#invalid-outcome).
-
-#### **Parameters:**
-
-* **`p`** (Object) Parameters object.  
-    * **`p.tx`** (Object) Object containing details about how this function call should be made.
-        * **`p.tx.to`** (string) Ethereum contract address of the InitialReporter contract on which to call this function, as a 20-byte hexadecimal string.
-* **`callback`** (function) &lt;optional> Called after the function's result has been retrieved.
-
-#### **Returns:**
-
-* (boolean) `true` if the Initial Report said the Market for the InitialReporter contract was Invalid, or `false` otherwise.
-
 Market Call API
 ----------------
 ```javascript
@@ -1030,8 +984,7 @@ augur.api.Market.deriveMarketCreatorFeeAmount({
 "1"
 
 augur.api.Market.derivePayoutDistributionHash({
-  _payoutNumerators: [ "0x0", "0x2710" ],
-  _invalid: false,
+  _payoutNumerators: [ "0x0", "0x0", "0x2710" ],
   tx: { to: market },
 }, function (error, payoutDistributionHash) { 
   console.log(payoutDistributionHash); 
@@ -1296,17 +1249,16 @@ Calculates the [Creator Fee](#creator-fee) that will be paid when settling a spe
 
 ### augur.api.Market.derivePayoutDistributionHash(p, callback)
 
-Returns the [Payout Distribution Hash](#payout-distribution-hash) of the specified [Market](#market) by hashing [Payout Numerators](#payout-set) `_payoutNumerators` and [Invalid](#invalid-outcome) status `_invalid` using the keccak256 algorithm.
+Returns the [Payout Distribution Hash](#payout-distribution-hash) of the specified [Market](#market) by hashing [Payout Numerators](#payout-set) `p._payoutNumerators` using the keccak256 algorithm.
 
 This call will fail if:
 
-* `p._invalid` is `true` and the values in `p._payoutNumerators` are not all the same.
+* `p._payoutNumerators` is not specified correctly. (For information on what the Payout Set should look like, refer to the [Payout Set glossary entry](#payout-set).)
 
 #### **Parameters:**
 
 * **`p`** (Object) Parameters object.  
     * **`p._payoutNumerators`** (Array.&lt;string>) Payout Numerators, as hexadecimal strings, from which to derive the Payout Distribution Hash.
-    * **`p._invalid`** (boolean) Whether the Market is Invalid.
     * **`p.tx`** (Object) Object containing details about how this function call should be made.
         * **`p.tx.to`** (string) Ethereum contract address of the Market contract on which to call this function, as a 20-byte hexadecimal string.
 * **`callback`** (function) &lt;optional> Called after the function's result has been retrieved.

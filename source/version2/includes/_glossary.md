@@ -28,10 +28,6 @@ An Ask Order is an [Order](#order) indicating the desire of the [Order Creator](
 
 Atto- is a unit prefix in the metric system denoting a factor of 10^−18, or 0.000000000000000001.  This prefix is used for a number of terms in Augur, including attoETH, attoREP, attotoken, etc.
 
-## Auction
-
-!!!TBD!!! Add definition
-
 ## Bid Order
 
 A Bid Order is an [Order](#order) indicating the desire of the [Order Creator](#order-creator) to buy [Shares](#share) of one or more [Outcomes](#outcome). This is the opposite of an [Ask Order](#ask-order).
@@ -42,7 +38,7 @@ Cash is an [ERC-20](https://eips.ethereum.org/EIPS/eip-20)/[ERC-777](https://eip
 
 ## Categorical Market
 
-A Categorical Market is a [Market](#market) with more than 2 potential [Outcomes](#outcome), but no more than 8. As with all Markets, [Invalid](#invalid-outcome) is also a potential Outcome, but it does not count toward the 8-Outcome maximum. Categorical Markets are best for multiple choice questions, such as "Which team will win Tournament X?" or "What color tie will the U.S. President wear at the next presidential press conference?". If a Market is based around a simple yes-or-no question, it is better to use a [Yes/No Market](#yes-no-market). For a Market about what a particular stock price will be on a given date, a [Scalar Market](#scalar-market) should be used, as 8 potential outcomes would not be sufficient.
+A Categorical Market is a [Market](#market) with more than 2 potential [Outcomes](#outcome), but no more than 8. (These numbers do not include [Invalid](#invalid-outcome).) Categorical Markets are best for multiple choice questions, such as "Which team will win Tournament X?" or "What color tie will the U.S. President wear at the next presidential press conference?". If a Market is based around a simple yes-or-no question, it is better to use a [Yes/No Market](#yes-no-market). For a Market about what a particular stock price will be on a given date, a [Scalar Market](#scalar-market) should be used, as 8 potential outcomes (excluding `Invalid`) would not be sufficient.
 
 ## Challenge
 
@@ -137,6 +133,10 @@ By design, the Dispute Bond sizes for each Dispute Round are chosen such that an
 
 When a user Stakes [REP](#rep) in a [Crowdsourcer](#crowdsourcer), that Crowdsourcer will allocate an equal amount of Dispute Tokens to that user. Then, when the Crowdsourcer's [Market](#market) is [Finalized](#finalized-market), these Dispute Tokens are used by Augur's smart contracts to determine the payout that user should receive. Dispute Tokens are only used internally by Augur, and users do not interact with them directly; however, they are implemented as [ERC-20](https://eips.ethereum.org/EIPS/eip-20)/[ERC-777](https://eips.ethereum.org/EIPS/eip-777) tokens, so they potentially can be traded between users. (For example, a user might want to sell their Dispute Tokens to another user at a discounted price if a Market is being Disputed for a long time and the user wishes to cash out their Dispute Tokens before the Market is Finalized.)
 
+## Dispute Window
+
+Augur’s [Reporting](#report) system runs on a cycle of consecutive 7-day long [Dispute Windows](#dispute-windows). Any fees collected by Augur during a given Dispute Window are added to a [Reporting Fee Pool](#reporting-fee-pool) for that Dispute Window. The Reporting Fee Pool is used to reward [REP](#rep) holders who participate in Augur’s Reporting process. REP holders who [Stake](#dispute-stake) REP during a given Dispute Window will receive an amount of fees from the Reporting Fee Pool that is proportionate to the amount of REP they Staked. In this way, all REP holders who participate during a Dispute Window will receive a portion of the fees collected during that Window. Participation includes [Designated](#designated-reporting) or [Open Reporting](#open-reporting), [Disputing](#dispute) an [Outcome](#outcome), or simply purchasing [Participation Tokens](#participation-token) directly.
+
 ## End Time
 
 End Time is the date and time that a [Market](#market)'s event will have come to pass and should be known. After this date and time has passed the Market will get [Reported](#report) on and eventually [Finalized](#finalized-market).
@@ -144,10 +144,6 @@ End Time is the date and time that a [Market](#market)'s event will have come to
 ## Fee Token
 
 Fee Tokens are not tokens that users interact with directly; however, they are used internally by Augur's Solidity smart contracts to allow users to redeem [REP](#rep) Staked either in a [First Public Report](#first-public-report) or in a [Crowdsourcer](#crowdsourcer). When a [First Public Reporter](#first-public-reporter) submits a First Public Report in a given [Dispute Window](#dispute-window), Augur creates an amount of Fee Tokens equal to the amount of REP they Staked and associates those Fee Tokens with the Ethereum address of the First Public Reporter. Similarly, when a user Stakes REP in a Crowdsourcer to [Challenge](#challenge) a [Tentative Outcome](#tentative-outcome), Augur creates an amount of Fee Tokens equal to the amount of REP they Staked and associates those Fee Tokens with the Ethereum address of that user. Once the Dispute Window is over, and a user redeems their Staked REP, Augur uses the amount of Fee Tokens associated their Ethereum address to determine what proportion of the Dispute Window's [Reporting Fees](#reporting-fee) (in ETH) to distribute to them.
-
-## Dispute Window
-
-Augur’s [Reporting](#report) system runs on a cycle of consecutive 7-day long [Dispute Windows](#dispute-windows). Any fees collected by Augur during a given Dispute Window are added to a [Reporting Fee Pool](#reporting-fee-pool) for that Dispute Window. The Reporting Fee Pool is used to reward [REP](#rep) holders who participate in Augur’s Reporting process. REP holders who [Stake](#dispute-stake) REP during a given Dispute Window will receive an amount of fees from the Reporting Fee Pool that is proportionate to the amount of REP they Staked. In this way, all REP holders who participate during a Dispute Window will receive a portion of the fees collected during that Window. Participation includes [Designated](#designated-reporting) or [Open Reporting](#open-reporting), [Disputing](#dispute) an [Outcome](#outcome), or simply purchasing [Participation Tokens](#participation-token) directly.
 
 ## Fill Order
 
@@ -205,6 +201,10 @@ The Initial Report is simply the first [Report](#report) placed on a [Market](#m
 
 The Initial Reporter is the person who submits the [Initial Report](#initial-report) on a [Market](#market). Generally, the Initial Reporter will be the [Designated Reporter](#designated-reporter), however if the Designated Reporter fails to [Report](#report), then the Initial Reporter will become whoever submits the First Public Report during the [Open Reporting Phase](#open-reporting-phase) for this Market.
 
+## Invalid Market Payout Numerator
+
+In a [Payout Set](#payout-set), the 0th index is used to represent the [Invalid Outcome](#invalid-outcome).  The Payout Set for an Invalid [Market](#market) will have the first Numerator set to the Market's [Number of Ticks](#number-of-ticks) and the other Numerators set to 0.
+
 ## Invalid Outcome
 
 A [Market](#market) should be considered Invalid if any of the following are true:
@@ -216,7 +216,7 @@ A [Market](#market) should be considered Invalid if any of the following are tru
   - The resolution source does not provide a readily available answer.
   - The resolution source provides different answers to different viewers.
 
-If the [Outcome](#outcome) of a Market is Invalid, [Reporters](#reporters) can [Report](#report) its [Tentative Outcome](#tentative-outcome) as Invalid. Additionally, if the Market is in a [Dispute Round](#dispute-round), users can [Stake](#dispute-stake) [REP](#rep) on Invalid as the Tentative Outcome, or if the Market has [Forked](#fork), users can migrate their REP to the [Child Universe](#child-universe) where the Outcome is Invalid. If the Market's [Final Outcome](#final-outcome) becomes Invalid, its [Payout Set](#payout-set) will be the [Number of Ticks](#number-of-ticks) divided evenly among each Outcome. For example, in a [Categorical Market](#categorical-market) with 10,000 [Ticks](#tick) and 4 potential Outcomes, the Payout Set would be [2500, 2500, 2500, 2500]. This is done to ensure that the holders for each type of [Share](#share) in the Market receive the same payout during [Settlement](#settlement).
+If the [Outcome](#outcome) of a Market is Invalid, [Reporters](#reporters) can [Report](#report) its [Tentative Outcome](#tentative-outcome) as Invalid. Additionally, if the Market is in a [Dispute Round](#dispute-round), users can [Stake](#dispute-stake) [REP](#rep) on Invalid as the Tentative Outcome, or if the Market has [Forked](#fork), users can migrate their REP to the [Child Universe](#child-universe) where the Outcome is Invalid. If the Market's [Final Outcome](#final-outcome) becomes Invalid, its [Payout Set](#payout-set) will have the [Invalid Market Payout Numerator](#invalid-market-payout-numerator) set to the [Number of Ticks](#number-of-ticks). For example, in a [Categorical Market](#categorical-market) with 10,000 [Ticks](#tick) and 4 potential Outcomes (excluding `Invalid`), the Payout Set would be [10000, 0, 0, 0, 0].
 
 ## Legacy REP
 
@@ -265,7 +265,7 @@ During the very first [Dispute Window](#dispute-window) after launch, the No-Sho
 
 A [Market's](#market) Number of Ticks can be thought of as the number of possible prices, or [Ticks](#tick), between the [Minimum Display Price](#minimum-display-price) and [Maximum Display Price](#maximum-display-price) for that Market. It is also the amount of [attoETH](#atto-prefix) that must be escrowed with the Market contract to purchase a single [Complete Set](#complete-set) of indivisible [Shares](#share) for a Market. Each Outcome in the [Payout Set](#payout-set) of an [Invalid](#invalid-outcome) Market is set to the Number of Ticks divided by the number of Outcomes (in order to ensure that the holders of each type of [Share](#share) in the Market receive the same payout during [Settlement](#settlement)). 
 
-After Market [Finalization](#finalized-market), each winning Share can be Settled by sending it to the Market contract in exchange for an amount of attoETH equal to the Number of Ticks. In the event that the Market Finalizes as Invalid, each Share of the Market can be returned to the Market contract in exchange for an amount of attoETH equal to (Number of Ticks / Number of Outcomes). In cases where (Number of Ticks / Number of Outcomes) does not equal a whole number, the remainder will be subtracted equally from each Outcome and left on the Market contract as "dust" ETH. For example, if a 3-Outcome Market with no Creator Fee resolves to Invalid, the Payout Set would be [3333, 3333, 3333].
+After Market [Finalization](#finalized-market), each winning Share can be Settled by sending it to the Market contract in exchange for an amount of attoETH equal to the Number of Ticks. In the event that the Market Finalizes as `Invalid`, Shares of `Invalid` the Market can be returned to the Market contract in exchange for an amount of attoETH equal to Number of Ticks. For example, if a 3-Outcome Market with no Creator Fee and 10,000 as the Number of Ticks resolves to `Invalid`, the Payout Set would be [10000, 0, 0, 0].
 
 The [attoETH](#atto-prefix) yielded when a Complete Set of Shares is Settled is what [Settlement Fees](#settlement-fees) are extracted from prior to paying out traders for their closed [Positions](#position). Settlement Fees are paid proportionally so that the trader set to receive more payout will have to pay more Fees. The price of an Order can be set to anywhere between 0 and the Number of Ticks set for the Market.
 
@@ -331,20 +331,20 @@ The Payout Distribution Hash is a SHA-3 hash of the [Payout Set](#payout-set). W
 
 ## Payout Set
 
-A Payout Set, sometimes referred to as "Payout Numerators" in Augur's smart contract functions, is an array with a length equal to the number of [Outcomes](#outcome) for a [Market](#market). Each value in the array is required to be 0 or a positive number that does not exceed the [Number of Ticks](#number-of-ticks) for the Market. Further, the total sum of all the values contained within the Payout Set array should be equal to the Number of Ticks for the Market. 
+A Payout Set, sometimes referred to as "Payout Numerators" in Augur's smart contract functions, is an array with a length that is one greater to the number of [Outcomes](#outcome) for a [Market](#market). (This is because the Invalid Market Payout Numerator](#invalid-market-payout-numerator) -- that is, the 0th index of the array -- is used to designate whether the Market is [Invalid](#invalid-outcome).) Each value in the array is required to be 0 or a positive number that does not exceed the [Number of Ticks](#number-of-ticks) for the Market. Further, the total sum of all the values contained within the Payout Set array should be equal to the Number of Ticks for the Market. 
 
-For example, in a [Yes/No Market](#yes-no-market) with 1000 [Ticks](#tick), a [Report](#report) that Stakes [REP](#rep) on Outcome `0` would submit a Payout Set that looks like `[1000, 0]`. Payout Sets are a breakdown of the Payout Distribution, or how Markets should pay out for each [Share](#share) when [Finalized](#finalized-market). In the example above, the Payout Numerators are the values 1000 and 0, and only [Shares](#share) of Outcome 0 (index 0 of the array) will pay out on the Finalized Market because the Payout Numerator for Outcome 1 is `0`. Valid Payout Sets are hashed using the SHA-3 hashing algorithm, which is a [Payout Distribution Hash](#payout-distribution-hash).
+For example, in a [Yes/No Market](#yes-no-market) with 1000 [Ticks](#tick), a [Report](#report) that Stakes [REP](#rep) on Outcome `No` would submit a Payout Set that looks like `[0, 1000, 0]`. Payout Sets are a breakdown of the Payout Distribution, or how Markets should pay out for each [Share](#share) when [Finalized](#finalized-market). In the example above, the Payout Numerators are the values 0, 1000 and 0, and only [Shares](#share) of Outcome `No` (index 1 of the array) will pay out on the Finalized Market because the Payout Numerator for Outcome `Invalid` and `Yes` are `0`. Similarly, a Report that Stakes REP on Outcome `Yes` would submit a Payout Set that looks like `[0, 0, 1000]`, and a Report that Stakes REP on Outcome `Invalid` would submit one like `[1000, 0, 0]`. Valid Payout Sets are hashed using the SHA-3 hashing algorithm, which is a [Payout Distribution Hash](#payout-distribution-hash).
 
-The Payout Set for a [Categorical Market](#categorical-market) is similar to that of a Yes/No Market, except that Categorical Markets can have up to 8 Outcomes, so an example Payout Set for a Categorical Market with 8,000 Ticks might look like `[0, 0, 8000, 0, 0, 0, 0, 0]`. The same Categorical Market with an [Invalid Outcome](#invalid-outcome) would have a Payout Set like `[1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000]`. This is because each Outcome in the Payout Set of an Invalid Market is set to the Number of Ticks divided by the number of Outcomes, in order to ensure that the holders of each type of [Share](#share) in the Market receive the same payout during [Settlement](#settlement). (In cases where Number of Ticks / Outcomes is not a whole number, the remainder will be deducted from each Outcome in the Payout Set and left on the Market contract as "dust" ETH. For example, a 3-Outcome Market with no Creator Fee that resolves to Invalid will have a Payout Set of [3333, 3333, 3333].)
+The Payout Set for a [Categorical Market](#categorical-market) is similar to that of a Yes/No Market, except that Categorical Markets can have up to 8 Outcomes, so an example Payout Set for a Categorical Market with 8000 Ticks might look like `[0, 0, 0, 8000, 0, 0, 0, 0, 0]`. The same Categorical Market with an Invalid Outcome would have a Payout Set like `[8000, 0, 0, 0, 0, 0, 0, 0, 0]`.
 
-The Payout Set for a [Scalar Market](#scalar-market) is determined differently than for Yes/No Markets and Categorical Markets. Scalar Markets have just 2 possible Outcomes: 0 (for a [Short Position](#short-position)) and 1 (for a [Long Position](#long-position)). Suppose that a Scalar Market exists with $0 as the [Minimum Display Price](#minimum-display-price), $100 as the [Maximum Display Price](#maximum-display-price), 10,000 as the Number of Ticks, and $75 as the reported Outcome. The Payout Set for this Market would be determined as follows:
+The Payout Set for a [Scalar Market](#scalar-market) is determined differently than for Yes/No Markets and Categorical Markets. Scalar Markets have 3 possible Outcomes: Invalid, 0 (for a [Short Position](#short-position)) and 1 (for a [Long Position](#long-position)). Suppose that a Scalar Market exists with $0 as the [Minimum Display Price](#minimum-display-price), $100 as the [Maximum Display Price](#maximum-display-price), 10,000 as the Number of Ticks, and $75 as the reported Outcome. The Payout Set for this Market would be determined as follows:
 
 1. Normalize the reported Outcome to the Minimum Display Price by subtracting the Minimum Display Price from the reported Outcome: 75 - 0 = 75.
 2. Scale the reported outcome to be between 0 and 1 by dividing by (maxPrice - minPrice): 75 / (100 - 0) = 0.75.
 3. Scale the reported Outcome to the Number of Ticks by multiplying by the Number of Ticks: 0.75 * 10000 = 7500.
 4. Calculate the other Outcome by subtracting the result from the Number of Ticks: 10000 - 7500 = 2500.
-5. Put them in an array where the zero index is the Short Position, and one index is the Long Position: `[2500, 7500]`.
-Note: When calculating the Payout Set for a Scalar Market using integer-only math, the order of steps (2) and (3) should be switched (i.e., always multiply before dividing in integer math).
+5. Put them in an array where the 0th index is Invalid, the 1st index is the Short Position, and the 2nd index is the Long Position: `[0, 2500, 7500]`.
+Note: When calculating the Payout Set for a Scalar Market using integer-only math, the order of steps (2) and (3) should be switched (i.e., always multiply before dividing in integer math). For an Invalid Scalar Market with 10,000 as the Number of Ticks, the Payout Set would look like `[10000, 0, 0]`.
 
 ## Position
 

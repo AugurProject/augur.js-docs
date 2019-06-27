@@ -151,6 +151,8 @@ Serves as an enum for the state of a Dispute Token.
 <a name="DisputeToken"></a>
 ### DisputeToken  (Object)
 
+!!!TBD!!! Remove `isInvalid` & add `payout8`?
+
 #### **Properties:** 
 * **`disputeToken`** (string) Contract address of the Dispute Token, as a hexadecimal string.
 * **`marketId`** (string) Ethereum address of the Market, as a hexadecimal string.
@@ -392,7 +394,7 @@ Serves as an enum for the state of a Dispute Token.
 * **`resolutionSource`** (string|null) Reference source used to determine the Outcome of the Market event.
 * **`numTicks`** (string) Number of possible prices, or ticks, between a Market's minimum price and maximum price.
 * **`tickSize`** (string) Smallest recognized amount by which a price of a security or future may fluctuate in the Market.
-* **`consensus`** (<a href="#NormalizedPayout">NormalizedPayout</a>|null) Consensus Outcome for the Market.
+* **`consensus`** (Array.&lt;string>|null) Winning Payout Numerators representing the consensus Outcome for the Market.
 * **`outcomes`** (Array.&lt;<a href="#OutcomeInfo">OutcomeInfo</a>>) Array of OutcomeInfo objects.
 
 <a name="MarketPriceTimeSeries"></a>
@@ -439,13 +441,6 @@ Authentication metadata for raw transactions.
 * **`address`** (string) This account's Ethereum address, as a hexadecimal string.
 * **`privateKey`** (buffer) The private key for this account.
 * **`derivedKey`** (buffer) The secret key (derived from the password) used to encrypt this account's private key.
-
-<a name="NormalizedPayout"></a>
-### NormalizedPayout  (Object)
-
-#### **Properties:** 
-* **`isInvalid`** (boolean|number) Whether the Outcome is Invalid.
-* **`payout`** (Array.&lt;number|string>) Payout Set for the Dispute Crowdsourcer.
 
 <a name="Order"></a>
 ### Order  (Object)
@@ -513,6 +508,8 @@ Serves as an enum for the state of an order.
 <a name="ReportingParticipant"></a>
 ### ReportingParticipant  (Object)
 
+!!!TBD!!! Remove `isInvalid`?
+
 #### **Properties:** 
 * **`transactionHash`** (string) Hash to look up the reporting transaction receipt.
 * **`logIndex`** (number) Number of the log index position in the Ethereum block containing the reporting transaction.
@@ -526,7 +523,7 @@ Serves as an enum for the state of an order.
 * **`crowdsourcerId`** (string) Ethereum contract address of the Dispute Crowdsourcer, as a hexadecimal string.
 * **`isCategorical`** (boolean) Whether the Market is a Categorical Market.
 * **`isScalar`** (boolean) Whether the Market is a Scalar Market.
-* **`isInvalid`** (boolean) Whether the Market is [Invalid](#invalid-outcome).
+* **`isInvalid`** (boolean) Whether the Market is Invalid.
 * **`isSubmitted`** (boolean) Whether the Report has been submitted. (This property is vestigial and is always set to true.)
 
 <a name="REPORTING_STATE"></a>
@@ -571,6 +568,8 @@ Serves as an enum for the state of a Market.
 
 <a name="StakeDetails"></a>
 ### StakeDetails  (Object)
+
+!!!TBD!!! Remove `isInvalid`?
 
 #### **Properties:** 
 * **`payout`** (Array.&lt;number|string>) Payout Set for the Dispute Crowdsourcer.

@@ -1345,13 +1345,11 @@ Market Tx API
 // Market Transaction API Examples:
 var marketAddress = "0x9368ff3e9ce1c0459b309fac6dd4e69229b91a42";
 
-var _payoutNumerators = [ "0x0", "0x2710" ];
-var _invalid = false;
+var _payoutNumerators = [ "0x0", "0x0", "0x2710" ];
 var _description = "The outcome of this Market is 'Yes', as reported by the WSJ on May 15, 2019.";
 var _amount = "0x64";
 augur.api.Market.contribute({
   _payoutNumerators: _payoutNumerators,
-  _invalid: _invalid,
   _amount: _amount,
   tx: { 
     to: marketAddress,
@@ -1384,7 +1382,6 @@ augur.api.Market.disavowCrowdsourcers({
 
 augur.api.Market.doInitialReport({
   _payoutNumerators: _payoutNumerators,
-  _invalid: _invalid,
   _description: _description
   tx: { 
     to: marketAddress,
@@ -1434,7 +1431,6 @@ augur.api.Market.migrateThroughOneFork({
   tx: { 
     to: marketAddress,
     _payoutNumerators: _payoutNumerators, 
-    _invalid: _invalid, 
     _description: "",
     gas: "0x632ea0" 
   }, 
@@ -1484,7 +1480,7 @@ Provides JavaScript bindings for the [Market Solidity Contract](https://github.c
 
 ### augur.api.Market.contribute(p)
 
-Contributes `p._amount` [REP](#rep) to the [Dispute Crowdsourcer](#crowdsourcer) represented by [Payout Set](#payout-set) `p._payoutNumerators` and `p._invalid` in order to help [Challenge](#challenge) the [Market](#market)'s [Tentative Outcome](#tentative-outcome). If the amount of REP in the Dispute Crowdsourcer plus `p._amount` is greater than the total REP required to fill the [Dispute Bond](#dispute-bond), this function will only contribute the remaining amount of REP required to fill the Dispute Bond on behalf of the caller.
+Contributes `p._amount` [REP](#rep) to the [Dispute Crowdsourcer](#crowdsourcer) represented by [Payout Set](#payout-set) `p._payoutNumerators` in order to help [Challenge](#challenge) the [Market](#market)'s [Tentative Outcome](#tentative-outcome). If the amount of REP in the Dispute Crowdsourcer plus `p._amount` is greater than the total REP required to fill the [Dispute Bond](#dispute-bond), this function will only contribute the remaining amount of REP required to fill the Dispute Bond on behalf of the caller.
 
 This transaction will trigger a [`DisputeCrowdsourcerContribution`](#DisputeCrowdsourcerContribution) event if it executes without any errors. It will also trigger a `DisputeCrowdsourcerCompleted` event if the Dispute Bond is successfullly filled, and it will trigger a [`UniverseForked`](#UniverseForked) event if enough REP has been [Staked](#dispute-stake) in the Dispute Crowdsourcer to cause the Market to [Fork](#fork).
 
@@ -1493,14 +1489,13 @@ This function will fail if:
 * No [Initial Report](#initial-report) has been submitted on the Market.
 * The Market's [Dispute Window](#dispute-window) has ended.
 * The Market's [Universe](#universe) has a [Forked Market](#forked-market).
-* The [Outcome](#outcome) specified by `p._payoutNumerators` and `p._invalid` is already the Tentative Outcome of the Market.
-* `p._invalid` is true and the Numerators in `p._payoutNumerators` are not all the same value. (For information about what the Payout Set should look like for an Invalid Market, refer to the [Invalid Outcome glossary entry](#invalid-outcome).)
+* The [Outcome](#outcome) specified by `p._payoutNumerators` is already the Tentative Outcome of the Market.
+* `p._payoutNumerators` is not specified correctly. (For information on what the Payout Set should look like, refer to the [Payout Set glossary entry](#payout-set).)
 
 #### **Parameters:**
 
 * **`p`** (Object) Parameters object.
     * **`p._payoutNumerators`**  (Array.&lt;number>|Array.&lt;string>) Array representing the Market's Payout Set.
-    * **`p._invalid`**  (boolean) Whether the Outcome of the Market is Invalid.
     * **`p._amount`**  (string) Amount to contribute to the Dispute Crowdsourcer, in [attoREP](#atto-prefix).
     * **`p._description`** (string) &lt;optional> Explanation for why the contributor is Staking on this particular Outcome.
     * **`p.tx`** (Object) Object containing details about how this transaction should be made.
@@ -1550,13 +1545,12 @@ This transaction will fail if:
 
   * The Market's event end time has not passed.
   * The caller of the function is not the [Designated Reporter](#designated-reporter) and the [Designated Reporting Phase](#designated-reporting-phase) has not ended.
-  * `p._invalid` is true and the Numerators in `p._payoutNumerators` are not all the same value. (For information about what the [Payout Set](#payout-set) should look like for an Invalid Market, refer to the [Invalid Outcome glossary entry](#invalid-outcome).)
+  * `p._payoutNumerators` is not specified correctly. (For information on what the Payout Set should look like, refer to the [Payout Set glossary entry](#payout-set).)
 
 #### **Parameters:**
 
 * **`p`** (Object) Parameters object.
     * **`p._payoutNumerators`**  (Array.&lt;number>|Array.&lt;string>) Array representing the Market's Payout Set.
-    * **`p._invalid`**  (boolean) Whether the Outcome of the Market is Invalid.
     * **`p._description`** (string) &lt;optional> Explanation for why the Initial Reporter is Staking on this particular Outcome.
     * **`p.tx`** (Object) Object containing details about how this transaction should be made.
         * **`p.tx.to`** (string) Ethereum contract address on which to call this function, as a 20-byte hexadecimal string.
@@ -1625,18 +1619,18 @@ This transaction will fail if:
 
 Migrates the [Market](#market) into a winning [Child Universe](#child-universe) from a [Forked](#fork) [Parent Universe](#parent-universe). When a Fork occurs, there is a [Fork Period](#fork-period), wherein [REP](#rep) holders migrate their REP to the [Universe](#universe) they want to continue in. Once the Fork Period ends, the Child Universe with the most REP migrated to it is declared the [Winning Universe](#winning-universe). Calling this transaction calls `augur.api.Market.disavowCrowdsourcers` and then moves the Market from a Parent Universe to the Winning Universe after it's been decided. If the Market is a non-[Forked Markets](#forked-market) and has not had an [Initial Report](#initial-report) submitted yet, the owner of the Market will get paid the [No-Show Bond](#no-show-bond) using REP from the Market's former Universe. Regardless of whether the Market already has an Initial Report, the account that is performing the migration will place a new No-Show Bond (which could be a different size based on the new Universe).
 
-NOTE: If the End Time has elapsed, any existing Initial Report that has been submitted on the Market will be reset, and the parameter `p._payoutNumerators`, `p._invalid`, & `p._description` will be used to submit an [Initial Report](#initial-report) on the Market in the Market's new Universe. If the End Time has not elapsed, these parameters will not be used.
+NOTE: If the End Time has elapsed, any existing Initial Report that has been submitted on the Market will be reset, and the parameter `p._payoutNumerators` & `p._description` will be used to submit an [Initial Report](#initial-report) on the Market in the Market's new Universe. If the End Time has not elapsed, these parameters will not be used.
 
 This transaction will fail if:
 
 * The Market is [Finalized](#finalized-market).
 * The [Forked Market](#forked-market) is not Finalized (i.e., the Fork Period is not over, so there is no Winning Universe to migrate to).
+* `p._payoutNumerators` is not specified correctly. (For information on what the Payout Set should look like, refer to the [Payout Set glossary entry](#payout-set).)
 
 #### **Parameters:**
 
 * **`p`** (Object) Parameters object.
     * **`p._payoutNumerators`**  (Array.&lt;number>|Array.&lt;string>) &lt;optional> Array representing the Market's Payout Set. (Required if the Market's End Time has elapsed; otherwise, unused.)
-    * **`p._invalid`**  (boolean) &lt;optional> Whether the Outcome of the Market is Invalid. (Required if the Market's End Time has elapsed; otherwise, unused.)
     * **`p._description`** (string) &lt;optional> Explanation for why the Initial Reporter is Staking on this particular Outcome. (Used only if the Market's End Time has elapsed.)
     * **`p.tx`** (Object) Object containing details about how this transaction should be made.
         * **`p.tx.to`** (string) Ethereum contract address on which to call this function, as a 20-byte hexadecimal string.
@@ -1846,8 +1840,7 @@ augur.api.ReputationToken.migrateOut({
 });
 
 augur.api.ReputationToken.migrateOutByPayout({
-  _payoutNumerators: ["0x1", "0x270F"],
-  _invalid: false,
+  _payoutNumerators: ["0x0", "0x1", "0x270F"],
   _attotokens: "0xa",
   tx: { 
     to: reputationTokenAddress,
@@ -2028,19 +2021,19 @@ This transaction will fail if:
 
 ### augur.api.ReputationToken.migrateOutByPayout(p)
 
-Creates a [Child Universe](#child-universe) (if it does not already exist) for the ReputationToken contract's [Universe](#universe), where the [Forked Market](#forked-market) has the [Payout Set](#payout-set) `p._payoutNumerators`. If the Forked Market is deemed to have an [Invalid Outcome](#invalid-outcome), `p._invalid` should be set to `true`; otherwise, it should be set to `false`. Once the Child Universe exists, the function will migrate `p._attotokens` REP from the ReputationToken contract of the Parent Universe to the ReputationToken contract of the Child Universe.
+Creates a [Child Universe](#child-universe) (if it does not already exist) for the ReputationToken contract's [Universe](#universe), where the [Forked Market](#forked-market) has the [Payout Set](#payout-set) `p._payoutNumerators`. Once the Child Universe exists, the function will migrate `p._attotokens` REP from the ReputationToken contract of the Parent Universe to the ReputationToken contract of the Child Universe.
 
 This transaction will fail if:
 
 * `p._attotokens` is not greater than 0.
 * The Universe the ReputationToken contract belongs to does not have a Forked Market.
 * The [Parent Universe's](#parent-universe) [Fork Period](#fork-period) has ended (in which case, REP in the Parent Universe can no longer be migrated).
+* `p._payoutNumerators` is not specified correctly. (For information on what the Payout Set should look like, refer to the [Payout Set glossary entry](#payout-set).)
 
 #### **Parameters:**
 
 * **`p`** (Object) Parameters object.
     * **`p._payoutNumerators`**  (Array.&lt;string>) Payout Set of the Forked Market in the Child Universe.
-    * **`p._invalid`**  (boolean) Whether the Forked Market is deemed to have an Invalid Outomce in the Child Universe.
     * **`p._attotokens`**  (string) Number of REP to migrate to the Child Universe's ReputationToken contract, in [attoREP](#atto-prefix), as a hexadecimal string.
     * **`p.tx`** (Object) Object containing details about how this transaction should be made.
         * **`p.tx.to`** (string) Ethereum contract address on which to call this function, as a 20-byte hexadecimal string.
@@ -2633,11 +2626,9 @@ augur.api.Universe.createCategoricalMarket({
   onFailed: function (result) { console.log("onFailed result:", result); },
 });
 
-var _parentPayoutNumerators = [ "0x0", "0x2710" ];
-var _parentInvalid = false;
+var _parentPayoutNumerators = [ "0x0", "0x0", "0x2710" ];
 augur.api.Universe.createChildUniverse({
   _parentPayoutNumerators: _parentPayoutNumerators,
-  _parentInvalid: _parentInvalid,
   tx: { 
     to: universeAddress,
     gas: "0x632ea0" 
@@ -2897,18 +2888,17 @@ NOTE: The account attempting to create the new market must have sufficient REP i
 
 ### augur.api.Universe.createChildUniverse(p)
 
-Creates a new [Child Universe](#child-universe) (if it does not already exist) with the given [Payout Set](#payout-set) `p._parentPayoutNumerators` and `p._parentInvalid`. This transaction will trigger a [`UniverseCreated`](#UniverseCreated) event if the Child Universe has not been created yet.
+Creates a new [Child Universe](#child-universe) (if it does not already exist) with the given [Payout Set](#payout-set) `p._parentPayoutNumerators`. This transaction will trigger a [`UniverseCreated`](#UniverseCreated) event if the Child Universe has not been created yet.
 
 This transaction will fail if:
 
 * The Universe does not have a [Forked Market](#forked-market).
-* `p._parentInvalid` is true and the Numerators in `p._parentPayoutNumerators` are not all the same value. (For information about what the Payout Set should look like for an Invalid [Market](#market), refer to the [Invalid Outcome glossary entry](#invalid-outcome).)
+* `p._parentPayoutNumerators` is not specified correctly. (For information on what the Payout Set should look like, refer to the [Payout Set glossary entry](#payout-set).)
 
 #### **Parameters:**
 
 * **`p`** (Object) Parameters object.
     * **`p._parentPayoutNumerators`**  (Array.&lt;number>) Payout Set of the Parent Universe's Parent Universe's Forked Market.
-    * **`p._parentInvalid`**  (boolean) Whether the Parent Universe's Forked Market is [Invalid](#invalid-outcome).
     * **`p.tx`** (Object) Object containing details about how this transaction should be made.
         * **`p.tx.to`** (string) Ethereum contract address on which to call this function, as a 20-byte hexadecimal string.
         * **`p.tx.gas`** (string) Gas limit to use when submitting this transaction, as a hexadecimal string.
