@@ -1126,7 +1126,7 @@ These Participation Tokens can be redeemed later once the Dispute Window is no l
 
 Converts any [Participation Tokens](#participation-token) `p._sender` has in the specified [Dispute Window](#dispute-window) to [Reputation Tokens](#rep), and gives the user any [Reporting Fees](#reporting-fee) he or she is owed in Ether. The parameter `p._sender` is the Ethereum address of the user redeeming the Participation Tokens, as a 20-byte hexadecimal string.
 
-This transaction will trigger a [`DisputeWindowRedeemed`](#DisputeWindowRedeemed) event if the REP/Ether was redeemed without any errors.
+This transaction will trigger a [`ParticipationTokensRedeemed`](#ParticipationTokensRedeemed) event if the REP/Ether was redeemed without any errors.
 
 #### **Parameters:**
 
