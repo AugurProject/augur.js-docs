@@ -2184,6 +2184,42 @@ Returns whether a given price is less than/equal to the price of a particular [O
 
 * (boolean) `true` if the price is less than the Order price (for Bid Orders), or if the price is greater than the Order price (for Ask Orders). Otherwise, the function will return `false`.
 
+Profit Loss Call API
+-------------------------
+```javascript
+// Profit Loss Contract Call API Examples:
+var _market = "0xc4ba20cbafe3a3655a2f2e4df4ac7f942a722017";
+
+augur.api.ProfitLoss.getRealizedCost({
+  _market: _market,
+  _account: "0x913da4198e6be1d5f5e4a40d0667f70c0b5430eb",
+  _outcome: "0x0",
+}, function(error, realizedCost) {
+  console.log(realizedCost); 
+});
+// example output:
+!!!TBD!!! Add example output
+```
+Provides JavaScript bindings for the [ProfitLoss Solidity Contract](https://github.com/AugurProject/augur/blob/master/packages/augur-core/source/contracts/trading/ProfitLoss.sol), which keeps track of users' trading profit & loss information. 
+
+### augur.api.ProfitLoss.getRealizedCost(p, callback)
+
+Returns the realized cost a user has incurred for an [Outcome](#outcome) on a specific [Market](#market).
+
+#### **Parameters:**
+
+* **`p`** (Object) Parameters object.  
+    * **`p._market`** (string) Ethereum address of the Market.
+    * **`p._account`** (string) Ethereum address of the account.
+    * **`p._outcome`** (string) The Outcome for which to get the realized cost, as a hexadecimal string.
+    * **`p.tx`** (Object) Object containing details about how this function call should be made.
+        * **`p.tx.to`** (string) Ethereum contract address of the ReputationToken contract on which to call this function, as a 20-byte hexadecimal string.
+* **`callback`** (function) &lt;optional> Called after the function's result has been retrieved.
+
+#### **Returns:**
+
+(string) The realized cost (in [attoDai](#atto-prefix)) the user has incurred for an Outcome of the Market.
+
 Reputation Token Call API
 -------------------------
 ```javascript

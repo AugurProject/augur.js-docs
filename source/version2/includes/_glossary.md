@@ -193,6 +193,10 @@ A Forked Market is a [Market](#market) whose [Tentative Outcome](#tentative-outc
 
 The Fork Threshold is the amount of [REP](#rep) that must be [Staked](#dispute-stake) on a [Dispute Crowdsourcer](#crowdsourcer) in order to cause a [Market](#market) to [Fork](#fork). In Augur, if 2.5% of all existing REP is Staked on the Dispute Crowdsourcer of a Market, that Market will Fork.
 
+## Frozen Funds
+
+!!!TBD!!! Add definition
+
 ## Genesis Universe
 
 A Genesis Universe is a [Universe](#universe) that does not have a [Parent Universe](#parent-universe). At the launch of Augur, only a single Genesis Universe exists. However, users can create other Genesis Universes using the `augur.api.Augur.createGenesisUniverse` function. (One reason they may want to do this, for example, is if they wish to create a competing Genesis Universe because they do not agree with the [Final Outcome](#final-outcome) of a particular [Market](#market) in the original Genesis Universe.) Initially, a new Genesis Universe does not contain any Markets, nor any supply of [REP](#rep). In order to add a REP supply to a Genesis Universe, users must migrate their [Legacy REP](#legacy-rep) to the REP smart contract for that Genesis Universe using the function `augur.api.ReputationToken.migrateFromLegacyReputationToken`.
