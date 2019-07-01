@@ -7352,6 +7352,48 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
 <li>(boolean) <code class="prettyprint">true</code> if the price is less than the Order price (for Bid Orders), or if the price is greater than the Order price (for Ask Orders). Otherwise, the function will return <code class="prettyprint">false</code>.</li>
 </ul>
 
+<h2 id="profit-loss-call-api">Profit Loss Call API</h2>
+<div class="highlight"><pre class="highlight javascript"><code><span class="c1">// Profit Loss Contract Call API Examples:</span>
+<span class="kd">var</span> <span class="nx">_market</span> <span class="o">=</span> <span class="s2">"0xc4ba20cbafe3a3655a2f2e4df4ac7f942a722017"</span><span class="p">;</span>
+
+<span class="nx">augur</span><span class="p">.</span><span class="nx">api</span><span class="p">.</span><span class="nx">ProfitLoss</span><span class="p">.</span><span class="nx">getRealizedCost</span><span class="p">({</span>
+  <span class="na">_market</span><span class="p">:</span> <span class="nx">_market</span><span class="p">,</span>
+  <span class="na">_account</span><span class="p">:</span> <span class="s2">"0x913da4198e6be1d5f5e4a40d0667f70c0b5430eb"</span><span class="p">,</span>
+  <span class="na">_outcome</span><span class="p">:</span> <span class="s2">"0x0"</span><span class="p">,</span>
+<span class="p">},</span> <span class="kd">function</span><span class="p">(</span><span class="nx">error</span><span class="p">,</span> <span class="nx">realizedCost</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">realizedCost</span><span class="p">);</span> 
+<span class="p">});</span>
+<span class="c1">// example output:</span>
+<span class="o">!!!</span><span class="nx">TBD</span><span class="o">!!!</span> <span class="nx">Add</span> <span class="nx">example</span> <span class="nx">output</span>
+</code></pre></div>
+<p>Provides JavaScript bindings for the <a href="https://github.com/AugurProject/augur/blob/master/packages/augur-core/source/contracts/trading/ProfitLoss.sol">ProfitLoss Solidity Contract</a>, which keeps track of users&rsquo; trading profit &amp; loss information. </p>
+
+<h3 id="augur-api-profitloss-getrealizedcost-p-callback">augur.api.ProfitLoss.getRealizedCost(p, callback)</h3>
+
+<p>Returns the realized cost a user has incurred for an <a href="#outcome">Outcome</a> on a specific <a href="#market">Market</a>.</p>
+
+<h4 id="strong-strong"><strong>Parameters:</strong></h4>
+
+<ul>
+<li><strong><code class="prettyprint">p</code></strong> (Object) Parameters object.<br>
+
+<ul>
+<li><strong><code class="prettyprint">p._market</code></strong> (string) Ethereum address of the Market.</li>
+<li><strong><code class="prettyprint">p._account</code></strong> (string) Ethereum address of the account.</li>
+<li><strong><code class="prettyprint">p._outcome</code></strong> (string) The Outcome for which to get the realized cost, as a hexadecimal string.</li>
+<li><strong><code class="prettyprint">p.tx</code></strong> (Object) Object containing details about how this function call should be made.
+
+<ul>
+<li><strong><code class="prettyprint">p.tx.to</code></strong> (string) Ethereum contract address of the ReputationToken contract on which to call this function, as a 20-byte hexadecimal string.</li>
+</ul></li>
+</ul></li>
+<li><strong><code class="prettyprint">callback</code></strong> (function) &lt;optional&gt; Called after the function&rsquo;s result has been retrieved.</li>
+</ul>
+
+<h4 id="strong-strong"><strong>Returns:</strong></h4>
+
+<p>(string) The realized cost (in <a href="#atto-prefix">attoDai</a>) the user has incurred for an Outcome of the Market.</p>
+
 <h2 id="reputation-token-call-api">Reputation Token Call API</h2>
 <div class="highlight"><pre class="highlight javascript"><code><span class="c1">// Reputation Token Contract Call API Examples:</span>
 
@@ -12784,9 +12826,9 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
 <tr>
 <td><a name="DisputeCrowdsourcerCompleted"></a>DisputeCrowdsourcerCompleted</td>
 <td><a href="https://github.com/AugurProject/augur/blob/master/packages/augur-core/source/contracts/Augur.sol">Augur</a></td>
-<td>The Ethereum contract address <code class="prettyprint">disputeCrowdsourcer</code> for <code class="prettyprint">market</code> in <code class="prettyprint">universe</code> filled the <a href="#dispute-bond">Dispute Bond</a> required to <a href="#challenge">Challenge</a> <code class="prettyprint">market</code>&rsquo;s <a href="#tentative-outcome">Tentative Outcome</a>.</td>
+<td>The Ethereum contract address <code class="prettyprint">disputeCrowdsourcer</code> for <code class="prettyprint">market</code> in <code class="prettyprint">universe</code> filled the <a href="#dispute-bond">Dispute Bond</a> required to <a href="#challenge">Challenge</a> <code class="prettyprint">market</code>&rsquo;s <a href="#tentative-outcome">Tentative Outcome</a>. <code class="prettyprint">pacingOn</code> indicates whether <a href="#dispute-pacing">Dispute Pacing</a> has been enabled on the <a href="#market">Market</a>.</td>
 <td>universe, market</td>
-<td>disputeCrowdsourcer</td>
+<td>disputeCrowdsourcer, pacingOn</td>
 </tr>
 <tr>
 <td><a name="DisputeCrowdsourcerContribution"></a>DisputeCrowdsourcerContribution</td>
@@ -12894,6 +12936,13 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
 <td>attoParticipationTokens, feePayoutShare</td>
 </tr>
 <tr>
+<td><a name="ProfitLossChanged"></a>ProfitLossChanged</td>
+<td><a href="https://github.com/AugurProject/augur/blob/master/packages/augur-core/source/contracts/Augur.sol">Augur</a></td>
+<td>User <code class="prettyprint">account</code> had a change to their <code class="prettyprint">realizedProfit</code>/<code class="prettyprint">realizedCost</code> for their <code class="prettyprint">netPosition</code> in <code class="prettyprint">outcome</code> of <code class="prettyprint">market</code> of <code class="prettyprint">universe</code> at <code class="prettyprint">timestamp</code>. For this position, they have an average price of <code class="prettyprint">avgPrice</code> with <code class="prettyprint">frozenFunds</code> still remaining in Augur as <a href="#frozen-funds">Frozen Funds</a>.</td>
+<td>universe, market, account</td>
+<td>outcome, netPosition, avgPrice, realizedProfit, frozenFunds, realizedCost, timestamp</td>
+</tr>
+<tr>
 <td><a name="ReportingParticipantDisavowed"></a>ReportingParticipantDisavowed</td>
 <td><a href="https://github.com/AugurProject/augur/blob/master/packages/augur-core/source/contracts/Augur.sol">Augur</a></td>
 <td>The <code class="prettyprint">reportingParticipant</code> (can be either a DisputeCrowdsourcer or an InitialReporter) belonging to <code class="prettyprint">market</code> in <code class="prettyprint">universe</code> has had its <code class="prettyprint">fork</code> (or <code class="prettyprint">forkAndRedeem</code>) function called on it.</td>
@@ -12952,9 +13001,9 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
 <tr>
 <td><a name="UniverseForked"></a>UniverseForked</td>
 <td><a href="https://github.com/AugurProject/augur/blob/master/packages/augur-core/source/contracts/Augur.sol">Augur</a></td>
-<td>A <a href="#market">Market</a> in <code class="prettyprint">universe</code> has had its <a href="#tentative-outcome">Tentative Outcome</a> <a href="#challenge">Challenged</a> with a <a href="#dispute-bond">Dispute Bond</a> greater than the <a href="#fork-threshold">Fork Threshold</a>, which has caused <code class="prettyprint">universe</code> to <a href="#fork">Fork</a>.</td>
+<td><code class="prettyprint">forkingMarket</code> in <code class="prettyprint">universe</code> has had its <a href="#tentative-outcome">Tentative Outcome</a> <a href="#challenge">Challenged</a> with a <a href="#dispute-bond">Dispute Bond</a> greater than the <a href="#fork-threshold">Fork Threshold</a>, which has caused <code class="prettyprint">universe</code> to <a href="#fork">Fork</a>.</td>
 <td>universe</td>
-<td></td>
+<td>forkingMarket</td>
 </tr>
 </tbody></table>
 
@@ -14701,6 +14750,10 @@ During the very first <a href="#dispute-window">Dispute Window</a> after launch,
 <h2 id="fork-threshold">Fork Threshold</h2>
 
 <p>The Fork Threshold is the amount of <a href="#rep">REP</a> that must be <a href="#dispute-stake">Staked</a> on a <a href="#crowdsourcer">Dispute Crowdsourcer</a> in order to cause a <a href="#market">Market</a> to <a href="#fork">Fork</a>. In Augur, if 2.5% of all existing REP is Staked on the Dispute Crowdsourcer of a Market, that Market will Fork.</p>
+
+<h2 id="frozen-funds">Frozen Funds</h2>
+
+<p>!!!TBD!!! Add definition</p>
 
 <h2 id="genesis-universe">Genesis Universe</h2>
 
