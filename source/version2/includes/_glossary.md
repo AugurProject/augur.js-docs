@@ -26,7 +26,7 @@ An Ask Order is an [Order](#order) indicating the desire of the [Order Creator](
 
 ## Atto- (Prefix)
 
-Atto- is a unit prefix in the metric system denoting a factor of 10^−18, or 0.000000000000000001.  This prefix is used for a number of terms in Augur, including attoETH, attoREP, attotoken, etc.
+Atto- is a unit prefix in the metric system denoting a factor of 10^−18, or 0.000000000000000001.  This prefix is used for a number of terms in Augur, including attoETH, attoREP, attotoken, attoshares, etc.
 
 ## Bid Order
 
@@ -221,6 +221,10 @@ A [Market](#market) should be considered Invalid if any of the following are tru
   - The Resolution Rource provides different answers to different viewers.
 
 If the Outcome of a Market is Invalid, [Reporters](#reporters) can [Report](#report) its [Tentative Outcome](#tentative-outcome) as Invalid. Additionally, if the Market is in the [Dispute Round Phase](#dispute-round-phase), users can [Stake](#dispute-stake) [REP](#rep) on Invalid as the Tentative Outcome, or if the Market has [Forked](#fork), users can migrate their REP to the [Child Universe](#child-universe) where the Outcome is Invalid. If the Market's [Final Outcome](#final-outcome) becomes Invalid, its [Payout Set](#payout-set) will have the [Invalid Market Payout Numerator](#invalid-market-payout-numerator) set to the [Number of Ticks](#number-of-ticks). For example, in a [Categorical Market](#categorical-market) with 10,000 [Ticks](#tick) and 4 potential Outcomes (excluding Invalid), the Payout Set would be [10000, 0, 0, 0, 0].
+
+## KYC Token
+
+!!!TBD!!! Add definition
 
 ## Legacy REP
 
@@ -438,6 +442,10 @@ A Tick is the smallest recognized amount by which a price of a security or futur
 ## Topic
 
 A Topic is a keyword used to categorize [Markets](#market). All Markets must have a Topic, and are optionally allowed up to two sub-Topics to further categorize the Market. An example Market for "Will the New York Giants win Super Bowl 100?" might have a Topic of "Sports" and sub-topics of "American Football" and "NFL". The Topics are set by the [Market Creator](#market-creator) when a new Market is made and cannot be changed.
+
+## Trade Group
+
+A Trade Group is a set of [Orders](#order) that Augur's user interface groups together using an ID to uniquely identify a trade.
 
 ## Universe
 

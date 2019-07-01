@@ -2893,16 +2893,16 @@ Accepts a [SingleOutcomeOrderBookSide](#SingleOutcomeOrderBookSide) object, and 
 
 ### augur.trading.generateTradeGroupId(tradeGroupIdNumBytes)
 
-Returns a randomly-generated trade group ID. (Trade group IDs are used by Augur's UI to group orders.)
+Returns a randomly-generated [Trade Group](#trade-group) ID.
 
 #### **Parameters:**
 
 * **`p`** (Object) Parameters object.
-  * **`tradeGroupIdNumBytes`** (number) &lt;optional> Number of bytes the returned trade group ID should be. Defaults to `augur.constants.TRADE_GROUP_ID_NUM_BYTES`.
+  * **`tradeGroupIdNumBytes`** (number) &lt;optional> Number of bytes the returned Trade Group ID should be. Defaults to `augur.constants.TRADE_GROUP_ID_NUM_BYTES`.
 
 #### **Returns:**
 
-* (string) Randomly-generated trade group ID. 
+* (string) Randomly-generated Trade Group ID. 
 
 <!-- Add links to section -->
 ### augur.trading.getBetterWorseOrders(p, callback)
