@@ -550,7 +550,6 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
       <span class="nx">FillOrder</span><span class="p">:</span> <span class="s2">"0x57972b23e4e97cf33b456d292411308b1053d835"</span><span class="p">,</span>
       <span class="nx">Order</span><span class="p">:</span> <span class="s2">"0x86416fd9eb6ca7797f799ccc2e08a4da4083ac17"</span><span class="p">,</span>
       <span class="nx">Orders</span><span class="p">:</span> <span class="s2">"0x452cbdba8559a9b0199bb15105a42fc7ae373983"</span><span class="p">,</span>
-      <span class="nx">OrdersFetcher</span><span class="p">:</span> <span class="s2">"0xc9d0126e1aa921056af5981016904690ad73c0d3"</span><span class="p">,</span>
       <span class="nx">ShareToken</span><span class="p">:</span> <span class="s2">"0x5c8b3117b65af65405980f3700542c03709a6436"</span><span class="p">,</span>
       <span class="nx">Trade</span><span class="p">:</span> <span class="s2">"0x8d0677ee9f5330fd65db56da6c31711fd6810434"</span><span class="p">,</span>
     <span class="p">},</span>
@@ -1004,7 +1003,6 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
     <span class="na">FillOrder</span><span class="p">:</span> <span class="s2">"0x0c77f6af7b3b5fed8ca980414a97c62da283098a"</span><span class="p">,</span>
     <span class="na">Order</span><span class="p">:</span> <span class="s2">"0x4811d582f64e68e657bec21834012af38ef093bc"</span><span class="p">,</span>
     <span class="na">Orders</span><span class="p">:</span> <span class="s2">"0x1ba5cf0ce546bf7d7943c4d4fb21ea59f6bb0eee"</span><span class="p">,</span>
-    <span class="na">OrdersFetcher</span><span class="p">:</span> <span class="s2">"0xb9f2cf78542de87ba7542d92e2937d0eedec5feb"</span><span class="p">,</span>
     <span class="na">ShareToken</span><span class="p">:</span> <span class="s2">"0x925bee44fec28deb228d2251e1a9d32f7c73ebed"</span><span class="p">,</span>
     <span class="na">Trade</span><span class="p">:</span> <span class="s2">"0x0dec7fd04933b8673cef99b64978113065b03926"</span><span class="p">,</span>
   <span class="p">},</span>
@@ -3965,7 +3963,7 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
 
 <h3 id="augur-trading-generatetradegroupid-tradegroupidnumbytes">augur.trading.generateTradeGroupId(tradeGroupIdNumBytes)</h3>
 
-<p>Returns a randomly-generated trade group ID. (Trade group IDs are used by Augur&rsquo;s UI to group orders.)</p>
+<p>Returns a randomly-generated <a href="#trade-group">Trade Group</a> ID.</p>
 
 <h4 id="strong-strong"><strong>Parameters:</strong></h4>
 
@@ -3973,14 +3971,14 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
 <li><strong><code class="prettyprint">p</code></strong> (Object) Parameters object.
 
 <ul>
-<li><strong><code class="prettyprint">tradeGroupIdNumBytes</code></strong> (number) &lt;optional&gt; Number of bytes the returned trade group ID should be. Defaults to <code class="prettyprint">augur.constants.TRADE_GROUP_ID_NUM_BYTES</code>.</li>
+<li><strong><code class="prettyprint">tradeGroupIdNumBytes</code></strong> (number) &lt;optional&gt; Number of bytes the returned Trade Group ID should be. Defaults to <code class="prettyprint">augur.constants.TRADE_GROUP_ID_NUM_BYTES</code>.</li>
 </ul></li>
 </ul>
 
 <h4 id="strong-strong"><strong>Returns:</strong></h4>
 
 <ul>
-<li>(string) Randomly-generated trade group ID. </li>
+<li>(string) Randomly-generated Trade Group ID. </li>
 </ul>
 
 <!-- Add links to section -->
@@ -6341,7 +6339,7 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
 
 <h3 id="augur-api-market-getnumberofoutcomes-p-callback">augur.api.Market.getNumberOfOutcomes(p, callback)</h3>
 
-<p>Returns the number of <a href="#outcome">Outcomes</a> for the specified <a href="#market">Market</a>. The number of Outcomes is the number of potential results for the <a href="#market">Market</a> event.</p>
+<p>Returns the number of <a href="#outcome">Outcomes</a> for the specified <a href="#market">Market</a>. The number of Outcomes is the number of potential results for the <a href="#market">Market</a> event (including <a href="#invalid-outcome">Invalid</a>).</p>
 
 <h4 id="strong-strong"><strong>Parameters:</strong></h4>
 
@@ -6361,7 +6359,7 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
 <h4 id="strong-strong"><strong>Returns:</strong></h4>
 
 <ul>
-<li>(string) Number of Outcomes for the Market, as a stringified unsigned integer.</li>
+<li>(string) Number of Outcomes for the Market (including Invalid), as a stringified unsigned integer.</li>
 </ul>
 
 <h3 id="augur-api-market-getnumticks-p-callback">augur.api.Market.getNumTicks(p, callback)</h3>
@@ -6765,6 +6763,37 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
 <span class="kd">var</span> <span class="nx">_type</span> <span class="o">=</span> <span class="s2">"0x1"</span><span class="p">;</span>
 <span class="kd">var</span> <span class="nx">_market</span> <span class="o">=</span> <span class="s2">"0x9368ff3e9ce1c0459b309fac6dd4e69229b91a42"</span><span class="p">;</span>
 <span class="kd">var</span> <span class="nx">_outcome</span> <span class="o">=</span> <span class="s2">"0x1"</span><span class="p">;</span>
+<span class="kd">var</span> <span class="nx">_price</span> <span class="o">=</span> <span class="s2">"0x63eb89da4ed0000"</span><span class="p">;</span> <span class="c1">// 0.45</span>
+
+<span class="nx">augur</span><span class="p">.</span><span class="nx">api</span><span class="p">.</span><span class="nx">Orders</span><span class="p">.</span><span class="nx">ascendOrderList</span><span class="p">({</span>
+  <span class="na">_type</span><span class="p">:</span> <span class="nx">_type</span><span class="p">,</span>
+  <span class="na">_price</span><span class="p">:</span> <span class="nx">_price</span><span class="p">,</span>
+  <span class="na">_lowestOrderId</span><span class="p">:</span> <span class="nx">_orderId</span>
+<span class="p">},</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">error</span><span class="p">,</span> <span class="nx">ascendingOrderList</span><span class="p">)</span> <span class="p">{</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">ascendingOrderList</span><span class="p">);</span> <span class="p">});</span>
+<span class="c1">// example output:</span>
+<span class="p">[</span> <span class="s2">"0x7ca90ca9118db456d87e3d743b97782a857200b55039f7ffe8de94e5d920f870"</span><span class="p">,</span>
+  <span class="s2">"0x4a8d07c2c9cd996484c04b7077d1fc4aeaeb8aa4750d7f26f2a896c4393fb6b0"</span> <span class="p">]</span>
+
+<span class="nx">augur</span><span class="p">.</span><span class="nx">api</span><span class="p">.</span><span class="nx">Orders</span><span class="p">.</span><span class="nx">descendOrderList</span><span class="p">({</span>
+  <span class="na">_type</span><span class="p">:</span> <span class="nx">_type</span><span class="p">,</span>
+  <span class="na">_price</span><span class="p">:</span> <span class="nx">_price</span><span class="p">,</span>
+  <span class="na">_highestOrderId</span><span class="p">:</span> <span class="nx">_orderId</span>
+<span class="p">},</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">error</span><span class="p">,</span> <span class="nx">decendingOrderList</span><span class="p">)</span> <span class="p">{</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">decendingOrderList</span><span class="p">);</span> <span class="p">});</span>
+<span class="c1">// example output:</span>
+<span class="p">[</span> <span class="s2">"0x09502d4c2765d61a8e47fd4ada696966f3bc3bce6b780ecedded035e616c272e"</span><span class="p">,</span>
+  <span class="s2">"0x7ca90ca9118db456d87e3d743b97782a857200b55039f7ffe8de94e5d920f870"</span><span class="p">]</span>
+
+<span class="nx">augur</span><span class="p">.</span><span class="nx">api</span><span class="p">.</span><span class="nx">Orders</span><span class="p">.</span><span class="nx">findBoundingOrders</span><span class="p">({</span>
+  <span class="na">_type</span><span class="p">:</span> <span class="nx">_type</span><span class="p">,</span>
+  <span class="na">_price</span><span class="p">:</span> <span class="nx">_price</span><span class="p">,</span>
+  <span class="na">_bestOrderId</span><span class="p">:</span> <span class="nx">_orderId</span><span class="p">,</span>
+  <span class="na">_worstOrderId</span><span class="p">:</span> <span class="s2">"0x0"</span><span class="p">,</span>
+  <span class="na">_betterOrderId</span><span class="p">:</span> <span class="s2">"0x0"</span><span class="p">,</span>
+  <span class="na">_worseOrderId</span><span class="p">:</span> <span class="s2">"0x0"</span>
+<span class="p">},</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">error</span><span class="p">,</span> <span class="nx">boundingOrders</span><span class="p">)</span> <span class="p">{</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">boundingOrders</span><span class="p">);</span> <span class="p">});</span>
+<span class="c1">// example output:</span>
+<span class="p">[</span> <span class="s2">"0x4a8d07c2c9cd996484c04b7077d1fc4aeaeb8aa4750d7f26f2a896c4393fb6b0"</span><span class="p">,</span>
+  <span class="s2">"0x09502d4c2765d61a8e47fd4ada696966f3bc3bce6b780ecedded035e616c272e"</span> <span class="p">]</span>
 
 <span class="nx">augur</span><span class="p">.</span><span class="nx">api</span><span class="p">.</span><span class="nx">Orders</span><span class="p">.</span><span class="nx">getAmount</span><span class="p">({</span> 
   <span class="na">_orderId</span><span class="p">:</span> <span class="nx">_orderId</span> 
@@ -6905,6 +6934,78 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
 <span class="kc">true</span>
 </code></pre></div>
 <p>Provides JavaScript bindings for the <a href="https://github.com/AugurProject/augur/blob/master/packages/augur-core/source/contracts/trading/Orders.sol">Orders Solidity Contract</a>, which handles functionality related to the <a href="#order-book">Order Book</a>.</p>
+
+<h3 id="augur-api-orders-ascendorderlist-p-callback">augur.api.Orders.ascendOrderList(p, callback)</h3>
+
+<p>Traverses the <a href="#order-book">Order Book</a> in ascending order and returns an array containing the better <a href="#order">Order</a> ID and worse Order ID, respectively, for a specified price and Order type.</p>
+
+<h4 id="strong-strong"><strong>Parameters:</strong></h4>
+
+<ul>
+<li><strong><code class="prettyprint">p</code></strong> (Object) Parameters object.<br>
+
+<ul>
+<li><strong><code class="prettyprint">p._type</code></strong> (string) Type of Order, as a hexadecimal string (&ldquo;0x0&rdquo; for a <a href="#bid-order">Bid Order</a>, &ldquo;0x1&rdquo; for an <a href="#ask-order">Ask Order</a>). </li>
+<li><strong><code class="prettyprint">p._price</code></strong> (string) Price (in <a href="#atto-prefix">attoETH</a>) in the Order Book for which to find a better Order ID and worse Order ID, as a hexadecimal string.</li>
+<li><strong><code class="prettyprint">p._lowestOrderId</code></strong> (string) Order ID expected to be a worse price than <code class="prettyprint">p._price</code>, as a 32-byte hexadecimal string.</li>
+</ul></li>
+<li><strong><code class="prettyprint">callback</code></strong> (function) &lt;optional&gt; Called after the function&rsquo;s result has been retrieved.</li>
+</ul>
+
+<h4 id="strong-strong"><strong>Returns:</strong></h4>
+
+<ul>
+<li>(Array.&lt;string&gt;) Array containing the better Order ID and worse Order ID, respectively, for the specified price and Order type.</li>
+</ul>
+
+<h3 id="augur-api-orders-descendorderlist-p-callback">augur.api.Orders.descendOrderList(p, callback)</h3>
+
+<p>Traverses the <a href="#order-book">Order Book</a> in descending order and returns an array containing the better <a href="#order">Order</a> ID and worse Order ID, respectively, for a specified price and Order type.</p>
+
+<h4 id="strong-strong"><strong>Parameters:</strong></h4>
+
+<ul>
+<li><strong><code class="prettyprint">p</code></strong> (Object) Parameters object.<br>
+
+<ul>
+<li><strong><code class="prettyprint">p._type</code></strong> (string) Type of Order, as a hexadecimal string (&ldquo;0x0&rdquo; for a <a href="#bid-order">Bid Order</a>, &ldquo;0x1&rdquo; for an <a href="#ask-order">Ask Order</a>). </li>
+<li><strong><code class="prettyprint">p._price</code></strong> (string) Price (in <a href="#atto-prefix">attoETH</a>) in the Order Book for which to find a better Order ID and worse Order ID, as a hexadecimal string.</li>
+<li><strong><code class="prettyprint">p._highestOrderId</code></strong> (string) Order ID expected to be a better price than <code class="prettyprint">p._price</code>, as a 32-byte hexadecimal string.</li>
+</ul></li>
+<li><strong><code class="prettyprint">callback</code></strong> (function) &lt;optional&gt; Called after the function&rsquo;s result has been retrieved.</li>
+</ul>
+
+<h4 id="strong-strong"><strong>Returns:</strong></h4>
+
+<ul>
+<li>(Array.&lt;string&gt;) Array containing the better Order ID and worse Order ID, respectively, for the specified price and Order type.</li>
+</ul>
+
+<h3 id="augur-api-orders-findboundingorders-p-callback">augur.api.Orders.findBoundingOrders(p, callback)</h3>
+
+<p>Returns an array containing the <a href="#order">Order</a> IDs from the <a href="#order-book">Order Book</a> that should be set to better Order ID and worse Order ID, respectively, for an Order placed with price <code class="prettyprint">p._price</code>.</p>
+
+<h4 id="strong-strong"><strong>Parameters:</strong></h4>
+
+<ul>
+<li><strong><code class="prettyprint">p</code></strong> (Object) Parameters object.<br>
+
+<ul>
+<li><strong><code class="prettyprint">p._type</code></strong> (string) Type of Order, as a hexadecimal string (&ldquo;0x0&rdquo; for a <a href="#bid-order">Bid Order</a>, &ldquo;0x1&rdquo; for an <a href="#ask-order">Ask Order</a>). </li>
+<li><strong><code class="prettyprint">p._price</code></strong> (string) Price (in <a href="#atto-prefix">attoETH</a>) to compare <code class="prettyprint">p._orderId</code> to, as a hexadecimal string.</li>
+<li><strong><code class="prettyprint">p._bestOrderId</code></strong> (string) Best Order ID on the Order Book for <code class="prettyprint">p._type</code>, as a 32-byte hexadecimal string.</li>
+<li><strong><code class="prettyprint">p._worstOrderId</code></strong> (string) Worst Order ID on the Order Book for <code class="prettyprint">p._type</code>, as a 32-byte hexadecimal string.</li>
+<li><strong><code class="prettyprint">p._betterOrderId</code></strong> (string) Order ID with a better price than <code class="prettyprint">p._price</code>, as a 32-byte-hexadecimal string.</li>
+<li><strong><code class="prettyprint">p._worseOrderId</code></strong> (string) Order ID with a worse price than <code class="prettyprint">p._price</code>, as a 32-byte-hexadecimal string.</li>
+</ul></li>
+<li><strong><code class="prettyprint">callback</code></strong> (function) &lt;optional&gt; Called after the function&rsquo;s result has been retrieved.</li>
+</ul>
+
+<h4 id="strong-strong"><strong>Returns:</strong></h4>
+
+<ul>
+<li>(Array.&lt;string&gt;) Array containing the better Order ID and worse Order ID, respectively, for the specified price and Order type.</li>
+</ul>
 
 <h3 id="augur-api-orders-getamount-p-callback">augur.api.Orders.getAmount(p, callback)</h3>
 
@@ -7251,118 +7352,6 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
 <li>(boolean) <code class="prettyprint">true</code> if the price is less than the Order price (for Bid Orders), or if the price is greater than the Order price (for Ask Orders). Otherwise, the function will return <code class="prettyprint">false</code>.</li>
 </ul>
 
-<h2 id="orders-fetcher-call-api">Orders Fetcher Call API</h2>
-<div class="highlight"><pre class="highlight javascript"><code><span class="c1">// Orders Fetcher Contract Call API Examples:</span>
-<span class="kd">var</span> <span class="nx">_orderId</span> <span class="o">=</span> <span class="s2">"0x7ca90ca9118db456d87e3d743b97782a857200b55039f7ffe8de94e5d920f870"</span><span class="p">;</span>
-<span class="kd">var</span> <span class="nx">_type</span> <span class="o">=</span> <span class="s2">"0x1"</span><span class="p">;</span>
-<span class="kd">var</span> <span class="nx">_market</span> <span class="o">=</span> <span class="s2">"0x9368ff3e9ce1c0459b309fac6dd4e69229b91a42"</span><span class="p">;</span>
-<span class="kd">var</span> <span class="nx">_outcome</span> <span class="o">=</span> <span class="s2">"0x1"</span><span class="p">;</span>
-<span class="kd">var</span> <span class="nx">_price</span> <span class="o">=</span> <span class="s2">"0x63eb89da4ed0000"</span><span class="p">;</span> <span class="c1">// 0.45</span>
-
-<span class="nx">augur</span><span class="p">.</span><span class="nx">api</span><span class="p">.</span><span class="nx">OrdersFetcher</span><span class="p">.</span><span class="nx">ascendOrderList</span><span class="p">({</span>
-  <span class="na">_type</span><span class="p">:</span> <span class="nx">_type</span><span class="p">,</span>
-  <span class="na">_price</span><span class="p">:</span> <span class="nx">_price</span><span class="p">,</span>
-  <span class="na">_lowestOrderId</span><span class="p">:</span> <span class="nx">_orderId</span>
-<span class="p">},</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">error</span><span class="p">,</span> <span class="nx">ascendingOrderList</span><span class="p">)</span> <span class="p">{</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">ascendingOrderList</span><span class="p">);</span> <span class="p">});</span>
-<span class="c1">// example output:</span>
-<span class="p">[</span> <span class="s2">"0x7ca90ca9118db456d87e3d743b97782a857200b55039f7ffe8de94e5d920f870"</span><span class="p">,</span>
-  <span class="s2">"0x4a8d07c2c9cd996484c04b7077d1fc4aeaeb8aa4750d7f26f2a896c4393fb6b0"</span> <span class="p">]</span>
-
-<span class="nx">augur</span><span class="p">.</span><span class="nx">api</span><span class="p">.</span><span class="nx">OrdersFetcher</span><span class="p">.</span><span class="nx">descendOrderList</span><span class="p">({</span>
-  <span class="na">_type</span><span class="p">:</span> <span class="nx">_type</span><span class="p">,</span>
-  <span class="na">_price</span><span class="p">:</span> <span class="nx">_price</span><span class="p">,</span>
-  <span class="na">_highestOrderId</span><span class="p">:</span> <span class="nx">_orderId</span>
-<span class="p">},</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">error</span><span class="p">,</span> <span class="nx">decendingOrderList</span><span class="p">)</span> <span class="p">{</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">decendingOrderList</span><span class="p">);</span> <span class="p">});</span>
-<span class="c1">// example output:</span>
-<span class="p">[</span> <span class="s2">"0x09502d4c2765d61a8e47fd4ada696966f3bc3bce6b780ecedded035e616c272e"</span><span class="p">,</span>
-  <span class="s2">"0x7ca90ca9118db456d87e3d743b97782a857200b55039f7ffe8de94e5d920f870"</span><span class="p">]</span>
-
-<span class="nx">augur</span><span class="p">.</span><span class="nx">api</span><span class="p">.</span><span class="nx">OrdersFetcher</span><span class="p">.</span><span class="nx">findBoundingOrders</span><span class="p">({</span>
-  <span class="na">_type</span><span class="p">:</span> <span class="nx">_type</span><span class="p">,</span>
-  <span class="na">_price</span><span class="p">:</span> <span class="nx">_price</span><span class="p">,</span>
-  <span class="na">_bestOrderId</span><span class="p">:</span> <span class="nx">_orderId</span><span class="p">,</span>
-  <span class="na">_worstOrderId</span><span class="p">:</span> <span class="s2">"0x0"</span><span class="p">,</span>
-  <span class="na">_betterOrderId</span><span class="p">:</span> <span class="s2">"0x0"</span><span class="p">,</span>
-  <span class="na">_worseOrderId</span><span class="p">:</span> <span class="s2">"0x0"</span>
-<span class="p">},</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">error</span><span class="p">,</span> <span class="nx">boundingOrders</span><span class="p">)</span> <span class="p">{</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">boundingOrders</span><span class="p">);</span> <span class="p">});</span>
-<span class="c1">// example output:</span>
-<span class="p">[</span> <span class="s2">"0x4a8d07c2c9cd996484c04b7077d1fc4aeaeb8aa4750d7f26f2a896c4393fb6b0"</span><span class="p">,</span>
-  <span class="s2">"0x09502d4c2765d61a8e47fd4ada696966f3bc3bce6b780ecedded035e616c272e"</span> <span class="p">]</span>
-</code></pre></div>
-<p>Provides JavaScript bindings for the <a href="https://github.com/AugurProject/augur-core/blob/master/source/contracts/trading/OrdersFetcher.sol">OrdersFetcher Solidity Contract</a>, which handles functionality related retrieving <a href="#order">Orders</a> from the <a href="#order-book">Order Book</a>.</p>
-
-<h3 id="augur-api-ordersfetcher-ascendorderlist-p-callback">augur.api.OrdersFetcher.ascendOrderList(p, callback)</h3>
-
-<p>Traverses the <a href="#order-book">Order Book</a> in ascending order and returns an array containing the better <a href="#order">Order</a> ID and worse Order ID, respectively, for a specified price and Order type.</p>
-
-<h4 id="strong-strong"><strong>Parameters:</strong></h4>
-
-<ul>
-<li><strong><code class="prettyprint">p</code></strong> (Object) Parameters object.<br>
-
-<ul>
-<li><strong><code class="prettyprint">p._type</code></strong> (string) Type of Order, as a hexadecimal string (&ldquo;0x0&rdquo; for a <a href="#bid-order">Bid Order</a>, &ldquo;0x1&rdquo; for an <a href="#ask-order">Ask Order</a>). </li>
-<li><strong><code class="prettyprint">p._price</code></strong> (string) Price (in <a href="#atto-prefix">attoETH</a>) in the Order Book for which to find a better Order ID and worse Order ID, as a hexadecimal string.</li>
-<li><strong><code class="prettyprint">p._lowestOrderId</code></strong> (string) Order ID expected to be a worse price than <code class="prettyprint">p._price</code>, as a 32-byte hexadecimal string.</li>
-</ul></li>
-<li><strong><code class="prettyprint">callback</code></strong> (function) &lt;optional&gt; Called after the function&rsquo;s result has been retrieved.</li>
-</ul>
-
-<h4 id="strong-strong"><strong>Returns:</strong></h4>
-
-<ul>
-<li>(Array.&lt;string&gt;) Array containing the better Order ID and worse Order ID, respectively, for the specified price and Order type.</li>
-</ul>
-
-<h3 id="augur-api-ordersfetcher-descendorderlist-p-callback">augur.api.OrdersFetcher.descendOrderList(p, callback)</h3>
-
-<p>Traverses the <a href="#order-book">Order Book</a> in descending order and returns an array containing the better <a href="#order">Order</a> ID and worse Order ID, respectively, for a specified price and Order type.</p>
-
-<h4 id="strong-strong"><strong>Parameters:</strong></h4>
-
-<ul>
-<li><strong><code class="prettyprint">p</code></strong> (Object) Parameters object.<br>
-
-<ul>
-<li><strong><code class="prettyprint">p._type</code></strong> (string) Type of Order, as a hexadecimal string (&ldquo;0x0&rdquo; for a <a href="#bid-order">Bid Order</a>, &ldquo;0x1&rdquo; for an <a href="#ask-order">Ask Order</a>). </li>
-<li><strong><code class="prettyprint">p._price</code></strong> (string) Price (in <a href="#atto-prefix">attoETH</a>) in the Order Book for which to find a better Order ID and worse Order ID, as a hexadecimal string.</li>
-<li><strong><code class="prettyprint">p._highestOrderId</code></strong> (string) Order ID expected to be a better price than <code class="prettyprint">p._price</code>, as a 32-byte hexadecimal string.</li>
-</ul></li>
-<li><strong><code class="prettyprint">callback</code></strong> (function) &lt;optional&gt; Called after the function&rsquo;s result has been retrieved.</li>
-</ul>
-
-<h4 id="strong-strong"><strong>Returns:</strong></h4>
-
-<ul>
-<li>(Array.&lt;string&gt;) Array containing the better Order ID and worse Order ID, respectively, for the specified price and Order type.</li>
-</ul>
-
-<h3 id="augur-api-ordersfetcher-findboundingorders-p-callback">augur.api.OrdersFetcher.findBoundingOrders(p, callback)</h3>
-
-<p>Returns an array containing the <a href="#order">Order</a> IDs from the <a href="#order-book">Order Book</a> that should be set to better Order ID and worse Order ID, respectively, for an Order placed with price <code class="prettyprint">p._price</code>.</p>
-
-<h4 id="strong-strong"><strong>Parameters:</strong></h4>
-
-<ul>
-<li><strong><code class="prettyprint">p</code></strong> (Object) Parameters object.<br>
-
-<ul>
-<li><strong><code class="prettyprint">p._type</code></strong> (string) Type of Order, as a hexadecimal string (&ldquo;0x0&rdquo; for a <a href="#bid-order">Bid Order</a>, &ldquo;0x1&rdquo; for an <a href="#ask-order">Ask Order</a>). </li>
-<li><strong><code class="prettyprint">p._price</code></strong> (string) Price (in <a href="#atto-prefix">attoETH</a>) to compare <code class="prettyprint">p._orderId</code> to, as a hexadecimal string.</li>
-<li><strong><code class="prettyprint">p._bestOrderId</code></strong> (string) Best Order ID on the Order Book for <code class="prettyprint">p._type</code>, as a 32-byte hexadecimal string.</li>
-<li><strong><code class="prettyprint">p._worstOrderId</code></strong> (string) Worst Order ID on the Order Book for <code class="prettyprint">p._type</code>, as a 32-byte hexadecimal string.</li>
-<li><strong><code class="prettyprint">p._betterOrderId</code></strong> (string) Order ID with a better price than <code class="prettyprint">p._price</code>, as a 32-byte-hexadecimal string.</li>
-<li><strong><code class="prettyprint">p._worseOrderId</code></strong> (string) Order ID with a worse price than <code class="prettyprint">p._price</code>, as a 32-byte-hexadecimal string.</li>
-</ul></li>
-<li><strong><code class="prettyprint">callback</code></strong> (function) &lt;optional&gt; Called after the function&rsquo;s result has been retrieved.</li>
-</ul>
-
-<h4 id="strong-strong"><strong>Returns:</strong></h4>
-
-<ul>
-<li>(Array.&lt;string&gt;) Array containing the better Order ID and worse Order ID, respectively, for the specified price and Order type.</li>
-</ul>
-
 <h2 id="reputation-token-call-api">Reputation Token Call API</h2>
 <div class="highlight"><pre class="highlight javascript"><code><span class="c1">// Reputation Token Contract Call API Examples:</span>
 
@@ -7625,6 +7614,19 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
 <span class="c1">// can be obtained by calling `augur.augurNode.getSyncData`.</span>
 <span class="kd">var</span> <span class="nx">universe</span> <span class="o">=</span> <span class="s2">"0x0920d1513057572be46580b7ef75d1d01a99a3e5"</span><span class="p">;</span>
 
+<span class="nx">augur</span><span class="p">.</span><span class="nx">api</span><span class="p">.</span><span class="nx">Universe</span><span class="p">.</span><span class="nx">calculateFloatingValue</span><span class="p">({</span>
+  <span class="na">_badMarkets</span><span class="p">:</span> <span class="s2">""</span><span class="p">,</span>
+  <span class="na">_totalMarkets</span><span class="p">:</span> <span class="s2">""</span><span class="p">,</span>
+  <span class="na">_targetDivisor</span><span class="p">:</span> <span class="s2">""</span><span class="p">,</span>
+  <span class="na">_previousValue</span><span class="p">:</span> <span class="s2">""</span><span class="p">,</span>
+  <span class="na">_floor</span><span class="p">:</span> <span class="s2">""</span><span class="p">,</span>
+  <span class="na">tx</span><span class="p">:</span> <span class="p">{</span> <span class="na">to</span><span class="p">:</span> <span class="nx">universe</span> <span class="p">},</span>
+<span class="p">},</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">error</span><span class="p">,</span> <span class="nx">floatingValue</span><span class="p">)</span> <span class="p">{</span> 
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">floatingValue</span><span class="p">);</span> 
+<span class="p">});</span>
+<span class="c1">// example output:</span>
+<span class="s2">""</span>
+
 <span class="nx">augur</span><span class="p">.</span><span class="nx">api</span><span class="p">.</span><span class="nx">Universe</span><span class="p">.</span><span class="nx">getChildUniverse</span><span class="p">({</span>
   <span class="na">_parentPayoutDistributionHash</span><span class="p">:</span> <span class="s2">"0x4480ed40f94e2cb2ca244eb862df2d350300904a96039eb53cba0e34b8ace90a"</span><span class="p">,</span>
   <span class="na">tx</span><span class="p">:</span> <span class="p">{</span> <span class="na">to</span><span class="p">:</span> <span class="nx">universe</span> <span class="p">},</span>
@@ -7844,6 +7846,36 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
 <span class="kc">true</span>
 </code></pre></div>
 <p>Provides JavaScript bindings for the <a href="https://github.com/AugurProject/augur/blob/master/packages/augur-core/source/contracts/reporting/Universe.sol">Universe Solidity Contract</a>, which allows for the creation of <a href="#market">Markets</a> and provides functions for obtaining information about a given <a href="#universe">Universe</a>.</p>
+
+<h3 id="augur-api-universe-calculatefloatingvalue-p-callback">augur.api.Universe.calculateFloatingValue(p, callback)</h3>
+
+<p>!!!TBD!!! Add description &amp; sample code</p>
+
+<h4 id="strong-strong"><strong>Parameters:</strong></h4>
+
+<ul>
+<li><strong><code class="prettyprint">p</code></strong> (Object) Parameters object.<br>
+
+<ul>
+<li><strong><code class="prettyprint">p._badMarkets</code></strong> (string) </li>
+<li><strong><code class="prettyprint">p._totalMarkets</code></strong> (string) </li>
+<li><strong><code class="prettyprint">p._targetDivisor</code></strong> (string) </li>
+<li><strong><code class="prettyprint">p._previousValue</code></strong> (string) </li>
+<li><strong><code class="prettyprint">p._floor</code></strong> (string) </li>
+<li><strong><code class="prettyprint">p.tx</code></strong> (Object) Object containing details about how this function call should be made.
+
+<ul>
+<li><strong><code class="prettyprint">p.tx.to</code></strong> (string) Ethereum contract address of the Universe contract on which to call this function, as a 20-byte hexadecimal string.</li>
+</ul></li>
+</ul></li>
+<li><strong><code class="prettyprint">callback</code></strong> (function) &lt;optional&gt; Called after the function&rsquo;s result has been retrieved.</li>
+</ul>
+
+<h4 id="strong-strong"><strong>Returns:</strong></h4>
+
+<ul>
+<li>(string) </li>
+</ul>
 
 <h3 id="augur-api-universe-getchilduniverse-p-callback">augur.api.Universe.getChildUniverse(p, callback)</h3>
 
@@ -9515,11 +9547,11 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
 <p>This transaction will fail if:</p>
 
 <ul>
+<li><code class="prettyprint">p._market</code> is not a Market known to Augur.</li>
 <li><code class="prettyprint">p._type</code> is not a valid value of 0 or 1.</li>
-<li><code class="prettyprint">p._attoshares</code> is less than 0.</li>
-<li><code class="prettyprint">p._market</code> is undefined.</li>
-<li><code class="prettyprint">p._outcome</code> is less than 0 or greater than the total number of <a href="#outcome">Outcomes</a> for <code class="prettyprint">p._market</code>.</li>
-<li><code class="prettyprint">p._price</code> is below <code class="prettyprint">p._market</code>&rsquo;s <a href="#minimum-display-price">Minimum Display Price</a> or above <code class="prettyprint">p.market</code>&rsquo;s <a href="#maximum-display-price">Maximum Display Price</a>.</li>
+<li><code class="prettyprint">p._attoshares</code> is less than or equal to 0.</li>
+<li><code class="prettyprint">p._outcome</code> is less than 0 or greater than or equal to the total number of <a href="#outcome">Outcomes</a> for <code class="prettyprint">p._market</code> (including <a href="#invalid-outcome">Invalid</a>).</li>
+<li><code class="prettyprint">p._price</code> is equal to 0 or is below <code class="prettyprint">p._market</code>&rsquo;s <a href="#minimum-display-price">Minimum Display Price</a> or above <code class="prettyprint">p.market</code>&rsquo;s <a href="#maximum-display-price">Maximum Display Price</a>.</li>
 </ul>
 
 <h4 id="strong-strong"><strong>Parameters:</strong></h4>
@@ -9565,7 +9597,7 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
 <p>uint256[] _outcomes, Order.Types[] _types, uint256[] _attoshareAmounts, uint256[] _prices, IMarket _market, bool _ignoreShares, bytes32 _tradeGroupId</p>
 
 <ul>
-<li>A value in <code class="prettyprint">p._outcomes</code> is less than 0 or greater than the total number of Outcomes for <code class="prettyprint">p._market</code>.</li>
+<li>A value in <code class="prettyprint">p._outcomes</code> is less than 0 or greater than the total number of Outcomes for <code class="prettyprint">p._market</code> (including <a href="#invalid-outcome">Invalid</a>).</li>
 <li>A value in <code class="prettyprint">p._types</code> is not a valid value of 0 or 1.</li>
 <li>A value in <code class="prettyprint">p._attoshareAmounts</code> is less than 0.</li>
 <li>A value in <code class="prettyprint">p._prices</code> is below <code class="prettyprint">p._market</code>&rsquo;s <a href="#minimum-display-price">Minimum Display Price</a> or above <code class="prettyprint">p.market</code>&rsquo;s <a href="#maximum-display-price">Maximum Display Price</a>.</li>
@@ -9822,7 +9854,7 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
 
 <p>Converts any <a href="#participation-token">Participation Tokens</a> <code class="prettyprint">p._sender</code> has in the specified <a href="#dispute-window">Dispute Window</a> to <a href="#rep">Reputation Tokens</a>, and gives the user any <a href="#reporting-fee">Reporting Fees</a> he or she is owed in Ether. The parameter <code class="prettyprint">p._sender</code> is the Ethereum address of the user redeeming the Participation Tokens, as a 20-byte hexadecimal string.</p>
 
-<p>This transaction will trigger a <a href="#DisputeWindowRedeemed"><code class="prettyprint">DisputeWindowRedeemed</code></a> event if the REP/Ether was redeemed without any errors.</p>
+<p>This transaction will trigger a <a href="#ParticipationTokensRedeemed"><code class="prettyprint">ParticipationTokensRedeemed</code></a> event if the REP/Ether was redeemed without any errors.</p>
 
 <h4 id="strong-strong"><strong>Parameters:</strong></h4>
 
@@ -10555,10 +10587,14 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
 </code></pre></div>
 <h3 id="augur-api-orders-setorderprice-p">augur.api.Orders.setOrderPrice(p)</h3>
 
+<p>Updates the price of an existing <a href="#order">Order</a>. If the <a href="#order-creator">Order Creator</a> is owed a refund from the amount they originally escrowed, this amount will be transferred back to the Order Creator from the Market. If the Order Creator must escrow a larger amount to update the Order price, this additional amount will be transferred from their account to the Market.  This transaction will trigger an <a href="#OrderPriceChanged"><code class="prettyprint">OrderPriceChanged</code></a> event if the Order&rsquo;s price is updated without any errors.</p>
+
 <p>This transaction will fail if:</p>
 
 <ul>
-<li><code class="prettyprint">msg.sender</code> isn&rsquo;t the owner of the Market.</li>
+<li><code class="prettyprint">msg.sender</code> isn&rsquo;t the Order Creator.</li>
+<li><code class="prettyprint">p._price</code> is greater than or equal to the Market&rsquo;s <a href="#number-of-ticks">Number of Ticks</a>.</li>
+<li><code class="prettyprint">p._price</code> is equal to the Order&rsquo;s current price.</li>
 </ul>
 
 <h4 id="strong-strong"><strong>Parameters:</strong></h4>
@@ -10567,10 +10603,10 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
 <li><strong><code class="prettyprint">p</code></strong> (Object) Parameters object.
 
 <ul>
-<li><strong><code class="prettyprint">p._orderId</code></strong>  (string) Ethereum address of the desired new owner of the Market, as a 20-byte hexadecimal value.</li>
-<li><strong><code class="prettyprint">p._price</code></strong>  (string) </li>
-<li><strong><code class="prettyprint">p._betterOrderId</code></strong>  (string) </li>
-<li><strong><code class="prettyprint">p._worseOrderId</code></strong>  (string) </li>
+<li><strong><code class="prettyprint">p._orderId</code></strong> (string) ID of the Order for which to set the price, as a 32-byte hexadecimal value. (To get the order ID for a specific Order, call the function <code class="prettyprint">augur.api.Order.getOrderId</code>.)</li>
+<li><strong><code class="prettyprint">p._price</code></strong>  (string) New price with which to update the Order.</li>
+<li><strong><code class="prettyprint">p._betterOrderId</code></strong> (string) Order ID of an existing Order on the Order Book with the next-best price with respect to the Order this transaction is intending to create, as a 32-byte hexadecimal value. Can be obtained by calling <code class="prettyprint">augur.trading.getBetterWorseOrders</code>.</li>
+<li><strong><code class="prettyprint">p._worseOrderId</code></strong> (string) Order ID of an existing Order on the Order Book with the next-worse price with respect to the Order this transaction is intending to create, as a 32-byte hexadecimal value. Can be obtained by calling <code class="prettyprint">augur.trading.getBetterWorseOrders</code>.</li>
 <li><strong><code class="prettyprint">p.tx</code></strong> (Object) Object containing details about how this transaction should be made.
 
 <ul>
@@ -12741,9 +12777,9 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
 <tr>
 <td><a name="CompleteSetsSold"></a>CompleteSetsSold</td>
 <td><a href="https://github.com/AugurProject/augur/blob/master/packages/augur-core/source/contracts/Augur.sol">Augur</a></td>
-<td>The Ethereum address <code class="prettyprint">account</code> sold <code class="prettyprint">numCompleteSets</code> in <code class="prettyprint">market</code> of <code class="prettyprint">universe</code>.</td>
+<td>The Ethereum address <code class="prettyprint">account</code> has sold <code class="prettyprint">numCompleteSets</code> in <code class="prettyprint">market</code> of <code class="prettyprint">universe</code> at <code class="prettyprint">timestamp</code>. The amount of <a href="#settlement-fees">Settlement Fees</a> paid was <code class="prettyprint">fees</code>, and the <a href="#market">Market&rsquo;s</a> <a href="#open-interest">Open Interest</a> after selling the <a href="#complete-set">Complete Sets</a> was <code class="prettyprint">marketOI</code> .</td>
 <td>universe, market, account</td>
-<td>numCompleteSets</td>
+<td>numCompleteSets, marketOI, fees, timestamp</td>
 </tr>
 <tr>
 <td><a name="DisputeCrowdsourcerCompleted"></a>DisputeCrowdsourcerCompleted</td>
@@ -12781,13 +12817,6 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
 <td>disputeWindow, startTime, endTime, id</td>
 </tr>
 <tr>
-<td><a name="DisputeWindowRedeemed"></a>DisputeWindowRedeemed</td>
-<td><a href="https://github.com/AugurProject/augur/blob/master/packages/augur-core/source/contracts/Augur.sol">Augur</a></td>
-<td><code class="prettyprint">reporter</code> redeemed <code class="prettyprint">amountRedeemed</code> <a href="#rep">REP</a> and received <code class="prettyprint">reportingFeesReceived</code> <a href="#atto-prefix">attoETH</a> from <code class="prettyprint">disputeWindow</code> in <code class="prettyprint">market</code> of <code class="prettyprint">universe</code>.</td>
-<td>universe, reporter, disputeWindow</td>
-<td>amountRedeemed, reportingFeesReceived</td>
-</tr>
-<tr>
 <td><a name="InitialReporterRedeemed"></a>InitialReporterRedeemed</td>
 <td><a href="https://github.com/AugurProject/augur/blob/master/packages/augur-core/source/contracts/Augur.sol">Augur</a></td>
 <td><code class="prettyprint">reporter</code> redeemed <code class="prettyprint">amountRedeemed</code> <a href="#rep">REP</a> and received <code class="prettyprint">repReceived</code> additional REP, plus <code class="prettyprint">reportingFeesReceived</code> <a href="#atto-prefix">attoETH</a>, from <code class="prettyprint">market</code> of <code class="prettyprint">universe</code>.</td>
@@ -12811,9 +12840,9 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
 <tr>
 <td><a name="MarketCreated"></a>MarketCreated</td>
 <td><a href="https://github.com/AugurProject/augur/blob/master/packages/augur-core/source/contracts/Augur.sol">Augur</a></td>
-<td><code class="prettyprint">marketCreator</code> has created a <code class="prettyprint">marketType</code> <code class="prettyprint">market</code> with <code class="prettyprint">outcomes</code> and <code class="prettyprint">topic</code> in <code class="prettyprint">universe</code> for a price of <code class="prettyprint">marketCreationFee</code> and a price range of <code class="prettyprint">minPrice</code> to <code class="prettyprint">maxPrice</code>. Additional information about <code class="prettyprint">market</code> can be found in <code class="prettyprint">description</code> and <code class="prettyprint">extraInfo</code>.</td>
-<td>topic, universe, marketCreator</td>
-<td>description, extraInfo, market, outcomes, marketCreationFee, minPrice, maxPrice, marketType</td>
+<td><code class="prettyprint">marketCreator</code> has created a <code class="prettyprint">marketType</code> <code class="prettyprint">market</code> at <code class="prettyprint">timestamp</code> with  <code class="prettyprint">outcomes</code>, <code class="prettyprint">numTicks</code>, <code class="prettyprint">feeDivisor</code>, <code class="prettyprint">prices</code> (<a href="#minimum-display-price">Minimum Display Price</a>/<a href="#maximum-display-price">Maximum Display Price</a>), <code class="prettyprint">topic</code>, <code class="prettyprint">designatedReporter</code>, &amp; <code class="prettyprint">endTime</code> in <code class="prettyprint">universe</code>. Additional information about <code class="prettyprint">market</code>, can be found in <code class="prettyprint">extraInfo</code>. (Refer to the <a href="https://docs.augur.net/#ExtraInfo">ExtraInfo type definition</a> for more information.)</td>
+<td>universe, topic, marketCreator</td>
+<td>endTime extraInfo, market, designatedReporter, feeDivisor, prices, marketType, numTicks, outcomes, timestamp</td>
 </tr>
 <tr>
 <td><a name="MarketFinalized"></a>MarketFinalized</td>
@@ -12851,97 +12880,44 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
 <td>value</td>
 </tr>
 <tr>
-<td><a name="OrderPriceChanged"></a>OrderPriceChanged</td>
+<td><a name="OrderEvent"></a>OrderEvent</td>
 <td><a href="https://github.com/AugurProject/augur/blob/master/packages/augur-core/source/contracts/Augur.sol">Augur</a></td>
-<td>The price for <code class="prettyprint">orderId</code> in <code class="prettyprint">universe</code> has been updated to <code class="prettyprint">price</code>.</td>
-<td>universe</td>
-<td>orderId, price</td>
-</tr>
-<tr>
-<td><a name="OrderCanceled"></a>OrderCanceled</td>
-<td><a href="https://github.com/AugurProject/augur/blob/master/packages/augur-core/source/contracts/Augur.sol">Augur</a></td>
-<td><code class="prettyprint">sender</code>&rsquo;s <a href="#order">Order</a> (with ID <code class="prettyprint">orderId</code> and type <code class="prettyprint">orderType</code>) for the Share Token at address <code class="prettyprint">shareToken</code> was canceled in <code class="prettyprint">universe</code>, and <code class="prettyprint">sender</code> was refunded either <code class="prettyprint">tokenRefund</code> in <a href="#atto-prefix">attoETH</a> or <code class="prettyprint">sharesRefund</code> Share Tokens.</td>
-<td>universe, shareToken, sender</td>
-<td>orderId, orderType, tokenRefund, sharesRefund</td>
-</tr>
-<tr>
-<td><a name="OrderCreated"></a>OrderCreated</td>
-<td><a href="https://github.com/AugurProject/augur/blob/master/packages/augur-core/source/contracts/Augur.sol">Augur</a></td>
-<td><code class="prettyprint">creator</code> placed an <code class="prettyprint">orderType</code> <a href="#order">Order</a> with <code class="prettyprint">orderId</code> in <code class="prettyprint">universe</code> for <code class="prettyprint">amount</code> of <code class="prettyprint">shareToken</code> at <code class="prettyprint">price</code> in the Trade Group <code class="prettyprint">tradeGroupId</code>. <code class="prettyprint">creator</code> put up either <code class="prettyprint">moneyEscrowed</code> or <code class="prettyprint">sharesEscrowed</code>.</td>
-<td>creator, universe, shareToken</td>
-<td>orderType, amount, price, moneyEscrowed, sharesEscrowed, tradeGroupId, orderId</td>
-</tr>
-<tr>
-<td><a name="OrderFilled"></a>OrderFilled</td>
-<td><a href="https://github.com/AugurProject/augur/blob/master/packages/augur-core/source/contracts/Augur.sol">Augur</a></td>
-<td><a href="#order">Order</a> <code class="prettyprint">orderId</code> in <code class="prettyprint">universe</code> for Share Token at address <code class="prettyprint">shareToken</code> was filled by <code class="prettyprint">filler</code> in Trade Group <code class="prettyprint">tradeGroupId</code>. The <a href="#order-creator">Order Creator</a> escrowed <code class="prettyprint">numCreatorShares</code> or <code class="prettyprint">numCreatorTokens</code> in <a href="#atto-prefix">attoETH</a>, and <code class="prettyprint">filler</code> put up <code class="prettyprint">numFillerShares</code> or <code class="prettyprint">numFillerTokens</code> in attoETH. <code class="prettyprint">amountFilled</code> Share Units were filled, and <code class="prettyprint">marketCreatorFees</code> and <code class="prettyprint">reporterFees</code> (denominated in attoETH) were spent to pay the <a href="#market-creator">Market Creator</a> and <a href="#reporter">Reporters</a>.</td>
-<td>universe, shareToken</td>
-<td>filler, orderId, numCreatorShares, numCreatorTokens, numFillerShares, numFillerTokens, marketCreatorFees, reporterFees, amountFilled, tradeGroupId</td>
-</tr>
-<tr>
-<td><a name="ReportingParticipantDisavowed"></a>ReportingParticipantDisavowed</td>
-<td><a href="https://github.com/AugurProject/augur/blob/master/packages/augur-core/source/contracts/Augur.sol">Augur</a></td>
-<td>The <code class="prettyprint">reportingParticipant</code> (can be either a DisputeCrowdsourcer or an InitialReporter) belonging to <code class="prettyprint">market</code> in <code class="prettyprint">universe</code> has had its <code class="prettyprint">fork</code> (or <code class="prettyprint">forkAndRedeem</code>) function called on it.</td>
-<td>universe, market</td>
-<td>reportingParticipant</td>
-</tr>
-<tr>
-<td><a name="TimestampSet"></a>TimestampSet</td>
-<td><a href="https://github.com/AugurProject/augur/blob/master/packages/augur-core/source/contracts/Augur.sol">Augur</a></td>
-<td>The timestamp used by Augur was set/updated to <code class="prettyprint">newTimestamp</code>. This event will be logged whenever <code class="prettyprint">TimeControlled.setTimestamp</code> or <code class="prettyprint">TimeControlled.incrementTimestamp</code> is called by the owner of the <a href="#time-controlled-tx-api">TimeControlled</a> contract.</td>
+<td>An <a href="#order">Order</a> event of type <code class="prettyprint">eventType</code> has occurred on <code class="prettyprint">orderId</code> in <code class="prettyprint">market</code> of <code class="prettyprint">universe</code>. <code class="prettyprint">eventType</code> can be 0 (OrderCreated), 1 (OrderCanceled), 2 (OrderPriceChanged), or 3 (OrderFilled). The Order has an <code class="prettyprint">orderType</code> (either 0 (<a href="#bid-order">Bid</a>) or 1 (<a href="#ask-order">Ask</a>)) and belongs to <a href="#trade-group">Trade Group</a>. It also has an <code class="prettyprint">addressData</code> array and <code class="prettyprint">uint256Data</code> array. The indexes of <code class="prettyprint">addressData</code> represent the following values:</td>
 <td></td>
-<td>newTimestamp</td>
-</tr>
-<tr>
-<td><a name="TokensBurned"></a>TokensBurned</td>
-<td><a href="https://github.com/AugurProject/augur/blob/master/packages/augur-core/source/contracts/Augur.sol">Augur</a></td>
-<td>Burned (i.e., completely destroyed) <code class="prettyprint">amount</code> of <code class="prettyprint">target</code>&rsquo;s <a href="#atto-prefix">attotokens</a> in <code class="prettyprint">market</code> (if applicable) of <code class="prettyprint">universe</code>. The destroyed tokens were of type <code class="prettyprint">tokenType</code>, whose contract address is <code class="prettyprint">token</code>. (Token types are as follows: ReputationToken = 0, ShareToken = 1, DisputeCrowdsourcer = 2, DisputeWindow = 3, FeeToken = 4. DisputeWindow tokens are <a href="#participation-token">Participation Tokens</a>. FeeTokens are only used internally for accounting purposes so that Stake holders can get Fees for every <a href="#dispute-window">Dispute Window</a> in which they have Stake.)</td>
-<td>universe, token, target</td>
-<td>amount, tokenType, market</td>
-</tr>
-<tr>
-<td><a name="TokensMinted"></a>TokensMinted</td>
-<td><a href="https://github.com/AugurProject/augur/blob/master/packages/augur-core/source/contracts/Augur.sol">Augur</a></td>
-<td>Created <code class="prettyprint">amount</code> brand new <a href="#atto-prefix">attotokens</a> for <code class="prettyprint">target</code> in <code class="prettyprint">market</code> (if applicable) of <code class="prettyprint">universe</code> . The minted tokens are of type <code class="prettyprint">tokenType</code>, whose contract address is <code class="prettyprint">token</code>. (Token types are as follows: ReputationToken = 0, ShareToken = 1, DisputeCrowdsourcer = 2, DisputeWindow = 3, FeeToken = 4. DisputeWindow tokens are <a href="#participation-token">Participation Tokens</a>. FeeTokens are only used internally for accounting purposes so that Stake holders can get Fees for every <a href="#dispute-window">Dispute Window</a> in which they have Stake.)</td>
-<td>universe, token, target</td>
-<td>amount, tokenType, market</td>
-</tr>
-<tr>
-<td><a name="TokensTransferred"></a>TokensTransferred</td>
-<td><a href="https://github.com/AugurProject/augur/blob/master/packages/augur-core/source/contracts/Augur.sol">Augur</a></td>
-<td><code class="prettyprint">value</code> amount of the tokens in <code class="prettyprint">market</code> (if applicable) of <code class="prettyprint">universe</code> have been transferred between account <code class="prettyprint">from</code> and <code class="prettyprint">to</code>. The transferred tokens are of type <code class="prettyprint">tokenType</code>, whose contract address is <code class="prettyprint">token</code>. (Token types are as follows: ReputationToken = 0, ShareToken = 1, DisputeCrowdsourcer = 2, DisputeWindow = 3, FeeToken = 4. DisputeWindow tokens are <a href="#participation-token">Participation Tokens</a>. FeeTokens are only used internally for accounting purposes so that Stake holders can get Fees for every <a href="#dispute-window">Dispute Window</a> in which they have Stake.)</td>
-<td>universe, token, from</td>
-<td>to, value, tokenType, market</td>
-</tr>
-<tr>
-<td><a name="TradingProceedsClaimed"></a>TradingProceedsClaimed</td>
-<td><a href="https://github.com/AugurProject/augur/blob/master/packages/augur-core/source/contracts/Augur.sol">Augur</a></td>
-<td><code class="prettyprint">sender</code> has collected trading profits from the Share Token at address <code class="prettyprint">shareToken</code> in <a href="#finalized-market">Finalized Market</a> <code class="prettyprint">market</code> in <code class="prettyprint">universe</code>. <code class="prettyprint">sender</code> had <code class="prettyprint">numShares</code> Share Tokens, <code class="prettyprint">numPayoutTokens</code> paid out, and a balance of <code class="prettyprint">finalTokenBalance</code>.</td>
-<td>universe, shareToken, sender</td>
-<td>market, numShares, numPayoutTokens, finalTokenBalance</td>
-</tr>
-<tr>
-<td><a name="Transfer"></a>Transfer</td>
-<td><a href="https://github.com/AugurProject/augur/blob/master/packages/augur-core/source/contracts/libraries/token/ERC20Token.sol">ERC20Token</a></td>
-<td>Transferred <code class="prettyprint">value</code> <a href="#atto-prefix">attotokens</a> between accounts <code class="prettyprint">from</code> and <code class="prettyprint">to</code>.</td>
-<td>from, to</td>
-<td>value</td>
-</tr>
-<tr>
-<td><a name="UniverseCreated"></a>UniverseCreated</td>
-<td><a href="https://github.com/AugurProject/augur/blob/master/packages/augur-core/source/contracts/Augur.sol">Augur</a></td>
-<td><code class="prettyprint">childUniverse</code> has been created from <code class="prettyprint">parentUniverse</code> where <code class="prettyprint">payoutNumerators</code> represents the Payout Set of the Forking Market in <code class="prettyprint">parentUniverse</code> and whether it was determined to be an Invalid Market.</td>
-<td>parentUniverse, childUniverse</td>
-<td>payoutNumerators</td>
-</tr>
-<tr>
-<td><a name="UniverseForked"></a>UniverseForked</td>
-<td><a href="https://github.com/AugurProject/augur/blob/master/packages/augur-core/source/contracts/Augur.sol">Augur</a></td>
-<td>A <a href="#market">Market</a> in <code class="prettyprint">universe</code> has had its <a href="#tentative-outcome">Tentative Outcome</a> <a href="#challenge">Challenged</a> with a <a href="#dispute-bond">Dispute Bond</a> greater than the <a href="#fork-threshold">Fork Threshold</a>, which has caused <code class="prettyprint">universe</code> to <a href="#fork">Fork</a>.</td>
-<td>universe</td>
 <td></td>
 </tr>
 </tbody></table>
+
+<ul>
+<li>0: kycToken - Ethereum address of the Order&rsquo;s <a href="#kyc-token">KYC Token</a> (if one exists)</li>
+<li>1: orderCreator - Ethereum address of the <a href="#order-creator">Order Creator</a></li>
+<li>2: orderFiller - Ethereum address of the <a href="#order-filler">Order Filler</a> (if one exists)</li>
+</ul>
+
+<p>The indexes of <code class="prettyprint">uint256Data</code> represent the following values:</p>
+
+<ul>
+<li>0: price - The Order price</li>
+<li>1: amount - The amount of <a href="#share">Shares</a> in the Order</li>
+<li>2: outcome - The <a href="#outcome">Outcome</a> the Order is for</li>
+<li>3: tokenRefund - The amount of escrowed Dai refunded to the Order Creator (OrderCanceled events only)</li>
+<li>4: sharesRefund - The amount of escrowed Shares refunded to the Order Creator (OrderCanceled events only)</li>
+<li>5: fees (OrderFilled events only)</li>
+<li>6: amountFilled (OrderFilled events only)</li>
+<li>7: timestamp - Unix timestamp when the Order event took place</li>
+<li>8: sharesEscrowed - The amount of <a href="#atto-prefix">attoShares</a> the Order Creator escrowed</li>
+<li>9: tokensEscrowed - The amount of <a href="#atto-prefix">attoDai</a> the Order Creator escrowed
+<a name="ParticipationTokensRedeemed"></a>ParticipationTokensRedeemed | <a href="https://github.com/AugurProject/augur/blob/master/packages/augur-core/source/contracts/Augur.sol">Augur</a> | <code class="prettyprint">attoParticipationTokens</code> were redeemed by <code class="prettyprint">account</code> in <code class="prettyprint">disputeWindow</code> of <code class="prettyprint">universe</code> for a profit of <code class="prettyprint">_feePayoutShare</code>. | universe, disputeWindow, account | attoParticipationTokens, feePayoutShare
+<a name="ReportingParticipantDisavowed"></a>ReportingParticipantDisavowed   | <a href="https://github.com/AugurProject/augur/blob/master/packages/augur-core/source/contracts/Augur.sol">Augur</a> | The <code class="prettyprint">reportingParticipant</code> (can be either a DisputeCrowdsourcer or an InitialReporter) belonging to <code class="prettyprint">market</code> in <code class="prettyprint">universe</code> has had its <code class="prettyprint">fork</code> (or <code class="prettyprint">forkAndRedeem</code>) function called on it.  | universe, market | reportingParticipant
+<a name="TimestampSet"></a>TimestampSet              | <a href="https://github.com/AugurProject/augur/blob/master/packages/augur-core/source/contracts/Augur.sol">Augur</a> | The timestamp used by Augur was set/updated to <code class="prettyprint">newTimestamp</code>. This event will be logged whenever <code class="prettyprint">TimeControlled.setTimestamp</code> or <code class="prettyprint">TimeControlled.incrementTimestamp</code> is called by the owner of the <a href="#time-controlled-tx-api">TimeControlled</a> contract. |  | newTimestamp
+<a name="TokensBurned"></a>TokensBurned              | <a href="https://github.com/AugurProject/augur/blob/master/packages/augur-core/source/contracts/Augur.sol">Augur</a> | Burned (i.e., completely destroyed) <code class="prettyprint">amount</code> of <code class="prettyprint">target</code>&rsquo;s <a href="#atto-prefix">attotokens</a> in <code class="prettyprint">market</code> (if applicable) of <code class="prettyprint">universe</code>. The destroyed tokens were of type <code class="prettyprint">tokenType</code>, whose contract address is <code class="prettyprint">token</code>. (Valid <code class="prettyprint">tokenType</code> values are as follows: ReputationToken = 0, ShareToken = 1, DisputeCrowdsourcer = 2, FeeWindow = 3, FeeToken = 4, ParticipationToken = 5. The FeeWindow <code class="prettyprint">tokenType</code> represents <a href="#participation-token">Participation Tokens</a> in version 1 of Augur; however, this <code class="prettyprint">tokenType</code> value is deprecated in version 2 in favor of the ParticipationToken value. The FeeToken <code class="prettyprint">tokenType</code> is only used internally for accounting purposes in version 1 of Augur so that Stake holders can get Fees for every <a href="#dispute-window">Dispute Window</a> in which they have Stake. It is deprecated in version 2.) | universe, token, target | amount, tokenType, market
+<a name="TokensMinted"></a>TokensMinted              | <a href="https://github.com/AugurProject/augur/blob/master/packages/augur-core/source/contracts/Augur.sol">Augur</a> | Created <code class="prettyprint">amount</code> brand new <a href="#atto-prefix">attotokens</a> for <code class="prettyprint">target</code> in <code class="prettyprint">market</code> (if applicable) of <code class="prettyprint">universe</code> . The minted tokens are of type <code class="prettyprint">tokenType</code>, whose contract address is <code class="prettyprint">token</code>. (Valid <code class="prettyprint">tokenType</code> values are as follows: ReputationToken = 0, ShareToken = 1, DisputeCrowdsourcer = 2, FeeWindow = 3, FeeToken = 4, ParticipationToken = 5. The FeeWindow <code class="prettyprint">tokenType</code> represents <a href="#participation-token">Participation Tokens</a> in version 1 of Augur; however, this <code class="prettyprint">tokenType</code> value is deprecated in version 2 in favor of the ParticipationToken value. The FeeToken <code class="prettyprint">tokenType</code> is only used internally for accounting purposes in version 1 of Augur so that Stake holders can get Fees for every <a href="#dispute-window">Dispute Window</a> in which they have Stake. It is deprecated in version 2.) | universe, token, target | amount, tokenType, market
+<a name="TokensTransferred"></a>TokensTransferred         | <a href="https://github.com/AugurProject/augur/blob/master/packages/augur-core/source/contracts/Augur.sol">Augur</a> | <code class="prettyprint">value</code> amount of the tokens in <code class="prettyprint">market</code> (if applicable) of <code class="prettyprint">universe</code> have been transferred between account <code class="prettyprint">from</code> and <code class="prettyprint">to</code>. The transferred tokens are of type <code class="prettyprint">tokenType</code>, whose contract address is <code class="prettyprint">token</code>. (Valid <code class="prettyprint">tokenType</code> values are as follows: ReputationToken = 0, ShareToken = 1, DisputeCrowdsourcer = 2, FeeWindow = 3, FeeToken = 4, ParticipationToken = 5. The FeeWindow <code class="prettyprint">tokenType</code> represents <a href="#participation-token">Participation Tokens</a> in version 1 of Augur; however, this <code class="prettyprint">tokenType</code> value is deprecated in version 2 in favor of the ParticipationToken value. The FeeToken <code class="prettyprint">tokenType</code> is only used internally for accounting purposes in version 1 of Augur so that Stake holders can get Fees for every <a href="#dispute-window">Dispute Window</a> in which they have Stake. It is deprecated in version 2.) | universe, token, from | to, value, tokenType, market
+<a name="TradingProceedsClaimed"></a>TradingProceedsClaimed    | <a href="https://github.com/AugurProject/augur/blob/master/packages/augur-core/source/contracts/Augur.sol">Augur</a> | <code class="prettyprint">sender</code> has collected trading profits from the <a href="#share">Share Token</a> at address <code class="prettyprint">shareToken</code> for <code class="prettyprint">outcome</code> in <a href="#finalized-market">Finalized Market</a> <code class="prettyprint">market</code> in <code class="prettyprint">universe</code> at <code class="prettyprint">timestamp</code>. <code class="prettyprint">sender</code> had <code class="prettyprint">numShares</code> Share Tokens, <code class="prettyprint">numPayoutTokens</code> paid out, and a balance of <code class="prettyprint">finalTokenBalance</code>, and the total <a href="#settlement-fees">Settlement Fees</a> were <code class="prettyprint">fees</code>. | universe, shareToken, sender | market, outcome, numShares, numPayoutTokens, finalTokenBalance, fees, timestamp
+<a name="Transfer"></a>Transfer | <a href="https://github.com/AugurProject/augur/blob/master/packages/augur-core/source/contracts/libraries/token/ERC20Token.sol">ERC20Token</a> | Transferred <code class="prettyprint">value</code> <a href="#atto-prefix">attotokens</a> between accounts <code class="prettyprint">from</code> and <code class="prettyprint">to</code>. | from, to | value
+<a name="UniverseCreated"></a>UniverseCreated           | <a href="https://github.com/AugurProject/augur/blob/master/packages/augur-core/source/contracts/Augur.sol">Augur</a> | <code class="prettyprint">childUniverse</code> has been created from <code class="prettyprint">parentUniverse</code> where <code class="prettyprint">payoutNumerators</code> represents the Payout Set of the Forking Market in <code class="prettyprint">parentUniverse</code> and whether it was determined to be an Invalid Market. | parentUniverse, childUniverse | payoutNumerators
+<a name="UniverseForked"></a>UniverseForked            | <a href="https://github.com/AugurProject/augur/blob/master/packages/augur-core/source/contracts/Augur.sol">Augur</a> | A <a href="#market">Market</a> in <code class="prettyprint">universe</code> has had its <a href="#tentative-outcome">Tentative Outcome</a> <a href="#challenge">Challenged</a> with a <a href="#dispute-bond">Dispute Bond</a> greater than the <a href="#fork-threshold">Fork Threshold</a>, which has caused <code class="prettyprint">universe</code> to <a href="#fork">Fork</a>. | universe |</li>
+</ul>
 
           <h1 id="api-type-definitions">API Type Definitions</h1>
 
@@ -13195,9 +13171,10 @@ net position in that Market Outcome. This is a cashflow amount that the user rem
 <h4 id="strong-strong"><strong>Properties:</strong></h4>
 
 <ul>
+<li><strong><code class="prettyprint">description</code></strong> (string|null) Title of the Market.</li>
 <li><strong><code class="prettyprint">resolutionSource</code></strong> (string|null) Source that should be referenced when determining the Outcome of a Market.</li>
 <li><strong><code class="prettyprint">tags</code></strong> (Array.&lt;string&gt;|null) Keywords used to tag the Market (maximum of 2).</li>
-<li><strong><code class="prettyprint">longDescription</code></strong> (string|null) Additional information not included in description of the Market.</li>
+<li><strong><code class="prettyprint">longDescription</code></strong> (string|null) Additional Market information not included in <code class="prettyprint">description</code>.</li>
 <li><strong><code class="prettyprint">_scalarDenomination</code></strong> (string|null) Denomination used for describing the Outcome of a Scalar Market (e.g., degrees Fahrenheit, dollars, etc.) Not used when creating a Yes/No or Categorical Market.</li>
 </ul>
 
@@ -14078,7 +14055,7 @@ net position in that Market Outcome. This is a cashflow amount that the user rem
 
 <h3 id="augur-constants-trade_group_id_num_bytes-number">augur.constants.TRADE_GROUP_ID_NUM_BYTES (number)</h3>
 
-<p>Number of bytes that comprise a trade group ID. (Trade group IDs are used by Augur&rsquo;s UI to uniquely identify a trade.)</p>
+<p>Number of bytes that comprise a <a href="#trade-group">Trade Group</a> ID.</p>
 
 <h3 id="augur-constants-worst_case_fill-object">augur.constants.WORST_CASE_FILL (Object)</h3>
 
@@ -14519,7 +14496,7 @@ Goals:
 
 <h2 id="atto-prefix">Atto- (Prefix)</h2>
 
-<p>Atto- is a unit prefix in the metric system denoting a factor of 10^−18, or 0.000000000000000001.  This prefix is used for a number of terms in Augur, including attoETH, attoREP, attotoken, etc.</p>
+<p>Atto- is a unit prefix in the metric system denoting a factor of 10^−18, or 0.000000000000000001.  This prefix is used for a number of terms in Augur, including attoETH, attoREP, attotoken, attoshares, etc.</p>
 
 <h2 id="bid-order">Bid Order</h2>
 
@@ -14531,7 +14508,7 @@ Goals:
 
 <h2 id="categorical-market">Categorical Market</h2>
 
-<p>A Categorical Market is a <a href="#market">Market</a> with more than 2 potential <a href="#outcome">Outcomes</a>, but no more than 8. (These numbers do not include <a href="#invalid-outcome">Invalid</a>.) Categorical Markets are best for multiple choice questions, such as &ldquo;Which team will win Tournament X?&rdquo; or &ldquo;What color tie will the U.S. President wear at the next presidential press conference?&rdquo;. If a Market is based around a simple yes-or-no question, it is better to use a <a href="#yes-no-market">Yes/No Market</a>. For a Market about what a particular stock price will be on a given date, a <a href="#scalar-market">Scalar Market</a> should be used, as 8 potential outcomes (excluding <code class="prettyprint">Invalid</code>) would not be sufficient.</p>
+<p>A Categorical Market is a <a href="#market">Market</a> with more than 2 potential <a href="#outcome">Outcomes</a>, but no more than 8. (These numbers do not include <a href="#invalid-outcome">Invalid</a>.) Categorical Markets are best for multiple choice questions, such as &ldquo;Which team will win Tournament X?&rdquo; or &ldquo;What color tie will the U.S. President wear at the next presidential press conference?&rdquo;. If a Market is based around a simple yes-or-no question, it is better to use a <a href="#yes-no-market">Yes/No Market</a>. For a Market about what a particular stock price will be on a given date, a <a href="#scalar-market">Scalar Market</a> should be used, as 8 potential outcomes (excluding Invalid) would not be sufficient.</p>
 
 <h2 id="challenge">Challenge</h2>
 
@@ -14632,7 +14609,11 @@ During the very first <a href="#dispute-window">Dispute Window</a> after launch,
 
 <h2 id="end-time">End Time</h2>
 
-<p>End Time is the date and time that a <a href="#market">Market</a>&rsquo;s event will have come to pass and should be known. After this date and time has passed the Market will get <a href="#report">Reported</a> on and eventually <a href="#finalized-market">Finalized</a>.</p>
+<p>A Market&rsquo;s End Time is the date and time by which a <a href="#market">Market</a>&rsquo;s event will have come to pass and should be known. After this date and time has passed the Market will get <a href="#report">Reported</a> on and eventually <a href="#finalized-market">Finalized</a>. A Market&rsquo;s End Time can be a maximum of 181 days from the time at which it was creatd.</p>
+
+<h2 id="fee-divisor">Fee Divisor</h2>
+
+<p>!!!TBD!!! Add definition for Market Fee Divisor</p>
 
 <h2 id="fee-token">Fee Token</h2>
 
@@ -14705,13 +14686,17 @@ During the very first <a href="#dispute-window">Dispute Window</a> after launch,
 <ul>
 <li>The question is subjective in nature.</li>
 <li>The Outcome was not known at Market <a href="#end-time">End Time</a>.</li>
-<li>The title, details, End Time, resolution source, and Outcomes are in direct conflict with each other.</li>
+<li>The title, details, End Time,<a href="#resolution-source">Resolution Source</a>, and <a href="#outcome">Outcomes</a> are in direct conflict with each other.</li>
 <li>There are strong arguments for the Market resolving as multiple Outcomes.</li>
-<li>The resolution source does not provide a readily available answer.</li>
-<li>The resolution source provides different answers to different viewers.</li>
+<li>The Resolution Source does not provide a readily available answer.</li>
+<li>The Resolution Rource provides different answers to different viewers.</li>
 </ul>
 
-<p>If the <a href="#outcome">Outcome</a> of a Market is Invalid, <a href="#reporters">Reporters</a> can <a href="#report">Report</a> its <a href="#tentative-outcome">Tentative Outcome</a> as Invalid. Additionally, if the Market is in a <a href="#dispute-round">Dispute Round</a>, users can <a href="#dispute-stake">Stake</a> <a href="#rep">REP</a> on Invalid as the Tentative Outcome, or if the Market has <a href="#fork">Forked</a>, users can migrate their REP to the <a href="#child-universe">Child Universe</a> where the Outcome is Invalid. If the Market&rsquo;s <a href="#final-outcome">Final Outcome</a> becomes Invalid, its <a href="#payout-set">Payout Set</a> will have the <a href="#invalid-market-payout-numerator">Invalid Market Payout Numerator</a> set to the <a href="#number-of-ticks">Number of Ticks</a>. For example, in a <a href="#categorical-market">Categorical Market</a> with 10,000 <a href="#tick">Ticks</a> and 4 potential Outcomes (excluding <code class="prettyprint">Invalid</code>), the Payout Set would be [10000, 0, 0, 0, 0].</p>
+<p>If the Outcome of a Market is Invalid, <a href="#reporters">Reporters</a> can <a href="#report">Report</a> its <a href="#tentative-outcome">Tentative Outcome</a> as Invalid. Additionally, if the Market is in the <a href="#dispute-round-phase">Dispute Round Phase</a>, users can <a href="#dispute-stake">Stake</a> <a href="#rep">REP</a> on Invalid as the Tentative Outcome, or if the Market has <a href="#fork">Forked</a>, users can migrate their REP to the <a href="#child-universe">Child Universe</a> where the Outcome is Invalid. If the Market&rsquo;s <a href="#final-outcome">Final Outcome</a> becomes Invalid, its <a href="#payout-set">Payout Set</a> will have the <a href="#invalid-market-payout-numerator">Invalid Market Payout Numerator</a> set to the <a href="#number-of-ticks">Number of Ticks</a>. For example, in a <a href="#categorical-market">Categorical Market</a> with 10,000 <a href="#tick">Ticks</a> and 4 potential Outcomes (excluding Invalid), the Payout Set would be [10000, 0, 0, 0, 0].</p>
+
+<h2 id="kyc-token">KYC Token</h2>
+
+<p>!!!TBD!!! Add definition</p>
 
 <h2 id="legacy-rep">Legacy REP</h2>
 
@@ -14731,7 +14716,7 @@ During the very first <a href="#dispute-window">Dispute Window</a> after launch,
 
 <h2 id="market">Market</h2>
 
-<p>A Market is created by users of Augur for a small fee. They are used to describe an upcoming event that people would presumably be interested in wagering on. They should also provide information on how to verify the <a href="#outcome">Outcome</a> of the event, the more specific the better. Each Market created on the Augur network will have an automatically managed <a href="#order-book">Order Book</a>, which will allow users to buy and sell <a href="#share">Shares</a> of different Outcomes of the Market. The <a href="#market-creator">Market Creator</a> can set the <a href="#creator-fee">Creator Fee</a> for the Market, which, once set, cannot be changed, and will determine their cut of all Shares <a href="#settlement">Settled</a> on the Market. The Market Creator also needs to specify a <a href="#maximum-display-price">Max Price</a> and a <a href="#minimum-display-price">Min Price</a> as well as the <a href="#number-of-ticks">Number of Ticks</a> for the Market. There are three different Market types supported by Augur: <a href="#yes-no-market">Yes/No</a>, <a href="#categorical-market">Categorical</a>, and <a href="#scalar-market">Scalar</a>.</p>
+<p>A Market is created by users of Augur for a small fee. It is used to describe an upcoming event that people would presumably be interested in wagering on. It should also provide information on how to verify the <a href="#outcome">Outcome</a> of the event, the more specific the better. Each Market created on the Augur network will have an automatically managed <a href="#order-book">Order Book</a>, which will allow users to buy and sell <a href="#share">Shares</a> of different Outcomes of the Market. The <a href="#market-creator">Market Creator</a> can set the <a href="#creator-fee">Creator Fee</a> for the Market, which, once set, cannot be changed, and will determine their cut of all Shares <a href="#settlement">Settled</a> on the Market. The Market Creator also needs to specify a <a href="#maximum-display-price">Max Price</a> and a <a href="#minimum-display-price">Min Price</a> as well as the <a href="#number-of-ticks">Number of Ticks</a> for the Market. There are three different Market types supported by Augur: <a href="#yes-no-market">Yes/No</a>, <a href="#categorical-market">Categorical</a>, and <a href="#scalar-market">Scalar</a>.</p>
 
 <h2 id="market-creator">Market Creator</h2>
 
@@ -14760,7 +14745,7 @@ During the very first <a href="#dispute-window">Dispute Window</a> after launch,
 
 <p>A <a href="#market">Market&rsquo;s</a> Number of Ticks can be thought of as the number of possible prices, or <a href="#tick">Ticks</a>, between the <a href="#minimum-display-price">Minimum Display Price</a> and <a href="#maximum-display-price">Maximum Display Price</a> for that Market. It is also the amount of <a href="#atto-prefix">attoETH</a> that must be escrowed with the Market contract to purchase a single <a href="#complete-set">Complete Set</a> of indivisible <a href="#share">Shares</a> for a Market. Each Outcome in the <a href="#payout-set">Payout Set</a> of an <a href="#invalid-outcome">Invalid</a> Market is set to the Number of Ticks divided by the number of Outcomes (in order to ensure that the holders of each type of <a href="#share">Share</a> in the Market receive the same payout during <a href="#settlement">Settlement</a>). </p>
 
-<p>After Market <a href="#finalized-market">Finalization</a>, each winning Share can be Settled by sending it to the Market contract in exchange for an amount of attoETH equal to the Number of Ticks. In the event that the Market Finalizes as <code class="prettyprint">Invalid</code>, Shares of <code class="prettyprint">Invalid</code> the Market can be returned to the Market contract in exchange for an amount of attoETH equal to Number of Ticks. For example, if a 3-Outcome Market with no Creator Fee and 10,000 as the Number of Ticks resolves to <code class="prettyprint">Invalid</code>, the Payout Set would be [10000, 0, 0, 0].</p>
+<p>After Market <a href="#finalized-market">Finalization</a>, each winning Share can be Settled by sending it to the Market contract in exchange for an amount of attoETH equal to the Number of Ticks. In the event that the Market Finalizes as Invalid, Shares of Invalid the Market can be returned to the Market contract in exchange for an amount of attoETH equal to Number of Ticks. For example, if a 3-Outcome Market with no Creator Fee and 10,000 as the Number of Ticks resolves to Invalid, the Payout Set would be [10000, 0, 0, 0].</p>
 
 <p>The <a href="#atto-prefix">attoETH</a> yielded when a Complete Set of Shares is Settled is what <a href="#settlement-fees">Settlement Fees</a> are extracted from prior to paying out traders for their closed <a href="#position">Positions</a>. Settlement Fees are paid proportionally so that the trader set to receive more payout will have to pay more Fees. The price of an Order can be set to anywhere between 0 and the Number of Ticks set for the Market.</p>
 
@@ -14828,7 +14813,7 @@ During the very first <a href="#dispute-window">Dispute Window</a> after launch,
 
 <p>A Payout Set, sometimes referred to as &ldquo;Payout Numerators&rdquo; in Augur&rsquo;s smart contract functions, is an array with a length that is one greater to the number of <a href="#outcome">Outcomes</a> for a <a href="#market">Market</a>. (This is because the Invalid Market Payout Numerator](#invalid-market-payout-numerator) &ndash; that is, the 0th index of the array &ndash; is used to designate whether the Market is <a href="#invalid-outcome">Invalid</a>.) Each value in the array is required to be 0 or a positive number that does not exceed the <a href="#number-of-ticks">Number of Ticks</a> for the Market. Further, the total sum of all the values contained within the Payout Set array should be equal to the Number of Ticks for the Market. </p>
 
-<p>For example, in a <a href="#yes-no-market">Yes/No Market</a> with 1000 <a href="#tick">Ticks</a>, a <a href="#report">Report</a> that Stakes <a href="#rep">REP</a> on Outcome <code class="prettyprint">No</code> would submit a Payout Set that looks like <code class="prettyprint">[0, 1000, 0]</code>. Payout Sets are a breakdown of the Payout Distribution, or how Markets should pay out for each <a href="#share">Share</a> when <a href="#finalized-market">Finalized</a>. In the example above, the Payout Numerators are the values 0, 1000 and 0, and only <a href="#share">Shares</a> of Outcome <code class="prettyprint">No</code> (index 1 of the array) will pay out on the Finalized Market because the Payout Numerator for Outcome <code class="prettyprint">Invalid</code> and <code class="prettyprint">Yes</code> are <code class="prettyprint">0</code>. Similarly, a Report that Stakes REP on Outcome <code class="prettyprint">Yes</code> would submit a Payout Set that looks like <code class="prettyprint">[0, 0, 1000]</code>, and a Report that Stakes REP on Outcome <code class="prettyprint">Invalid</code> would submit one like <code class="prettyprint">[1000, 0, 0]</code>. Valid Payout Sets are hashed using the SHA-3 hashing algorithm, which is a <a href="#payout-distribution-hash">Payout Distribution Hash</a>.</p>
+<p>For example, in a <a href="#yes-no-market">Yes/No Market</a> with 1000 <a href="#tick">Ticks</a>, a <a href="#report">Report</a> that Stakes <a href="#rep">REP</a> on Outcome <code class="prettyprint">No</code> would submit a Payout Set that looks like <code class="prettyprint">[0, 1000, 0]</code>. Payout Sets are a breakdown of the Payout Distribution, or how Markets should pay out for each <a href="#share">Share</a> when <a href="#finalized-market">Finalized</a>. In the example above, the Payout Numerators are the values 0, 1000 and 0, and only <a href="#share">Shares</a> of Outcome <code class="prettyprint">No</code> (index 1 of the array) will pay out on the Finalized Market because the Payout Numerator for Outcome Invalid and <code class="prettyprint">Yes</code> are <code class="prettyprint">0</code>. Similarly, a Report that Stakes REP on Outcome <code class="prettyprint">Yes</code> would submit a Payout Set that looks like <code class="prettyprint">[0, 0, 1000]</code>, and a Report that Stakes REP on Outcome Invalid would submit one like <code class="prettyprint">[1000, 0, 0]</code>. Valid Payout Sets are hashed using the SHA-3 hashing algorithm, which is a <a href="#payout-distribution-hash">Payout Distribution Hash</a>.</p>
 
 <p>The Payout Set for a <a href="#categorical-market">Categorical Market</a> is similar to that of a Yes/No Market, except that Categorical Markets can have up to 8 Outcomes, so an example Payout Set for a Categorical Market with 8000 Ticks might look like <code class="prettyprint">[0, 0, 0, 8000, 0, 0, 0, 0, 0]</code>. The same Categorical Market with an Invalid Outcome would have a Payout Set like <code class="prettyprint">[8000, 0, 0, 0, 0, 0, 0, 0, 0]</code>.</p>
 
@@ -14870,6 +14855,10 @@ Note: When calculating the Payout Set for a Scalar Market using integer-only mat
 <h2 id="reporting-fee-pool">Reporting Fee Pool</h2>
 
 <p>Any <a href="#reporting-fee">Reporting Fees</a> (in ETH) collected during a <a href="#dispute-window">Dispute Window</a> get added to a Reporting Fee Pool. At the end of the Dispute Window, the Reporting Fee Pool is paid out to users in proportion to the number of <a href="#rep">REP</a> they <a href="#dispute-stake">Staked</a> during that Dispute Window. In this way, all users who participate during a Dispute Window will receive a portion of the Settlement Fees collected during that Window. Participation includes <a href="#designated-reporting">Designated</a> or <a href="#open-reporting">Open Reporting</a>, <a href="#challenge">Challenging</a> an <a href="#outcome">Outcome</a>, or simply purchasing <a href="#participation-token">Participation Tokens</a> directly.</p>
+
+<h2 id="resolution-source">Resolution Source</h2>
+
+<p>!!!TBD!!! Add definition</p>
 
 <h2 id="scalar-market">Scalar Market</h2>
 
@@ -14927,6 +14916,10 @@ Bid Orders/Ask Orders on the Order Book are closer together and of higher qualit
 <h2 id="topic">Topic</h2>
 
 <p>A Topic is a keyword used to categorize <a href="#market">Markets</a>. All Markets must have a Topic, and are optionally allowed up to two sub-Topics to further categorize the Market. An example Market for &ldquo;Will the New York Giants win Super Bowl 100?&rdquo; might have a Topic of &ldquo;Sports&rdquo; and sub-topics of &ldquo;American Football&rdquo; and &ldquo;NFL&rdquo;. The Topics are set by the <a href="#market-creator">Market Creator</a> when a new Market is made and cannot be changed.</p>
+
+<h2 id="trade-group">Trade Group</h2>
+
+<p>A Trade Group is a set of <a href="#order">Orders</a> that Augur&rsquo;s user interface groups together using an ID to uniquely identify a trade.</p>
 
 <h2 id="universe">Universe</h2>
 
