@@ -12882,42 +12882,81 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
 <tr>
 <td><a name="OrderEvent"></a>OrderEvent</td>
 <td><a href="https://github.com/AugurProject/augur/blob/master/packages/augur-core/source/contracts/Augur.sol">Augur</a></td>
-<td>An <a href="#order">Order</a> event of type <code class="prettyprint">eventType</code> has occurred on <code class="prettyprint">orderId</code> in <code class="prettyprint">market</code> of <code class="prettyprint">universe</code>. <code class="prettyprint">eventType</code> can be 0 (OrderCreated), 1 (OrderCanceled), 2 (OrderPriceChanged), or 3 (OrderFilled). The Order has an <code class="prettyprint">orderType</code> (either 0 (<a href="#bid-order">Bid</a>) or 1 (<a href="#ask-order">Ask</a>)) and belongs to <a href="#trade-group">Trade Group</a>. It also has an <code class="prettyprint">addressData</code> array and <code class="prettyprint">uint256Data</code> array. The indexes of <code class="prettyprint">addressData</code> represent the following values:</td>
+<td>An <a href="#order">Order</a> event of type <code class="prettyprint">eventType</code> has occurred on <code class="prettyprint">orderId</code> in <code class="prettyprint">market</code> of <code class="prettyprint">universe</code>. <code class="prettyprint">eventType</code> can be 0 (OrderCreated), 1 (OrderCanceled), 2 (OrderPriceChanged), or 3 (OrderFilled). The Order has an <code class="prettyprint">orderType</code> (either 0 (<a href="#bid-order">Bid</a>) or 1 (<a href="#ask-order">Ask</a>)) and belongs to <a href="#trade-group">Trade Group</a>. It also has an <code class="prettyprint">addressData</code> array and <code class="prettyprint">uint256Data</code> array. The indexes of <code class="prettyprint">addressData</code> represent the following values: 0 - kycToken: Ethereum address of the Order&rsquo;s <a href="#kyc-token">KYC Token</a> (if one exists); 1 - orderCreator: Ethereum address of the <a href="#order-creator">Order Creator</a>; 2 - orderFiller: Ethereum address of the <a href="#order-filler">Order Filler</a> (if one exists). The indexes of <code class="prettyprint">uint256Data</code> represent the following values: 0 - price: The Order price; 1 - amount: The amount of <a href="#share">Shares</a> in the Order; 2 - outcome; The <a href="#outcome">Outcome</a> the Order is for; 3 - tokenRefund: The amount of escrowed Dai refunded to the Order Creator (OrderCanceled events only);  4 - sharesRefund: The amount of escrowed Shares refunded to the Order Creator (OrderCanceled events only); 5 - fees: (OrderFilled events only); 6 - amountFilled: Amount of Share filled (OrderFilled events only); 7 - timestamp: Unix timestamp when the Order event took place; 8 - sharesEscrowed: The amount of <a href="#atto-prefix">attoShares</a> the Order Creator escrowed; 9 - tokensEscrowed: The amount of <a href="#atto-prefix">attoDai</a> the Order Creator escrowed</td>
 <td></td>
 <td></td>
 </tr>
+<tr>
+<td><a name="ParticipationTokensRedeemed"></a>ParticipationTokensRedeemed</td>
+<td><a href="https://github.com/AugurProject/augur/blob/master/packages/augur-core/source/contracts/Augur.sol">Augur</a></td>
+<td><code class="prettyprint">attoParticipationTokens</code> were redeemed by <code class="prettyprint">account</code> in <code class="prettyprint">disputeWindow</code> of <code class="prettyprint">universe</code> for a profit of <code class="prettyprint">_feePayoutShare</code>.</td>
+<td>universe, disputeWindow, account</td>
+<td>attoParticipationTokens, feePayoutShare</td>
+</tr>
+<tr>
+<td><a name="ReportingParticipantDisavowed"></a>ReportingParticipantDisavowed</td>
+<td><a href="https://github.com/AugurProject/augur/blob/master/packages/augur-core/source/contracts/Augur.sol">Augur</a></td>
+<td>The <code class="prettyprint">reportingParticipant</code> (can be either a DisputeCrowdsourcer or an InitialReporter) belonging to <code class="prettyprint">market</code> in <code class="prettyprint">universe</code> has had its <code class="prettyprint">fork</code> (or <code class="prettyprint">forkAndRedeem</code>) function called on it.</td>
+<td>universe, market</td>
+<td>reportingParticipant</td>
+</tr>
+<tr>
+<td><a name="TimestampSet"></a>TimestampSet</td>
+<td><a href="https://github.com/AugurProject/augur/blob/master/packages/augur-core/source/contracts/Augur.sol">Augur</a></td>
+<td>The timestamp used by Augur was set/updated to <code class="prettyprint">newTimestamp</code>. This event will be logged whenever <code class="prettyprint">TimeControlled.setTimestamp</code> or <code class="prettyprint">TimeControlled.incrementTimestamp</code> is called by the owner of the <a href="#time-controlled-tx-api">TimeControlled</a> contract.</td>
+<td></td>
+<td>newTimestamp</td>
+</tr>
+<tr>
+<td><a name="TokensBurned"></a>TokensBurned</td>
+<td><a href="https://github.com/AugurProject/augur/blob/master/packages/augur-core/source/contracts/Augur.sol">Augur</a></td>
+<td>Burned (i.e., completely destroyed) <code class="prettyprint">amount</code> of <code class="prettyprint">target</code>&rsquo;s <a href="#atto-prefix">attotokens</a> in <code class="prettyprint">market</code> (if applicable) of <code class="prettyprint">universe</code>. The destroyed tokens were of type <code class="prettyprint">tokenType</code>, whose contract address is <code class="prettyprint">token</code>. (Valid <code class="prettyprint">tokenType</code> values are as follows: ReputationToken = 0, ShareToken = 1, DisputeCrowdsourcer = 2, FeeWindow = 3, FeeToken = 4, ParticipationToken = 5. The FeeWindow <code class="prettyprint">tokenType</code> represents <a href="#participation-token">Participation Tokens</a> in version 1 of Augur; however, this <code class="prettyprint">tokenType</code> value is deprecated in version 2 in favor of the ParticipationToken value. The FeeToken <code class="prettyprint">tokenType</code> is only used internally for accounting purposes in version 1 of Augur so that Stake holders can get Fees for every <a href="#dispute-window">Dispute Window</a> in which they have Stake. It is deprecated in version 2.)</td>
+<td>universe, token, target</td>
+<td>amount, tokenType, market</td>
+</tr>
+<tr>
+<td><a name="TokensMinted"></a>TokensMinted</td>
+<td><a href="https://github.com/AugurProject/augur/blob/master/packages/augur-core/source/contracts/Augur.sol">Augur</a></td>
+<td>Created <code class="prettyprint">amount</code> brand new <a href="#atto-prefix">attotokens</a> for <code class="prettyprint">target</code> in <code class="prettyprint">market</code> (if applicable) of <code class="prettyprint">universe</code> . The minted tokens are of type <code class="prettyprint">tokenType</code>, whose contract address is <code class="prettyprint">token</code>. (Valid <code class="prettyprint">tokenType</code> values are as follows: ReputationToken = 0, ShareToken = 1, DisputeCrowdsourcer = 2, FeeWindow = 3, FeeToken = 4, ParticipationToken = 5. The FeeWindow <code class="prettyprint">tokenType</code> represents <a href="#participation-token">Participation Tokens</a> in version 1 of Augur; however, this <code class="prettyprint">tokenType</code> value is deprecated in version 2 in favor of the ParticipationToken value. The FeeToken <code class="prettyprint">tokenType</code> is only used internally for accounting purposes in version 1 of Augur so that Stake holders can get Fees for every <a href="#dispute-window">Dispute Window</a> in which they have Stake. It is deprecated in version 2.)</td>
+<td>universe, token, target</td>
+<td>amount, tokenType, market</td>
+</tr>
+<tr>
+<td><a name="TokensTransferred"></a>TokensTransferred</td>
+<td><a href="https://github.com/AugurProject/augur/blob/master/packages/augur-core/source/contracts/Augur.sol">Augur</a></td>
+<td><code class="prettyprint">value</code> amount of the tokens in <code class="prettyprint">market</code> (if applicable) of <code class="prettyprint">universe</code> have been transferred between account <code class="prettyprint">from</code> and <code class="prettyprint">to</code>. The transferred tokens are of type <code class="prettyprint">tokenType</code>, whose contract address is <code class="prettyprint">token</code>. (Valid <code class="prettyprint">tokenType</code> values are as follows: ReputationToken = 0, ShareToken = 1, DisputeCrowdsourcer = 2, FeeWindow = 3, FeeToken = 4, ParticipationToken = 5. The FeeWindow <code class="prettyprint">tokenType</code> represents <a href="#participation-token">Participation Tokens</a> in version 1 of Augur; however, this <code class="prettyprint">tokenType</code> value is deprecated in version 2 in favor of the ParticipationToken value. The FeeToken <code class="prettyprint">tokenType</code> is only used internally for accounting purposes in version 1 of Augur so that Stake holders can get Fees for every <a href="#dispute-window">Dispute Window</a> in which they have Stake. It is deprecated in version 2.)</td>
+<td>universe, token, from</td>
+<td>to, value, tokenType, market</td>
+</tr>
+<tr>
+<td><a name="TradingProceedsClaimed"></a>TradingProceedsClaimed</td>
+<td><a href="https://github.com/AugurProject/augur/blob/master/packages/augur-core/source/contracts/Augur.sol">Augur</a></td>
+<td><code class="prettyprint">sender</code> has collected trading profits from the <a href="#share">Share Token</a> at address <code class="prettyprint">shareToken</code> for <code class="prettyprint">outcome</code> in <a href="#finalized-market">Finalized Market</a> <code class="prettyprint">market</code> in <code class="prettyprint">universe</code> at <code class="prettyprint">timestamp</code>. <code class="prettyprint">sender</code> had <code class="prettyprint">numShares</code> Share Tokens, <code class="prettyprint">numPayoutTokens</code> paid out, and a balance of <code class="prettyprint">finalTokenBalance</code>, and the total <a href="#settlement-fees">Settlement Fees</a> were <code class="prettyprint">fees</code>.</td>
+<td>universe, shareToken, sender</td>
+<td>market, outcome, numShares, numPayoutTokens, finalTokenBalance, fees, timestamp</td>
+</tr>
+<tr>
+<td><a name="Transfer"></a>Transfer</td>
+<td><a href="https://github.com/AugurProject/augur/blob/master/packages/augur-core/source/contracts/libraries/token/ERC20Token.sol">ERC20Token</a></td>
+<td>Transferred <code class="prettyprint">value</code> <a href="#atto-prefix">attotokens</a> between accounts <code class="prettyprint">from</code> and <code class="prettyprint">to</code>.</td>
+<td>from, to</td>
+<td>value</td>
+</tr>
+<tr>
+<td><a name="UniverseCreated"></a>UniverseCreated</td>
+<td><a href="https://github.com/AugurProject/augur/blob/master/packages/augur-core/source/contracts/Augur.sol">Augur</a></td>
+<td><code class="prettyprint">childUniverse</code> has been created from <code class="prettyprint">parentUniverse</code> where <code class="prettyprint">payoutNumerators</code> represents the Payout Set of the Forking Market in <code class="prettyprint">parentUniverse</code> and whether it was determined to be an Invalid Market.</td>
+<td>parentUniverse, childUniverse</td>
+<td>payoutNumerators</td>
+</tr>
+<tr>
+<td><a name="UniverseForked"></a>UniverseForked</td>
+<td><a href="https://github.com/AugurProject/augur/blob/master/packages/augur-core/source/contracts/Augur.sol">Augur</a></td>
+<td>A <a href="#market">Market</a> in <code class="prettyprint">universe</code> has had its <a href="#tentative-outcome">Tentative Outcome</a> <a href="#challenge">Challenged</a> with a <a href="#dispute-bond">Dispute Bond</a> greater than the <a href="#fork-threshold">Fork Threshold</a>, which has caused <code class="prettyprint">universe</code> to <a href="#fork">Fork</a>.</td>
+<td>universe</td>
+<td></td>
+</tr>
 </tbody></table>
-
-<ul>
-<li>0: kycToken - Ethereum address of the Order&rsquo;s <a href="#kyc-token">KYC Token</a> (if one exists)</li>
-<li>1: orderCreator - Ethereum address of the <a href="#order-creator">Order Creator</a></li>
-<li>2: orderFiller - Ethereum address of the <a href="#order-filler">Order Filler</a> (if one exists)</li>
-</ul>
-
-<p>The indexes of <code class="prettyprint">uint256Data</code> represent the following values:</p>
-
-<ul>
-<li>0: price - The Order price</li>
-<li>1: amount - The amount of <a href="#share">Shares</a> in the Order</li>
-<li>2: outcome - The <a href="#outcome">Outcome</a> the Order is for</li>
-<li>3: tokenRefund - The amount of escrowed Dai refunded to the Order Creator (OrderCanceled events only)</li>
-<li>4: sharesRefund - The amount of escrowed Shares refunded to the Order Creator (OrderCanceled events only)</li>
-<li>5: fees (OrderFilled events only)</li>
-<li>6: amountFilled (OrderFilled events only)</li>
-<li>7: timestamp - Unix timestamp when the Order event took place</li>
-<li>8: sharesEscrowed - The amount of <a href="#atto-prefix">attoShares</a> the Order Creator escrowed</li>
-<li>9: tokensEscrowed - The amount of <a href="#atto-prefix">attoDai</a> the Order Creator escrowed
-<a name="ParticipationTokensRedeemed"></a>ParticipationTokensRedeemed | <a href="https://github.com/AugurProject/augur/blob/master/packages/augur-core/source/contracts/Augur.sol">Augur</a> | <code class="prettyprint">attoParticipationTokens</code> were redeemed by <code class="prettyprint">account</code> in <code class="prettyprint">disputeWindow</code> of <code class="prettyprint">universe</code> for a profit of <code class="prettyprint">_feePayoutShare</code>. | universe, disputeWindow, account | attoParticipationTokens, feePayoutShare
-<a name="ReportingParticipantDisavowed"></a>ReportingParticipantDisavowed   | <a href="https://github.com/AugurProject/augur/blob/master/packages/augur-core/source/contracts/Augur.sol">Augur</a> | The <code class="prettyprint">reportingParticipant</code> (can be either a DisputeCrowdsourcer or an InitialReporter) belonging to <code class="prettyprint">market</code> in <code class="prettyprint">universe</code> has had its <code class="prettyprint">fork</code> (or <code class="prettyprint">forkAndRedeem</code>) function called on it.  | universe, market | reportingParticipant
-<a name="TimestampSet"></a>TimestampSet              | <a href="https://github.com/AugurProject/augur/blob/master/packages/augur-core/source/contracts/Augur.sol">Augur</a> | The timestamp used by Augur was set/updated to <code class="prettyprint">newTimestamp</code>. This event will be logged whenever <code class="prettyprint">TimeControlled.setTimestamp</code> or <code class="prettyprint">TimeControlled.incrementTimestamp</code> is called by the owner of the <a href="#time-controlled-tx-api">TimeControlled</a> contract. |  | newTimestamp
-<a name="TokensBurned"></a>TokensBurned              | <a href="https://github.com/AugurProject/augur/blob/master/packages/augur-core/source/contracts/Augur.sol">Augur</a> | Burned (i.e., completely destroyed) <code class="prettyprint">amount</code> of <code class="prettyprint">target</code>&rsquo;s <a href="#atto-prefix">attotokens</a> in <code class="prettyprint">market</code> (if applicable) of <code class="prettyprint">universe</code>. The destroyed tokens were of type <code class="prettyprint">tokenType</code>, whose contract address is <code class="prettyprint">token</code>. (Valid <code class="prettyprint">tokenType</code> values are as follows: ReputationToken = 0, ShareToken = 1, DisputeCrowdsourcer = 2, FeeWindow = 3, FeeToken = 4, ParticipationToken = 5. The FeeWindow <code class="prettyprint">tokenType</code> represents <a href="#participation-token">Participation Tokens</a> in version 1 of Augur; however, this <code class="prettyprint">tokenType</code> value is deprecated in version 2 in favor of the ParticipationToken value. The FeeToken <code class="prettyprint">tokenType</code> is only used internally for accounting purposes in version 1 of Augur so that Stake holders can get Fees for every <a href="#dispute-window">Dispute Window</a> in which they have Stake. It is deprecated in version 2.) | universe, token, target | amount, tokenType, market
-<a name="TokensMinted"></a>TokensMinted              | <a href="https://github.com/AugurProject/augur/blob/master/packages/augur-core/source/contracts/Augur.sol">Augur</a> | Created <code class="prettyprint">amount</code> brand new <a href="#atto-prefix">attotokens</a> for <code class="prettyprint">target</code> in <code class="prettyprint">market</code> (if applicable) of <code class="prettyprint">universe</code> . The minted tokens are of type <code class="prettyprint">tokenType</code>, whose contract address is <code class="prettyprint">token</code>. (Valid <code class="prettyprint">tokenType</code> values are as follows: ReputationToken = 0, ShareToken = 1, DisputeCrowdsourcer = 2, FeeWindow = 3, FeeToken = 4, ParticipationToken = 5. The FeeWindow <code class="prettyprint">tokenType</code> represents <a href="#participation-token">Participation Tokens</a> in version 1 of Augur; however, this <code class="prettyprint">tokenType</code> value is deprecated in version 2 in favor of the ParticipationToken value. The FeeToken <code class="prettyprint">tokenType</code> is only used internally for accounting purposes in version 1 of Augur so that Stake holders can get Fees for every <a href="#dispute-window">Dispute Window</a> in which they have Stake. It is deprecated in version 2.) | universe, token, target | amount, tokenType, market
-<a name="TokensTransferred"></a>TokensTransferred         | <a href="https://github.com/AugurProject/augur/blob/master/packages/augur-core/source/contracts/Augur.sol">Augur</a> | <code class="prettyprint">value</code> amount of the tokens in <code class="prettyprint">market</code> (if applicable) of <code class="prettyprint">universe</code> have been transferred between account <code class="prettyprint">from</code> and <code class="prettyprint">to</code>. The transferred tokens are of type <code class="prettyprint">tokenType</code>, whose contract address is <code class="prettyprint">token</code>. (Valid <code class="prettyprint">tokenType</code> values are as follows: ReputationToken = 0, ShareToken = 1, DisputeCrowdsourcer = 2, FeeWindow = 3, FeeToken = 4, ParticipationToken = 5. The FeeWindow <code class="prettyprint">tokenType</code> represents <a href="#participation-token">Participation Tokens</a> in version 1 of Augur; however, this <code class="prettyprint">tokenType</code> value is deprecated in version 2 in favor of the ParticipationToken value. The FeeToken <code class="prettyprint">tokenType</code> is only used internally for accounting purposes in version 1 of Augur so that Stake holders can get Fees for every <a href="#dispute-window">Dispute Window</a> in which they have Stake. It is deprecated in version 2.) | universe, token, from | to, value, tokenType, market
-<a name="TradingProceedsClaimed"></a>TradingProceedsClaimed    | <a href="https://github.com/AugurProject/augur/blob/master/packages/augur-core/source/contracts/Augur.sol">Augur</a> | <code class="prettyprint">sender</code> has collected trading profits from the <a href="#share">Share Token</a> at address <code class="prettyprint">shareToken</code> for <code class="prettyprint">outcome</code> in <a href="#finalized-market">Finalized Market</a> <code class="prettyprint">market</code> in <code class="prettyprint">universe</code> at <code class="prettyprint">timestamp</code>. <code class="prettyprint">sender</code> had <code class="prettyprint">numShares</code> Share Tokens, <code class="prettyprint">numPayoutTokens</code> paid out, and a balance of <code class="prettyprint">finalTokenBalance</code>, and the total <a href="#settlement-fees">Settlement Fees</a> were <code class="prettyprint">fees</code>. | universe, shareToken, sender | market, outcome, numShares, numPayoutTokens, finalTokenBalance, fees, timestamp
-<a name="Transfer"></a>Transfer | <a href="https://github.com/AugurProject/augur/blob/master/packages/augur-core/source/contracts/libraries/token/ERC20Token.sol">ERC20Token</a> | Transferred <code class="prettyprint">value</code> <a href="#atto-prefix">attotokens</a> between accounts <code class="prettyprint">from</code> and <code class="prettyprint">to</code>. | from, to | value
-<a name="UniverseCreated"></a>UniverseCreated           | <a href="https://github.com/AugurProject/augur/blob/master/packages/augur-core/source/contracts/Augur.sol">Augur</a> | <code class="prettyprint">childUniverse</code> has been created from <code class="prettyprint">parentUniverse</code> where <code class="prettyprint">payoutNumerators</code> represents the Payout Set of the Forking Market in <code class="prettyprint">parentUniverse</code> and whether it was determined to be an Invalid Market. | parentUniverse, childUniverse | payoutNumerators
-<a name="UniverseForked"></a>UniverseForked            | <a href="https://github.com/AugurProject/augur/blob/master/packages/augur-core/source/contracts/Augur.sol">Augur</a> | A <a href="#market">Market</a> in <code class="prettyprint">universe</code> has had its <a href="#tentative-outcome">Tentative Outcome</a> <a href="#challenge">Challenged</a> with a <a href="#dispute-bond">Dispute Bond</a> greater than the <a href="#fork-threshold">Fork Threshold</a>, which has caused <code class="prettyprint">universe</code> to <a href="#fork">Fork</a>. | universe |</li>
-</ul>
 
           <h1 id="api-type-definitions">API Type Definitions</h1>
 
