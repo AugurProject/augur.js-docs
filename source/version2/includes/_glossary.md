@@ -139,7 +139,7 @@ Augur’s [Reporting](#report) system runs on a cycle of consecutive 7-day long 
 
 ## End Time
 
-End Time is the date and time that a [Market](#market)'s event will have come to pass and should be known. After this date and time has passed the Market will get [Reported](#report) on and eventually [Finalized](#finalized-market).
+A Market's End Time is the date and time by which a [Market](#market)'s event will have come to pass and should be known. After this date and time has passed the Market will get [Reported](#report) on and eventually [Finalized](#finalized-market). A Market's End Time can be a maximum of 181 days from the time at which it was creatd.
 
 ## Fee Divisor
 
@@ -240,7 +240,7 @@ A Locked Universe is a [Universe](#universe) that had a [Fork](#fork) occur with
 
 ## Market
 
-A Market is created by users of Augur for a small fee. They are used to describe an upcoming event that people would presumably be interested in wagering on. They should also provide information on how to verify the [Outcome](#outcome) of the event, the more specific the better. Each Market created on the Augur network will have an automatically managed [Order Book](#order-book), which will allow users to buy and sell [Shares](#share) of different Outcomes of the Market. The [Market Creator](#market-creator) can set the [Creator Fee](#creator-fee) for the Market, which, once set, cannot be changed, and will determine their cut of all Shares [Settled](#settlement) on the Market. The Market Creator also needs to specify a [Max Price](#maximum-display-price) and a [Min Price](#minimum-display-price) as well as the [Number of Ticks](#number-of-ticks) for the Market. There are three different Market types supported by Augur: [Yes/No](#yes-no-market), [Categorical](#categorical-market), and [Scalar](#scalar-market).
+A Market is created by users of Augur for a small fee. It is used to describe an upcoming event that people would presumably be interested in wagering on. It should also provide information on how to verify the [Outcome](#outcome) of the event, the more specific the better. Each Market created on the Augur network will have an automatically managed [Order Book](#order-book), which will allow users to buy and sell [Shares](#share) of different Outcomes of the Market. The [Market Creator](#market-creator) can set the [Creator Fee](#creator-fee) for the Market, which, once set, cannot be changed, and will determine their cut of all Shares [Settled](#settlement) on the Market. The Market Creator also needs to specify a [Max Price](#maximum-display-price) and a [Min Price](#minimum-display-price) as well as the [Number of Ticks](#number-of-ticks) for the Market. There are three different Market types supported by Augur: [Yes/No](#yes-no-market), [Categorical](#categorical-market), and [Scalar](#scalar-market).
 
 ## Market Creator
 
