@@ -1316,7 +1316,7 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
 <span class="nx">augur</span><span class="p">.</span><span class="nx">createMarket</span><span class="p">.</span><span class="nx">createCategoricalMarket</span><span class="p">({</span>
   <span class="na">universe</span><span class="p">:</span> <span class="s2">"0x1f732847fbbcc46ffe859f28e916d993b2b08831"</span><span class="p">,</span>
   <span class="na">_endTime</span><span class="p">:</span> <span class="mi">1540875600</span><span class="p">,</span>
-  <span class="na">_feePerEthInWei</span><span class="p">:</span> <span class="mi">1193046</span><span class="p">,</span>
+  <span class="na">_feePerCashInAttoCash</span><span class="p">:</span> <span class="mi">1193046</span><span class="p">,</span>
   <span class="na">_denominationToken</span><span class="p">:</span> <span class="s2">"0xd2ee83a8a2a904181ccfddd8292f178614062aa0"</span><span class="p">,</span>
   <span class="na">_designatedReporterAddress</span><span class="p">:</span> <span class="s2">"0x01114f4bda09ed6c6715cf0baf606b5bce1dc96a"</span><span class="p">,</span>
   <span class="na">_outcomes</span><span class="p">:</span> <span class="p">[</span><span class="s2">"outcome1"</span><span class="p">,</span><span class="s2">"outcome2"</span><span class="p">],</span>
@@ -1362,7 +1362,7 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
 <span class="nx">augur</span><span class="p">.</span><span class="nx">createMarket</span><span class="p">.</span><span class="nx">createScalarMarket</span><span class="p">({</span>
   <span class="na">universe</span><span class="p">:</span> <span class="s2">"0x1f732847fbbcc46ffe859f28e916d993b2b08831"</span><span class="p">,</span>
   <span class="na">_endTime</span><span class="p">:</span> <span class="mi">1530507600</span><span class="p">,</span>
-  <span class="na">_feePerEthInWei</span><span class="p">:</span> <span class="mi">1193046</span><span class="p">,</span>
+  <span class="na">_feePerCashInAttoCash</span><span class="p">:</span> <span class="mi">1193046</span><span class="p">,</span>
   <span class="na">_denominationToken</span><span class="p">:</span> <span class="s2">"0xd2ee83a8a2a904181ccfddd8292f178614062aa0"</span><span class="p">,</span>
   <span class="na">_designatedReporterAddress</span><span class="p">:</span> <span class="s2">"0x01114f4bda09ed6c6715cf0baf606b5bce1dc96a"</span><span class="p">,</span>
   <span class="na">_minPrice</span><span class="p">:</span> <span class="o">-</span><span class="mi">10</span><span class="p">,</span>
@@ -1409,7 +1409,7 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
 <span class="nx">augur</span><span class="p">.</span><span class="nx">createMarket</span><span class="p">.</span><span class="nx">createYesNoMarket</span><span class="p">({</span>
   <span class="na">universe</span><span class="p">:</span> <span class="s2">"0x1f732847fbbcc46ffe859f28e916d993b2b08831"</span><span class="p">,</span>
   <span class="na">_endTime</span><span class="p">:</span> <span class="mi">1546300799</span><span class="p">,</span>
-  <span class="na">_feePerEthInWei</span><span class="p">:</span> <span class="mi">1193046</span><span class="p">,</span>
+  <span class="na">_feePerCashInAttoCash</span><span class="p">:</span> <span class="mi">1193046</span><span class="p">,</span>
   <span class="na">_denominationToken</span><span class="p">:</span> <span class="s2">"0xd2ee83a8a2a904181ccfddd8292f178614062aa0"</span><span class="p">,</span>
   <span class="na">_designatedReporterAddress</span><span class="p">:</span> <span class="s2">"0x01114f4bda09ed6c6715cf0baf606b5bce1dc96a"</span><span class="p">,</span>
   <span class="na">_topic</span><span class="p">:</span> <span class="s2">"stocks"</span><span class="p">,</span>
@@ -1483,11 +1483,11 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
 <p>This transaction will fail if:</p>
 
 <ul>
-<li><code class="prettyprint">p._outcomes</code> contains fewer than 2 outcomes or more than 8 outcomes.</li>
+<li><code class="prettyprint">p._outcomes</code> contains fewer than 2 outcomes or more than 7 outcomes.</li>
 <li><code class="prettyprint">p._designatedReporterAddress</code> is set to the null address.</li>
-<li><code class="prettyprint">p._feePerEthInWei</code> is greater than the maximum fee (0.15 ETH).</li>
+<li><code class="prettyprint">p._feePerCashInAttoCash</code> is greater than the maximum <a href="#creator-fee">Creator Fee</a> (15%).</li>
 <li><code class="prettyprint">p._endTime</code> has already passed.</li>
-<li><code class="prettyprint">p._endTime</code> is further in the future than the maximum market duration (91 days). </li>
+<li><code class="prettyprint">p._endTime</code> is further in the future than the maximum market duration (181 days). </li>
 <li>The Universe is Forking.</li>
 </ul>
 
@@ -1501,7 +1501,7 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
 <ul>
 <li><strong><code class="prettyprint">p.universe</code></strong>  (string) Universe in which to create a Categorical Market.</li>
 <li><strong><code class="prettyprint">p._endTime</code></strong>  (number) Categorical Market expiration timestamp, in seconds.</li>
-<li><strong><code class="prettyprint">p._feePerEthInWei</code></strong>  (string) &lt;optional&gt; Amount of wei per ether settled that goes to the <a href="#market-creator">Market Creator</a>, as a base-10 string.</li>
+<li><strong><code class="prettyprint">p._feePerCashInAttoCash</code></strong>  (string) &lt;optional&gt; Amount of <a href="#atto-prefix">attoDai</a> per Dai settled that goes to the <a href="#market-creator">Market Creator</a>, as a base-10 string.</li>
 <li><strong><code class="prettyprint">p._denominationToken</code></strong>  (string) Ethereum address of the token used as this Market&rsquo;s currency.</li>
 <li><strong><code class="prettyprint">p._designatedReporterAddress</code></strong>  (string) Ethereum address of this Market&rsquo;s <a href="#designated-reporter">Designated Reporter</a>.</li>
 <li><strong><code class="prettyprint">p._outcomes</code></strong>  (Array.&lt;string&gt;) Array of names for all possible outcomes for the Market event.</li>
@@ -1530,9 +1530,9 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
 <ul>
 <li><code class="prettyprint">p._designatedReporterAddress</code> is set to the null address.</li>
 <li><code class="prettyprint">p._numTicks</code> is less than 2.</li>
-<li><code class="prettyprint">p._feePerEthInWei</code> is greater than the maximum fee (0.15 ETH).</li>
+<li><code class="prettyprint">p._feePerCashInAttoCash</code> is greater than the maximum <a href="#creator-fee">Creator Fee</a> (15%).</li>
 <li><code class="prettyprint">p._endTime</code> has already passed.</li>
-<li><code class="prettyprint">p._endTime</code> is further in the future than the maximum market duration (91 days). </li>
+<li><code class="prettyprint">p._endTime</code> is further in the future than the maximum market duration (181 days). </li>
 <li>The Universe is Forking.</li>
 </ul>
 
@@ -1546,7 +1546,7 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
 <ul>
 <li><strong><code class="prettyprint">p.universe</code></strong>  (string) Universe in which to create this market.</li>
 <li><strong><code class="prettyprint">p._endTime</code></strong>  (number) Market expiration timestamp, in seconds.</li>
-<li><strong><code class="prettyprint">p._feePerEthInWei</code></strong>  (string) &lt;optional&gt; Amount of wei per ether settled that goes to the <a href="#market-creator">Market Creator</a>, as a base-10 string.</li>
+<li><strong><code class="prettyprint">p._feePerCashInAttoCash</code></strong>  (string) &lt;optional&gt; Amount of <a href="#atto-prefix">attoDai</a> per Dai settled that goes to the <a href="#market-creator">Market Creator</a>, as a base-10 string.</li>
 <li><strong><code class="prettyprint">p._denominationToken</code></strong>  (string) Ethereum address of the token used as this Market&rsquo;s currency.</li>
 <li><strong><code class="prettyprint">p._minPrice</code></strong>  (string) Minimum display (non-normalized) price for this Market, as a base-10 string.</li>
 <li><strong><code class="prettyprint">p._maxPrice</code></strong>  (string) Maximum display (non-normalized) price for this Market, as a base-10 string.</li>
@@ -1575,11 +1575,10 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
 <p>This transaction will fail if:</p>
 
 <ul>
-<li><code class="prettyprint">p._outcomes</code> contains fewer than 2 outcomes or more than 8 outcomes.</li>
 <li><code class="prettyprint">p._designatedReporterAddress</code> is set to the null address.</li>
-<li><code class="prettyprint">p._feePerEthInWei</code> is greater than the maximum fee (0.15 ETH).</li>
+<li><code class="prettyprint">p._feePerCashInAttoCash</code> is greater than the maximum <a href="#creator-fee">Creator Fee</a> (15%).</li>
 <li><code class="prettyprint">p._endTime</code> has already passed.</li>
-<li><code class="prettyprint">p._endTime</code> is further in the future than the maximum market duration (91 days). </li>
+<li><code class="prettyprint">p._endTime</code> is further in the future than the maximum market duration (181 days). </li>
 <li>The Universe is Forking.</li>
 </ul>
 
@@ -1593,7 +1592,7 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
 <ul>
 <li><strong><code class="prettyprint">p.universe</code></strong>  (string) Universe in which to create a Yes/No Market.</li>
 <li><strong><code class="prettyprint">p._endTime</code></strong>  (number) Yes/No Market expiration timestamp, in seconds.</li>
-<li><strong><code class="prettyprint">p._feePerEthInWei</code></strong>  (string) &lt;optional&gt; Amount of wei per ether settled that goes to the <a href="#market-creator">Market Creator</a>, as a base-10 string.</li>
+<li><strong><code class="prettyprint">p._feePerCashInAttoCash</code></strong>  (string) &lt;optional&gt; Amount of <a href="#atto-prefix">attoDai</a> per Dai settled that goes to the <a href="#market-creator">Market Creator</a>, as a base-10 string.</li>
 <li><strong><code class="prettyprint">p._denominationToken</code></strong>  (string) Ethereum address of the token used as this Market&rsquo;s currency.</li>
 <li><strong><code class="prettyprint">p._designatedReporterAddress</code></strong>  (string) Ethereum address of this Market&rsquo;s <a href="#designated-reporter">Designated Reporter</a>.</li>
 <li><strong><code class="prettyprint">p._topic</code></strong>  (string) The topic (category) to which this Market belongs, as a UTF8 string. Note: This string is limited to 32-characters.</li>
@@ -4254,7 +4253,7 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
 <li><strong><code class="prettyprint">p._direction</code></strong>  (number) <a href="#order">Order</a> type (0 for &ldquo;buy&rdquo;, 1 for &ldquo;sell&rdquo;).</li>
 <li><strong><code class="prettyprint">p._market</code></strong>  (string) Market in which to trade, as a hex string.</li>
 <li><strong><code class="prettyprint">p._outcome</code></strong>  (number) <a href="#outcome">Outcome</a> ID to trade, must be an integer value on [0, 7].</li>
-<li><strong><code class="prettyprint">p.numOutcomes</code></strong>  (number) The number of outcomes in the market, must be an integer value on [2, 8].</li>
+<li><strong><code class="prettyprint">p.numOutcomes</code></strong>  (number) The number of outcomes in the market, must be an integer value on [2, 7].</li>
 <li><strong><code class="prettyprint">p.minPrice</code></strong>  (string) The <a href="#minimum-display-price">Minimum Display Price</a> for this Market, as a base-10 string.</li>
 <li><strong><code class="prettyprint">p.maxPrice</code></strong>  (string) The <a href="#maximum-display-price">Maximum Display Price</a> for this Market, as a base-10 string.</li>
 <li><strong><code class="prettyprint">p._tradeGroupId</code></strong>  (string) &lt;optional&gt; ID logged with each trade transaction, as a hexadecimal string. (This is generally just used by Augur&rsquo;s UI to group trades client-side.)</li>
@@ -4457,10 +4456,10 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
 <span class="c1">// example output:</span>
 <span class="kc">true</span>
 
-<span class="nx">augur</span><span class="p">.</span><span class="nx">api</span><span class="p">.</span><span class="nx">Augur</span><span class="p">.</span><span class="nx">isValidMarket</span><span class="p">({</span> 
+<span class="nx">augur</span><span class="p">.</span><span class="nx">api</span><span class="p">.</span><span class="nx">Augur</span><span class="p">.</span><span class="nx">isKnownMarket</span><span class="p">({</span> 
   <span class="na">_market</span><span class="p">:</span> <span class="s2">"0xaabbeaefcfaf7ea1e17c4768a554d5780069ddcc"</span>
-<span class="p">},</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">error</span><span class="p">,</span> <span class="nx">isValidMarket</span><span class="p">)</span> <span class="p">{</span> 
-  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">isValidMarket</span><span class="p">);</span> 
+<span class="p">},</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">error</span><span class="p">,</span> <span class="nx">isKnownMarket</span><span class="p">)</span> <span class="p">{</span> 
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">isKnownMarket</span><span class="p">);</span> 
 <span class="p">});</span>
 <span class="c1">// example output:</span>
 <span class="kc">true</span>
@@ -4568,7 +4567,7 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
 <li>(boolean) <code class="prettyprint">true</code> if the specified Universe is in Augur&rsquo;s list of known Universe, or <code class="prettyprint">false</code> otherwise.</li>
 </ul>
 
-<h3 id="augur-api-augur-isvalidmarket-p-callback">augur.api.Augur.isValidMarket(p, callback)</h3>
+<h3 id="augur-api-augur-isknownmarket-p-callback">augur.api.Augur.isKnownMarket(p, callback)</h3>
 
 <p>Augur keeps track of its <a href="#market">Markets</a> internally. This function returns whether the specified Market is a Market contract address that is known to Augur.</p>
 
@@ -9272,6 +9271,7 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
 <p>This transaction will fail if:</p>
 
 <ul>
+<li><code class="prettyprint">p._market</code> is not a Market known to Augur.</li>
 <li><code class="prettyprint">p._market</code> has not been Finalized.</li>
 </ul>
 
@@ -9388,6 +9388,7 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
 <p>This transaction will fail if:</p>
 
 <ul>
+<li><code class="prettyprint">p._market</code> is not a Market known to Augur.</li>
 <li><code class="prettyprint">msg.sender</code> doesn&rsquo;t have enough of <code class="prettyprint">p._market</code>&rsquo;s denomination token to be able to afford <code class="prettyprint">p._amount</code> Shares in all Outcomes.</li>
 <li><code class="prettyprint">p._amount</code> is not a number between 1 and 2<sup>254</sup>.</li>
 </ul>
@@ -9459,6 +9460,7 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
 <p>This transaction will fail if:</p>
 
 <ul>
+<li><code class="prettyprint">p._market</code> is not a Market known to Augur.</li>
 <li><code class="prettyprint">msg.sender</code> doesn&rsquo;t own <code class="prettyprint">p._amount</code> Shares of all Outcomes in <code class="prettyprint">p._market</code>.</li>
 <li><code class="prettyprint">p._amount</code> is not a number between 1 and 2<sup>254</sup>.</li>
 </ul>
@@ -9639,6 +9641,7 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
 <p>uint256[] _outcomes, Order.Types[] _types, uint256[] _attoshareAmounts, uint256[] _prices, IMarket _market, bool _ignoreShares, bytes32 _tradeGroupId</p>
 
 <ul>
+<li><code class="prettyprint">p._market</code> is not a Market known to Augur.</li>
 <li>A value in <code class="prettyprint">p._outcomes</code> is less than 0 or greater than the total number of Outcomes for <code class="prettyprint">p._market</code> (including <a href="#invalid-outcome">Invalid</a>).</li>
 <li>A value in <code class="prettyprint">p._types</code> is not a valid value of 0 or 1.</li>
 <li>A value in <code class="prettyprint">p._attoshareAmounts</code> is less than 0.</li>
@@ -9897,6 +9900,12 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
 <p>Converts any <a href="#participation-token">Participation Tokens</a> <code class="prettyprint">p._sender</code> has in the specified <a href="#dispute-window">Dispute Window</a> to <a href="#rep">Reputation Tokens</a>, and gives the user any <a href="#reporting-fee">Reporting Fees</a> he or she is owed in Ether. The parameter <code class="prettyprint">p._sender</code> is the Ethereum address of the user redeeming the Participation Tokens, as a 20-byte hexadecimal string.</p>
 
 <p>This transaction will trigger a <a href="#ParticipationTokensRedeemed"><code class="prettyprint">ParticipationTokensRedeemed</code></a> event if the REP/Ether was redeemed without any errors.</p>
+
+<p>This transaction will fail if:</p>
+
+<ul>
+<li>The Dispute Window is not over and the <a href="#universe">Universe</a> is not <a href="#fork">Forking</a>.</li>
+</ul>
 
 <h4 id="strong-strong"><strong>Parameters:</strong></h4>
 
@@ -10389,6 +10398,7 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
 
 <ul>
 <li>The Market&rsquo;s event end time has not passed.</li>
+<li>The Intial Report has already been submitted.</li>
 <li>The caller of the function is not the <a href="#designated-reporter">Designated Reporter</a> and the <a href="#designated-reporting-phase">Designated Reporting Phase</a> has not ended.</li>
 <li><code class="prettyprint">p._payoutNumerators</code> is not specified correctly. (For information on what the Payout Set should look like, refer to the <a href="#payout-set">Payout Set glossary entry</a>.)</li>
 </ul>
@@ -10429,6 +10439,7 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
 <p>This transaction will fail if:</p>
 
 <ul>
+<li>The Market has already been finalized.</li>
 <li>The <a href="#initial-report">Initial Report</a> has not been submitted.</li>
 <li>The <a href="#dispute-window">Dispute Window</a> has not ended.</li>
 <li>The Market is a Forked Market.</li>
@@ -10780,8 +10791,8 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
 <span class="p">});</span>
 
 <span class="nx">augur</span><span class="p">.</span><span class="nx">api</span><span class="p">.</span><span class="nx">ReputationToken</span><span class="p">.</span><span class="nx">transfer</span><span class="p">({</span>
-  <span class="na">_to</span><span class="p">:</span> <span class="s2">"0x8fa56abe36d8dc76cf85fecb6a3026733e0a12ac"</span><span class="p">,</span>
-  <span class="na">_value</span><span class="p">:</span> <span class="s2">"0xff"</span><span class="p">,</span>
+  <span class="na">recipient</span><span class="p">:</span> <span class="s2">"0x8fa56abe36d8dc76cf85fecb6a3026733e0a12ac"</span><span class="p">,</span>
+  <span class="na">amount</span><span class="p">:</span> <span class="s2">"0xff"</span><span class="p">,</span>
   <span class="na">tx</span><span class="p">:</span> <span class="p">{</span> 
     <span class="na">to</span><span class="p">:</span> <span class="nx">reputationTokenAddress</span><span class="p">,</span>
     <span class="na">gas</span><span class="p">:</span> <span class="s2">"0x632ea0"</span> 
@@ -10797,9 +10808,9 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
 <span class="p">});</span>
 
 <span class="nx">augur</span><span class="p">.</span><span class="nx">api</span><span class="p">.</span><span class="nx">ReputationToken</span><span class="p">.</span><span class="nx">transferFrom</span><span class="p">({</span>
-  <span class="na">_from</span><span class="p">:</span> <span class="s2">"0x1a05071893b764109f0bbc5b75d78e3e38b69ab3"</span><span class="p">,</span>
-  <span class="na">_to</span><span class="p">:</span> <span class="s2">"0x8fa56abe36d8dc76cf85fecb6a3026733e0a12ac"</span><span class="p">,</span>
-  <span class="na">_value</span><span class="p">:</span> <span class="s2">"0xff"</span><span class="p">,</span>
+  <span class="na">holder</span><span class="p">:</span> <span class="s2">"0x1a05071893b764109f0bbc5b75d78e3e38b69ab3"</span><span class="p">,</span>
+  <span class="na">recipient</span><span class="p">:</span> <span class="s2">"0x8fa56abe36d8dc76cf85fecb6a3026733e0a12ac"</span><span class="p">,</span>
+  <span class="na">amount</span><span class="p">:</span> <span class="s2">"0xff"</span><span class="p">,</span>
   <span class="na">tx</span><span class="p">:</span> <span class="p">{</span> 
     <span class="na">to</span><span class="p">:</span> <span class="nx">reputationTokenAddress</span><span class="p">,</span>
     <span class="na">gas</span><span class="p">:</span> <span class="s2">"0x632ea0"</span> 
@@ -11036,12 +11047,12 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
 
 <h3 id="augur-api-reputationtoken-transfer-p">augur.api.ReputationToken.transfer(p)</h3>
 
-<p>Sends <code class="prettyprint">p._value</code> worth of <a href="#atto-prefix">attoREP</a> to the Ethereum address <code class="prettyprint">p._to</code>. If this transaction transfers without any errors, it will trigger a <a href="#Transfer"><code class="prettyprint">Transfer</code></a> event, which will record the from address (<code class="prettyprint">msg.sender</code>), <code class="prettyprint">p._to</code> address, and <code class="prettyprint">p._value</code> amount transferred.</p>
+<p>Sends <code class="prettyprint">p.amount</code> worth of <a href="#atto-prefix">attoREP</a> to the Ethereum address <code class="prettyprint">p.recipient</code>. If this transaction transfers without any errors, it will trigger a <a href="#Transfer"><code class="prettyprint">Transfer</code></a> event, which will record the from address (<code class="prettyprint">msg.sender</code>), <code class="prettyprint">p.recipient</code> address, and <code class="prettyprint">p.amount</code> amount transferred.</p>
 
 <p>This transaction will fail if:</p>
 
 <ul>
-<li><code class="prettyprint">msg.sender</code> does not have enough REP to be able to transfer <code class="prettyprint">p._value</code> attoREP to the <code class="prettyprint">p._to</code> address.</li>
+<li><code class="prettyprint">msg.sender</code> does not have enough REP to be able to transfer <code class="prettyprint">p.amount</code> attoREP to the <code class="prettyprint">p._to</code> address.</li>
 </ul>
 
 <h4 id="strong-strong"><strong>Parameters:</strong></h4>
@@ -11050,8 +11061,8 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
 <li><strong><code class="prettyprint">p</code></strong> (Object) Parameters object.
 
 <ul>
-<li><strong><code class="prettyprint">p._to</code></strong>  (string) Ethereum address to send REP to, as a 20-byte hexadecimal value.</li>
-<li><strong><code class="prettyprint">p._value</code></strong>  (string) Number of attoREP to send, between 1 and 2<sup>254</sup>, as a hexadecimal string.</li>
+<li><strong><code class="prettyprint">p.recipient</code></strong>  (string) Ethereum address to send REP to, as a 20-byte hexadecimal value.</li>
+<li><strong><code class="prettyprint">p.amount</code></strong>  (string) Number of attoREP to send, between 1 and 2<sup>254</sup>, as a hexadecimal string.</li>
 <li><strong><code class="prettyprint">p.tx</code></strong> (Object) Object containing details about how this transaction should be made.
 
 <ul>
@@ -11073,13 +11084,13 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
 
 <h3 id="augur-api-reputationtoken-transferfrom-p">augur.api.ReputationToken.transferFrom(p)</h3>
 
-<p>Sends <code class="prettyprint">p._value</code> worth of <a href="#atto-prefix">attoREP</a> from the Ethereum addres <code class="prettyprint">p._from</code> to the Ethereum address <code class="prettyprint">p._to</code>. If this transaction transfers without any errors, it will trigger a <code class="prettyprint">Transfer</code> event, which will record the <code class="prettyprint">p._from</code> address, <code class="prettyprint">p._to</code> address, and <code class="prettyprint">p._value</code> (in attoREP) amount transferred.</p>
+<p>Sends <code class="prettyprint">p.amount</code> worth of <a href="#atto-prefix">attoREP</a> from the Ethereum addres <code class="prettyprint">p.holder</code> to the Ethereum address <code class="prettyprint">p.recipient</code>. If this transaction transfers without any errors, it will trigger a <code class="prettyprint">Transfer</code> event, which will record the <code class="prettyprint">p.holder</code> address, <code class="prettyprint">p.recipient</code> address, and <code class="prettyprint">p.amount</code> (in attoREP) amount transferred.</p>
 
 <p>This transaction will fail if:</p>
 
 <ul>
-<li><code class="prettyprint">p._from</code> does not have enough REP to be able to transfer <code class="prettyprint">p._value</code> attoREP to the <code class="prettyprint">p._to</code> address.</li>
-<li><code class="prettyprint">msg.sender</code> does not have the approval (see <code class="prettyprint">augur.api.ReputationToken.approve</code>) to spend at least <code class="prettyprint">p._value</code> worth of REP for the <code class="prettyprint">p._from</code> address.</li>
+<li><code class="prettyprint">p.holder</code> does not have enough REP to be able to transfer <code class="prettyprint">p.amount</code> attoREP to the <code class="prettyprint">p.recipient</code> address.</li>
+<li><code class="prettyprint">msg.sender</code> does not have the approval (see <code class="prettyprint">augur.api.ReputationToken.approve</code>) to spend at least <code class="prettyprint">p.amount</code> worth of REP for the <code class="prettyprint">p.holder</code> address.</li>
 </ul>
 
 <h4 id="strong-strong"><strong>Parameters:</strong></h4>
@@ -11088,9 +11099,9 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
 <li><strong><code class="prettyprint">p</code></strong> (Object) Parameters object.
 
 <ul>
-<li><strong><code class="prettyprint">p._from</code></strong>  (string) Ethereum address to send REP from, as a 20-byte hexadecimal value.</li>
-<li><strong><code class="prettyprint">p._to</code></strong>  (string) Ethereum address to send REP to, as a 20-byte hexadecimal value.</li>
-<li><strong><code class="prettyprint">p._value</code></strong>  (string) Number of attoREP to send, between 1 and 2<sup>254</sup>, as a hexadecimal string.</li>
+<li><strong><code class="prettyprint">p.holder</code></strong>  (string) Ethereum address to send REP from, as a 20-byte hexadecimal value.</li>
+<li><strong><code class="prettyprint">p.recipient</code></strong>  (string) Ethereum address to send REP to, as a 20-byte hexadecimal value.</li>
+<li><strong><code class="prettyprint">p.amount</code></strong>  (string) Number of attoREP to send, between 1 and 2<sup>254</sup>, as a hexadecimal string.</li>
 <li><strong><code class="prettyprint">p.tx</code></strong> (Object) Object containing details about how this transaction should be made.
 
 <ul>
@@ -11203,8 +11214,8 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
 <span class="p">});</span>
 
 <span class="nx">augur</span><span class="p">.</span><span class="nx">api</span><span class="p">.</span><span class="nx">ShareToken</span><span class="p">.</span><span class="nx">transfer</span><span class="p">({</span>
-  <span class="na">_to</span><span class="p">:</span> <span class="s2">"0x01f50356c280cd886dd058210937160c73700a4b"</span><span class="p">,</span>
-  <span class="na">_value</span><span class="p">:</span> <span class="nx">_attotokens</span><span class="p">,</span>
+  <span class="na">recipient</span><span class="p">:</span> <span class="s2">"0x01f50356c280cd886dd058210937160c73700a4b"</span><span class="p">,</span>
+  <span class="na">amount</span><span class="p">:</span> <span class="nx">_attotokens</span><span class="p">,</span>
   <span class="na">tx</span><span class="p">:</span> <span class="p">{</span> 
     <span class="na">to</span><span class="p">:</span> <span class="nx">shareTokenAddress</span><span class="p">,</span>
     <span class="na">gas</span><span class="p">:</span> <span class="s2">"0x632ea0"</span> 
@@ -11220,9 +11231,9 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
 <span class="p">});</span>
 
 <span class="nx">augur</span><span class="p">.</span><span class="nx">api</span><span class="p">.</span><span class="nx">ShareToken</span><span class="p">.</span><span class="nx">transferFrom</span><span class="p">({</span>
-  <span class="na">_from</span><span class="p">:</span> <span class="s2">"0x4b01721f0244e7c5b5f63c20942850e447f5a5ee"</span><span class="p">,</span>
-  <span class="na">_to</span><span class="p">:</span> <span class="s2">"0xa1f50356c280cd886dd058210937160c73700a4b"</span><span class="p">,</span>
-  <span class="na">_value</span><span class="p">:</span> <span class="nx">_attotokens</span><span class="p">,</span>
+  <span class="na">holder</span><span class="p">:</span> <span class="s2">"0x4b01721f0244e7c5b5f63c20942850e447f5a5ee"</span><span class="p">,</span>
+  <span class="na">recipient</span><span class="p">:</span> <span class="s2">"0xa1f50356c280cd886dd058210937160c73700a4b"</span><span class="p">,</span>
+  <span class="na">amount</span><span class="p">:</span> <span class="nx">_attotokens</span><span class="p">,</span>
   <span class="na">tx</span><span class="p">:</span> <span class="p">{</span> 
     <span class="na">to</span><span class="p">:</span> <span class="nx">shareTokenAddress</span><span class="p">,</span>
     <span class="na">gas</span><span class="p">:</span> <span class="s2">"0x632ea0"</span> 
@@ -11336,12 +11347,12 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
 
 <h3 id="augur-api-sharetoken-transfer-p">augur.api.ShareToken.transfer(p)</h3>
 
-<p>Sends <code class="prettyprint">p._value</code> worth of <a href="#share-unit">Share Units</a> to the Ethereum address <code class="prettyprint">p._to</code>. If this transaction transfers without any errors, it will trigger a <a href="#Transfer"><code class="prettyprint">Transfer</code></a> event, which will record the from address (<code class="prettyprint">msg.sender</code>), <code class="prettyprint">p._to</code> address, and <code class="prettyprint">p._value</code> amount transferred.</p>
+<p>Sends <code class="prettyprint">p.amount</code> worth of <a href="#share-unit">Share Units</a> to the Ethereum address <code class="prettyprint">p.recipient</code>. If this transaction transfers without any errors, it will trigger a <a href="#Transfer"><code class="prettyprint">Transfer</code></a> event, which will record the from address (<code class="prettyprint">msg.sender</code>), <code class="prettyprint">p.recipient</code> address, and <code class="prettyprint">p.amount</code> amount transferred.</p>
 
 <p>This transaction will fail if:</p>
 
 <ul>
-<li><code class="prettyprint">msg.sender</code> does not have enough Share Units to be able to transfer <code class="prettyprint">p._value</code> Share Units to the <code class="prettyprint">p._to</code> address.</li>
+<li><code class="prettyprint">msg.sender</code> does not have enough Share Units to be able to transfer <code class="prettyprint">p.amount</code> Share Units to the <code class="prettyprint">p.recipient</code> address.</li>
 </ul>
 
 <h4 id="strong-strong"><strong>Parameters:</strong></h4>
@@ -11350,8 +11361,8 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
 <li><strong><code class="prettyprint">p</code></strong> (Object) Parameters object.
 
 <ul>
-<li><strong><code class="prettyprint">p._to</code></strong>  (string) Ethereum address to send Shares to, as a 20-byte hexadecimal value.</li>
-<li><strong><code class="prettyprint">p._value</code></strong>  (string) Number of Share Units to send, between 1 and 2<sup>254</sup>, as a hexadecimal string.</li>
+<li><strong><code class="prettyprint">p.recipient</code></strong>  (string) Ethereum address to send Shares to, as a 20-byte hexadecimal value.</li>
+<li><strong><code class="prettyprint">p.amount</code></strong>  (string) Number of Share Units to send, between 1 and 2<sup>254</sup>, as a hexadecimal string.</li>
 <li><strong><code class="prettyprint">p.tx</code></strong> (Object) Object containing details about how this transaction should be made.
 
 <ul>
@@ -11373,13 +11384,13 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
 
 <h3 id="augur-api-sharetoken-transferfrom-p">augur.api.ShareToken.transferFrom(p)</h3>
 
-<p>Sends <code class="prettyprint">p._value</code> worth of <a href="#share-unit">Share Units</a> from the Ethereum addres <code class="prettyprint">p._from</code> to the Ethereum address <code class="prettyprint">p._to</code>. If this transaction transfers without any errors, it will trigger a <a href="#Transfer"><code class="prettyprint">Transfer</code></a> event, which will record the <code class="prettyprint">p._from</code> address, <code class="prettyprint">p._to</code> address, and <code class="prettyprint">p._value</code> (in Share Units) amount transferred.</p>
+<p>Sends <code class="prettyprint">p.amount</code> worth of <a href="#share-unit">Share Units</a> from the Ethereum addres <code class="prettyprint">p.holder</code> to the Ethereum address <code class="prettyprint">p.recipient</code>. If this transaction transfers without any errors, it will trigger a <a href="#Transfer"><code class="prettyprint">Transfer</code></a> event, which will record the <code class="prettyprint">p.holder</code> address, <code class="prettyprint">p.recipient</code> address, and <code class="prettyprint">p.amount</code> (in Share Units) amount transferred.</p>
 
 <p>This transaction will fail if:</p>
 
 <ul>
-<li><code class="prettyprint">p._from</code> does not have enough Shares to be able to transfer <code class="prettyprint">p._value</code> Share Units to the <code class="prettyprint">p._to</code> address.</li>
-<li><code class="prettyprint">msg.sender</code> does not have the approval (see <code class="prettyprint">augur.api.ShareToken.approve</code>) to spend at least <code class="prettyprint">p._value</code> worth of Share Tokens for the <code class="prettyprint">p._from</code> address.</li>
+<li><code class="prettyprint">p.holder</code> does not have enough Shares to be able to transfer <code class="prettyprint">p.amount</code> Share Units to the <code class="prettyprint">p.recipient</code> address.</li>
+<li><code class="prettyprint">msg.sender</code> does not have the approval (see <code class="prettyprint">augur.api.ShareToken.approve</code>) to spend at least <code class="prettyprint">p.amount</code> worth of Share Tokens for the <code class="prettyprint">p.holder</code> address.</li>
 </ul>
 
 <h4 id="strong-strong"><strong>Parameters:</strong></h4>
@@ -11388,9 +11399,9 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
 <li><strong><code class="prettyprint">p</code></strong> (Object) Parameters object.
 
 <ul>
-<li><strong><code class="prettyprint">p._from</code></strong>  (string) Ethereum address to send Shares from, as a 20-byte hexadecimal value.</li>
-<li><strong><code class="prettyprint">p._to</code></strong>  (string) Ethereum address to send Shares to, as a 20-byte hexadecimal value.</li>
-<li><strong><code class="prettyprint">p._value</code></strong>  (string) Number of Share Units to send, between 1 and 2<sup>254</sup>, as a hexadecimal string.</li>
+<li><strong><code class="prettyprint">p.holder</code></strong>  (string) Ethereum address to send Shares from, as a 20-byte hexadecimal value.</li>
+<li><strong><code class="prettyprint">p.recipient</code></strong>  (string) Ethereum address to send Shares to, as a 20-byte hexadecimal value.</li>
+<li><strong><code class="prettyprint">p.amount</code></strong>  (string) Number of Share Units to send, between 1 and 2<sup>254</sup>, as a hexadecimal string.</li>
 <li><strong><code class="prettyprint">p.tx</code></strong> (Object) Object containing details about how this transaction should be made.
 
 <ul>
@@ -11613,6 +11624,7 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
 <p>This transaction will fail if:</p>
 
 <ul>
+<li><code class="prettyprint">p._market</code> is not a Market known to Augur.</li>
 <li>The value of the Order (calculated as p._price * (Market’s number of <a href="#tick">Ticks</a> - p._amount) for a sell Order and <code class="prettyprint">p._price</code> * <code class="prettyprint">p._amount</code> for a buy Order) is less than the minimum value for an Order, which is 10**14 attoETH.</li>
 </ul>
 
@@ -11712,7 +11724,7 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
 <span class="p">};</span>
 <span class="nx">augur</span><span class="p">.</span><span class="nx">api</span><span class="p">.</span><span class="nx">Universe</span><span class="p">.</span><span class="nx">createCategoricalMarket</span><span class="p">({</span>
   <span class="na">_endTime</span><span class="p">:</span> <span class="s2">"0x5bd7e550"</span><span class="p">,</span>
-  <span class="na">_feePerEthInWei</span><span class="p">:</span> <span class="s2">"0x123456"</span><span class="p">,</span>
+  <span class="na">_feePerCashInAttoCash</span><span class="p">:</span> <span class="s2">"0x123456"</span><span class="p">,</span>
   <span class="na">_affiliateFeeDivisor</span><span class="p">:</span> <span class="s2">"100"</span><span class="p">,</span>
   <span class="na">_designatedReporterAddress</span><span class="p">:</span> <span class="s2">"0x01114f4bda09ed6c6715cf0baf606b5bce1dc96a"</span><span class="p">,</span>
   <span class="na">_outcomes</span><span class="p">:</span> <span class="p">[</span><span class="s2">"outcome1"</span><span class="p">,</span><span class="s2">"outcome2"</span><span class="p">],</span>
@@ -11762,7 +11774,7 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
 <span class="p">};</span>
 <span class="nx">augur</span><span class="p">.</span><span class="nx">api</span><span class="p">.</span><span class="nx">Universe</span><span class="p">.</span><span class="nx">createScalarMarket</span><span class="p">({</span>
   <span class="na">_endTime</span><span class="p">:</span> <span class="s2">"0x5b39b150"</span><span class="p">,</span>
-  <span class="na">_feePerEthInWei</span><span class="p">:</span> <span class="s2">"0x123456"</span><span class="p">,</span>
+  <span class="na">_feePerCashInAttoCash</span><span class="p">:</span> <span class="s2">"0x123456"</span><span class="p">,</span>
   <span class="na">_affiliateFeeDivisor</span><span class="p">:</span> <span class="s2">"100"</span><span class="p">,</span>
   <span class="na">_designatedReporterAddress</span><span class="p">:</span> <span class="s2">"0x01114f4bda09ed6c6715cf0baf606b5bce1dc96a"</span><span class="p">,</span>
   <span class="na">_minPrice</span><span class="p">:</span> <span class="s2">"-10"</span><span class="p">,</span>
@@ -11796,7 +11808,7 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
 <span class="p">};</span>
 <span class="nx">augur</span><span class="p">.</span><span class="nx">api</span><span class="p">.</span><span class="nx">Universe</span><span class="p">.</span><span class="nx">createYesNoMarket</span><span class="p">({</span>
   <span class="na">_endTime</span><span class="p">:</span> <span class="s2">"0x5c2b1e00"</span><span class="p">,</span>
-  <span class="na">_feePerEthInWei</span><span class="p">:</span> <span class="s2">"0x123456"</span><span class="p">,</span>
+  <span class="na">_feePerCashInAttoCash</span><span class="p">:</span> <span class="s2">"0x123456"</span><span class="p">,</span>
   <span class="na">_affiliateFeeDivisor</span><span class="p">:</span> <span class="s2">"100"</span><span class="p">,</span>
   <span class="na">_designatedReporterAddress</span><span class="p">:</span> <span class="s2">"0x01114f4bda09ed6c6715cf0baf606b5bce1dc96a"</span><span class="p">,</span>
   <span class="na">_topic</span><span class="p">:</span> <span class="s2">"space"</span><span class="p">,</span>
@@ -11962,12 +11974,12 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
 <p>This transaction will fail if:</p>
 
 <ul>
-<li><code class="prettyprint">p._outcomes</code> contains fewer than 2 outcomes or more than 8 outcomes.</li>
+<li><code class="prettyprint">p._outcomes</code> contains fewer than 2 outcomes or more than 7 outcomes. (Should not include <a href="#invalid-outcome">Invalid</a>.)</li>
 <li><code class="prettyprint">p._designatedReporterAddress</code> is set to the null address.</li>
-<li><code class="prettyprint">p._feePerEthInWei</code> is greater than the maximum fee (0.15 ETH).</li>
+<li><code class="prettyprint">p._feePerCashInAttoCash</code> is greater than the maximum <a href="#creator-fee">Creator Fee</a> (15%).</li>
 <li><code class="prettyprint">p._endTime</code> has already passed.</li>
-<li><code class="prettyprint">p._endTime</code> is further in the future than the maximum market duration (91 days). </li>
-<li>The Universe is Forking.</li>
+<li><code class="prettyprint">p._endTime</code> is further in the future than the maximum market duration (181 days). </li>
+<li>The <a href="#universe">Universe</a> is <a href="#fork">Forking</a>.</li>
 </ul>
 
 <p>NOTE: The account attempting to create the new market must have sufficient REP in order for the market to be created. This is also true when calling <code class="prettyprint">eth_estimateGas</code>, which essentially does a trial run of the transaction to determine what the gas cost would be to actually run it. </p>
@@ -11979,7 +11991,7 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
 
 <ul>
 <li><strong><code class="prettyprint">p._endTime</code></strong>  (string) Unix timestamp for the <a href="#end-time">End Time</a> of the <a href="#market">Market</a>, as a hexadecimal string.</li>
-<li><strong><code class="prettyprint">p._feePerEthInWei</code></strong>  (string) <a href="#creator-fee">Creator Fee</a> (in Wei) that is collected for every 1 Ether worth of <a href="#share">Shares</a> <a href="#settlement">Settled</a>, as a hexadecimal string.</li>
+<li><strong><code class="prettyprint">p._feePerCashInAttoCash</code></strong>  (string) Creator Fee (in <a href="#atto-prefix">attoDai</a>) that is collected for every 1 Dai worth of <a href="#share">Shares</a> <a href="#settlement">Settled</a>, as a hexadecimal string.</li>
 <li><strong><code class="prettyprint">p._affiliateFeeDivisor</code></strong> (number) Integer by  which to divide the <a href="#creator-fee">Creator Fee</a> amongst <a href="#affiliate">Affiliates</a>.</li>
 <li><strong><code class="prettyprint">p._designatedReporterAddress</code></strong>  (string) Ethereum address of the <a href="#designated-reporter">Designated Reporter</a>.</li>
 <li><strong><code class="prettyprint">p._outcomes</code></strong>  (Array.&lt;string&gt;) Array of names for all possible outcomes for the Market event.</li>
@@ -12058,10 +12070,10 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
 <ul>
 <li><code class="prettyprint">p._designatedReporterAddress</code> is set to the null address.</li>
 <li><code class="prettyprint">p._numTicks</code> is less than 2.</li>
-<li><code class="prettyprint">p._feePerEthInWei</code> is greater than the maximum fee (0.15 ETH).</li>
+<li><code class="prettyprint">p._feePerCashInAttoCash</code> is greater than the maximum <a href="#creator-fee">Creator Fee</a> (15%).</li>
 <li><code class="prettyprint">p._endTime</code> has already passed.</li>
-<li><code class="prettyprint">p._endTime</code> is further in the future than the maximum market duration (91 days). </li>
-<li>The Universe is Forking.</li>
+<li><code class="prettyprint">p._endTime</code> is further in the future than the maximum market duration (181 days). </li>
+<li>The <a href="#universe">Universe</a> is <a href="#fork">Forking</a>.</li>
 </ul>
 
 <p>NOTE: The account attempting to create the new market must have sufficient REP in order for the market to be created. This is also true when calling <code class="prettyprint">eth_estimateGas</code>, which essentially does a trial run of the transaction to determine what the gas cost would be to actually run it. </p>
@@ -12073,7 +12085,7 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
 
 <ul>
 <li><strong><code class="prettyprint">p._endTime</code></strong>  (string) Unix timestamp for the <a href="#end-time">End Time</a> of the <a href="#market">Market</a>, as a hexadecimal string.</li>
-<li><strong><code class="prettyprint">p._feePerEthInWei</code></strong>  (string) <a href="#creator-fee">Creator Fee</a> (in <a href="atto-prefix">attoETH</a>) that is collected for every 1 Ether worth of <a href="#share">Shares</a> <a href="#settlement">Settled</a>.</li>
+<li><strong><code class="prettyprint">p._feePerCashInAttoCash</code></strong>  (string) Creator Fee (in <a href="atto-prefix">attoDai</a>) that is collected for every 1 Dai worth of <a href="#share">Shares</a> <a href="#settlement">Settled</a>.</li>
 <li><strong><code class="prettyprint">p._affiliateFeeDivisor</code></strong> (string) Integer by  which to divide the <a href="#creator-fee">Creator Fee</a> amongst <a href="#affiliate">Affiliates</a>.</li>
 <li><strong><code class="prettyprint">p._designatedReporterAddress</code></strong>  (string) Ethereum address of the <a href="#designated-reporter">Designated Reporter</a>.</li>
 <li><strong><code class="prettyprint">p._minPrice</code></strong>  (string) <a href="#minimum-display-price">Minimum Display Price</a> for the Market, as a hexadecimal string.</li>
@@ -12114,12 +12126,11 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
 <p>This transaction will fail if:</p>
 
 <ul>
-<li><code class="prettyprint">p._outcomes</code> contains fewer than 2 outcomes or more than 8 outcomes.</li>
 <li><code class="prettyprint">p._designatedReporterAddress</code> is set to the null address.</li>
-<li><code class="prettyprint">p._feePerEthInWei</code> is greater than the maximum fee (0.15 ETH).</li>
+<li><code class="prettyprint">p._feePerCashInAttoCash</code> is greater than the maximum <a href="#creator-fee">Creator Fee</a> (15%).</li>
 <li><code class="prettyprint">p._endTime</code> has already passed.</li>
-<li><code class="prettyprint">p._endTime</code> is further in the future than the maximum market duration (91 days). </li>
-<li>The Universe is Forking.</li>
+<li><code class="prettyprint">p._endTime</code> is further in the future than the maximum market duration (181 days). </li>
+<li>The <a href="#universe">Universe</a> is <a href="#fork">Forking</a>.</li>
 </ul>
 
 <p>NOTE: The account attempting to create the new market must have sufficient REP in order for the market to be created. This is also true when calling <code class="prettyprint">eth_estimateGas</code>, which essentially does a trial run of the transaction to determine what the gas cost would be to actually run it. </p>
@@ -12131,7 +12142,7 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
 
 <ul>
 <li><strong><code class="prettyprint">p._endTime</code></strong>  (string) Unix timestamp for the <a href="#end-time">End Time</a> of the <a href="#market">Market</a>, as a hexadecimal string.</li>
-<li><strong><code class="prettyprint">p._feePerEthInWei</code></strong>  (string) <a href="#creator-fee">Creator Fee</a> (in Wei) that is collected for every 1 Ether worth of <a href="#share">Shares</a> <a href="#settlement">Settled</a>, as a hexadecimal string.</li>
+<li><strong><code class="prettyprint">p._feePerCashInAttoCash</code></strong>  (string) Creator Fee (in <a href="#atto-prefix">attoDai</a>) that is collected for every 1 Dai worth of <a href="#share">Shares</a> <a href="#settlement">Settled</a>, as a hexadecimal string.</li>
 <li><strong><code class="prettyprint">p._affiliateFeeDivisor</code></strong> (number) Integer by  which to divide the <a href="#creator-fee">Creator Fee</a> amongst <a href="#affiliate">Affiliates</a>. </li>
 <li><strong><code class="prettyprint">p._designatedReporterAddress</code></strong>  (string) Ethereum address of the <a href="#designated-reporter">Designated Reporter</a>.</li>
 <li><strong><code class="prettyprint">p._topic</code></strong>  (string) Market <a href="#topic">Topic</a>.</li>
@@ -14907,7 +14918,7 @@ During the very first <a href="#dispute-window">Dispute Window</a> after launch,
 
 <p>For example, in a <a href="#yes-no-market">Yes/No Market</a> with 1000 <a href="#tick">Ticks</a>, a <a href="#report">Report</a> that Stakes <a href="#rep">REP</a> on Outcome <code class="prettyprint">No</code> would submit a Payout Set that looks like <code class="prettyprint">[0, 1000, 0]</code>. Payout Sets are a breakdown of the Payout Distribution, or how Markets should pay out for each <a href="#share">Share</a> when <a href="#finalized-market">Finalized</a>. In the example above, the Payout Numerators are the values 0, 1000 and 0, and only <a href="#share">Shares</a> of Outcome <code class="prettyprint">No</code> (index 1 of the array) will pay out on the Finalized Market because the Payout Numerator for Outcome Invalid and <code class="prettyprint">Yes</code> are <code class="prettyprint">0</code>. Similarly, a Report that Stakes REP on Outcome <code class="prettyprint">Yes</code> would submit a Payout Set that looks like <code class="prettyprint">[0, 0, 1000]</code>, and a Report that Stakes REP on Outcome Invalid would submit one like <code class="prettyprint">[1000, 0, 0]</code>. Valid Payout Sets are hashed using the SHA-3 hashing algorithm, which is a <a href="#payout-distribution-hash">Payout Distribution Hash</a>.</p>
 
-<p>The Payout Set for a <a href="#categorical-market">Categorical Market</a> is similar to that of a Yes/No Market, except that Categorical Markets can have up to 8 Outcomes, so an example Payout Set for a Categorical Market with 8000 Ticks might look like <code class="prettyprint">[0, 0, 0, 8000, 0, 0, 0, 0, 0]</code>. The same Categorical Market with an Invalid Outcome would have a Payout Set like <code class="prettyprint">[8000, 0, 0, 0, 0, 0, 0, 0, 0]</code>.</p>
+<p>The Payout Set for a <a href="#categorical-market">Categorical Market</a> is similar to that of a Yes/No Market, except that Categorical Markets can have up to 7 Outcomes (excluding Invalid), so an example Payout Set for a Categorical Market with 8000 Ticks might look like <code class="prettyprint">[0, 0, 0, 8000, 0, 0, 0, 0]</code>. The same Categorical Market with an Invalid Outcome would have a Payout Set like <code class="prettyprint">[8000, 0, 0, 0, 0, 0, 0, 0]</code>.</p>
 
 <p>The Payout Set for a <a href="#scalar-market">Scalar Market</a> is determined differently than for Yes/No Markets and Categorical Markets. Scalar Markets have 3 possible Outcomes: Invalid, 0 (for a <a href="#short-position">Short Position</a>) and 1 (for a <a href="#long-position">Long Position</a>). Suppose that a Scalar Market exists with $0 as the <a href="#minimum-display-price">Minimum Display Price</a>, $100 as the <a href="#maximum-display-price">Maximum Display Price</a>, 10,000 as the Number of Ticks, and $75 as the reported Outcome. The Payout Set for this Market would be determined as follows:</p>
 
