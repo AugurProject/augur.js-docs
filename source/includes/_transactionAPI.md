@@ -3383,7 +3383,6 @@ Creates a new [Yes/No Market](#yes-no-market). This transaction will trigger a [
 
 This transaction will fail if:
 
-* `p._outcomes` contains fewer than 2 outcomes or more than 8 outcomes.
 * `p._designatedReporterAddress` is set to the null address.
 * `p._feePerEthInWei` is greater than the maximum fee (0.5 ETH).
 * `p._endTime` has already passed.

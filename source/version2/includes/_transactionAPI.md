@@ -1128,6 +1128,10 @@ Converts any [Participation Tokens](#participation-token) `p._sender` has in the
 
 This transaction will trigger a [`ParticipationTokensRedeemed`](#ParticipationTokensRedeemed) event if the REP/Ether was redeemed without any errors.
 
+This transaction will fail if:
+
+* The Dispute Window is not over and the [Universe](#universe) is not [Forking](#fork).
+
 #### **Parameters:**
 
 * **`p`** (Object) Parameters object.
@@ -1544,6 +1548,7 @@ Submits an [Initial Report](#initial-report) for the [Market](#market). This tra
 This transaction will fail if:
 
   * The Market's event end time has not passed.
+  * The Intial Report has already been submitted.
   * The caller of the function is not the [Designated Reporter](#designated-reporter) and the [Designated Reporting Phase](#designated-reporting-phase) has not ended.
   * `p._payoutNumerators` is not specified correctly. (For information on what the Payout Set should look like, refer to the [Payout Set glossary entry](#payout-set).)
 
@@ -2603,7 +2608,7 @@ var _extraInfo = {
 };
 augur.api.Universe.createCategoricalMarket({
   _endTime: "0x5bd7e550",
-  _feePerEthInWei: "0x123456",
+  _feePerCashInAttoCash: "0x123456",
   _affiliateFeeDivisor: "100",
   _designatedReporterAddress: "0x01114f4bda09ed6c6715cf0baf606b5bce1dc96a",
   _outcomes: ["outcome1","outcome2"],
@@ -2653,7 +2658,7 @@ var _extraInfo = {
 };
 augur.api.Universe.createScalarMarket({
   _endTime: "0x5b39b150",
-  _feePerEthInWei: "0x123456",
+  _feePerCashInAttoCash: "0x123456",
   _affiliateFeeDivisor: "100",
   _designatedReporterAddress: "0x01114f4bda09ed6c6715cf0baf606b5bce1dc96a",
   _minPrice: "-10",
@@ -2687,7 +2692,7 @@ var _extraInfo = {
 };
 augur.api.Universe.createYesNoMarket({
   _endTime: "0x5c2b1e00",
-  _feePerEthInWei: "0x123456",
+  _feePerCashInAttoCash: "0x123456",
   _affiliateFeeDivisor: "100",
   _designatedReporterAddress: "0x01114f4bda09ed6c6715cf0baf606b5bce1dc96a",
   _topic: "space",
@@ -2852,12 +2857,12 @@ Creates a new [Categorical Market](#categorical-market). This transaction will t
 
 This transaction will fail if:
 
-* `p._outcomes` contains fewer than 2 outcomes or more than 8 outcomes.
+* `p._outcomes` contains fewer than 2 outcomes or more than 7 outcomes. (Should not include [Invalid](#invalid-outcome).)
 * `p._designatedReporterAddress` is set to the null address.
-* `p._feePerEthInWei` is greater than the maximum fee (0.15 ETH).
+* `p._feePerCashInAttoCash` is greater than the maximum [Creator Fee](#creator-fee) (15%).
 * `p._endTime` has already passed.
-* `p._endTime` is further in the future than the maximum market duration (91 days). 
-* The Universe is Forking.
+* `p._endTime` is further in the future than the maximum market duration (181 days). 
+* The [Universe](#universe) is [Forking](#fork).
 
 NOTE: The account attempting to create the new market must have sufficient REP in order for the market to be created. This is also true when calling `eth_estimateGas`, which essentially does a trial run of the transaction to determine what the gas cost would be to actually run it. 
 
@@ -2865,7 +2870,7 @@ NOTE: The account attempting to create the new market must have sufficient REP i
 
 * **`p`** (Object) Parameters object.
     * **`p._endTime`**  (string) Unix timestamp for the [End Time](#end-time) of the [Market](#market), as a hexadecimal string.
-    * **`p._feePerEthInWei`**  (string) [Creator Fee](#creator-fee) (in Wei) that is collected for every 1 Ether worth of [Shares](#share) [Settled](#settlement), as a hexadecimal string.
+    * **`p._feePerCashInAttoCash`**  (string) Creator Fee (in [attoDai](#atto-prefix)) that is collected for every 1 Dai worth of [Shares](#share) [Settled](#settlement), as a hexadecimal string.
     * **`p._affiliateFeeDivisor`** (number) Integer by  which to divide the [Creator Fee](#creator-fee) amongst [Affiliates](#affiliate).
     * **`p._designatedReporterAddress`**  (string) Ethereum address of the [Designated Reporter](#designated-reporter).
     * **`p._outcomes`**  (Array.&lt;string>) Array of names for all possible outcomes for the Market event.
@@ -2921,10 +2926,10 @@ This transaction will fail if:
 
 * `p._designatedReporterAddress` is set to the null address.
 * `p._numTicks` is less than 2.
-* `p._feePerEthInWei` is greater than the maximum fee (0.15 ETH).
+* `p._feePerCashInAttoCash` is greater than the maximum [Creator Fee](#creator-fee) (15%).
 * `p._endTime` has already passed.
-* `p._endTime` is further in the future than the maximum market duration (91 days). 
-* The Universe is Forking.
+* `p._endTime` is further in the future than the maximum market duration (181 days). 
+* The [Universe](#universe) is [Forking](#fork).
 
 
 NOTE: The account attempting to create the new market must have sufficient REP in order for the market to be created. This is also true when calling `eth_estimateGas`, which essentially does a trial run of the transaction to determine what the gas cost would be to actually run it. 
@@ -2933,7 +2938,7 @@ NOTE: The account attempting to create the new market must have sufficient REP i
 
 * **`p`** (Object) Parameters object.
     * **`p._endTime`**  (string) Unix timestamp for the [End Time](#end-time) of the [Market](#market), as a hexadecimal string.
-    * **`p._feePerEthInWei`**  (string) [Creator Fee](#creator-fee) (in [attoETH](atto-prefix)) that is collected for every 1 Ether worth of [Shares](#share) [Settled](#settlement).
+    * **`p._feePerCashInAttoCash`**  (string) Creator Fee (in [attoDai](atto-prefix)) that is collected for every 1 Dai worth of [Shares](#share) [Settled](#settlement).
     * **`p._affiliateFeeDivisor`** (string) Integer by  which to divide the [Creator Fee](#creator-fee) amongst [Affiliates](#affiliate).
     * **`p._designatedReporterAddress`**  (string) Ethereum address of the [Designated Reporter](#designated-reporter).
     * **`p._minPrice`**  (string) [Minimum Display Price](#minimum-display-price) for the Market, as a hexadecimal string.
@@ -2963,12 +2968,11 @@ Creates a new [Yes/No Market](#yes-no-market). This transaction will trigger a [
 
 This transaction will fail if:
 
-* `p._outcomes` contains fewer than 2 outcomes or more than 8 outcomes.
 * `p._designatedReporterAddress` is set to the null address.
-* `p._feePerEthInWei` is greater than the maximum fee (0.15 ETH).
+* `p._feePerCashInAttoCash` is greater than the maximum [Creator Fee](#creator-fee) (15%).
 * `p._endTime` has already passed.
-* `p._endTime` is further in the future than the maximum market duration (91 days). 
-* The Universe is Forking.
+* `p._endTime` is further in the future than the maximum market duration (181 days). 
+* The [Universe](#universe) is [Forking](#fork).
 
 
 NOTE: The account attempting to create the new market must have sufficient REP in order for the market to be created. This is also true when calling `eth_estimateGas`, which essentially does a trial run of the transaction to determine what the gas cost would be to actually run it. 
@@ -2977,7 +2981,7 @@ NOTE: The account attempting to create the new market must have sufficient REP i
 
 * **`p`** (Object) Parameters object.
     * **`p._endTime`**  (string) Unix timestamp for the [End Time](#end-time) of the [Market](#market), as a hexadecimal string.
-    * **`p._feePerEthInWei`**  (string) [Creator Fee](#creator-fee) (in Wei) that is collected for every 1 Ether worth of [Shares](#share) [Settled](#settlement), as a hexadecimal string.
+    * **`p._feePerCashInAttoCash`**  (string) Creator Fee (in [attoDai](#atto-prefix)) that is collected for every 1 Dai worth of [Shares](#share) [Settled](#settlement), as a hexadecimal string.
     * **`p._affiliateFeeDivisor`** (number) Integer by  which to divide the [Creator Fee](#creator-fee) amongst [Affiliates](#affiliate). 
     * **`p._designatedReporterAddress`**  (string) Ethereum address of the [Designated Reporter](#designated-reporter).
     * **`p._topic`**  (string) Market [Topic](#topic).

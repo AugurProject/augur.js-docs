@@ -520,7 +520,7 @@ var _extraInfo = {
 augur.createMarket.createCategoricalMarket({
   universe: "0x1f732847fbbcc46ffe859f28e916d993b2b08831",
   _endTime: 1540875600,
-  _feePerEthInWei: 1193046,
+  _feePerCashInAttoCash: 1193046,
   _denominationToken: "0xd2ee83a8a2a904181ccfddd8292f178614062aa0",
   _designatedReporterAddress: "0x01114f4bda09ed6c6715cf0baf606b5bce1dc96a",
   _outcomes: ["outcome1","outcome2"],
@@ -566,7 +566,7 @@ var _extraInfo = {
 augur.createMarket.createScalarMarket({
   universe: "0x1f732847fbbcc46ffe859f28e916d993b2b08831",
   _endTime: 1530507600,
-  _feePerEthInWei: 1193046,
+  _feePerCashInAttoCash: 1193046,
   _denominationToken: "0xd2ee83a8a2a904181ccfddd8292f178614062aa0",
   _designatedReporterAddress: "0x01114f4bda09ed6c6715cf0baf606b5bce1dc96a",
   _minPrice: -10,
@@ -613,7 +613,7 @@ var _extraInfo = {
 augur.createMarket.createYesNoMarket({
   universe: "0x1f732847fbbcc46ffe859f28e916d993b2b08831",
   _endTime: 1546300799,
-  _feePerEthInWei: 1193046,
+  _feePerCashInAttoCash: 1193046,
   _denominationToken: "0xd2ee83a8a2a904181ccfddd8292f178614062aa0",
   _designatedReporterAddress: "0x01114f4bda09ed6c6715cf0baf606b5bce1dc96a",
   _topic: "stocks",
@@ -686,11 +686,11 @@ Creates a [Categorical Market](#categorical-market) in a specified [Universe](#u
 
 This transaction will fail if:
 
-* `p._outcomes` contains fewer than 2 outcomes or more than 8 outcomes.
+* `p._outcomes` contains fewer than 2 outcomes or more than 7 outcomes.
 * `p._designatedReporterAddress` is set to the null address.
-* `p._feePerEthInWei` is greater than the maximum fee (0.15 ETH).
+* `p._feePerCashInAttoCash` is greater than the maximum [Creator Fee](#creator-fee) (15%).
 * `p._endTime` has already passed.
-* `p._endTime` is further in the future than the maximum market duration (91 days). 
+* `p._endTime` is further in the future than the maximum market duration (181 days). 
 * The Universe is Forking.
 
 NOTE: The account attempting to create the new market must have sufficient REP in order for the market to be created. This is also true when calling `eth_estimateGas`, which essentially does a trial run of the transaction to determine what the gas cost would be to actually run it. 
@@ -700,7 +700,7 @@ NOTE: The account attempting to create the new market must have sufficient REP i
 * **`p`** (Object) Parameters object.
     * **`p.universe`**  (string) Universe in which to create a Categorical Market.
     * **`p._endTime`**  (number) Categorical Market expiration timestamp, in seconds.
-    * **`p._feePerEthInWei`**  (string) &lt;optional> Amount of wei per ether settled that goes to the [Market Creator](#market-creator), as a base-10 string.
+    * **`p._feePerCashInAttoCash`**  (string) &lt;optional> Amount of [attoDai](#atto-prefix) per Dai settled that goes to the [Market Creator](#market-creator), as a base-10 string.
     * **`p._denominationToken`**  (string) Ethereum address of the token used as this Market's currency.
     * **`p._designatedReporterAddress`**  (string) Ethereum address of this Market's [Designated Reporter](#designated-reporter).
     * **`p._outcomes`**  (Array.&lt;string>) Array of names for all possible outcomes for the Market event.
@@ -724,9 +724,9 @@ This transaction will fail if:
 
 * `p._designatedReporterAddress` is set to the null address.
 * `p._numTicks` is less than 2.
-* `p._feePerEthInWei` is greater than the maximum fee (0.15 ETH).
+* `p._feePerCashInAttoCash` is greater than the maximum [Creator Fee](#creator-fee) (15%).
 * `p._endTime` has already passed.
-* `p._endTime` is further in the future than the maximum market duration (91 days). 
+* `p._endTime` is further in the future than the maximum market duration (181 days). 
 * The Universe is Forking.
 
 NOTE: The account attempting to create the new market must have sufficient REP in order for the market to be created. This is also true when calling `eth_estimateGas`, which essentially does a trial run of the transaction to determine what the gas cost would be to actually run it. 
@@ -736,7 +736,7 @@ NOTE: The account attempting to create the new market must have sufficient REP i
 * **`p`** (Object) Parameters object.
     * **`p.universe`**  (string) Universe in which to create this market.
     * **`p._endTime`**  (number) Market expiration timestamp, in seconds.
-    * **`p._feePerEthInWei`**  (string) &lt;optional> Amount of wei per ether settled that goes to the [Market Creator](#market-creator), as a base-10 string.
+    * **`p._feePerCashInAttoCash`**  (string) &lt;optional> Amount of [attoDai](#atto-prefix) per Dai settled that goes to the [Market Creator](#market-creator), as a base-10 string.
     * **`p._denominationToken`**  (string) Ethereum address of the token used as this Market's currency.
     * **`p._minPrice`**  (string) Minimum display (non-normalized) price for this Market, as a base-10 string.
     * **`p._maxPrice`**  (string) Maximum display (non-normalized) price for this Market, as a base-10 string.
@@ -760,11 +760,10 @@ Creates a [Yes/No Market](#yes-no-market) in a specified [Universe](#universe). 
 
 This transaction will fail if:
 
-* `p._outcomes` contains fewer than 2 outcomes or more than 8 outcomes.
 * `p._designatedReporterAddress` is set to the null address.
-* `p._feePerEthInWei` is greater than the maximum fee (0.15 ETH).
+* `p._feePerCashInAttoCash` is greater than the maximum [Creator Fee](#creator-fee) (15%).
 * `p._endTime` has already passed.
-* `p._endTime` is further in the future than the maximum market duration (91 days). 
+* `p._endTime` is further in the future than the maximum market duration (181 days). 
 * The Universe is Forking.
 
 NOTE: The account attempting to create the new market must have sufficient REP in order for the market to be created. This is also true when calling `eth_estimateGas`, which essentially does a trial run of the transaction to determine what the gas cost would be to actually run it. 
@@ -774,7 +773,7 @@ NOTE: The account attempting to create the new market must have sufficient REP i
 * **`p`** (Object) Parameters object.
     * **`p.universe`**  (string) Universe in which to create a Yes/No Market.
     * **`p._endTime`**  (number) Yes/No Market expiration timestamp, in seconds.
-    * **`p._feePerEthInWei`**  (string) &lt;optional> Amount of wei per ether settled that goes to the [Market Creator](#market-creator), as a base-10 string.
+    * **`p._feePerCashInAttoCash`**  (string) &lt;optional> Amount of [attoDai](#atto-prefix) per Dai settled that goes to the [Market Creator](#market-creator), as a base-10 string.
     * **`p._denominationToken`**  (string) Ethereum address of the token used as this Market's currency.
     * **`p._designatedReporterAddress`**  (string) Ethereum address of this Market's [Designated Reporter](#designated-reporter).
     * **`p._topic`**  (string) The topic (category) to which this Market belongs, as a UTF8 string. Note: This string is limited to 32-characters.
@@ -3107,7 +3106,7 @@ If `p.doNotCreateOrders` is set to `false`, this function will place trades unti
     * **`p._direction`**  (number) [Order](#order) type (0 for "buy", 1 for "sell").
     * **`p._market`**  (string) Market in which to trade, as a hex string.
     * **`p._outcome`**  (number) [Outcome](#outcome) ID to trade, must be an integer value on [0, 7].
-    * **`p.numOutcomes`**  (number) The number of outcomes in the market, must be an integer value on [2, 8].
+    * **`p.numOutcomes`**  (number) The number of outcomes in the market, must be an integer value on [2, 7].
     * **`p.minPrice`**  (string) The [Minimum Display Price](#minimum-display-price) for this Market, as a base-10 string.
     * **`p.maxPrice`**  (string) The [Maximum Display Price](#maximum-display-price) for this Market, as a base-10 string.
     * **`p._tradeGroupId`**  (string) &lt;optional> ID logged with each trade transaction, as a hexadecimal string. (This is generally just used by Augur's UI to group trades client-side.)
