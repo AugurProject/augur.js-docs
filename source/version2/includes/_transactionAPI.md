@@ -609,6 +609,7 @@ Collects trading profits from outstanding [Shares](#share) in [Finalized Market]
 
 This transaction will fail if:
 
+* `p._market` is not a Market known to Augur.
 * `p._market` has not been Finalized.
 
 #### **Parameters:**
@@ -715,6 +716,7 @@ Purchases `p._amount` worth of [Shares](#share) in all [Outcomes](#outcome) of [
 
 This transaction will fail if:
 
+* `p._market` is not a Market known to Augur.
 * `msg.sender` doesn't have enough of `p._market`'s denomination token to be able to afford `p._amount` Shares in all Outcomes.
 * `p._amount` is not a number between 1 and 2<sup>254</sup>.
 
@@ -764,6 +766,7 @@ Sell `p._amount` worth of [Shares](#share) in all [Outcomes](#outcome) of [Marke
 
 This transaction will fail if:
 
+* `p._market` is not a Market known to Augur.
 * `msg.sender` doesn't own `p._amount` Shares of all Outcomes in `p._market`.
 * `p._amount` is not a number between 1 and 2<sup>254</sup>.
 
@@ -912,6 +915,7 @@ This transaction will fail if:
 
 uint256[] _outcomes, Order.Types[] _types, uint256[] _attoshareAmounts, uint256[] _prices, IMarket _market, bool _ignoreShares, bytes32 _tradeGroupId
 
+* `p._market` is not a Market known to Augur.
 * A value in `p._outcomes` is less than 0 or greater than the total number of Outcomes for `p._market` (including [Invalid](#invalid-outcome)).
 * A value in `p._types` is not a valid value of 0 or 1.
 * A value in `p._attoshareAmounts` is less than 0.
@@ -1577,6 +1581,7 @@ If the market resolved to [Invalid](#invalid-outcome), the [Validity Bond](#vali
 
 This transaction will fail if:
 
+* The Market has already been finalized.
 * The [Initial Report](#initial-report) has not been submitted.
 * The [Dispute Window](#dispute-window) has not ended.
 * The Market is a Forked Market.
@@ -1864,8 +1869,8 @@ augur.api.ReputationToken.migrateOutByPayout({
 });
 
 augur.api.ReputationToken.transfer({
-  _to: "0x8fa56abe36d8dc76cf85fecb6a3026733e0a12ac",
-  _value: "0xff",
+  recipient: "0x8fa56abe36d8dc76cf85fecb6a3026733e0a12ac",
+  amount: "0xff",
   tx: { 
     to: reputationTokenAddress,
     gas: "0x632ea0" 
@@ -1881,9 +1886,9 @@ augur.api.ReputationToken.transfer({
 });
 
 augur.api.ReputationToken.transferFrom({
-  _from: "0x1a05071893b764109f0bbc5b75d78e3e38b69ab3",
-  _to: "0x8fa56abe36d8dc76cf85fecb6a3026733e0a12ac",
-  _value: "0xff",
+  holder: "0x1a05071893b764109f0bbc5b75d78e3e38b69ab3",
+  recipient: "0x8fa56abe36d8dc76cf85fecb6a3026733e0a12ac",
+  amount: "0xff",
   tx: { 
     to: reputationTokenAddress,
     gas: "0x632ea0" 
@@ -2056,17 +2061,17 @@ This transaction will fail if:
 
 ### augur.api.ReputationToken.transfer(p)
 
-Sends `p._value` worth of [attoREP](#atto-prefix) to the Ethereum address `p._to`. If this transaction transfers without any errors, it will trigger a [`Transfer`](#Transfer) event, which will record the from address (`msg.sender`), `p._to` address, and `p._value` amount transferred.
+Sends `p.amount` worth of [attoREP](#atto-prefix) to the Ethereum address `p.recipient`. If this transaction transfers without any errors, it will trigger a [`Transfer`](#Transfer) event, which will record the from address (`msg.sender`), `p.recipient` address, and `p.amount` amount transferred.
 
 This transaction will fail if:
 
-* `msg.sender` does not have enough REP to be able to transfer `p._value` attoREP to the `p._to` address.
+* `msg.sender` does not have enough REP to be able to transfer `p.amount` attoREP to the `p._to` address.
 
 #### **Parameters:**
 
 * **`p`** (Object) Parameters object.
-    * **`p._to`**  (string) Ethereum address to send REP to, as a 20-byte hexadecimal value.
-    * **`p._value`**  (string) Number of attoREP to send, between 1 and 2<sup>254</sup>, as a hexadecimal string.
+    * **`p.recipient`**  (string) Ethereum address to send REP to, as a 20-byte hexadecimal value.
+    * **`p.amount`**  (string) Number of attoREP to send, between 1 and 2<sup>254</sup>, as a hexadecimal string.
     * **`p.tx`** (Object) Object containing details about how this transaction should be made.
         * **`p.tx.to`** (string) Ethereum contract address on which to call this function, as a 20-byte hexadecimal string.
         * **`p.tx.gas`** (string) Gas limit to use when submitting this transaction, as a hexadecimal string.
@@ -2081,19 +2086,19 @@ This transaction will fail if:
 
 ### augur.api.ReputationToken.transferFrom(p)
 
-Sends `p._value` worth of [attoREP](#atto-prefix) from the Ethereum addres `p._from` to the Ethereum address `p._to`. If this transaction transfers without any errors, it will trigger a `Transfer` event, which will record the `p._from` address, `p._to` address, and `p._value` (in attoREP) amount transferred.
+Sends `p.amount` worth of [attoREP](#atto-prefix) from the Ethereum addres `p.holder` to the Ethereum address `p.recipient`. If this transaction transfers without any errors, it will trigger a `Transfer` event, which will record the `p.holder` address, `p.recipient` address, and `p.amount` (in attoREP) amount transferred.
 
 This transaction will fail if:
 
-* `p._from` does not have enough REP to be able to transfer `p._value` attoREP to the `p._to` address.
-* `msg.sender` does not have the approval (see `augur.api.ReputationToken.approve`) to spend at least `p._value` worth of REP for the `p._from` address.
+* `p.holder` does not have enough REP to be able to transfer `p.amount` attoREP to the `p.recipient` address.
+* `msg.sender` does not have the approval (see `augur.api.ReputationToken.approve`) to spend at least `p.amount` worth of REP for the `p.holder` address.
 
 #### **Parameters:**
 
 * **`p`** (Object) Parameters object.
-    * **`p._from`**  (string) Ethereum address to send REP from, as a 20-byte hexadecimal value.
-    * **`p._to`**  (string) Ethereum address to send REP to, as a 20-byte hexadecimal value.
-    * **`p._value`**  (string) Number of attoREP to send, between 1 and 2<sup>254</sup>, as a hexadecimal string.
+    * **`p.holder`**  (string) Ethereum address to send REP from, as a 20-byte hexadecimal value.
+    * **`p.recipient`**  (string) Ethereum address to send REP to, as a 20-byte hexadecimal value.
+    * **`p.amount`**  (string) Number of attoREP to send, between 1 and 2<sup>254</sup>, as a hexadecimal string.
     * **`p.tx`** (Object) Object containing details about how this transaction should be made.
         * **`p.tx.to`** (string) Ethereum contract address on which to call this function, as a 20-byte hexadecimal string.
         * **`p.tx.gas`** (string) Gas limit to use when submitting this transaction, as a hexadecimal string.
@@ -2191,8 +2196,8 @@ augur.api.ShareToken.increaseApproval({
 });
 
 augur.api.ShareToken.transfer({
-  _to: "0x01f50356c280cd886dd058210937160c73700a4b",
-  _value: _attotokens,
+  recipient: "0x01f50356c280cd886dd058210937160c73700a4b",
+  amount: _attotokens,
   tx: { 
     to: shareTokenAddress,
     gas: "0x632ea0" 
@@ -2208,9 +2213,9 @@ augur.api.ShareToken.transfer({
 });
 
 augur.api.ShareToken.transferFrom({
-  _from: "0x4b01721f0244e7c5b5f63c20942850e447f5a5ee",
-  _to: "0xa1f50356c280cd886dd058210937160c73700a4b",
-  _value: _attotokens,
+  holder: "0x4b01721f0244e7c5b5f63c20942850e447f5a5ee",
+  recipient: "0xa1f50356c280cd886dd058210937160c73700a4b",
+  amount: _attotokens,
   tx: { 
     to: shareTokenAddress,
     gas: "0x632ea0" 
@@ -2294,17 +2299,17 @@ Increases the amount of [Shares](#share) `p._spender` is approved to spend on be
 
 ### augur.api.ShareToken.transfer(p)
 
-Sends `p._value` worth of [Share Units](#share-unit) to the Ethereum address `p._to`. If this transaction transfers without any errors, it will trigger a [`Transfer`](#Transfer) event, which will record the from address (`msg.sender`), `p._to` address, and `p._value` amount transferred.
+Sends `p.amount` worth of [Share Units](#share-unit) to the Ethereum address `p.recipient`. If this transaction transfers without any errors, it will trigger a [`Transfer`](#Transfer) event, which will record the from address (`msg.sender`), `p.recipient` address, and `p.amount` amount transferred.
 
 This transaction will fail if:
 
-* `msg.sender` does not have enough Share Units to be able to transfer `p._value` Share Units to the `p._to` address.
+* `msg.sender` does not have enough Share Units to be able to transfer `p.amount` Share Units to the `p.recipient` address.
 
 #### **Parameters:**
 
 * **`p`** (Object) Parameters object.
-    * **`p._to`**  (string) Ethereum address to send Shares to, as a 20-byte hexadecimal value.
-    * **`p._value`**  (string) Number of Share Units to send, between 1 and 2<sup>254</sup>, as a hexadecimal string.
+    * **`p.recipient`**  (string) Ethereum address to send Shares to, as a 20-byte hexadecimal value.
+    * **`p.amount`**  (string) Number of Share Units to send, between 1 and 2<sup>254</sup>, as a hexadecimal string.
     * **`p.tx`** (Object) Object containing details about how this transaction should be made.
         * **`p.tx.to`** (string) Ethereum contract address on which to call this function, as a 20-byte hexadecimal string.
         * **`p.tx.gas`** (string) Gas limit to use when submitting this transaction, as a hexadecimal string.
@@ -2319,19 +2324,19 @@ This transaction will fail if:
 
 ### augur.api.ShareToken.transferFrom(p)
 
-Sends `p._value` worth of [Share Units](#share-unit) from the Ethereum addres `p._from` to the Ethereum address `p._to`. If this transaction transfers without any errors, it will trigger a [`Transfer`](#Transfer) event, which will record the `p._from` address, `p._to` address, and `p._value` (in Share Units) amount transferred.
+Sends `p.amount` worth of [Share Units](#share-unit) from the Ethereum addres `p.holder` to the Ethereum address `p.recipient`. If this transaction transfers without any errors, it will trigger a [`Transfer`](#Transfer) event, which will record the `p.holder` address, `p.recipient` address, and `p.amount` (in Share Units) amount transferred.
 
 This transaction will fail if:
 
-* `p._from` does not have enough Shares to be able to transfer `p._value` Share Units to the `p._to` address.
-* `msg.sender` does not have the approval (see `augur.api.ShareToken.approve`) to spend at least `p._value` worth of Share Tokens for the `p._from` address.
+* `p.holder` does not have enough Shares to be able to transfer `p.amount` Share Units to the `p.recipient` address.
+* `msg.sender` does not have the approval (see `augur.api.ShareToken.approve`) to spend at least `p.amount` worth of Share Tokens for the `p.holder` address.
 
 #### **Parameters:**
 
 * **`p`** (Object) Parameters object.
-    * **`p._from`**  (string) Ethereum address to send Shares from, as a 20-byte hexadecimal value.
-    * **`p._to`**  (string) Ethereum address to send Shares to, as a 20-byte hexadecimal value.
-    * **`p._value`**  (string) Number of Share Units to send, between 1 and 2<sup>254</sup>, as a hexadecimal string.
+    * **`p.holder`**  (string) Ethereum address to send Shares from, as a 20-byte hexadecimal value.
+    * **`p.recipient`**  (string) Ethereum address to send Shares to, as a 20-byte hexadecimal value.
+    * **`p.amount`**  (string) Number of Share Units to send, between 1 and 2<sup>254</sup>, as a hexadecimal string.
     * **`p.tx`** (Object) Object containing details about how this transaction should be made.
         * **`p.tx.to`** (string) Ethereum contract address on which to call this function, as a 20-byte hexadecimal string.
         * **`p.tx.gas`** (string) Gas limit to use when submitting this transaction, as a hexadecimal string.
@@ -2528,6 +2533,7 @@ This transaction takes [Orders](#order) off the [Order Book](#order-book) that c
 
 This transaction will fail if:
 
+* `p._market` is not a Market known to Augur.
 * The value of the Order (calculated as p._price * (Market’s number of [Ticks](#tick) - p._amount) for a sell Order and `p._price` * `p._amount` for a buy Order) is less than the minimum value for an Order, which is 10**14 attoETH.
 
 #### **Parameters:**

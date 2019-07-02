@@ -72,10 +72,10 @@ augur.api.Augur.isKnownUniverse({
 // example output:
 true
 
-augur.api.Augur.isValidMarket({ 
+augur.api.Augur.isKnownMarket({ 
   _market: "0xaabbeaefcfaf7ea1e17c4768a554d5780069ddcc"
-}, function (error, isValidMarket) { 
-  console.log(isValidMarket); 
+}, function (error, isKnownMarket) { 
+  console.log(isKnownMarket); 
 });
 // example output:
 true
@@ -151,7 +151,7 @@ Augur keeps track of its [Genesis Universes](#genesis-universe) and all [Child U
 
 * (boolean) `true` if the specified Universe is in Augur's list of known Universe, or `false` otherwise.
 
-### augur.api.Augur.isValidMarket(p, callback)
+### augur.api.Augur.isKnownMarket(p, callback)
 
 Augur keeps track of its [Markets](#market) internally. This function returns whether the specified Market is a Market contract address that is known to Augur.
 
