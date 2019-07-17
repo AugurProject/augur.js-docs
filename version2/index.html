@@ -4738,6 +4738,14 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
 <span class="c1">// example output:</span>
 <span class="s2">"1000"</span>
 
+<span class="nx">augur</span><span class="p">.</span><span class="nx">api</span><span class="p">.</span><span class="nx">DisputeCrowdsourcer</span><span class="p">.</span><span class="nx">getRemainingToFill</span><span class="p">({</span> 
+  <span class="na">tx</span><span class="p">:</span> <span class="p">{</span> <span class="na">to</span><span class="p">:</span> <span class="nx">disputeCrowdsourcer</span> <span class="p">}</span> 
+<span class="p">},</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">error</span><span class="p">,</span> <span class="nx">remainingToFill</span><span class="p">)</span> <span class="p">{</span> 
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">remainingToFill</span><span class="p">);</span> 
+<span class="p">});</span>
+<span class="c1">// example output:</span>
+<span class="o">!!!</span><span class="nx">TBD</span><span class="o">!!!</span> <span class="nx">Add</span> <span class="nx">example</span> <span class="nx">output</span>
+
 <span class="nx">augur</span><span class="p">.</span><span class="nx">api</span><span class="p">.</span><span class="nx">DisputeCrowdsourcer</span><span class="p">.</span><span class="nx">getReputationToken</span><span class="p">({</span> 
   <span class="na">tx</span><span class="p">:</span> <span class="p">{</span> <span class="na">to</span><span class="p">:</span> <span class="nx">disputeCrowdsourcer</span> <span class="p">}</span> 
 <span class="p">},</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">error</span><span class="p">,</span> <span class="nx">reputationToken</span><span class="p">)</span> <span class="p">{</span> 
@@ -4871,6 +4879,31 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
 
 <ul>
 <li>(string)  Payout Numerator for the Dispute Crowdsourcer, as a stringified unsigned integer.</li>
+</ul>
+
+<h3 id="augur-api-disputecrowdsourcer-getremainingtofill-p-callback">augur.api.DisputeCrowdsourcer.getRemainingToFill(p, callback)</h3>
+
+<p>Gets the remaining amount of <a href="#rep">REP</a> needed to fill the <a href="#dispute-bond">Dispute Bond</a> for this <a href="#crowdsourcer">Crowdsourcer</a>.</p>
+
+<h4 id="strong-strong"><strong>Parameters:</strong></h4>
+
+<ul>
+<li><strong><code class="prettyprint">p</code></strong> (Object) Parameters object.<br>
+
+<ul>
+<li><strong><code class="prettyprint">p.tx</code></strong> (Object) Object containing details about how this function call should be made.
+
+<ul>
+<li><strong><code class="prettyprint">p.tx.to</code></strong> (string) Ethereum contract address of the Dispute Crowdsourcer on which to call this function, as a 20-byte hexadecimal string.</li>
+</ul></li>
+</ul></li>
+<li><strong><code class="prettyprint">callback</code></strong> (function) &lt;optional&gt; Called after the function&rsquo;s result has been retrieved.</li>
+</ul>
+
+<h4 id="strong-strong"><strong>Returns:</strong></h4>
+
+<ul>
+<li>(string) !!!TBD!!! Add return value info</li>
 </ul>
 
 <h3 id="augur-api-disputecrowdsourcer-getreputationtoken-p-callback">augur.api.DisputeCrowdsourcer.getReputationToken(p, callback)</h3>
@@ -5049,6 +5082,14 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
 <span class="p">});</span>
 <span class="c1">// example output:</span>
 <span class="s2">"0x0920d1513057572be46580b7ef75d1d01a99a3e5"</span>
+
+<span class="nx">augur</span><span class="p">.</span><span class="nx">api</span><span class="p">.</span><span class="nx">DisputeWindow</span><span class="p">.</span><span class="nx">getWindowId</span><span class="p">({</span> 
+  <span class="na">tx</span><span class="p">:</span> <span class="p">{</span> <span class="na">to</span><span class="p">:</span> <span class="nx">disputeWindow</span> <span class="p">}</span> 
+<span class="p">},</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">error</span><span class="p">,</span> <span class="nx">windowId</span><span class="p">)</span> <span class="p">{</span> 
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">windowId</span><span class="p">);</span> 
+<span class="p">});</span>
+<span class="c1">// example output:</span>
+<span class="o">!!!</span><span class="nx">TBD</span><span class="o">!!!</span> <span class="nx">Add</span> <span class="nx">example</span> <span class="nx">output</span>
 
 <span class="nx">augur</span><span class="p">.</span><span class="nx">api</span><span class="p">.</span><span class="nx">DisputeWindow</span><span class="p">.</span><span class="nx">isActive</span><span class="p">({</span> 
   <span class="na">tx</span><span class="p">:</span> <span class="p">{</span> <span class="na">to</span><span class="p">:</span> <span class="nx">disputeWindow</span> <span class="p">}</span> 
@@ -5266,6 +5307,31 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
 
 <ul>
 <li>(string) Ethereum contract address of the Universe to which the Dispute Window belongs, as a 20-byte hexadecimal string.</li>
+</ul>
+
+<h3 id="augur-api-disputewindow-getwindowid-p-callback">augur.api.DisputeWindow.getWindowId(p, callback)</h3>
+
+<p>Returns the <a href="#dispute-window">Dispute Window</a> ID of the Dispute Window.</p>
+
+<h4 id="strong-strong"><strong>Parameters:</strong></h4>
+
+<ul>
+<li><strong><code class="prettyprint">p</code></strong> (Object) Parameters object.<br>
+
+<ul>
+<li><strong><code class="prettyprint">p.tx</code></strong> (Object) Object containing details about how this function call should be made.
+
+<ul>
+<li><strong><code class="prettyprint">p.tx.to</code></strong> (string) Ethereum contract address of the Dispute Window on which to call this function, as a 20-byte hexadecimal string.</li>
+</ul></li>
+</ul></li>
+<li><strong><code class="prettyprint">callback</code></strong> (function) &lt;optional&gt; Called after the function&rsquo;s result has been retrieved.</li>
+</ul>
+
+<h4 id="strong-strong"><strong>Returns:</strong></h4>
+
+<ul>
+<li>(string) !!!TBD!!! Add return value info</li>
 </ul>
 
 <h3 id="augur-api-disputewindow-isactive-p-callback">augur.api.DisputeWindow.isActive(p, callback)</h3>
@@ -5771,14 +5837,6 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
 <span class="c1">// example output:</span>
 <span class="kc">true</span>
 
-<span class="nx">augur</span><span class="p">.</span><span class="nx">api</span><span class="p">.</span><span class="nx">Market</span><span class="p">.</span><span class="nx">getEndTime</span><span class="p">({</span> 
-  <span class="na">tx</span><span class="p">:</span> <span class="p">{</span> <span class="na">to</span><span class="p">:</span> <span class="nx">market</span> <span class="p">}</span> 
-<span class="p">},</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">error</span><span class="p">,</span> <span class="nx">endTime</span><span class="p">)</span> <span class="p">{</span> 
-  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">endTime</span><span class="p">);</span> 
-<span class="p">});</span>
-<span class="c1">// example output:</span>
-<span class="s2">"1500388730"</span><span class="p">;</span>
-
 <span class="nx">augur</span><span class="p">.</span><span class="nx">api</span><span class="p">.</span><span class="nx">Market</span><span class="p">.</span><span class="nx">getDisputeWindow</span><span class="p">({</span> 
   <span class="na">tx</span><span class="p">:</span> <span class="p">{</span> <span class="na">to</span><span class="p">:</span> <span class="nx">market</span> <span class="p">},</span> 
 <span class="p">},</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">error</span><span class="p">,</span> <span class="nx">disputeWindow</span><span class="p">)</span> <span class="p">{</span> 
@@ -5786,6 +5844,14 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
 <span class="p">});</span>
 <span class="c1">// example output:</span>
 <span class="s2">"0x1f90cc6b4e89303e451c9b852827b5791667f570"</span>
+
+<span class="nx">augur</span><span class="p">.</span><span class="nx">api</span><span class="p">.</span><span class="nx">Market</span><span class="p">.</span><span class="nx">getEndTime</span><span class="p">({</span> 
+  <span class="na">tx</span><span class="p">:</span> <span class="p">{</span> <span class="na">to</span><span class="p">:</span> <span class="nx">market</span> <span class="p">}</span> 
+<span class="p">},</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">error</span><span class="p">,</span> <span class="nx">endTime</span><span class="p">)</span> <span class="p">{</span> 
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">endTime</span><span class="p">);</span> 
+<span class="p">});</span>
+<span class="c1">// example output:</span>
+<span class="s2">"1500388730"</span><span class="p">;</span>
 
 <span class="nx">augur</span><span class="p">.</span><span class="nx">api</span><span class="p">.</span><span class="nx">Market</span><span class="p">.</span><span class="nx">getFinalizationTime</span><span class="p">({</span> 
   <span class="na">tx</span><span class="p">:</span> <span class="p">{</span> <span class="na">to</span><span class="p">:</span> <span class="nx">market</span> <span class="p">}</span> 
@@ -5802,6 +5868,14 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
 <span class="p">});</span>
 <span class="c1">// example output:</span>
 <span class="s2">"0x1230cc6b4e89303e451c9b852827b5791667f234"</span>
+
+<span class="nx">augur</span><span class="p">.</span><span class="nx">api</span><span class="p">.</span><span class="nx">Market</span><span class="p">.</span><span class="nx">getHighestNonTentativeParticipantStake</span><span class="p">({</span> 
+   <span class="na">tx</span><span class="p">:</span> <span class="p">{</span> <span class="na">to</span><span class="p">:</span> <span class="nx">market</span> <span class="p">}</span> 
+<span class="p">},</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">error</span><span class="p">,</span> <span class="nx">highestNonTentativeParticipantStake</span><span class="p">)</span> <span class="p">{</span> 
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">highestNonTentativeParticipantStake</span><span class="p">);</span> 
+<span class="p">});</span>
+<span class="c1">// example output:</span>
+<span class="o">!!!</span><span class="nx">TBD</span><span class="o">!!!</span> <span class="nx">Add</span> <span class="nx">example</span> <span class="nx">output</span>
 
 <span class="nx">augur</span><span class="p">.</span><span class="nx">api</span><span class="p">.</span><span class="nx">Market</span><span class="p">.</span><span class="nx">getInitialReporter</span><span class="p">({</span> 
   <span class="na">tx</span><span class="p">:</span> <span class="p">{</span> <span class="na">to</span><span class="p">:</span> <span class="nx">market</span> <span class="p">}</span> 
@@ -6186,31 +6260,6 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
 <li>(boolean) <code class="prettyprint">true</code> if Dispute Pacing is enabled for the Market&rsquo;s Crowdsourcers, or <code class="prettyprint">false</code> otherwise.</li>
 </ul>
 
-<h3 id="augur-api-market-getendtime-p-callback">augur.api.Market.getEndTime(p, callback)</h3>
-
-<p>Returns the Unix timestamp for when the specified <a href="#market">Market&rsquo;s</a> event has come to pass. When the Market&rsquo;s <a href="#end-time">End Time</a> passes, the Market enters the <a href="#designated-reporting-phase">Designated Reporting Phase</a>.</p>
-
-<h4 id="strong-strong"><strong>Parameters:</strong></h4>
-
-<ul>
-<li><strong><code class="prettyprint">p</code></strong> (Object) Parameters object.<br>
-
-<ul>
-<li><strong><code class="prettyprint">p.tx</code></strong> (Object) Object containing details about how this function call should be made.
-
-<ul>
-<li><strong><code class="prettyprint">p.tx.to</code></strong> (string) Ethereum contract address of the Market contract on which to call this function, as a 20-byte hexadecimal string.</li>
-</ul></li>
-</ul></li>
-<li><strong><code class="prettyprint">callback</code></strong> (function) &lt;optional&gt; Called after the function&rsquo;s result has been retrieved.</li>
-</ul>
-
-<h4 id="strong-strong"><strong>Returns:</strong></h4>
-
-<ul>
-<li>(string) Unix timestamp for when the specified <a href="#market">Market&rsquo;s</a> event has come to pass, as a stringified unsigned integer.</li>
-</ul>
-
 <h3 id="augur-api-market-getdisputewindow-p-callback">augur.api.Market.getDisputeWindow(p, callback)</h3>
 
 <p>Returns the Ethereum contract address of the <a href="#market">Market&rsquo;s</a> <a href="#dispute-window">Dispute Window</a>.</p>
@@ -6234,6 +6283,31 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
 
 <ul>
 <li>(string) Ethereum contract address of the Market&rsquo;s Dispute Window, as a 20-byte hexadecimal string.</li>
+</ul>
+
+<h3 id="augur-api-market-getendtime-p-callback">augur.api.Market.getEndTime(p, callback)</h3>
+
+<p>Returns the Unix timestamp for when the specified <a href="#market">Market&rsquo;s</a> event has come to pass. When the Market&rsquo;s <a href="#end-time">End Time</a> passes, the Market enters the <a href="#designated-reporting-phase">Designated Reporting Phase</a>.</p>
+
+<h4 id="strong-strong"><strong>Parameters:</strong></h4>
+
+<ul>
+<li><strong><code class="prettyprint">p</code></strong> (Object) Parameters object.<br>
+
+<ul>
+<li><strong><code class="prettyprint">p.tx</code></strong> (Object) Object containing details about how this function call should be made.
+
+<ul>
+<li><strong><code class="prettyprint">p.tx.to</code></strong> (string) Ethereum contract address of the Market contract on which to call this function, as a 20-byte hexadecimal string.</li>
+</ul></li>
+</ul></li>
+<li><strong><code class="prettyprint">callback</code></strong> (function) &lt;optional&gt; Called after the function&rsquo;s result has been retrieved.</li>
+</ul>
+
+<h4 id="strong-strong"><strong>Returns:</strong></h4>
+
+<ul>
+<li>(string) Unix timestamp for when the specified <a href="#market">Market&rsquo;s</a> event has come to pass, as a stringified unsigned integer.</li>
 </ul>
 
 <h3 id="augur-api-market-getfinalizationtime-p-callback">augur.api.Market.getFinalizationTime(p, callback)</h3>
@@ -6284,6 +6358,31 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
 
 <ul>
 <li>(string) Ethereum contract address of the Forked Market for the Universe in which the specified Market exists, as a 20-byte hexadecimal string.</li>
+</ul>
+
+<h3 id="augur-api-market-gethighestnontentativeparticipantstake-p-callback">augur.api.Market.getHighestNonTentativeParticipantStake(p, callback)</h3>
+
+<p>Returns the highest amount of attoREP staked in in the Market&rsquo;s InitialReporter/DisputeCrowdsourcer that is not the <a href="#tentative-outcome">Tentative Outcome</a>.</p>
+
+<h4 id="strong-strong"><strong>Parameters:</strong></h4>
+
+<ul>
+<li><strong><code class="prettyprint">p</code></strong> (Object) Parameters object.<br>
+
+<ul>
+<li><strong><code class="prettyprint">p.tx</code></strong> (Object) Object containing details about how this function call should be made.
+
+<ul>
+<li><strong><code class="prettyprint">p.tx.to</code></strong> (string) Ethereum contract address of the Market contract on which to call this function, as a 20-byte hexadecimal string.</li>
+</ul></li>
+</ul></li>
+<li><strong><code class="prettyprint">callback</code></strong> (function) &lt;optional&gt; Called after the function&rsquo;s result has been retrieved.</li>
+</ul>
+
+<h4 id="strong-strong"><strong>Returns:</strong></h4>
+
+<ul>
+<li>(string) !!!TBD!!! Add return value info</li>
 </ul>
 
 <h3 id="augur-api-market-getinitialreporter-p-callback">augur.api.Market.getInitialReporter(p, callback)</h3>
@@ -7678,6 +7777,7 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
 <span class="s2">"0xb4e8c1f85c4382d64954aca187f9f386c8bb1a6c"</span>
 
 <span class="nx">augur</span><span class="p">.</span><span class="nx">api</span><span class="p">.</span><span class="nx">Universe</span><span class="p">.</span><span class="nx">getCurrentDisputeWindow</span><span class="p">({</span> 
+  <span class="na">_initial</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
   <span class="na">tx</span><span class="p">:</span> <span class="p">{</span> <span class="na">to</span><span class="p">:</span> <span class="nx">universe</span> <span class="p">}</span> 
 <span class="p">},</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">error</span><span class="p">,</span> <span class="nx">currDisputeWindow</span><span class="p">)</span> <span class="p">{</span> 
   <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">currDisputeWindow</span><span class="p">);</span> 
@@ -7686,6 +7786,7 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
 <span class="s2">"0x1f90cc6b4e89303e451c9b852827b5791667f570"</span>
 
 <span class="nx">augur</span><span class="p">.</span><span class="nx">api</span><span class="p">.</span><span class="nx">Universe</span><span class="p">.</span><span class="nx">getDisputeRoundDurationInSeconds</span><span class="p">({</span> 
+  <span class="na">_initial</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
   <span class="na">tx</span><span class="p">:</span> <span class="p">{</span> <span class="na">to</span><span class="p">:</span> <span class="nx">universe</span> <span class="p">}</span> 
 <span class="p">},</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">error</span><span class="p">,</span> <span class="nx">disputeRoundDuration</span><span class="p">)</span> <span class="p">{</span> 
   <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">disputeRoundDuration</span><span class="p">);</span> 
@@ -7712,6 +7813,7 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
 
 <span class="nx">augur</span><span class="p">.</span><span class="nx">api</span><span class="p">.</span><span class="nx">Universe</span><span class="p">.</span><span class="nx">getDisputeWindowByTimestamp</span><span class="p">({</span> 
   <span class="na">_timestamp</span><span class="p">:</span> <span class="s2">"0x5a45710f"</span><span class="p">,</span>
+  <span class="na">_initial</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
   <span class="na">tx</span><span class="p">:</span> <span class="p">{</span> <span class="na">to</span><span class="p">:</span> <span class="nx">universe</span> <span class="p">},</span>
 <span class="p">},</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">error</span><span class="p">,</span> <span class="nx">disputeWindow</span><span class="p">)</span> <span class="p">{</span> 
   <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">disputeWindow</span><span class="p">);</span> 
@@ -7721,6 +7823,7 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
 
 <span class="nx">augur</span><span class="p">.</span><span class="nx">api</span><span class="p">.</span><span class="nx">Universe</span><span class="p">.</span><span class="nx">getDisputeWindowId</span><span class="p">({</span> 
   <span class="na">_timestamp</span><span class="p">:</span> <span class="s2">"0x5a45710f"</span><span class="p">,</span>
+  <span class="na">_initial</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
   <span class="na">tx</span><span class="p">:</span> <span class="p">{</span> <span class="na">to</span><span class="p">:</span> <span class="nx">universe</span> <span class="p">},</span>
 <span class="p">},</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">error</span><span class="p">,</span> <span class="nx">disputeWindowId</span><span class="p">)</span> <span class="p">{</span>
   <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">disputeWindowId</span><span class="p">);</span> 
@@ -7753,6 +7856,7 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
 <span class="s2">"5500000000000000000000000"</span>
 
 <span class="nx">augur</span><span class="p">.</span><span class="nx">api</span><span class="p">.</span><span class="nx">Universe</span><span class="p">.</span><span class="nx">getNextDisputeWindow</span><span class="p">({</span> 
+  <span class="na">_initial</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
   <span class="na">tx</span><span class="p">:</span> <span class="p">{</span> <span class="na">to</span><span class="p">:</span> <span class="nx">universe</span> <span class="p">}</span> 
 <span class="p">},</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">error</span><span class="p">,</span> <span class="nx">nextDisputeWindow</span><span class="p">)</span> <span class="p">{</span> 
   <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">nextDisputeWindow</span><span class="p">);</span> 
@@ -7785,6 +7889,7 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
 <span class="s2">"0x63c59544b89cce1dd53b1b566862189b25adec41"</span>
 
 <span class="nx">augur</span><span class="p">.</span><span class="nx">api</span><span class="p">.</span><span class="nx">Universe</span><span class="p">.</span><span class="nx">getPreviousDisputeWindow</span><span class="p">({</span> 
+  <span class="na">_initial</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
   <span class="na">tx</span><span class="p">:</span> <span class="p">{</span> <span class="na">to</span><span class="p">:</span> <span class="nx">universe</span> <span class="p">}</span> 
 <span class="p">},</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">error</span><span class="p">,</span> <span class="nx">previousDisputeWindow</span><span class="p">)</span> <span class="p">{</span> 
   <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">previousDisputeWindow</span><span class="p">);</span> 
@@ -7951,9 +8056,10 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
 <h4 id="strong-strong"><strong>Parameters:</strong></h4>
 
 <ul>
-<li><strong><code class="prettyprint">p</code></strong> (Object) Parameters object.<br>
+<li><strong><code class="prettyprint">p</code></strong> (Object) Parameters object.
 
 <ul>
+<li><strong><code class="prettyprint">p._initial</code></strong> (boolean) Whether the Dispute Window is an initial Dispute Window (1 day in duration) or a standard Dispute Window (7 days in duration).</li>
 <li><strong><code class="prettyprint">p.tx</code></strong> (Object) Object containing details about how this function call should be made.
 
 <ul>
@@ -7979,6 +8085,7 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
 <li><strong><code class="prettyprint">p</code></strong> (Object) Parameters object.<br>
 
 <ul>
+<li><strong><code class="prettyprint">p._initial</code></strong> (boolean) Whether the Dispute Window is an initial Dispute Window (1 day in duration) or a standard Dispute Window (7 days in duration).</li>
 <li><strong><code class="prettyprint">p.tx</code></strong> (Object) Object containing details about how this function call should be made.
 
 <ul>
@@ -8056,6 +8163,7 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
 
 <ul>
 <li><strong><code class="prettyprint">p._timestamp</code></strong> (string) Unix timestamp for which to get the corresponding Dispute Window, as a hexadecimal string.</li>
+<li><strong><code class="prettyprint">p._initial</code></strong> (boolean) Whether the Dispute Window is an initial Dispute Window (1 day in duration) or a standard Dispute Window (7 days in duration).</li>
 <li><strong><code class="prettyprint">p.tx</code></strong> (Object) Object containing details about how this function call should be made.
 
 <ul>
@@ -8073,7 +8181,7 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
 
 <h3 id="augur-api-universe-getdisputewindowid-p-callback">augur.api.Universe.getDisputeWindowId(p, callback)</h3>
 
-<p>Returns the <a href="#dispute-window">Dispute Window</a> ID for the <a href="#universe">Universe</a> at the specified timestamp. This ID is calculated by dividing the timestamp by the <a href="#universe">Universe&rsquo;s</a> Dispute Window duration in seconds.</p>
+<p>Returns the <a href="#dispute-window">Dispute Window</a> ID for the <a href="#universe">Universe</a> at the specified timestamp. This ID is calculated by dividing the timestamp by the <a href="#universe">Universe&rsquo;s</a> Dispute Window duration in seconds. If the Dispute Window is an Initial Window (1 day in duration), an additional buffer is added to the ID.</p>
 
 <h4 id="strong-strong"><strong>Parameters:</strong></h4>
 
@@ -8082,6 +8190,7 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
 
 <ul>
 <li><strong><code class="prettyprint">p._timestamp</code></strong> (string) Unix timestamp for which to get the corresponding Dispute Window, as a hexadecimal string.</li>
+<li><strong><code class="prettyprint">p._initial</code></strong> (boolean) Whether the Dispute Window is an initial Dispute Window (1 day in duration) or a standard Dispute Window (7 days in duration).</li>
 <li><strong><code class="prettyprint">p.tx</code></strong> (Object) Object containing details about how this function call should be made.
 
 <ul>
@@ -8182,6 +8291,7 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
 <li><strong><code class="prettyprint">p</code></strong> (Object) Parameters object.<br>
 
 <ul>
+<li><strong><code class="prettyprint">p._initial</code></strong> (boolean) Whether the Dispute Window is an initial Dispute Window (1 day in duration) or a standard Dispute Window (7 days in duration).</li>
 <li><strong><code class="prettyprint">p.tx</code></strong> (Object) Object containing details about how this function call should be made.
 
 <ul>
@@ -8282,6 +8392,7 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
 <li><strong><code class="prettyprint">p</code></strong> (Object) Parameters object.<br>
 
 <ul>
+<li><strong><code class="prettyprint">p._initial</code></strong> (boolean) Whether the Dispute Window is an initial Dispute Window (1 day in duration) or a standard Dispute Window (7 days in duration).</li>
 <li><strong><code class="prettyprint">p.tx</code></strong> (Object) Object containing details about how this function call should be made.
 
 <ul>
@@ -10194,6 +10305,23 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
   <span class="na">onFailed</span><span class="p">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">result</span><span class="p">)</span> <span class="p">{</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">result</span><span class="p">);</span> <span class="p">}</span>
 <span class="p">});</span>
 
+<span class="nx">augur</span><span class="p">.</span><span class="nx">api</span><span class="p">.</span><span class="nx">Market</span><span class="p">.</span><span class="nx">contributeToTentative</span><span class="p">({</span>
+  <span class="na">_payoutNumerators</span><span class="p">:</span> <span class="nx">_payoutNumerators</span><span class="p">,</span>
+  <span class="na">_amount</span><span class="p">:</span> <span class="nx">_amount</span><span class="p">,</span>
+  <span class="na">tx</span><span class="p">:</span> <span class="p">{</span> 
+    <span class="na">to</span><span class="p">:</span> <span class="nx">marketAddress</span><span class="p">,</span>
+    <span class="na">gas</span><span class="p">:</span> <span class="s2">"0x632ea0"</span> 
+  <span class="p">},</span> 
+  <span class="na">meta</span><span class="p">:</span> <span class="p">{</span>
+    <span class="na">accountType</span><span class="p">:</span> <span class="s2">"privateKey"</span><span class="p">,</span>
+    <span class="na">address</span><span class="p">:</span> <span class="s2">"0x913dA4198E6bE1D5f5E4a40D0667f70C0B5430Ec"</span><span class="p">,</span>
+    <span class="na">signer</span><span class="p">:</span> <span class="p">[</span><span class="mi">252</span><span class="p">,</span> <span class="mi">111</span><span class="p">,</span> <span class="mi">32</span><span class="p">,</span> <span class="mi">94</span><span class="p">,</span> <span class="mi">233</span><span class="p">,</span> <span class="mi">213</span><span class="p">,</span> <span class="mi">105</span><span class="p">,</span> <span class="mi">71</span><span class="p">,</span> <span class="mi">89</span><span class="p">,</span> <span class="mi">162</span><span class="p">,</span> <span class="mi">243</span><span class="p">,</span> <span class="mi">247</span><span class="p">,</span> <span class="mi">56</span><span class="p">,</span> <span class="mi">81</span><span class="p">,</span> <span class="mi">213</span><span class="p">,</span> <span class="mi">103</span><span class="p">,</span> <span class="mi">239</span><span class="p">,</span> <span class="mi">75</span><span class="p">,</span> <span class="mi">212</span><span class="p">,</span> <span class="mi">240</span><span class="p">,</span> <span class="mi">234</span><span class="p">,</span> <span class="mi">95</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">201</span><span class="p">,</span> <span class="mi">217</span><span class="p">,</span> <span class="mi">55</span><span class="p">,</span> <span class="mi">225</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">85</span><span class="p">,</span> <span class="mi">109</span><span class="p">,</span> <span class="mi">158</span><span class="p">,</span> <span class="mi">25</span><span class="p">],</span>
+  <span class="p">},</span>
+  <span class="na">onSent</span><span class="p">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">result</span><span class="p">)</span> <span class="p">{</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">result</span><span class="p">);</span> <span class="p">},</span>
+  <span class="na">onSuccess</span><span class="p">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">result</span><span class="p">)</span> <span class="p">{</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">result</span><span class="p">);</span> <span class="p">},</span>
+  <span class="na">onFailed</span><span class="p">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">result</span><span class="p">)</span> <span class="p">{</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">result</span><span class="p">);</span> <span class="p">}</span>
+<span class="p">});</span>
+
 <span class="nx">augur</span><span class="p">.</span><span class="nx">api</span><span class="p">.</span><span class="nx">Market</span><span class="p">.</span><span class="nx">disavowCrowdsourcers</span><span class="p">({</span>
   <span class="na">tx</span><span class="p">:</span> <span class="p">{</span> 
     <span class="na">to</span><span class="p">:</span> <span class="nx">marketAddress</span><span class="p">,</span>
@@ -10242,6 +10370,22 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
 <span class="p">});</span>
 
 <span class="nx">augur</span><span class="p">.</span><span class="nx">api</span><span class="p">.</span><span class="nx">Market</span><span class="p">.</span><span class="nx">finalizeFork</span><span class="p">({</span>
+  <span class="na">tx</span><span class="p">:</span> <span class="p">{</span> 
+    <span class="na">to</span><span class="p">:</span> <span class="nx">marketAddress</span><span class="p">,</span>
+    <span class="na">gas</span><span class="p">:</span> <span class="s2">"0x632ea0"</span> 
+  <span class="p">},</span> 
+  <span class="na">meta</span><span class="p">:</span> <span class="p">{</span>
+    <span class="na">accountType</span><span class="p">:</span> <span class="s2">"privateKey"</span><span class="p">,</span>
+    <span class="na">address</span><span class="p">:</span> <span class="s2">"0x913dA4198E6bE1D5f5E4a40D0667f70C0B5430Ec"</span><span class="p">,</span>
+    <span class="na">signer</span><span class="p">:</span> <span class="p">[</span><span class="mi">252</span><span class="p">,</span> <span class="mi">111</span><span class="p">,</span> <span class="mi">32</span><span class="p">,</span> <span class="mi">94</span><span class="p">,</span> <span class="mi">233</span><span class="p">,</span> <span class="mi">213</span><span class="p">,</span> <span class="mi">105</span><span class="p">,</span> <span class="mi">71</span><span class="p">,</span> <span class="mi">89</span><span class="p">,</span> <span class="mi">162</span><span class="p">,</span> <span class="mi">243</span><span class="p">,</span> <span class="mi">247</span><span class="p">,</span> <span class="mi">56</span><span class="p">,</span> <span class="mi">81</span><span class="p">,</span> <span class="mi">213</span><span class="p">,</span> <span class="mi">103</span><span class="p">,</span> <span class="mi">239</span><span class="p">,</span> <span class="mi">75</span><span class="p">,</span> <span class="mi">212</span><span class="p">,</span> <span class="mi">240</span><span class="p">,</span> <span class="mi">234</span><span class="p">,</span> <span class="mi">95</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">201</span><span class="p">,</span> <span class="mi">217</span><span class="p">,</span> <span class="mi">55</span><span class="p">,</span> <span class="mi">225</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">85</span><span class="p">,</span> <span class="mi">109</span><span class="p">,</span> <span class="mi">158</span><span class="p">,</span> <span class="mi">25</span><span class="p">],</span>
+  <span class="p">},</span>
+  <span class="na">onSent</span><span class="p">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">result</span><span class="p">)</span> <span class="p">{</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">result</span><span class="p">);</span> <span class="p">},</span>
+  <span class="na">onSuccess</span><span class="p">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">result</span><span class="p">)</span> <span class="p">{</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">result</span><span class="p">);</span> <span class="p">},</span>
+  <span class="na">onFailed</span><span class="p">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">result</span><span class="p">)</span> <span class="p">{</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">result</span><span class="p">);</span> <span class="p">}</span>
+<span class="p">});</span>
+
+<span class="nx">augur</span><span class="p">.</span><span class="nx">api</span><span class="p">.</span><span class="nx">Market</span><span class="p">.</span><span class="nx">increaseValidityBond</span><span class="p">({</span>
+  <span class="na">_attoCash</span><span class="p">:</span> <span class="s2">"0x1234"</span><span class="p">,</span>
   <span class="na">tx</span><span class="p">:</span> <span class="p">{</span> 
     <span class="na">to</span><span class="p">:</span> <span class="nx">marketAddress</span><span class="p">,</span>
     <span class="na">gas</span><span class="p">:</span> <span class="s2">"0x632ea0"</span> 
@@ -10309,7 +10453,7 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
 
 <h3 id="augur-api-market-contribute-p">augur.api.Market.contribute(p)</h3>
 
-<p>Contributes <code class="prettyprint">p._amount</code> <a href="#rep">REP</a> to the <a href="#crowdsourcer">Dispute Crowdsourcer</a> represented by <a href="#payout-set">Payout Set</a> <code class="prettyprint">p._payoutNumerators</code> in order to help <a href="#challenge">Challenge</a> the <a href="#market">Market</a>&rsquo;s <a href="#tentative-outcome">Tentative Outcome</a>. If the amount of REP in the Dispute Crowdsourcer plus <code class="prettyprint">p._amount</code> is greater than the total REP required to fill the <a href="#dispute-bond">Dispute Bond</a>, this function will only contribute the remaining amount of REP required to fill the Dispute Bond on behalf of the caller.</p>
+<p>Contributes <code class="prettyprint">p._amount</code> <a href="#atto-prefix">attoREP</a> to the <a href="#crowdsourcer">Dispute Crowdsourcer</a> represented by <a href="#payout-set">Payout Set</a> <code class="prettyprint">p._payoutNumerators</code> in order to help <a href="#challenge">Challenge</a> the <a href="#market">Market</a>&rsquo;s <a href="#tentative-outcome">Tentative Outcome</a>. If the amount of REP in the Dispute Crowdsourcer plus <code class="prettyprint">p._amount</code> is greater than the total REP required to fill the <a href="#dispute-bond">Dispute Bond</a>, this function will only contribute the remaining amount of REP required to fill the Dispute Bond on behalf of the caller.</p>
 
 <p>This transaction will trigger a <a href="#DisputeCrowdsourcerContribution"><code class="prettyprint">DisputeCrowdsourcerContribution</code></a> event if it executes without any errors. It will also trigger a <code class="prettyprint">DisputeCrowdsourcerCompleted</code> event if the Dispute Bond is successfullly filled, and it will trigger a <a href="#UniverseForked"><code class="prettyprint">UniverseForked</code></a> event if enough REP has been <a href="#dispute-stake">Staked</a> in the Dispute Crowdsourcer to cause the Market to <a href="#fork">Fork</a>.</p>
 
@@ -10317,9 +10461,55 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
 
 <ul>
 <li>No <a href="#initial-report">Initial Report</a> has been submitted on the Market.</li>
-<li>The Market&rsquo;s <a href="#dispute-window">Dispute Window</a> has ended.</li>
+<li>The Market&rsquo;s <a href="#dispute-window">Dispute Window</a> has ended (when <a href="#dispute-pacing">Dispute Pacing</a> is not enabled).</li>
+<li>The Market&rsquo;s Dispute Window is not active (when Dispute Pacing is enabled).</li>
+<li>The Dispute Window is not active (when Dispute Pacing is enabled).</li>
 <li>The Market&rsquo;s <a href="#universe">Universe</a> has a <a href="#forked-market">Forked Market</a>.</li>
 <li>The <a href="#outcome">Outcome</a> specified by <code class="prettyprint">p._payoutNumerators</code> is already the Tentative Outcome of the Market.</li>
+<li><code class="prettyprint">p._payoutNumerators</code> is not specified correctly. (For information on what the Payout Set should look like, refer to the <a href="#payout-set">Payout Set glossary entry</a>.)</li>
+</ul>
+
+<h4 id="strong-strong"><strong>Parameters:</strong></h4>
+
+<ul>
+<li><strong><code class="prettyprint">p</code></strong> (Object) Parameters object.
+
+<ul>
+<li><strong><code class="prettyprint">p._payoutNumerators</code></strong>  (Array.&lt;number&gt;|Array.&lt;string&gt;) Array representing the Market&rsquo;s Payout Set.</li>
+<li><strong><code class="prettyprint">p._amount</code></strong>  (string) Amount to contribute to the Dispute Crowdsourcer, in <a href="#atto-prefix">attoREP</a>.</li>
+<li><strong><code class="prettyprint">p._description</code></strong> (string) &lt;optional&gt; Explanation for why the contributor is Staking on this particular Outcome.</li>
+<li><strong><code class="prettyprint">p.tx</code></strong> (Object) Object containing details about how this transaction should be made.
+
+<ul>
+<li><strong><code class="prettyprint">p.tx.to</code></strong> (string) Ethereum contract address on which to call this function, as a 20-byte hexadecimal string.</li>
+<li><strong><code class="prettyprint">p.tx.gas</code></strong> (string) Gas limit to use when submitting this transaction, as a hexadecimal string.</li>
+</ul></li>
+<li><strong><code class="prettyprint">p.meta</code></strong>  (<a href="#Meta">Meta</a>) &lt;optional&gt; Authentication metadata for raw transactions.</li>
+<li><strong><code class="prettyprint">p.onSent</code></strong>  (function) Callback function that executes once the transaction has been sent.</li>
+<li><strong><code class="prettyprint">p.onSuccess</code></strong>  (function) &lt;optional&gt; Callback function that executes if the transaction returned successfully.</li>
+<li><strong><code class="prettyprint">p.onFailed</code></strong>  (function) &lt;optional&gt; Callback function that executes if the transaction failed.</li>
+</ul></li>
+</ul>
+
+<h4 id="strong-strong"><strong>Returns:</strong></h4>
+
+<ul>
+<li>Return value cannot be obtained because Ethereum nodes <a href="#transaction-return-values">discard</a> transaction return values.</li>
+</ul>
+
+<h3 id="augur-api-market-contributetotentative-p">augur.api.Market.contributeToTentative(p)</h3>
+
+<p>Contributes <code class="prettyprint">p._amount</code> <a href="#atto-prefix">attoREP</a> to the <a href="#market">Market</a>&rsquo;s <a href="#tentative-outcome">Tentative Outcome</a>, represented by <a href="#payout-set">Payout Set</a> <code class="prettyprint">p._payoutNumerators</code>. This will escrow REP in a bond which will be active immediately if the Tentative Outcome is successfully Disputed.</p>
+
+<p>This transaction will trigger a <a href="#DisputeCrowdsourcerContribution"><code class="prettyprint">DisputeCrowdsourcerContribution</code></a> event if it executes without any errors.</p>
+
+<p>This function will fail if:</p>
+
+<ul>
+<li>No <a href="#initial-report">Initial Report</a> has been submitted on the Market.</li>
+<li>The Market&rsquo;s <a href="#dispute-window">Dispute Window</a> has ended (when <a href="#dispute-pacing">Dispute Pacing</a> is not enabled).</li>
+<li>The Market&rsquo;s Dispute Window is not active (when Dispute Pacing is enabled).</li>
+<li>The Market&rsquo;s <a href="#universe">Universe</a> has a <a href="#forked-market">Forked Market</a>.</li>
 <li><code class="prettyprint">p._payoutNumerators</code> is not specified correctly. (For information on what the Payout Set should look like, refer to the <a href="#payout-set">Payout Set glossary entry</a>.)</li>
 </ul>
 
@@ -10392,7 +10582,9 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
 
 <h3 id="augur-api-market-doinitialreport-p">augur.api.Market.doInitialReport(p)</h3>
 
-<p>Submits an <a href="#initial-report">Initial Report</a> for the <a href="#market">Market</a>. This transaction will trigger an <a href="#InitialReportSubmitted"><code class="prettyprint">InitialReportSubmitted</code></a> event if it submits the Initial Report successfully.</p>
+<p>Submits an <a href="#initial-report">Initial Report</a> for the <a href="#market">Market</a>. If the <a href="#designated-reporter">Designated Reporter</a> submitted the Initial Report up but is not the <a href="no-show-bond">No-Show Bond</a> owner, the No-Show Bond is returned to its owner. Otherwise, it is used as Stake in the <a href="#first-public-report">First Public Report</a>.</p>
+
+<p>This transaction will trigger an <a href="#InitialReportSubmitted"><code class="prettyprint">InitialReportSubmitted</code></a> event if it submits the Initial Report successfully.</p>
 
 <p>This transaction will fail if:</p>
 
@@ -10439,7 +10631,7 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
 <p>This transaction will fail if:</p>
 
 <ul>
-<li>The Market has already been finalized.</li>
+<li>The Market has already been Finalized.</li>
 <li>The <a href="#initial-report">Initial Report</a> has not been submitted.</li>
 <li>The <a href="#dispute-window">Dispute Window</a> has not ended.</li>
 <li>The Market is a Forked Market.</li>
@@ -10487,6 +10679,42 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
 <li><strong><code class="prettyprint">p</code></strong> (Object) Parameters object.
 
 <ul>
+<li><strong><code class="prettyprint">p.tx</code></strong> (Object) Object containing details about how this transaction should be made.
+
+<ul>
+<li><strong><code class="prettyprint">p.tx.to</code></strong> (string) Ethereum contract address on which to call this function, as a 20-byte hexadecimal string.</li>
+<li><strong><code class="prettyprint">p.tx.gas</code></strong> (string) Gas limit to use when submitting this transaction, as a hexadecimal string.</li>
+</ul></li>
+<li><strong><code class="prettyprint">p.meta</code></strong>  (<a href="#Meta">Meta</a>) &lt;optional&gt; Authentication metadata for raw transactions.</li>
+<li><strong><code class="prettyprint">p.onSent</code></strong>  (function) Callback function that executes once the transaction has been sent.</li>
+<li><strong><code class="prettyprint">p.onSuccess</code></strong>  (function) &lt;optional&gt; Callback function that executes if the transaction returned successfully.</li>
+<li><strong><code class="prettyprint">p.onFailed</code></strong>  (function) &lt;optional&gt; Callback function that executes if the transaction failed.</li>
+</ul></li>
+</ul>
+
+<h4 id="strong-strong"><strong>Returns:</strong></h4>
+
+<ul>
+<li>Return value cannot be obtained because Ethereum nodes <a href="#transaction-return-values">discard</a> transaction return values.</li>
+</ul>
+
+<h3 id="augur-api-market-increasevaliditybond-p">augur.api.Market.increaseValidityBond(p)</h3>
+
+<p>Increases the <a href="#validity-bond">Validity Bond</a> by sending more Cash to this <a href="#market">Market</a> contract.</p>
+
+<p>This transaction will fail if:</p>
+
+<ul>
+<li>The Market has not been <a href="#finalized-market">Finalized</a>.</li>
+</ul>
+
+<h4 id="strong-strong"><strong>Parameters:</strong></h4>
+
+<ul>
+<li><strong><code class="prettyprint">p</code></strong> (Object) Parameters object.
+
+<ul>
+<li><strong><code class="prettyprint">p._attoCash</code></strong>  (string) Amount of <a href="#atto-prefix">attoCash</a> by which to increase the Market&rsquo;s Validity Bond.</li>
 <li><strong><code class="prettyprint">p.tx</code></strong> (Object) Object containing details about how this transaction should be made.
 
 <ul>
@@ -11876,6 +12104,17 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
 <span class="c1">// example output:</span>
 <span class="s2">"19000000000000000"</span>
 
+<span class="nx">augur</span><span class="p">.</span><span class="nx">api</span><span class="p">.</span><span class="nx">Universe</span><span class="p">.</span><span class="nx">getOrCacheMarketRepBond</span><span class="p">({</span>
+  <span class="na">tx</span><span class="p">:</span> <span class="p">{</span> 
+    <span class="na">to</span><span class="p">:</span> <span class="nx">universeAddress</span><span class="p">,</span>
+    <span class="na">send</span><span class="p">:</span> <span class="kc">false</span>
+  <span class="p">}</span>
+<span class="p">},</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">error</span><span class="p">,</span> <span class="nx">marketCreationCost</span><span class="p">)</span> <span class="p">{</span> 
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">marketCreationCost</span><span class="p">);</span> 
+<span class="p">});</span>
+<span class="c1">// example output:</span>
+<span class="s2">"19000000000000000"</span>
+
 <span class="nx">augur</span><span class="p">.</span><span class="nx">api</span><span class="p">.</span><span class="nx">Universe</span><span class="p">.</span><span class="nx">getOrCacheReportingFeeDivisor</span><span class="p">({</span>
   <span class="na">tx</span><span class="p">:</span> <span class="p">{</span> 
     <span class="na">to</span><span class="p">:</span> <span class="nx">universeAddress</span><span class="p">,</span>
@@ -11899,6 +12138,7 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
 <span class="s2">"10000000000000000"</span>
 
 <span class="nx">augur</span><span class="p">.</span><span class="nx">api</span><span class="p">.</span><span class="nx">Universe</span><span class="p">.</span><span class="nx">getOrCreateCurrentDisputeWindow</span><span class="p">({</span>
+  <span class="na">_initial</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
   <span class="na">tx</span><span class="p">:</span> <span class="p">{</span> 
     <span class="na">to</span><span class="p">:</span> <span class="nx">universeAddress</span><span class="p">,</span>
     <span class="na">send</span><span class="p">:</span> <span class="kc">false</span>
@@ -11912,6 +12152,7 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
 <span class="kd">var</span> <span class="nx">_timestamp</span> <span class="o">=</span> <span class="mi">1401003133</span><span class="p">;</span>
 <span class="nx">augur</span><span class="p">.</span><span class="nx">api</span><span class="p">.</span><span class="nx">Universe</span><span class="p">.</span><span class="nx">getOrCreateDisputeWindowByTimestamp</span><span class="p">({</span>
   <span class="na">_timestamp</span><span class="p">:</span> <span class="nx">_timestamp</span><span class="p">,</span>
+  <span class="na">_initial</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
   <span class="na">tx</span><span class="p">:</span> <span class="p">{</span> 
     <span class="na">to</span><span class="p">:</span> <span class="nx">universeAddress</span><span class="p">,</span>
     <span class="na">send</span><span class="p">:</span> <span class="kc">false</span>
@@ -11923,6 +12164,7 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
 <span class="s2">"0x90b2a6a6c5a0e7b572cc3745328a74abbfed31d0"</span>
 
 <span class="nx">augur</span><span class="p">.</span><span class="nx">api</span><span class="p">.</span><span class="nx">Universe</span><span class="p">.</span><span class="nx">getOrCreateNextDisputeWindow</span><span class="p">({</span>
+  <span class="na">_initial</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
   <span class="na">tx</span><span class="p">:</span> <span class="p">{</span> 
     <span class="na">to</span><span class="p">:</span> <span class="nx">universeAddress</span><span class="p">,</span>
     <span class="na">send</span><span class="p">:</span> <span class="kc">false</span>
@@ -11934,6 +12176,7 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
 <span class="s2">"0x90b2a6a6c5a0e7b572cc3745328a74abbfed31d0"</span>
 
 <span class="nx">augur</span><span class="p">.</span><span class="nx">api</span><span class="p">.</span><span class="nx">Universe</span><span class="p">.</span><span class="nx">getOrCreatePreviousDisputeWindow</span><span class="p">({</span>
+  <span class="na">_initial</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
   <span class="na">tx</span><span class="p">:</span> <span class="p">{</span> 
     <span class="na">to</span><span class="p">:</span> <span class="nx">universeAddress</span><span class="p">,</span>
     <span class="na">send</span><span class="p">:</span> <span class="kc">false</span>
@@ -11943,6 +12186,18 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
 <span class="p">});</span>
 <span class="c1">// example output:</span>
 <span class="s2">"0x4844c13d539fe040ded440a9f9947f14b2b4c423"</span>
+
+<span class="nx">augur</span><span class="p">.</span><span class="nx">api</span><span class="p">.</span><span class="nx">Universe</span><span class="p">.</span><span class="nx">getOrCreatePreviousPreviousDisputeWindow</span><span class="p">({</span>
+  <span class="na">_initial</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+  <span class="na">tx</span><span class="p">:</span> <span class="p">{</span> 
+    <span class="na">to</span><span class="p">:</span> <span class="nx">universeAddress</span><span class="p">,</span>
+    <span class="na">send</span><span class="p">:</span> <span class="kc">false</span>
+  <span class="p">}</span>
+<span class="p">},</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">error</span><span class="p">,</span> <span class="nx">disputeWindowAddress</span><span class="p">)</span> <span class="p">{</span> 
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">disputeWindowAddress</span><span class="p">);</span> 
+<span class="p">});</span>
+<span class="c1">// example output:</span>
+<span class="s2">"0x3334c13d539fe040ded440a9f9947f14b2b4c123"</span>
 
 <span class="kd">var</span> <span class="nx">_reportingParticipants</span> <span class="o">=</span> <span class="p">[</span> <span class="s2">"0xd1b8f991589174315015a7a000638891ab3cd52a"</span> <span class="p">];</span>
 <span class="kd">var</span> <span class="nx">_disputeWindows</span> <span class="o">=</span> <span class="p">[</span> <span class="s2">"0x59d919af0c79c2fdbb7af29627642bddbfcd2178"</span> <span class="p">];</span>
@@ -12293,6 +12548,36 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
 <li>(null|string) Return value cannot be obtained when executed as a transaction because Ethereum nodes <a href="#transaction-return-values">discard</a> transaction return values. However, if <code class="prettyprint">p.tx.send</code> is set to <code class="prettyprint">false</code>, this function will return the estimated amount of <a href="#atto-prefix">attoETH</a> required to create a Market, as a stringified unsigned integer.</li>
 </ul>
 
+<h3 id="augur-api-universe-getorcachemarketrepbond-p">augur.api.Universe.getOrCacheMarketRepBond(p)</h3>
+
+<p>Gets the estimated amount of <a href="#atto-prefix">attoETH</a> required to create a <a href="#market">Market</a> in the current <a href="#dispute-window">Dispute Window</a> of this <a href="#universe">Universe</a>. The amount returned by this function is equivalent to either the value returned by <code class="prettyprint">Universe.getOrCacheDesignatedReportNoShowBond</code> or the value returned by <code class="prettyprint">Universe.getOrCacheDesignatedReportStake</code> (whichever is greater). If this value has not already been cached in the Universe contract, this function will cache it.</p>
+
+<h4 id="parameters">Parameters:</h4>
+
+<ul>
+<li><strong><code class="prettyprint">p</code></strong> (Object) Parameters object.
+
+<ul>
+<li><strong><code class="prettyprint">p.tx</code></strong> (Object) Object containing details about how this transaction should be made.
+
+<ul>
+<li><strong><code class="prettyprint">p.tx.to</code></strong> (string) Ethereum contract address on which to call this function, as a 20-byte hexadecimal string.</li>
+<li><strong><code class="prettyprint">p.tx.send</code></strong> (boolean) &lt;optional&gt; Whether this function should be executed as a transaction. When set to <code class="prettyprint">false</code>, this function will be executed as a call, which will simply return the last value that was cached (and will not use any gas). When set to <code class="prettyprint">true</code>, this function will be executed as a transaction, which will use gas to re-calculate the value and cache it. (However, the return value will not be <a href="#transaction-return-values">obtainable</a>.)</li>
+<li><strong><code class="prettyprint">p.tx.gas</code></strong> (string) &lt;optional&gt; Gas limit to use when submitting this transaction, as a hexadecimal string. This does not need to be set if <code class="prettyprint">p.tx.send</code> is <code class="prettyprint">false</code>.</li>
+</ul></li>
+<li><strong><code class="prettyprint">p.meta</code></strong>  (<a href="#Meta">Meta</a>) &lt;optional&gt; Authentication metadata for raw transactions.</li>
+<li><strong><code class="prettyprint">p.onSent</code></strong>  (function) Callback function that executes once the transaction has been sent.</li>
+<li><strong><code class="prettyprint">p.onSuccess</code></strong>  (function) &lt;optional&gt; Callback function that executes if the transaction returned successfully.</li>
+<li><strong><code class="prettyprint">p.onFailed</code></strong>  (function) &lt;optional&gt; Callback function that executes if the transaction failed.</li>
+</ul></li>
+</ul>
+
+<h4 id="strong-strong"><strong>Returns:</strong></h4>
+
+<ul>
+<li>(null|string) Return value cannot be obtained when executed as a transaction because Ethereum nodes <a href="#transaction-return-values">discard</a> transaction return values. However, if <code class="prettyprint">p.tx.send</code> is set to <code class="prettyprint">false</code>, this function will return the estimated amount of <a href="#atto-prefix">attoETH</a> required to create a Market in the current Dispute Window, as a stringified unsigned integer.</li>
+</ul>
+
 <h3 id="augur-api-universe-getorcachereportingfeedivisor-p">augur.api.Universe.getOrCacheReportingFeeDivisor(p)</h3>
 
 <p>Gets the number by which the total payout amount for a <a href="#market">Market</a> is divided in order to calculate the <a href="#reporting-fee">Reporting Fee</a>. If this value for the current <a href="#dispute-window">Dispute Window</a> has not already been cached in the Universe contract, this function will cache it.</p>
@@ -12363,6 +12648,7 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
 <li><strong><code class="prettyprint">p</code></strong> (Object) Parameters object.
 
 <ul>
+<li><strong><code class="prettyprint">p._initial</code></strong> (boolean) Whether the Dispute Window is an initial Dispute Window (1 day in duration) or a standard Dispute Window (7 days in duration).</li>
 <li><strong><code class="prettyprint">p.tx</code></strong> (Object) Object containing details about how this transaction should be made.
 
 <ul>
@@ -12394,6 +12680,7 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
 
 <ul>
 <li><strong><code class="prettyprint">p._timestamp</code></strong>  (string) Unix timestamp that falls within the desired Dispute Window, as a hexadecimal string.</li>
+<li><strong><code class="prettyprint">p._initial</code></strong> (boolean) Whether the Dispute Window is an initial Dispute Window (1 day in duration) or a standard Dispute Window (7 days in duration).</li>
 <li><strong><code class="prettyprint">p.tx</code></strong> (Object) Object containing details about how this transaction should be made.
 
 <ul>
@@ -12424,6 +12711,7 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
 <li><strong><code class="prettyprint">p</code></strong> (Object) Parameters object.
 
 <ul>
+<li><strong><code class="prettyprint">p._initial</code></strong> (boolean) Whether the Dispute Window is an initial Dispute Window (1 day in duration) or a standard Dispute Window (7 days in duration).</li>
 <li><strong><code class="prettyprint">p.tx</code></strong> (Object) Object containing details about how this transaction should be made.
 
 <ul>
@@ -12457,6 +12745,7 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
 <li><strong><code class="prettyprint">p.tx</code></strong> (Object) Object containing details about how this transaction should be made.
 
 <ul>
+<li><strong><code class="prettyprint">p._initial</code></strong> (boolean) Whether the Dispute Window is an initial Dispute Window (1 day in duration) or a standard Dispute Window (7 days in duration).</li>
 <li><strong><code class="prettyprint">p.tx.to</code></strong> (string) Ethereum contract address on which to call this function, as a 20-byte hexadecimal string.</li>
 <li><strong><code class="prettyprint">p.tx.send</code></strong> (boolean) &lt;optional&gt; Whether this function should be executed as a transaction. When set to <code class="prettyprint">false</code>, this function will be executed as a call, which will simply return the last value that was cached (and will not use any gas). When set to <code class="prettyprint">true</code>, this function will be executed as a transaction, which will use gas to re-calculate the value and cache it. (However, the return value will not be <a href="#transaction-return-values">obtainable</a>.)</li>
 <li><strong><code class="prettyprint">p.tx.gas</code></strong> (string) &lt;optional&gt; Gas limit to use when submitting this transaction, as a hexadecimal string. This does not need to be set if <code class="prettyprint">p.tx.send</code> is <code class="prettyprint">false</code>.</li>
@@ -12472,6 +12761,37 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
 
 <ul>
 <li>(null|string) Return value cannot be obtained when executed as a transaction because Ethereum nodes <a href="#transaction-return-values">discard</a> transaction return values. However, if <code class="prettyprint">p.tx.send</code> is set to <code class="prettyprint">false</code>, this function will return the Ethereum contract address of the Dispute Window that was active just before the current Dispute Window in the specified Universe, as a 20-byte hexadecimal string.</li>
+</ul>
+
+<h3 id="augur-api-universe-getorcreatepreviouspreviousdisputewindow-p">augur.api.Universe.getOrCreatePreviousPreviousDisputeWindow(p)</h3>
+
+<p>Gets the Ethereum contract address of the <a href="#dispute-window">Dispute Window</a> that was active just before the previous Dispute Window in the specified <a href="#universe">Universe</a>. If the contract address for the Dispute Window does not exist yet, this function will create it.</p>
+
+<h4 id="parameters">Parameters:</h4>
+
+<ul>
+<li><strong><code class="prettyprint">p</code></strong> (Object) Parameters object.
+
+<ul>
+<li><strong><code class="prettyprint">p.tx</code></strong> (Object) Object containing details about how this transaction should be made.
+
+<ul>
+<li><strong><code class="prettyprint">p._initial</code></strong> (boolean) Whether the Dispute Window is an initial Dispute Window (1 day in duration) or a standard Dispute Window (7 days in duration).</li>
+<li><strong><code class="prettyprint">p.tx.to</code></strong> (string) Ethereum contract address on which to call this function, as a 20-byte hexadecimal string.</li>
+<li><strong><code class="prettyprint">p.tx.send</code></strong> (boolean) &lt;optional&gt; Whether this function should be executed as a transaction. When set to <code class="prettyprint">false</code>, this function will be executed as a call, which will simply return the last value that was cached (and will not use any gas). When set to <code class="prettyprint">true</code>, this function will be executed as a transaction, which will use gas to re-calculate the value and cache it. (However, the return value will not be <a href="#transaction-return-values">obtainable</a>.)</li>
+<li><strong><code class="prettyprint">p.tx.gas</code></strong> (string) &lt;optional&gt; Gas limit to use when submitting this transaction, as a hexadecimal string. This does not need to be set if <code class="prettyprint">p.tx.send</code> is <code class="prettyprint">false</code>.</li>
+</ul></li>
+<li><strong><code class="prettyprint">p.meta</code></strong>  (<a href="#Meta">Meta</a>) &lt;optional&gt; Authentication metadata for raw transactions.</li>
+<li><strong><code class="prettyprint">p.onSent</code></strong>  (function) Callback function that executes once the transaction has been sent.</li>
+<li><strong><code class="prettyprint">p.onSuccess</code></strong>  (function) &lt;optional&gt; Callback function that executes if the transaction returned successfully.</li>
+<li><strong><code class="prettyprint">p.onFailed</code></strong>  (function) &lt;optional&gt; Callback function that executes if the transaction failed.</li>
+</ul></li>
+</ul>
+
+<h4 id="strong-strong"><strong>Returns:</strong></h4>
+
+<ul>
+<li>(null|string) Return value cannot be obtained when executed as a transaction because Ethereum nodes <a href="#transaction-return-values">discard</a> transaction return values. However, if <code class="prettyprint">p.tx.send</code> is set to <code class="prettyprint">false</code>, this function will return the Ethereum contract address of the Dispute Window that was active just before the previous Dispute Window in the specified Universe, as a 20-byte hexadecimal string.</li>
 </ul>
 
 <h3 id="augur-api-universe-redeemstake-p">augur.api.Universe.redeemStake(p)</h3>
@@ -12865,9 +13185,9 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
 <tr>
 <td><a name="DisputeWindowCreated"></a>DisputeWindowCreated</td>
 <td><a href="https://github.com/AugurProject/augur/blob/master/packages/augur-core/source/contracts/Augur.sol">Augur</a></td>
-<td>The Ethereum contract address <code class="prettyprint">disputeWindow</code> has created a new <a href="#dispute-window">Dispute Window</a> (with ID <code class="prettyprint">id</code> and running from <code class="prettyprint">startTime</code> to <code class="prettyprint">endTime</code>) in <code class="prettyprint">universe</code>.</td>
+<td>The Ethereum contract address <code class="prettyprint">disputeWindow</code> has created a new <a href="#dispute-window">Dispute Window</a> (with ID <code class="prettyprint">id</code> and running from <code class="prettyprint">startTime</code> to <code class="prettyprint">endTime</code>) in <code class="prettyprint">universe</code>. If the Dispute Window is an initial one (i.e., only lasts a maximum of 1 day instead of 7 days), <code class="prettyprint">initial</code> is set to <code class="prettyprint">true</code>.</td>
 <td>universe</td>
-<td>disputeWindow, startTime, endTime, id</td>
+<td>disputeWindow, startTime, endTime, id, initial</td>
 </tr>
 <tr>
 <td><a name="InitialReporterRedeemed"></a>InitialReporterRedeemed</td>
@@ -14674,7 +14994,7 @@ During the very first <a href="#dispute-window">Dispute Window</a> after launch,
 
 <h2 id="dispute-pacing">Dispute Pacing</h2>
 
-<p><a href="#dispute-round">Dispute Rounds</a> for a <a href="#market">Market</a> occur continuously until there are 4 Dispute Rounds remaining before a <a href="#fork">Fork</a> (in the fastest case). At this point, Dispute Pacing begins. Dispute Pacing causes a Market&rsquo;s <a href="#crowdsourcer">Crowdsourcers</a> to wait for a new <a href="#dispute-window">Dispute Window</a> to begin before starting the next Dispute Round. Augur does this to provide time for the community to crowdsource enough funds to <a href="#dispute">Dispute</a> the Market&rsquo;s <a href="#tentative-outcome">Tentative Outcome</a>.</p>
+<p><a href="#dispute-round">Dispute Rounds</a> for a <a href="#market">Market</a> occur continuously until there are 8 Dispute Rounds remaining before a <a href="#fork">Fork</a> (in the fastest case). At this point, Dispute Pacing begins. Dispute Pacing causes a Market&rsquo;s <a href="#crowdsourcer">Crowdsourcers</a> to wait for a new <a href="#dispute-window">Dispute Window</a> to begin before starting the next Dispute Round. Augur does this to provide time for the community to crowdsource enough funds to <a href="#dispute">Dispute</a> the Market&rsquo;s <a href="#tentative-outcome">Tentative Outcome</a>.</p>
 
 <h2 id="dispute-pacing-threshold">Dispute Pacing Threshold</h2>
 
