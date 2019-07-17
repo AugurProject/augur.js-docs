@@ -302,6 +302,14 @@ augur.api.DisputeCrowdsourcer.getPayoutNumerator({
 // example output:
 "1000"
 
+augur.api.DisputeCrowdsourcer.getRemainingToFill({ 
+  tx: { to: disputeCrowdsourcer } 
+}, function (error, remainingToFill) { 
+  console.log(remainingToFill); 
+});
+// example output:
+!!!TBD!!! Add example output
+
 augur.api.DisputeCrowdsourcer.getReputationToken({ 
   tx: { to: disputeCrowdsourcer } 
 }, function (error, reputationToken) { 
@@ -396,6 +404,21 @@ Gets the [Payout Numerator](#payout-set) of a given [Outcome](#outcome) for a [D
 #### **Returns:**
 
 * (string)  Payout Numerator for the Dispute Crowdsourcer, as a stringified unsigned integer.
+
+### augur.api.DisputeCrowdsourcer.getRemainingToFill(p, callback)
+
+Gets the remaining amount of [REP](#rep) needed to fill the [Dispute Bond](#dispute-bond) for this [Crowdsourcer](#crowdsourcer).
+
+#### **Parameters:**
+
+* **`p`** (Object) Parameters object.  
+    * **`p.tx`** (Object) Object containing details about how this function call should be made.
+        * **`p.tx.to`** (string) Ethereum contract address of the Dispute Crowdsourcer on which to call this function, as a 20-byte hexadecimal string.
+* **`callback`** (function) &lt;optional> Called after the function's result has been retrieved.
+
+#### **Returns:**
+
+* (string) !!!TBD!!! Add return value info
 
 ### augur.api.DisputeCrowdsourcer.getReputationToken(p, callback)
 
@@ -534,6 +557,14 @@ augur.api.DisputeWindow.getUniverse({
 // example output:
 "0x0920d1513057572be46580b7ef75d1d01a99a3e5"
 
+augur.api.DisputeWindow.getWindowId({ 
+  tx: { to: disputeWindow } 
+}, function (error, windowId) { 
+  console.log(windowId); 
+});
+// example output:
+!!!TBD!!! Add example output
+
 augur.api.DisputeWindow.isActive({ 
   tx: { to: disputeWindow } 
 }, function (error, isActive) { 
@@ -671,6 +702,21 @@ Returns the [Universe](#universe) to which the specified [Dispute Window](#dispu
 #### **Returns:**
 
 * (string) Ethereum contract address of the Universe to which the Dispute Window belongs, as a 20-byte hexadecimal string.
+
+### augur.api.DisputeWindow.getWindowId(p, callback)
+
+Returns the [Dispute Window](#dispute-window) ID of the Dispute Window.
+
+#### **Parameters:**
+
+* **`p`** (Object) Parameters object.  
+    * **`p.tx`** (Object) Object containing details about how this function call should be made.
+        * **`p.tx.to`** (string) Ethereum contract address of the Dispute Window on which to call this function, as a 20-byte hexadecimal string.
+* **`callback`** (function) &lt;optional> Called after the function's result has been retrieved.
+
+#### **Returns:**
+
+* (string) !!!TBD!!! Add return value info
 
 ### augur.api.DisputeWindow.isActive(p, callback)
 
@@ -1049,14 +1095,6 @@ augur.api.Market.getDisputePacingOn({
 // example output:
 true
 
-augur.api.Market.getEndTime({ 
-  tx: { to: market } 
-}, function (error, endTime) { 
-  console.log(endTime); 
-});
-// example output:
-"1500388730";
-
 augur.api.Market.getDisputeWindow({ 
   tx: { to: market }, 
 }, function (error, disputeWindow) { 
@@ -1064,6 +1102,14 @@ augur.api.Market.getDisputeWindow({
 });
 // example output:
 "0x1f90cc6b4e89303e451c9b852827b5791667f570"
+
+augur.api.Market.getEndTime({ 
+  tx: { to: market } 
+}, function (error, endTime) { 
+  console.log(endTime); 
+});
+// example output:
+"1500388730";
 
 augur.api.Market.getFinalizationTime({ 
   tx: { to: market } 
@@ -1080,6 +1126,14 @@ augur.api.Market.getForkingMarket({
 });
 // example output:
 "0x1230cc6b4e89303e451c9b852827b5791667f234"
+
+augur.api.Market.getHighestNonTentativeParticipantStake({ 
+   tx: { to: market } 
+}, function (error, highestNonTentativeParticipantStake) { 
+  console.log(highestNonTentativeParticipantStake); 
+});
+// example output:
+!!!TBD!!! Add example output
 
 augur.api.Market.getInitialReporter({ 
   tx: { to: market } 
@@ -1375,21 +1429,6 @@ Returns whether [Dispute Pacing](#dispute-pacing) is enabled for a given [Market
 
 * (boolean) `true` if Dispute Pacing is enabled for the Market's Crowdsourcers, or `false` otherwise.
 
-### augur.api.Market.getEndTime(p, callback)
-
-Returns the Unix timestamp for when the specified [Market's](#market) event has come to pass. When the Market's [End Time](#end-time) passes, the Market enters the [Designated Reporting Phase](#designated-reporting-phase).
-
-#### **Parameters:**
-
-* **`p`** (Object) Parameters object.  
-    * **`p.tx`** (Object) Object containing details about how this function call should be made.
-        * **`p.tx.to`** (string) Ethereum contract address of the Market contract on which to call this function, as a 20-byte hexadecimal string.
-* **`callback`** (function) &lt;optional> Called after the function's result has been retrieved.
-
-#### **Returns:**
-
-* (string) Unix timestamp for when the specified [Market's](#market) event has come to pass, as a stringified unsigned integer.
-
 ### augur.api.Market.getDisputeWindow(p, callback)
 
 Returns the Ethereum contract address of the [Market's](#market) [Dispute Window](#dispute-window).
@@ -1404,6 +1443,21 @@ Returns the Ethereum contract address of the [Market's](#market) [Dispute Window
 #### **Returns:**
 
 * (string) Ethereum contract address of the Market's Dispute Window, as a 20-byte hexadecimal string.
+
+### augur.api.Market.getEndTime(p, callback)
+
+Returns the Unix timestamp for when the specified [Market's](#market) event has come to pass. When the Market's [End Time](#end-time) passes, the Market enters the [Designated Reporting Phase](#designated-reporting-phase).
+
+#### **Parameters:**
+
+* **`p`** (Object) Parameters object.  
+    * **`p.tx`** (Object) Object containing details about how this function call should be made.
+        * **`p.tx.to`** (string) Ethereum contract address of the Market contract on which to call this function, as a 20-byte hexadecimal string.
+* **`callback`** (function) &lt;optional> Called after the function's result has been retrieved.
+
+#### **Returns:**
+
+* (string) Unix timestamp for when the specified [Market's](#market) event has come to pass, as a stringified unsigned integer.
 
 ### augur.api.Market.getFinalizationTime(p, callback)
 
@@ -1434,6 +1488,21 @@ Returns the Ethereum contract address of the [Forked Market](#forked-market) for
 #### **Returns:**
 
 * (string) Ethereum contract address of the Forked Market for the Universe in which the specified Market exists, as a 20-byte hexadecimal string.
+
+### augur.api.Market.getHighestNonTentativeParticipantStake(p, callback)
+
+Returns the highest amount of attoREP staked in in the Market's InitialReporter/DisputeCrowdsourcer that is not the [Tentative Outcome](#tentative-outcome).
+
+#### **Parameters:**
+
+* **`p`** (Object) Parameters object.  
+    * **`p.tx`** (Object) Object containing details about how this function call should be made.
+        * **`p.tx.to`** (string) Ethereum contract address of the Market contract on which to call this function, as a 20-byte hexadecimal string.
+* **`callback`** (function) &lt;optional> Called after the function's result has been retrieved.
+
+#### **Returns:**
+
+* (string) !!!TBD!!! Add return value info
 
 ### augur.api.Market.getInitialReporter(p, callback)
 
@@ -2448,6 +2517,7 @@ augur.api.Universe.getChildUniverse({
 "0xb4e8c1f85c4382d64954aca187f9f386c8bb1a6c"
 
 augur.api.Universe.getCurrentDisputeWindow({ 
+  _initial: false,
   tx: { to: universe } 
 }, function (error, currDisputeWindow) { 
   console.log(currDisputeWindow); 
@@ -2456,6 +2526,7 @@ augur.api.Universe.getCurrentDisputeWindow({
 "0x1f90cc6b4e89303e451c9b852827b5791667f570"
 
 augur.api.Universe.getDisputeRoundDurationInSeconds({ 
+  _initial: false,
   tx: { to: universe } 
 }, function (error, disputeRoundDuration) { 
   console.log(disputeRoundDuration); 
@@ -2482,6 +2553,7 @@ augur.api.Universe.getDisputeWindow({
 
 augur.api.Universe.getDisputeWindowByTimestamp({ 
   _timestamp: "0x5a45710f",
+  _initial: false,
   tx: { to: universe },
 }, function (error, disputeWindow) { 
   console.log(disputeWindow); 
@@ -2491,6 +2563,7 @@ augur.api.Universe.getDisputeWindowByTimestamp({
 
 augur.api.Universe.getDisputeWindowId({ 
   _timestamp: "0x5a45710f",
+  _initial: false,
   tx: { to: universe },
 }, function (error, disputeWindowId) {
   console.log(disputeWindowId); 
@@ -2523,6 +2596,7 @@ augur.api.Universe.getForkReputationGoal({
 "5500000000000000000000000"
 
 augur.api.Universe.getNextDisputeWindow({ 
+  _initial: false,
   tx: { to: universe } 
 }, function (error, nextDisputeWindow) { 
   console.log(nextDisputeWindow); 
@@ -2555,6 +2629,7 @@ augur.api.Universe.getParentUniverse({
 "0x63c59544b89cce1dd53b1b566862189b25adec41"
 
 augur.api.Universe.getPreviousDisputeWindow({ 
+  _initial: false,
   tx: { to: universe } 
 }, function (error, previousDisputeWindow) { 
   console.log(previousDisputeWindow); 
@@ -2700,7 +2775,8 @@ Returns the Ethereum contract address of the current running [Dispute Window](#d
 
 #### **Parameters:**
 
-* **`p`** (Object) Parameters object.  
+* **`p`** (Object) Parameters object.
+    * **`p._initial`** (boolean) Whether the Dispute Window is an initial Dispute Window (1 day in duration) or a standard Dispute Window (7 days in duration).
     * **`p.tx`** (Object) Object containing details about how this function call should be made.
         * **`p.tx.to`** (string) Ethereum contract address of the Universe contract on which to call this function, as a 20-byte hexadecimal string.
 * **`callback`** (function) &lt;optional> Called after the function's result has been retrieved.
@@ -2716,6 +2792,7 @@ Returns the maximum number of seconds a [Dispute Round](#dispute-round) can last
 #### **Parameters:**
 
 * **`p`** (Object) Parameters object.  
+    * **`p._initial`** (boolean) Whether the Dispute Window is an initial Dispute Window (1 day in duration) or a standard Dispute Window (7 days in duration).
     * **`p.tx`** (Object) Object containing details about how this function call should be made.
         * **`p.tx.to`** (string) Ethereum contract address of the Universe contract on which to call this function, as a 20-byte hexadecimal string.
 * **`callback`** (function) &lt;optional> Called after the function's result has been retrieved.
@@ -2763,6 +2840,7 @@ Returns the Ethereum contract address of the [Dispute Window](#dispute-window) r
 
 * **`p`** (Object) Parameters object.  
     * **`p._timestamp`** (string) Unix timestamp for which to get the corresponding Dispute Window, as a hexadecimal string.
+    * **`p._initial`** (boolean) Whether the Dispute Window is an initial Dispute Window (1 day in duration) or a standard Dispute Window (7 days in duration).
     * **`p.tx`** (Object) Object containing details about how this function call should be made.
         * **`p.tx.to`** (string) Ethereum contract address of the Universe contract on which to call this function, as a 20-byte hexadecimal string.
 * **`callback`** (function) &lt;optional> Called after the function's result has been retrieved.
@@ -2773,12 +2851,13 @@ Returns the Ethereum contract address of the [Dispute Window](#dispute-window) r
 
 ### augur.api.Universe.getDisputeWindowId(p, callback)
 
-Returns the [Dispute Window](#dispute-window) ID for the [Universe](#universe) at the specified timestamp. This ID is calculated by dividing the timestamp by the [Universe's](#universe) Dispute Window duration in seconds.
+Returns the [Dispute Window](#dispute-window) ID for the [Universe](#universe) at the specified timestamp. This ID is calculated by dividing the timestamp by the [Universe's](#universe) Dispute Window duration in seconds. If the Dispute Window is an Initial Window (1 day in duration), an additional buffer is added to the ID.
 
 #### **Parameters:**
 
 * **`p`** (Object) Parameters object.  
     * **`p._timestamp`** (string) Unix timestamp for which to get the corresponding Dispute Window, as a hexadecimal string.
+    * **`p._initial`** (boolean) Whether the Dispute Window is an initial Dispute Window (1 day in duration) or a standard Dispute Window (7 days in duration).
     * **`p.tx`** (Object) Object containing details about how this function call should be made.
         * **`p.tx.to`** (string) Ethereum contract address of the Universe contract on which to call this function, as a 20-byte hexadecimal string.
 * **`callback`** (function) &lt;optional> Called after the function's result has been retrieved.
@@ -2839,6 +2918,7 @@ Returns the Ethereum contract address of the [Dispute Window](#dispute-window) c
 #### **Parameters:**
 
 * **`p`** (Object) Parameters object.  
+    * **`p._initial`** (boolean) Whether the Dispute Window is an initial Dispute Window (1 day in duration) or a standard Dispute Window (7 days in duration).
     * **`p.tx`** (Object) Object containing details about how this function call should be made.
         * **`p.tx.to`** (string) Ethereum contract address of the Universe contract on which to call this function, as a 20-byte hexadecimal string.
 * **`callback`** (function) &lt;optional> Called after the function's result has been retrieved.
@@ -2899,6 +2979,7 @@ Returns the Ethereum contract address of the previous [Dispute Window](#dispute-
 #### **Parameters:**
 
 * **`p`** (Object) Parameters object.  
+    * **`p._initial`** (boolean) Whether the Dispute Window is an initial Dispute Window (1 day in duration) or a standard Dispute Window (7 days in duration).
     * **`p.tx`** (Object) Object containing details about how this function call should be made.
         * **`p.tx.to`** (string) Ethereum contract address of the Universe contract on which to call this function, as a 20-byte hexadecimal string.
 * **`callback`** (function) &lt;optional> Called after the function's result has been retrieved.

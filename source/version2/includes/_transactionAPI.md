@@ -1373,6 +1373,23 @@ augur.api.Market.contribute({
   onFailed: function (result) { console.log(result); }
 });
 
+augur.api.Market.contributeToTentative({
+  _payoutNumerators: _payoutNumerators,
+  _amount: _amount,
+  tx: { 
+    to: marketAddress,
+    gas: "0x632ea0" 
+  }, 
+  meta: {
+    accountType: "privateKey",
+    address: "0x913dA4198E6bE1D5f5E4a40D0667f70C0B5430Ec",
+    signer: [252, 111, 32, 94, 233, 213, 105, 71, 89, 162, 243, 247, 56, 81, 213, 103, 239, 75, 212, 240, 234, 95, 8, 201, 217, 55, 225, 0, 85, 109, 158, 25],
+  },
+  onSent: function (result) { console.log(result); },
+  onSuccess: function (result) { console.log(result); },
+  onFailed: function (result) { console.log(result); }
+});
+
 augur.api.Market.disavowCrowdsourcers({
   tx: { 
     to: marketAddress,
@@ -1421,6 +1438,22 @@ augur.api.Market.finalize({
 });
 
 augur.api.Market.finalizeFork({
+  tx: { 
+    to: marketAddress,
+    gas: "0x632ea0" 
+  }, 
+  meta: {
+    accountType: "privateKey",
+    address: "0x913dA4198E6bE1D5f5E4a40D0667f70C0B5430Ec",
+    signer: [252, 111, 32, 94, 233, 213, 105, 71, 89, 162, 243, 247, 56, 81, 213, 103, 239, 75, 212, 240, 234, 95, 8, 201, 217, 55, 225, 0, 85, 109, 158, 25],
+  },
+  onSent: function (result) { console.log(result); },
+  onSuccess: function (result) { console.log(result); },
+  onFailed: function (result) { console.log(result); }
+});
+
+augur.api.Market.increaseValidityBond({
+  _attoCash: "0x1234",
   tx: { 
     to: marketAddress,
     gas: "0x632ea0" 
@@ -1488,16 +1521,50 @@ Provides JavaScript bindings for the [Market Solidity Contract](https://github.c
 
 ### augur.api.Market.contribute(p)
 
-Contributes `p._amount` [REP](#rep) to the [Dispute Crowdsourcer](#crowdsourcer) represented by [Payout Set](#payout-set) `p._payoutNumerators` in order to help [Challenge](#challenge) the [Market](#market)'s [Tentative Outcome](#tentative-outcome). If the amount of REP in the Dispute Crowdsourcer plus `p._amount` is greater than the total REP required to fill the [Dispute Bond](#dispute-bond), this function will only contribute the remaining amount of REP required to fill the Dispute Bond on behalf of the caller.
+Contributes `p._amount` [attoREP](#atto-prefix) to the [Dispute Crowdsourcer](#crowdsourcer) represented by [Payout Set](#payout-set) `p._payoutNumerators` in order to help [Challenge](#challenge) the [Market](#market)'s [Tentative Outcome](#tentative-outcome). If the amount of REP in the Dispute Crowdsourcer plus `p._amount` is greater than the total REP required to fill the [Dispute Bond](#dispute-bond), this function will only contribute the remaining amount of REP required to fill the Dispute Bond on behalf of the caller.
 
 This transaction will trigger a [`DisputeCrowdsourcerContribution`](#DisputeCrowdsourcerContribution) event if it executes without any errors. It will also trigger a `DisputeCrowdsourcerCompleted` event if the Dispute Bond is successfullly filled, and it will trigger a [`UniverseForked`](#UniverseForked) event if enough REP has been [Staked](#dispute-stake) in the Dispute Crowdsourcer to cause the Market to [Fork](#fork).
 
 This function will fail if:
 
 * No [Initial Report](#initial-report) has been submitted on the Market.
-* The Market's [Dispute Window](#dispute-window) has ended.
+* The Market's [Dispute Window](#dispute-window) has ended (when [Dispute Pacing](#dispute-pacing) is not enabled).
+* The Market's Dispute Window is not active (when Dispute Pacing is enabled).
+* The Dispute Window is not active (when Dispute Pacing is enabled).
 * The Market's [Universe](#universe) has a [Forked Market](#forked-market).
 * The [Outcome](#outcome) specified by `p._payoutNumerators` is already the Tentative Outcome of the Market.
+* `p._payoutNumerators` is not specified correctly. (For information on what the Payout Set should look like, refer to the [Payout Set glossary entry](#payout-set).)
+
+#### **Parameters:**
+
+* **`p`** (Object) Parameters object.
+    * **`p._payoutNumerators`**  (Array.&lt;number>|Array.&lt;string>) Array representing the Market's Payout Set.
+    * **`p._amount`**  (string) Amount to contribute to the Dispute Crowdsourcer, in [attoREP](#atto-prefix).
+    * **`p._description`** (string) &lt;optional> Explanation for why the contributor is Staking on this particular Outcome.
+    * **`p.tx`** (Object) Object containing details about how this transaction should be made.
+        * **`p.tx.to`** (string) Ethereum contract address on which to call this function, as a 20-byte hexadecimal string.
+        * **`p.tx.gas`** (string) Gas limit to use when submitting this transaction, as a hexadecimal string.
+    * **`p.meta`**  (<a href="#Meta">Meta</a>) &lt;optional> Authentication metadata for raw transactions.
+    * **`p.onSent`**  (function) Callback function that executes once the transaction has been sent.
+    * **`p.onSuccess`**  (function) &lt;optional> Callback function that executes if the transaction returned successfully.
+    * **`p.onFailed`**  (function) &lt;optional> Callback function that executes if the transaction failed.
+
+#### **Returns:**
+
+* Return value cannot be obtained because Ethereum nodes [discard](#transaction-return-values) transaction return values.
+
+### augur.api.Market.contributeToTentative(p)
+
+Contributes `p._amount` [attoREP](#atto-prefix) to the [Market](#market)'s [Tentative Outcome](#tentative-outcome), represented by [Payout Set](#payout-set) `p._payoutNumerators`. This will escrow REP in a bond which will be active immediately if the Tentative Outcome is successfully Disputed.
+
+This transaction will trigger a [`DisputeCrowdsourcerContribution`](#DisputeCrowdsourcerContribution) event if it executes without any errors.
+
+This function will fail if:
+
+* No [Initial Report](#initial-report) has been submitted on the Market.
+* The Market's [Dispute Window](#dispute-window) has ended (when [Dispute Pacing](#dispute-pacing) is not enabled).
+* The Market's Dispute Window is not active (when Dispute Pacing is enabled).
+* The Market's [Universe](#universe) has a [Forked Market](#forked-market).
 * `p._payoutNumerators` is not specified correctly. (For information on what the Payout Set should look like, refer to the [Payout Set glossary entry](#payout-set).)
 
 #### **Parameters:**
@@ -1547,7 +1614,9 @@ This function will fail if:
 
 ### augur.api.Market.doInitialReport(p)
 
-Submits an [Initial Report](#initial-report) for the [Market](#market). This transaction will trigger an [`InitialReportSubmitted`](#InitialReportSubmitted) event if it submits the Initial Report successfully.
+Submits an [Initial Report](#initial-report) for the [Market](#market). If the [Designated Reporter](#designated-reporter) submitted the Initial Report up but is not the [No-Show Bond](no-show-bond) owner, the No-Show Bond is returned to its owner. Otherwise, it is used as Stake in the [First Public Report](#first-public-report).
+
+This transaction will trigger an [`InitialReportSubmitted`](#InitialReportSubmitted) event if it submits the Initial Report successfully.
 
 This transaction will fail if:
 
@@ -1581,7 +1650,7 @@ If the market resolved to [Invalid](#invalid-outcome), the [Validity Bond](#vali
 
 This transaction will fail if:
 
-* The Market has already been finalized.
+* The Market has already been Finalized.
 * The [Initial Report](#initial-report) has not been submitted.
 * The [Dispute Window](#dispute-window) has not ended.
 * The Market is a Forked Market.
@@ -1613,6 +1682,30 @@ This transaction will fail if:
 #### **Parameters:**
 
 * **`p`** (Object) Parameters object.
+    * **`p.tx`** (Object) Object containing details about how this transaction should be made.
+        * **`p.tx.to`** (string) Ethereum contract address on which to call this function, as a 20-byte hexadecimal string.
+        * **`p.tx.gas`** (string) Gas limit to use when submitting this transaction, as a hexadecimal string.
+    * **`p.meta`**  (<a href="#Meta">Meta</a>) &lt;optional> Authentication metadata for raw transactions.
+    * **`p.onSent`**  (function) Callback function that executes once the transaction has been sent.
+    * **`p.onSuccess`**  (function) &lt;optional> Callback function that executes if the transaction returned successfully.
+    * **`p.onFailed`**  (function) &lt;optional> Callback function that executes if the transaction failed.
+
+#### **Returns:**
+
+* Return value cannot be obtained because Ethereum nodes [discard](#transaction-return-values) transaction return values.
+
+### augur.api.Market.increaseValidityBond(p)
+
+Increases the [Validity Bond](#validity-bond) by sending more Cash to this [Market](#market) contract.
+
+This transaction will fail if:
+
+* The Market has not been [Finalized](#finalized-market).
+
+#### **Parameters:**
+
+* **`p`** (Object) Parameters object.
+    * **`p._attoCash`**  (string) Amount of [attoCash](#atto-prefix) by which to increase the Market's Validity Bond.
     * **`p.tx`** (Object) Object containing details about how this transaction should be made.
         * **`p.tx.to`** (string) Ethereum contract address on which to call this function, as a 20-byte hexadecimal string.
         * **`p.tx.gas`** (string) Gas limit to use when submitting this transaction, as a hexadecimal string.
@@ -2766,6 +2859,17 @@ augur.api.Universe.getOrCacheMarketCreationCost({
 // example output:
 "19000000000000000"
 
+augur.api.Universe.getOrCacheMarketRepBond({
+  tx: { 
+    to: universeAddress,
+    send: false
+  }
+}, function (error, marketCreationCost) { 
+    console.log(marketCreationCost); 
+});
+// example output:
+"19000000000000000"
+
 augur.api.Universe.getOrCacheReportingFeeDivisor({
   tx: { 
     to: universeAddress,
@@ -2789,6 +2893,7 @@ augur.api.Universe.getOrCacheValidityBond({
 "10000000000000000"
 
 augur.api.Universe.getOrCreateCurrentDisputeWindow({
+  _initial: false,
   tx: { 
     to: universeAddress,
     send: false
@@ -2802,6 +2907,7 @@ augur.api.Universe.getOrCreateCurrentDisputeWindow({
 var _timestamp = 1401003133;
 augur.api.Universe.getOrCreateDisputeWindowByTimestamp({
   _timestamp: _timestamp,
+  _initial: false,
   tx: { 
     to: universeAddress,
     send: false
@@ -2813,6 +2919,7 @@ augur.api.Universe.getOrCreateDisputeWindowByTimestamp({
 "0x90b2a6a6c5a0e7b572cc3745328a74abbfed31d0"
 
 augur.api.Universe.getOrCreateNextDisputeWindow({
+  _initial: false,
   tx: { 
     to: universeAddress,
     send: false
@@ -2824,6 +2931,7 @@ augur.api.Universe.getOrCreateNextDisputeWindow({
 "0x90b2a6a6c5a0e7b572cc3745328a74abbfed31d0"
 
 augur.api.Universe.getOrCreatePreviousDisputeWindow({
+  _initial: false,
   tx: { 
     to: universeAddress,
     send: false
@@ -2833,6 +2941,18 @@ augur.api.Universe.getOrCreatePreviousDisputeWindow({
 });
 // example output:
 "0x4844c13d539fe040ded440a9f9947f14b2b4c423"
+
+augur.api.Universe.getOrCreatePreviousPreviousDisputeWindow({
+  _initial: false,
+  tx: { 
+    to: universeAddress,
+    send: false
+  }
+}, function (error, disputeWindowAddress) { 
+    console.log(disputeWindowAddress); 
+});
+// example output:
+"0x3334c13d539fe040ded440a9f9947f14b2b4c123"
 
 var _reportingParticipants = [ "0xd1b8f991589174315015a7a000638891ab3cd52a" ];
 var _disputeWindows = [ "0x59d919af0c79c2fdbb7af29627642bddbfcd2178" ];
@@ -3088,6 +3208,26 @@ Gets the estimated amount of [attoETH](#atto-prefix) required to create a [Marke
 
 * (null|string) Return value cannot be obtained when executed as a transaction because Ethereum nodes [discard](#transaction-return-values) transaction return values. However, if `p.tx.send` is set to `false`, this function will return the estimated amount of [attoETH](#atto-prefix) required to create a Market, as a stringified unsigned integer.
 
+### augur.api.Universe.getOrCacheMarketRepBond(p)
+
+Gets the estimated amount of [attoETH](#atto-prefix) required to create a [Market](#market) in the current [Dispute Window](#dispute-window) of this [Universe](#universe). The amount returned by this function is equivalent to either the value returned by `Universe.getOrCacheDesignatedReportNoShowBond` or the value returned by `Universe.getOrCacheDesignatedReportStake` (whichever is greater). If this value has not already been cached in the Universe contract, this function will cache it.
+
+#### Parameters:
+
+* **`p`** (Object) Parameters object.
+    * **`p.tx`** (Object) Object containing details about how this transaction should be made.
+        * **`p.tx.to`** (string) Ethereum contract address on which to call this function, as a 20-byte hexadecimal string.
+        * **`p.tx.send`** (boolean) &lt;optional> Whether this function should be executed as a transaction. When set to `false`, this function will be executed as a call, which will simply return the last value that was cached (and will not use any gas). When set to `true`, this function will be executed as a transaction, which will use gas to re-calculate the value and cache it. (However, the return value will not be [obtainable](#transaction-return-values).)
+        * **`p.tx.gas`** (string) &lt;optional> Gas limit to use when submitting this transaction, as a hexadecimal string. This does not need to be set if `p.tx.send` is `false`.
+    * **`p.meta`**  (<a href="#Meta">Meta</a>) &lt;optional> Authentication metadata for raw transactions.
+    * **`p.onSent`**  (function) Callback function that executes once the transaction has been sent.
+    * **`p.onSuccess`**  (function) &lt;optional> Callback function that executes if the transaction returned successfully.
+    * **`p.onFailed`**  (function) &lt;optional> Callback function that executes if the transaction failed.
+
+#### **Returns:**
+
+* (null|string) Return value cannot be obtained when executed as a transaction because Ethereum nodes [discard](#transaction-return-values) transaction return values. However, if `p.tx.send` is set to `false`, this function will return the estimated amount of [attoETH](#atto-prefix) required to create a Market in the current Dispute Window, as a stringified unsigned integer.
+
 ### augur.api.Universe.getOrCacheReportingFeeDivisor(p)
 
 Gets the number by which the total payout amount for a [Market](#market) is divided in order to calculate the [Reporting Fee](#reporting-fee). If this value for the current [Dispute Window](#dispute-window) has not already been cached in the Universe contract, this function will cache it.
@@ -3135,6 +3275,7 @@ Gets the Ethereum contract address of the [Dispute Window](#dispute-window) that
 #### Parameters:
 
 * **`p`** (Object) Parameters object.
+    * **`p._initial`** (boolean) Whether the Dispute Window is an initial Dispute Window (1 day in duration) or a standard Dispute Window (7 days in duration).
     * **`p.tx`** (Object) Object containing details about how this transaction should be made.
         * **`p.tx.to`** (string) Ethereum contract address on which to call this function, as a 20-byte hexadecimal string.
         * **`p.tx.send`** (boolean) &lt;optional> Whether this function should be executed as a transaction. When set to `false`, this function will be executed as a call, which will simply return the last value that was cached (and will not use any gas). When set to `true`, this function will be executed as a transaction, which will use gas to re-calculate the value and cache it. (However, the return value will not be [obtainable](#transaction-return-values).)
@@ -3156,6 +3297,7 @@ Gets the Ethereum contract address of the active [Dispute Window](#dispute-windo
 
 * **`p`** (Object) Parameters object.
     * **`p._timestamp`**  (string) Unix timestamp that falls within the desired Dispute Window, as a hexadecimal string.
+    * **`p._initial`** (boolean) Whether the Dispute Window is an initial Dispute Window (1 day in duration) or a standard Dispute Window (7 days in duration).
     * **`p.tx`** (Object) Object containing details about how this transaction should be made.
         * **`p.tx.to`** (string) Ethereum contract address on which to call this function, as a 20-byte hexadecimal string.
         * **`p.tx.send`** (boolean) &lt;optional> Whether this function should be executed as a transaction. When set to `false`, this function will be executed as a call, which will simply return the last value that was cached (and will not use any gas). When set to `true`, this function will be executed as a transaction, which will use gas to re-calculate the value and cache it. (However, the return value will not be [obtainable](#transaction-return-values).)
@@ -3176,6 +3318,7 @@ Gets the Ethereum contract address of the [Dispute Window](#dispute-window) that
 #### Parameters:
 
 * **`p`** (Object) Parameters object.
+    * **`p._initial`** (boolean) Whether the Dispute Window is an initial Dispute Window (1 day in duration) or a standard Dispute Window (7 days in duration).
     * **`p.tx`** (Object) Object containing details about how this transaction should be made.
         * **`p.tx.to`** (string) Ethereum contract address on which to call this function, as a 20-byte hexadecimal string.
         * **`p.tx.send`** (boolean) &lt;optional> Whether this function should be executed as a transaction. When set to `false`, this function will be executed as a call, which will simply return the last value that was cached (and will not use any gas). When set to `true`, this function will be executed as a transaction, which will use gas to re-calculate the value and cache it. (However, the return value will not be [obtainable](#transaction-return-values).)
@@ -3197,6 +3340,7 @@ Gets the Ethereum contract address of the [Dispute Window](#dispute-window) that
 
 * **`p`** (Object) Parameters object.
     * **`p.tx`** (Object) Object containing details about how this transaction should be made.
+      * **`p._initial`** (boolean) Whether the Dispute Window is an initial Dispute Window (1 day in duration) or a standard Dispute Window (7 days in duration).
         * **`p.tx.to`** (string) Ethereum contract address on which to call this function, as a 20-byte hexadecimal string.
         * **`p.tx.send`** (boolean) &lt;optional> Whether this function should be executed as a transaction. When set to `false`, this function will be executed as a call, which will simply return the last value that was cached (and will not use any gas). When set to `true`, this function will be executed as a transaction, which will use gas to re-calculate the value and cache it. (However, the return value will not be [obtainable](#transaction-return-values).)
         * **`p.tx.gas`** (string) &lt;optional> Gas limit to use when submitting this transaction, as a hexadecimal string. This does not need to be set if `p.tx.send` is `false`.
@@ -3208,6 +3352,27 @@ Gets the Ethereum contract address of the [Dispute Window](#dispute-window) that
 #### **Returns:**
 
 * (null|string) Return value cannot be obtained when executed as a transaction because Ethereum nodes [discard](#transaction-return-values) transaction return values. However, if `p.tx.send` is set to `false`, this function will return the Ethereum contract address of the Dispute Window that was active just before the current Dispute Window in the specified Universe, as a 20-byte hexadecimal string.
+
+### augur.api.Universe.getOrCreatePreviousPreviousDisputeWindow(p)
+
+Gets the Ethereum contract address of the [Dispute Window](#dispute-window) that was active just before the previous Dispute Window in the specified [Universe](#universe). If the contract address for the Dispute Window does not exist yet, this function will create it.
+
+#### Parameters:
+
+* **`p`** (Object) Parameters object.
+    * **`p.tx`** (Object) Object containing details about how this transaction should be made.
+      * **`p._initial`** (boolean) Whether the Dispute Window is an initial Dispute Window (1 day in duration) or a standard Dispute Window (7 days in duration).
+        * **`p.tx.to`** (string) Ethereum contract address on which to call this function, as a 20-byte hexadecimal string.
+        * **`p.tx.send`** (boolean) &lt;optional> Whether this function should be executed as a transaction. When set to `false`, this function will be executed as a call, which will simply return the last value that was cached (and will not use any gas). When set to `true`, this function will be executed as a transaction, which will use gas to re-calculate the value and cache it. (However, the return value will not be [obtainable](#transaction-return-values).)
+        * **`p.tx.gas`** (string) &lt;optional> Gas limit to use when submitting this transaction, as a hexadecimal string. This does not need to be set if `p.tx.send` is `false`.
+    * **`p.meta`**  (<a href="#Meta">Meta</a>) &lt;optional> Authentication metadata for raw transactions.
+    * **`p.onSent`**  (function) Callback function that executes once the transaction has been sent.
+    * **`p.onSuccess`**  (function) &lt;optional> Callback function that executes if the transaction returned successfully.
+    * **`p.onFailed`**  (function) &lt;optional> Callback function that executes if the transaction failed.
+
+#### **Returns:**
+
+* (null|string) Return value cannot be obtained when executed as a transaction because Ethereum nodes [discard](#transaction-return-values) transaction return values. However, if `p.tx.send` is set to `false`, this function will return the Ethereum contract address of the Dispute Window that was active just before the previous Dispute Window in the specified Universe, as a 20-byte hexadecimal string.
 
 ### augur.api.Universe.redeemStake(p)
 

@@ -105,7 +105,7 @@ The Dispute Bond sizes are chosen this way to ensure a fixed ROI of 40% for [Rep
 
 ## Dispute Pacing
 
-[Dispute Rounds](#dispute-round) for a [Market](#market) occur continuously until there are 4 Dispute Rounds remaining before a [Fork](#fork) (in the fastest case). At this point, Dispute Pacing begins. Dispute Pacing causes a Market's [Crowdsourcers](#crowdsourcer) to wait for a new [Dispute Window](#dispute-window) to begin before starting the next Dispute Round. Augur does this to provide time for the community to crowdsource enough funds to [Dispute](#dispute) the Market's [Tentative Outcome](#tentative-outcome).
+[Dispute Rounds](#dispute-round) for a [Market](#market) occur continuously until there are 8 Dispute Rounds remaining before a [Fork](#fork) (in the fastest case). At this point, Dispute Pacing begins. Dispute Pacing causes a Market's [Crowdsourcers](#crowdsourcer) to wait for a new [Dispute Window](#dispute-window) to begin before starting the next Dispute Round. Augur does this to provide time for the community to crowdsource enough funds to [Dispute](#dispute) the Market's [Tentative Outcome](#tentative-outcome).
 
 ## Dispute Pacing Threshold
 
