@@ -923,7 +923,7 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
 
 <h3 id="augur-assets-sendreputation-p">augur.assets.sendReputation(p)</h3>
 
-<p>Sends <a href="#rep">REP</a> to a specified Ethereum address. This function will trigger a <a href="#TokensTransferred"><code class="prettyprint">TokensTransferred</code></a> event if the REP is successfully sent.</p>
+<p>Sends <a href="#rep">REP</a> to a specified Ethereum address. This function will trigger <a href="#TokensTransferred"><code class="prettyprint">TokensTransferred</code></a> and <a href="#TokenBalanceChanged"><code class="prettyprint">TokenBalanceChanged</code></a> events if the REP is successfully sent.</p>
 
 <h4 id="strong-strong"><strong>Parameters:</strong></h4>
 
@@ -1478,7 +1478,7 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
 </code></pre></div>
 <h3 id="augur-createmarket-createcategoricalmarket-p">augur.createMarket.createCategoricalMarket(p)</h3>
 
-<p>Creates a <a href="#categorical-market">Categorical Market</a> in a specified <a href="#universe">Universe</a>. This function will trigger a <a href="#MarketCreated"><code class="prettyprint">MarketCreated</code></a> event and <a href="#TokensTransferred"><code class="prettyprint">TokensTransferred</code></a> event if the <a href="#market">Market</a> is created successfully.</p>
+<p>Creates a <a href="#categorical-market">Categorical Market</a> in a specified <a href="#universe">Universe</a>. This function will trigger <a href="#MarketCreated"><code class="prettyprint">MarketCreated</code></a>, <a href="#TokensTransferred"><code class="prettyprint">TokensTransferred</code></a>, &amp; <a href="#TokenBalanceChanged"><code class="prettyprint">TokenBalanceChanged</code></a> events if the <a href="#market">Market</a> is created successfully.</p>
 
 <p>This transaction will fail if:</p>
 
@@ -1523,7 +1523,7 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
 
 <h3 id="augur-createmarket-createscalarmarket-p">augur.createMarket.createScalarMarket(p)</h3>
 
-<p>Creates a <a href="#scalar-market">Scalar Market</a> in a specified <a href="#universe">Universe</a>. This function will trigger a <a href="#MarketCreated"><code class="prettyprint">MarketCreated</code></a> event and <a href="#TokensTransferred"><code class="prettyprint">TokensTransferred</code></a> event if the <a href="#market">Market</a> is created successfully.</p>
+<p>Creates a <a href="#scalar-market">Scalar Market</a> in a specified <a href="#universe">Universe</a>. This function will trigger <a href="#MarketCreated"><code class="prettyprint">MarketCreated</code></a>, <a href="#TokensTransferred"><code class="prettyprint">TokensTransferred</code></a>, &amp; <a href="#TokenBalanceChanged">&lsquo;TokenBalanceChanged&rsquo;</a> events if the <a href="#market">Market</a> is created successfully.</p>
 
 <p>This transaction will fail if:</p>
 
@@ -1570,7 +1570,7 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
 
 <h3 id="augur-createmarket-createyesnomarket-p">augur.createMarket.createYesNoMarket(p)</h3>
 
-<p>Creates a <a href="#yes-no-market">Yes/No Market</a> in a specified <a href="#universe">Universe</a>. This function will trigger a <a href="#MarketCreated"><code class="prettyprint">MarketCreated</code></a> event and <a href="#TokensTransferred"><code class="prettyprint">TokensTransferred</code></a> event if the <a href="#market">Market</a> is created successfully.</p>
+<p>Creates a <a href="#yes-no-market">Yes/No Market</a> in a specified <a href="#universe">Universe</a>. This function will trigger <a href="#MarketCreated"><code class="prettyprint">MarketCreated</code></a>, <a href="#TokensTransferred"><code class="prettyprint">TokensTransferred</code></a>, &amp; <a href="#TokenBalanceChanged">&#39;TokenBalanceChanged&rsquo;</a> events if the <a href="#market">Market</a> is created successfully.</p>
 
 <p>This transaction will fail if:</p>
 
@@ -4767,6 +4767,14 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
 <span class="c1">// example output:</span>
 <span class="s2">"1000"</span>
 
+<span class="nx">augur</span><span class="p">.</span><span class="nx">api</span><span class="p">.</span><span class="nx">DisputeCrowdsourcer</span><span class="p">.</span><span class="nx">getPayoutNumerators</span><span class="p">({</span> 
+  <span class="na">tx</span><span class="p">:</span> <span class="p">{</span> <span class="na">to</span><span class="p">:</span> <span class="nx">disputeCrowdsourcer</span> <span class="p">},</span> 
+<span class="p">},</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">error</span><span class="p">,</span> <span class="nx">payoutNumerators</span><span class="p">)</span> <span class="p">{</span> 
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">payoutNumerators</span><span class="p">);</span> 
+<span class="p">});</span>
+<span class="c1">// example output:</span>
+<span class="o">!!!</span><span class="nx">TBD</span><span class="o">!!!</span> <span class="nx">Add</span> <span class="nx">example</span> <span class="nx">output</span>
+
 <span class="nx">augur</span><span class="p">.</span><span class="nx">api</span><span class="p">.</span><span class="nx">DisputeCrowdsourcer</span><span class="p">.</span><span class="nx">getRemainingToFill</span><span class="p">({</span> 
   <span class="na">tx</span><span class="p">:</span> <span class="p">{</span> <span class="na">to</span><span class="p">:</span> <span class="nx">disputeCrowdsourcer</span> <span class="p">}</span> 
 <span class="p">},</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">error</span><span class="p">,</span> <span class="nx">remainingToFill</span><span class="p">)</span> <span class="p">{</span> 
@@ -4908,6 +4916,31 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
 
 <ul>
 <li>(string)  Payout Numerator for the Dispute Crowdsourcer, as a stringified unsigned integer.</li>
+</ul>
+
+<h3 id="augur-api-disputecrowdsourcer-getpayoutnumerators-p-callback">augur.api.DisputeCrowdsourcer.getPayoutNumerators(p, callback)</h3>
+
+<p>Returns the <a href="#payout-set">Payout Set</a> associated with this DisputeCrowdsourcer.</p>
+
+<h4 id="strong-strong"><strong>Parameters:</strong></h4>
+
+<ul>
+<li><strong><code class="prettyprint">p</code></strong> (Object) Parameters object.<br>
+
+<ul>
+<li><strong><code class="prettyprint">p.tx</code></strong> (Object) Object containing details about how this function call should be made.
+
+<ul>
+<li><strong><code class="prettyprint">p.tx.to</code></strong> (string) Ethereum contract address of the DisputeCrowdsourcer contract on which to call this function, as a 20-byte hexadecimal string.</li>
+</ul></li>
+</ul></li>
+<li><strong><code class="prettyprint">callback</code></strong> (function) &lt;optional&gt; Called after the function&rsquo;s result has been retrieved.</li>
+</ul>
+
+<h4 id="strong-strong"><strong>Returns:</strong></h4>
+
+<ul>
+<li>(Array.&lt;string&gt;) The Payout Set associated with this DisputeCrowdsourcer, as an array of stringified unsigned integers.</li>
 </ul>
 
 <h3 id="augur-api-disputecrowdsourcer-getremainingtofill-p-callback">augur.api.DisputeCrowdsourcer.getRemainingToFill(p, callback)</h3>
@@ -5477,6 +5510,14 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
 <span class="c1">// example output:</span>
 <span class="s2">"1000"</span>
 
+<span class="nx">augur</span><span class="p">.</span><span class="nx">api</span><span class="p">.</span><span class="nx">InitialReporter</span><span class="p">.</span><span class="nx">getPayoutNumerators</span><span class="p">({</span> 
+  <span class="na">tx</span><span class="p">:</span> <span class="p">{</span> <span class="na">to</span><span class="p">:</span> <span class="nx">disputeCrowdsourcer</span> <span class="p">},</span> 
+<span class="p">},</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">error</span><span class="p">,</span> <span class="nx">payoutNumerators</span><span class="p">)</span> <span class="p">{</span> 
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">payoutNumerators</span><span class="p">);</span> 
+<span class="p">});</span>
+<span class="c1">// example output:</span>
+<span class="o">!!!</span><span class="nx">TBD</span><span class="o">!!!</span> <span class="nx">Add</span> <span class="nx">example</span> <span class="nx">output</span>
+
 <span class="nx">augur</span><span class="p">.</span><span class="nx">api</span><span class="p">.</span><span class="nx">InitialReporter</span><span class="p">.</span><span class="nx">getReportTimestamp</span><span class="p">({</span> 
   <span class="na">tx</span><span class="p">:</span> <span class="p">{</span> <span class="na">to</span><span class="p">:</span> <span class="nx">initialReporter</span> <span class="p">}</span> 
 <span class="p">},</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">error</span><span class="p">,</span> <span class="nx">reportTimestamp</span><span class="p">)</span> <span class="p">{</span> 
@@ -5685,6 +5726,31 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
 
 <ul>
 <li>(string) Payout Numerator of a given Outcome for the InitialReporter contract, as a stringified unsigned integer.</li>
+</ul>
+
+<h3 id="augur-api-initialreporter-getpayoutnumerators-p-callback">augur.api.InitialReporter.getPayoutNumerators(p, callback)</h3>
+
+<p>Returns the <a href="#payout-set">Payout Set</a> associated with this InitialReporter.</p>
+
+<h4 id="strong-strong"><strong>Parameters:</strong></h4>
+
+<ul>
+<li><strong><code class="prettyprint">p</code></strong> (Object) Parameters object.<br>
+
+<ul>
+<li><strong><code class="prettyprint">p.tx</code></strong> (Object) Object containing details about how this function call should be made.
+
+<ul>
+<li><strong><code class="prettyprint">p.tx.to</code></strong> (string) Ethereum contract address of the InitialReporter contract on which to call this function, as a 20-byte hexadecimal string.</li>
+</ul></li>
+</ul></li>
+<li><strong><code class="prettyprint">callback</code></strong> (function) &lt;optional&gt; Called after the function&rsquo;s result has been retrieved.</li>
+</ul>
+
+<h4 id="strong-strong"><strong>Returns:</strong></h4>
+
+<ul>
+<li>(Array.&lt;string&gt;) The Payout Set associated with this InitialReporter, as an array of stringified unsigned integers.</li>
 </ul>
 
 <h3 id="augur-api-initialreporter-getreporttimestamp-p-callback">augur.api.InitialReporter.getReportTimestamp(p, callback)</h3>
@@ -7898,7 +7964,7 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
   <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">floatingValue</span><span class="p">);</span> 
 <span class="p">});</span>
 <span class="c1">// example output:</span>
-<span class="s2">""</span>
+<span class="o">!!!</span><span class="nx">TBD</span><span class="o">!!!</span> <span class="nx">Add</span> <span class="nx">example</span> <span class="nx">output</span>
 
 <span class="nx">augur</span><span class="p">.</span><span class="nx">api</span><span class="p">.</span><span class="nx">Universe</span><span class="p">.</span><span class="nx">getChildUniverse</span><span class="p">({</span>
   <span class="na">_parentPayoutDistributionHash</span><span class="p">:</span> <span class="s2">"0x4480ed40f94e2cb2ca244eb862df2d350300904a96039eb53cba0e34b8ace90a"</span><span class="p">,</span>
@@ -8020,6 +8086,14 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
 <span class="p">});</span>
 <span class="c1">// example output:</span>
 <span class="s2">"0x63c59544b89cce1dd53b1b566862189b25adec41"</span>
+
+<span class="nx">augur</span><span class="p">.</span><span class="nx">api</span><span class="p">.</span><span class="nx">Universe</span><span class="p">.</span><span class="nx">getPayoutNumerators</span><span class="p">({</span> 
+  <span class="na">tx</span><span class="p">:</span> <span class="p">{</span> <span class="na">to</span><span class="p">:</span> <span class="nx">universe</span> <span class="p">}</span> 
+<span class="p">},</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">error</span><span class="p">,</span> <span class="nx">payoutNumerators</span><span class="p">)</span> <span class="p">{</span> 
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">payoutNumerators</span><span class="p">);</span> 
+<span class="p">});</span>
+<span class="c1">// example output:</span>
+<span class="o">!!!</span><span class="nx">TBD</span><span class="o">!!!</span> <span class="nx">Add</span> <span class="nx">example</span> <span class="nx">output</span>
 
 <span class="nx">augur</span><span class="p">.</span><span class="nx">api</span><span class="p">.</span><span class="nx">Universe</span><span class="p">.</span><span class="nx">getPreviousDisputeWindow</span><span class="p">({</span> 
   <span class="na">_initial</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
@@ -8513,6 +8587,33 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
 
 <ul>
 <li>(string) Ethereum contract address of the Parent Universe for the specified Universe. If the Universe does not have a Parent Universe (that is, it is a <a href="#genesis-universe">Genesis Universe</a>), the address &ldquo;0x0000000000000000000000000000000000000000&rdquo; will be returned.</li>
+</ul>
+
+<h3 id="augur-api-universe-getpayoutnumerators-p-callback">augur.api.Universe.getPayoutNumerators(p, callback)</h3>
+
+<p>Returns the <a href="#payout-set">Payout Set</a> associated with this <a href="#universe">Universe</a> if it is a <a href="#child-universe">Child Universe</a> from a <a href="#fork">Fork</a>.</p>
+
+<p>!!!TBD!!! Add info on what&rsquo;s returned if universe is genesis universe.</p>
+
+<h4 id="strong-strong"><strong>Parameters:</strong></h4>
+
+<ul>
+<li><strong><code class="prettyprint">p</code></strong> (Object) Parameters object.<br>
+
+<ul>
+<li><strong><code class="prettyprint">p.tx</code></strong> (Object) Object containing details about how this function call should be made.
+
+<ul>
+<li><strong><code class="prettyprint">p.tx.to</code></strong> (string) Ethereum contract address of the Universe contract on which to call this function, as a 20-byte hexadecimal string.</li>
+</ul></li>
+</ul></li>
+<li><strong><code class="prettyprint">callback</code></strong> (function) &lt;optional&gt; Called after the function&rsquo;s result has been retrieved.</li>
+</ul>
+
+<h4 id="strong-strong"><strong>Returns:</strong></h4>
+
+<ul>
+<li>(Array.&lt;string&gt;) The Payout Set associated with this Universe if it is a Child Universe from a Fork.</li>
 </ul>
 
 <h3 id="augur-api-universe-getpreviousdisputewindow-p-callback">augur.api.Universe.getPreviousDisputeWindow(p, callback)</h3>
@@ -13417,9 +13518,9 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
 <tr>
 <td><a name="MarketFinalized"></a>MarketFinalized</td>
 <td><a href="https://github.com/AugurProject/augur/blob/master/packages/augur-core/source/contracts/Augur.sol">Augur</a></td>
-<td>The <a href="#outcome">Outcome</a> of <code class="prettyprint">market</code> in <code class="prettyprint">universe</code> is now considered final.</td>
+<td>The <a href="#outcome">Outcome</a> of <code class="prettyprint">market</code> in <code class="prettyprint">universe</code> was Finalized with the Outcome associated with <code class="prettyprint">winningPayoutNumerators</code> at <code class="prettyprint">timestamp</code>.</td>
 <td>universe, market</td>
-<td></td>
+<td>timestamp, winningPayoutNumerators</td>
 </tr>
 <tr>
 <td><a name="MarketMigrated"></a>MarketMigrated</td>
@@ -13491,56 +13592,17 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
 <td></td>
 <td>newTimestamp</td>
 </tr>
-<tr>
-<td><a name="TokensBurned"></a>TokensBurned</td>
-<td><a href="https://github.com/AugurProject/augur/blob/master/packages/augur-core/source/contracts/Augur.sol">Augur</a></td>
-<td>Burned (i.e., completely destroyed) <code class="prettyprint">amount</code> of <code class="prettyprint">target</code>&rsquo;s <a href="#atto-prefix">attotokens</a> in <code class="prettyprint">market</code> (if applicable) of <code class="prettyprint">universe</code>. The destroyed tokens were of type <code class="prettyprint">tokenType</code>, whose contract address is <code class="prettyprint">token</code>, and there are now <code class="prettyprint">totalSupply</code> of these tokens in existence. (Valid <code class="prettyprint">tokenType</code> values are as follows: ReputationToken = 0, ShareToken = 1, DisputeCrowdsourcer = 2, FeeWindow = 3, FeeToken = 4, ParticipationToken = 5. The FeeWindow <code class="prettyprint">tokenType</code> represents <a href="#participation-token">Participation Tokens</a> in version 1 of Augur; however, this <code class="prettyprint">tokenType</code> value is deprecated in version 2 in favor of the ParticipationToken value. The FeeToken <code class="prettyprint">tokenType</code> is only used internally for accounting purposes in version 1 of Augur so that Stake holders can get Fees for every <a href="#dispute-window">Dispute Window</a> in which they have Stake. It is deprecated in version 2.)</td>
-<td>universe, token, target</td>
-<td>amount, tokenType, market, totalSupply</td>
-</tr>
-<tr>
-<td><a name="TokensMinted"></a>TokensMinted</td>
-<td><a href="https://github.com/AugurProject/augur/blob/master/packages/augur-core/source/contracts/Augur.sol">Augur</a></td>
-<td>Created <code class="prettyprint">amount</code> brand new <a href="#atto-prefix">attotokens</a> for <code class="prettyprint">target</code> in <code class="prettyprint">market</code> (if applicable) of <code class="prettyprint">universe</code> . The minted tokens are of type <code class="prettyprint">tokenType</code>, whose contract address is <code class="prettyprint">token</code>, and there are now <code class="prettyprint">totalSupply</code> of these tokens in existence. (Valid <code class="prettyprint">tokenType</code> values are as follows: ReputationToken = 0, ShareToken = 1, DisputeCrowdsourcer = 2, FeeWindow = 3, FeeToken = 4, ParticipationToken = 5. The FeeWindow <code class="prettyprint">tokenType</code> represents <a href="#participation-token">Participation Tokens</a> in version 1 of Augur; however, this <code class="prettyprint">tokenType</code> value is deprecated in version 2 in favor of the ParticipationToken value. The FeeToken <code class="prettyprint">tokenType</code> is only used internally for accounting purposes in version 1 of Augur so that Stake holders can get Fees for every <a href="#dispute-window">Dispute Window</a> in which they have Stake. It is deprecated in version 2.)</td>
-<td>universe, token, target</td>
-<td>amount, tokenType, market, totalSupply</td>
-</tr>
-<tr>
-<td><a name="TokensTransferred"></a>TokensTransferred</td>
-<td><a href="https://github.com/AugurProject/augur/blob/master/packages/augur-core/source/contracts/Augur.sol">Augur</a></td>
-<td><code class="prettyprint">value</code> amount of the tokens in <code class="prettyprint">market</code> (if applicable) of <code class="prettyprint">universe</code> have been transferred between account <code class="prettyprint">from</code> and <code class="prettyprint">to</code>. The transferred tokens are of type <code class="prettyprint">tokenType</code>, whose contract address is <code class="prettyprint">token</code>. (Valid <code class="prettyprint">tokenType</code> values are as follows: ReputationToken = 0, ShareToken = 1, DisputeCrowdsourcer = 2, FeeWindow = 3, FeeToken = 4, ParticipationToken = 5. The FeeWindow <code class="prettyprint">tokenType</code> represents <a href="#participation-token">Participation Tokens</a> in version 1 of Augur; however, this <code class="prettyprint">tokenType</code> value is deprecated in version 2 in favor of the ParticipationToken value. The FeeToken <code class="prettyprint">tokenType</code> is only used internally for accounting purposes in version 1 of Augur so that Stake holders can get Fees for every <a href="#dispute-window">Dispute Window</a> in which they have Stake. It is deprecated in version 2.)</td>
-<td>universe, from, to</td>
-<td>token, value, tokenType, market</td>
-</tr>
-<tr>
-<td><a name="TradingProceedsClaimed"></a>TradingProceedsClaimed</td>
-<td><a href="https://github.com/AugurProject/augur/blob/master/packages/augur-core/source/contracts/Augur.sol">Augur</a></td>
-<td><code class="prettyprint">sender</code> has collected trading profits from the <a href="#share">Share Token</a> at address <code class="prettyprint">shareToken</code> for <code class="prettyprint">outcome</code> in <a href="#finalized-market">Finalized Market</a> <code class="prettyprint">market</code> in <code class="prettyprint">universe</code> at <code class="prettyprint">timestamp</code>. <code class="prettyprint">sender</code> had <code class="prettyprint">numShares</code> Share Tokens, <code class="prettyprint">numPayoutTokens</code> paid out, and a balance of <code class="prettyprint">finalTokenBalance</code>, and the total <a href="#settlement-fees">Settlement Fees</a> were <code class="prettyprint">fees</code>.</td>
-<td>universe, shareToken, sender</td>
-<td>market, outcome, numShares, numPayoutTokens, finalTokenBalance, fees, timestamp</td>
-</tr>
-<tr>
-<td><a name="Transfer"></a>Transfer</td>
-<td><a href="https://github.com/AugurProject/augur/blob/master/packages/augur-core/source/contracts/libraries/token/ERC20Token.sol">ERC20Token</a></td>
-<td>Transferred <code class="prettyprint">value</code> <a href="#atto-prefix">attotokens</a> between accounts <code class="prettyprint">from</code> and <code class="prettyprint">to</code>.</td>
-<td>from, to</td>
-<td>value</td>
-</tr>
-<tr>
-<td><a name="UniverseCreated"></a>UniverseCreated</td>
-<td><a href="https://github.com/AugurProject/augur/blob/master/packages/augur-core/source/contracts/Augur.sol">Augur</a></td>
-<td><code class="prettyprint">childUniverse</code> has been created from <code class="prettyprint">parentUniverse</code> where <code class="prettyprint">payoutNumerators</code> represents the Payout Set of the Forking Market in <code class="prettyprint">parentUniverse</code> and whether it was determined to be an Invalid Market.</td>
-<td>parentUniverse, childUniverse</td>
-<td>payoutNumerators</td>
-</tr>
-<tr>
-<td><a name="UniverseForked"></a>UniverseForked</td>
-<td><a href="https://github.com/AugurProject/augur/blob/master/packages/augur-core/source/contracts/Augur.sol">Augur</a></td>
-<td><code class="prettyprint">forkingMarket</code> in <code class="prettyprint">universe</code> has had its <a href="#tentative-outcome">Tentative Outcome</a> <a href="#challenge">Challenged</a> with a <a href="#dispute-bond">Dispute Bond</a> greater than the <a href="#fork-threshold">Fork Threshold</a>, which has caused <code class="prettyprint">universe</code> to <a href="#fork">Fork</a>.</td>
-<td>universe</td>
-<td>forkingMarket</td>
-</tr>
 </tbody></table>
+
+<p>TokenBalanceChanged
+<a name="TokenBalanceChanged"></a>TokenBalanceChanged              | <a href="https://github.com/AugurProject/augur/blob/master/packages/augur-core/source/contracts/Augur.sol">Augur</a> | The user <code class="prettyprint">owner</code> now has <code class="prettyprint">balance</code> of <code class="prettyprint">tokenType</code> in <code class="prettyprint">market</code> of <code class="prettyprint">universe</code>, where <code class="prettyprint">token</code> is the contract address for the token. | universe, owner | token, tokenType, market, balance
+<a name="TokensBurned"></a>TokensBurned              | <a href="https://github.com/AugurProject/augur/blob/master/packages/augur-core/source/contracts/Augur.sol">Augur</a> | Burned (i.e., completely destroyed) <code class="prettyprint">amount</code> of <code class="prettyprint">target</code>&rsquo;s <a href="#atto-prefix">attotokens</a> in <code class="prettyprint">market</code> (if applicable) of <code class="prettyprint">universe</code>. The destroyed tokens were of type <code class="prettyprint">tokenType</code>, whose contract address is <code class="prettyprint">token</code>, and there are now <code class="prettyprint">totalSupply</code> of these tokens in existence. (Valid <code class="prettyprint">tokenType</code> values are as follows: ReputationToken = 0, ShareToken = 1, DisputeCrowdsourcer = 2, FeeWindow = 3, FeeToken = 4, ParticipationToken = 5. The FeeWindow <code class="prettyprint">tokenType</code> represents <a href="#participation-token">Participation Tokens</a> in version 1 of Augur; however, this <code class="prettyprint">tokenType</code> value is deprecated in version 2 in favor of the ParticipationToken value. The FeeToken <code class="prettyprint">tokenType</code> is only used internally for accounting purposes in version 1 of Augur so that Stake holders can get Fees for every <a href="#dispute-window">Dispute Window</a> in which they have Stake. It is deprecated in version 2.) | universe, token, target | amount, tokenType, market, totalSupply
+<a name="TokensMinted"></a>TokensMinted              | <a href="https://github.com/AugurProject/augur/blob/master/packages/augur-core/source/contracts/Augur.sol">Augur</a> | Created <code class="prettyprint">amount</code> brand new <a href="#atto-prefix">attotokens</a> for <code class="prettyprint">target</code> in <code class="prettyprint">market</code> (if applicable) of <code class="prettyprint">universe</code> . The minted tokens are of type <code class="prettyprint">tokenType</code>, whose contract address is <code class="prettyprint">token</code>, and there are now <code class="prettyprint">totalSupply</code> of these tokens in existence. (Valid <code class="prettyprint">tokenType</code> values are as follows: ReputationToken = 0, ShareToken = 1, DisputeCrowdsourcer = 2, FeeWindow = 3, FeeToken = 4, ParticipationToken = 5. The FeeWindow <code class="prettyprint">tokenType</code> represents <a href="#participation-token">Participation Tokens</a> in version 1 of Augur; however, this <code class="prettyprint">tokenType</code> value is deprecated in version 2 in favor of the ParticipationToken value. The FeeToken <code class="prettyprint">tokenType</code> is only used internally for accounting purposes in version 1 of Augur so that Stake holders can get Fees for every <a href="#dispute-window">Dispute Window</a> in which they have Stake. It is deprecated in version 2.) | universe, token, target | amount, tokenType, market, totalSupply
+<a name="TokensTransferred"></a>TokensTransferred         | <a href="https://github.com/AugurProject/augur/blob/master/packages/augur-core/source/contracts/Augur.sol">Augur</a> | <code class="prettyprint">value</code> amount of the tokens in <code class="prettyprint">market</code> (if applicable) of <code class="prettyprint">universe</code> have been transferred between account <code class="prettyprint">from</code> and <code class="prettyprint">to</code>. The transferred tokens are of type <code class="prettyprint">tokenType</code>, whose contract address is <code class="prettyprint">token</code>. (Valid <code class="prettyprint">tokenType</code> values are as follows: ReputationToken = 0, ShareToken = 1, DisputeCrowdsourcer = 2, FeeWindow = 3, FeeToken = 4, ParticipationToken = 5. The FeeWindow <code class="prettyprint">tokenType</code> represents <a href="#participation-token">Participation Tokens</a> in version 1 of Augur; however, this <code class="prettyprint">tokenType</code> value is deprecated in version 2 in favor of the ParticipationToken value. The FeeToken <code class="prettyprint">tokenType</code> is only used internally for accounting purposes in version 1 of Augur so that Stake holders can get Fees for every <a href="#dispute-window">Dispute Window</a> in which they have Stake. It is deprecated in version 2.) | universe, from, to | token, value, tokenType, market
+<a name="TradingProceedsClaimed"></a>TradingProceedsClaimed    | <a href="https://github.com/AugurProject/augur/blob/master/packages/augur-core/source/contracts/Augur.sol">Augur</a> | <code class="prettyprint">sender</code> has collected trading profits from the <a href="#share">Share Token</a> at address <code class="prettyprint">shareToken</code> for <code class="prettyprint">outcome</code> in <a href="#finalized-market">Finalized Market</a> <code class="prettyprint">market</code> in <code class="prettyprint">universe</code> at <code class="prettyprint">timestamp</code>. <code class="prettyprint">sender</code> had <code class="prettyprint">numShares</code> Share Tokens, <code class="prettyprint">numPayoutTokens</code> paid out, and a balance of <code class="prettyprint">finalTokenBalance</code>, and the total <a href="#settlement-fees">Settlement Fees</a> were <code class="prettyprint">fees</code>. | universe, shareToken, sender | market, outcome, numShares, numPayoutTokens, finalTokenBalance, fees, timestamp
+<a name="Transfer"></a>Transfer | <a href="https://github.com/AugurProject/augur/blob/master/packages/augur-core/source/contracts/libraries/token/ERC20Token.sol">ERC20Token</a> | Transferred <code class="prettyprint">value</code> <a href="#atto-prefix">attotokens</a> between accounts <code class="prettyprint">from</code> and <code class="prettyprint">to</code>. | from, to | value
+<a name="UniverseCreated"></a>UniverseCreated           | <a href="https://github.com/AugurProject/augur/blob/master/packages/augur-core/source/contracts/Augur.sol">Augur</a> | <code class="prettyprint">childUniverse</code> has been created from <code class="prettyprint">parentUniverse</code> where <code class="prettyprint">payoutNumerators</code> represents the Payout Set of the Forking Market in <code class="prettyprint">parentUniverse</code> and whether it was determined to be an Invalid Market. | parentUniverse, childUniverse | payoutNumerators
+<a name="UniverseForked"></a>UniverseForked            | <a href="https://github.com/AugurProject/augur/blob/master/packages/augur-core/source/contracts/Augur.sol">Augur</a> | <code class="prettyprint">forkingMarket</code> in <code class="prettyprint">universe</code> has had its <a href="#tentative-outcome">Tentative Outcome</a> <a href="#challenge">Challenged</a> with a <a href="#dispute-bond">Dispute Bond</a> greater than the <a href="#fork-threshold">Fork Threshold</a>, which has caused <code class="prettyprint">universe</code> to <a href="#fork">Fork</a>. | universe | forkingMarket</p>
 
           <h1 id="api-type-definitions">API Type Definitions</h1>
 
