@@ -3449,3 +3449,11 @@ Calls the `redeem` function for all Ethereum contract addresses in the arrays `p
 #### **Returns:**
 
 * Return value cannot be obtained because Ethereum nodes [discard](#transaction-return-values) transaction return values.
+
+### augur.api.Universe.updateForkValues(p)
+
+!!!TBD!!! Add description, explain params, & add sample code.
+
+This function will fail if:
+
+* The Universe has a Market that is Forking.
