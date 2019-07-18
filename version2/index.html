@@ -4417,7 +4417,15 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
 <aside class="notice">Augur&rsquo;s Call API has been updated to return promises. Passing in a callback still works the same as before; however, now the underlying promise is returned directly to the caller.</aside>
 
 <h2 id="augur-call-api">Augur Call API</h2>
-<div class="highlight"><pre class="highlight javascript"><code><span class="nx">augur</span><span class="p">.</span><span class="nx">api</span><span class="p">.</span><span class="nx">Augur</span><span class="p">.</span><span class="nx">getTimestamp</span><span class="p">({</span> 
+<div class="highlight"><pre class="highlight javascript"><code><span class="nx">augur</span><span class="p">.</span><span class="nx">api</span><span class="p">.</span><span class="nx">Augur</span><span class="p">.</span><span class="nx">getMarketOpenInterest</span><span class="p">({</span> 
+  <span class="na">_market</span><span class="p">:</span> <span class="s2">"0x1116eaefcfaf7ea1e17c4768a554d57800698888"</span><span class="p">,</span>
+<span class="p">},</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">error</span><span class="p">,</span> <span class="nx">openInterest</span><span class="p">)</span> <span class="p">{</span> 
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">openInterest</span><span class="p">);</span> 
+<span class="p">});</span>
+<span class="c1">// example output:</span>
+<span class="o">!!!</span><span class="nx">TBD</span><span class="o">!!!</span> <span class="nx">Add</span> <span class="nx">example</span> <span class="nx">output</span>
+
+<span class="nx">augur</span><span class="p">.</span><span class="nx">api</span><span class="p">.</span><span class="nx">Augur</span><span class="p">.</span><span class="nx">getTimestamp</span><span class="p">({</span> 
 <span class="p">},</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">error</span><span class="p">,</span> <span class="nx">timestamp</span><span class="p">)</span> <span class="p">{</span> 
   <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">timestamp</span><span class="p">);</span> 
 <span class="p">});</span>
@@ -4481,6 +4489,27 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
 
 <ul>
 <li>(string) Augur&rsquo;s internal Unix timestamp, as a stringified unsigned integer.</li>
+</ul>
+
+<h3 id="augur-api-augur-getmarketopeninterest-p-callback">augur.api.Augur.getMarketOpenInterest(p, callback)</h3>
+
+<p>Returns the <a href="#open-interest">Open Interest</a> (in <a href="#atto-prefix">attoDai</a>) for a given <a href="#market">Market</a>.</p>
+
+<h4 id="strong-strong"><strong>Parameters:</strong></h4>
+
+<ul>
+<li><strong><code class="prettyprint">p</code></strong> (Object) Parameters object. 
+
+<ul>
+<li><strong><code class="prettyprint">p._market</code></strong> (string) Market contract address, as a 20-byte hexadecimal value. </li>
+</ul></li>
+<li><strong><code class="prettyprint">callback</code></strong> (function) &lt;optional&gt; Called after the function&rsquo;s result has been retrieved.</li>
+</ul>
+
+<h4 id="strong-strong"><strong>Returns:</strong></h4>
+
+<ul>
+<li>(string) The Open Interest (in attoDai) for  the Market, as a stringified unsigned integer.</li>
 </ul>
 
 <h3 id="augur-api-augur-isknowncrowdsourcer-p-callback">augur.api.Augur.isKnownCrowdsourcer(p, callback)</h3>
@@ -7466,9 +7495,9 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
 </code></pre></div>
 <p>Provides JavaScript bindings for the <a href="https://github.com/AugurProject/augur/blob/master/packages/augur-core/source/contracts/trading/ProfitLoss.sol">ProfitLoss Solidity Contract</a>, which keeps track of users&rsquo; trading profit &amp; loss information. </p>
 
-<h3 id="augur-api-profitloss-getrealizedcost-p-callback">augur.api.ProfitLoss.getRealizedCost(p, callback)</h3>
+<h3 id="augur-api-profitloss-getavgprice-p-callback">augur.api.ProfitLoss.getAvgPrice(p, callback)</h3>
 
-<p>Returns the realized cost a user has incurred for an <a href="#outcome">Outcome</a> on a specific <a href="#market">Market</a>.</p>
+<p>Returns the average <a href="#order">Order</a> price (in <a href="#atto-prefix">attoDai</a>) a user has incurred for an <a href="#outcome">Outcome</a> on a specific <a href="#market">Market</a>.</p>
 
 <h4 id="strong-strong"><strong>Parameters:</strong></h4>
 
@@ -7477,8 +7506,60 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
 
 <ul>
 <li><strong><code class="prettyprint">p._market</code></strong> (string) Ethereum address of the Market.</li>
-<li><strong><code class="prettyprint">p._account</code></strong> (string) Ethereum address of the account.</li>
-<li><strong><code class="prettyprint">p._outcome</code></strong> (string) The Outcome for which to get the realized cost, as a hexadecimal string.</li>
+<li><strong><code class="prettyprint">p._account</code></strong> (string) Ethereum address of the user&rsquo;s account.</li>
+<li><strong><code class="prettyprint">p._outcome</code></strong> (string) The Outcome for which to get the average price, as a hexadecimal string.</li>
+<li><strong><code class="prettyprint">p.tx</code></strong> (Object) Object containing details about how this function call should be made.
+
+<ul>
+<li><strong><code class="prettyprint">p.tx.to</code></strong> (string) Ethereum contract address of the ProfitLoss contract on which to call this function, as a 20-byte hexadecimal string.</li>
+</ul></li>
+</ul></li>
+<li><strong><code class="prettyprint">callback</code></strong> (function) &lt;optional&gt; Called after the function&rsquo;s result has been retrieved.</li>
+</ul>
+
+<h4 id="strong-strong"><strong>Returns:</strong></h4>
+
+<p>(string) The average Order price (in attoDai) the user has incurred for an Outcome of the Market.</p>
+
+<h3 id="augur-api-profitloss-getfrozenfunds-p-callback">augur.api.ProfitLoss.getFrozenFunds(p, callback)</h3>
+
+<p>Returns the amount of frozen funds (in <a href="#atto-prefix">attoDai</a>) that a user has escrowed for an <a href="#outcome">Outcome</a> on a specific <a href="#market">Market</a>.</p>
+
+<h4 id="strong-strong"><strong>Parameters:</strong></h4>
+
+<ul>
+<li><strong><code class="prettyprint">p</code></strong> (Object) Parameters object.<br>
+
+<ul>
+<li><strong><code class="prettyprint">p._market</code></strong> (string) Ethereum address of the Market.</li>
+<li><strong><code class="prettyprint">p._account</code></strong> (string) Ethereum address of the user&rsquo;s account.</li>
+<li><strong><code class="prettyprint">p._outcome</code></strong> (string) The Outcome for which to get the frozen funds, as a hexadecimal string.</li>
+<li><strong><code class="prettyprint">p.tx</code></strong> (Object) Object containing details about how this function call should be made.
+
+<ul>
+<li><strong><code class="prettyprint">p.tx.to</code></strong> (string) Ethereum contract address of the ProfitLoss contract on which to call this function, as a 20-byte hexadecimal string.</li>
+</ul></li>
+</ul></li>
+<li><strong><code class="prettyprint">callback</code></strong> (function) &lt;optional&gt; Called after the function&rsquo;s result has been retrieved.</li>
+</ul>
+
+<h4 id="strong-strong"><strong>Returns:</strong></h4>
+
+<p>(string) The amount of frozen funds (in attoDai) the user has escrowed for an Outcome of the Market.</p>
+
+<h3 id="augur-api-profitloss-getnetposition-p-callback">augur.api.ProfitLoss.getNetPosition(p, callback)</h3>
+
+<p>Returns the net position (in <a href="#atto-prefix">attoShares</a>) that a user has for an <a href="#outcome">Outcome</a> on a specific <a href="#market">Market</a>.</p>
+
+<h4 id="strong-strong"><strong>Parameters:</strong></h4>
+
+<ul>
+<li><strong><code class="prettyprint">p</code></strong> (Object) Parameters object.<br>
+
+<ul>
+<li><strong><code class="prettyprint">p._market</code></strong> (string) Ethereum address of the Market.</li>
+<li><strong><code class="prettyprint">p._account</code></strong> (string) Ethereum address of the user&rsquo;s account.</li>
+<li><strong><code class="prettyprint">p._outcome</code></strong> (string) The Outcome for which to get the net position, as a hexadecimal string.</li>
 <li><strong><code class="prettyprint">p.tx</code></strong> (Object) Object containing details about how this function call should be made.
 
 <ul>
@@ -7490,7 +7571,59 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
 
 <h4 id="strong-strong"><strong>Returns:</strong></h4>
 
-<p>(string) The realized cost (in <a href="#atto-prefix">attoDai</a>) the user has incurred for an Outcome of the Market.</p>
+<p>(string) The net position (in attoShares) that a user has for an Outcome of the Market.</p>
+
+<h3 id="augur-api-profitloss-getrealizedcost-p-callback">augur.api.ProfitLoss.getRealizedCost(p, callback)</h3>
+
+<p>Returns the realized cost (in <a href="#atto-prefix">attoDai</a>) that a user has incurred for an <a href="#outcome">Outcome</a> on a specific <a href="#market">Market</a>.</p>
+
+<h4 id="strong-strong"><strong>Parameters:</strong></h4>
+
+<ul>
+<li><strong><code class="prettyprint">p</code></strong> (Object) Parameters object.<br>
+
+<ul>
+<li><strong><code class="prettyprint">p._market</code></strong> (string) Ethereum address of the Market.</li>
+<li><strong><code class="prettyprint">p._account</code></strong> (string) Ethereum address of the user&rsquo;s account.</li>
+<li><strong><code class="prettyprint">p._outcome</code></strong> (string) The Outcome for which to get the realized cost, as a hexadecimal string.</li>
+<li><strong><code class="prettyprint">p.tx</code></strong> (Object) Object containing details about how this function call should be made.
+
+<ul>
+<li><strong><code class="prettyprint">p.tx.to</code></strong> (string) Ethereum contract address of the ProfitLoss contract on which to call this function, as a 20-byte hexadecimal string.</li>
+</ul></li>
+</ul></li>
+<li><strong><code class="prettyprint">callback</code></strong> (function) &lt;optional&gt; Called after the function&rsquo;s result has been retrieved.</li>
+</ul>
+
+<h4 id="strong-strong"><strong>Returns:</strong></h4>
+
+<p>(string) The average Order price (in attoDai) the user has incurred for an Outcome of the Market.</p>
+
+<h3 id="augur-api-profitloss-getrealizedprofit-p-callback">augur.api.ProfitLoss.getRealizedProfit(p, callback)</h3>
+
+<p>Returns the realized profit (in <a href="#atto-prefix">attoDai</a>) that a user has made for an <a href="#outcome">Outcome</a> on a specific <a href="#market">Market</a>.</p>
+
+<h4 id="strong-strong"><strong>Parameters:</strong></h4>
+
+<ul>
+<li><strong><code class="prettyprint">p</code></strong> (Object) Parameters object.<br>
+
+<ul>
+<li><strong><code class="prettyprint">p._market</code></strong> (string) Ethereum address of the Market.</li>
+<li><strong><code class="prettyprint">p._account</code></strong> (string) Ethereum address of the user&rsquo;s account.</li>
+<li><strong><code class="prettyprint">p._outcome</code></strong> (string) The Outcome for which to get the realized profit, as a hexadecimal string.</li>
+<li><strong><code class="prettyprint">p.tx</code></strong> (Object) Object containing details about how this function call should be made.
+
+<ul>
+<li><strong><code class="prettyprint">p.tx.to</code></strong> (string) Ethereum contract address of the ProfitLoss contract on which to call this function, as a 20-byte hexadecimal string.</li>
+</ul></li>
+</ul></li>
+<li><strong><code class="prettyprint">callback</code></strong> (function) &lt;optional&gt; Called after the function&rsquo;s result has been retrieved.</li>
+</ul>
+
+<h4 id="strong-strong"><strong>Returns:</strong></h4>
+
+<p>(string) The average Order price (in attoDai) the user has made for an Outcome of the Market.</p>
 
 <h2 id="reputation-token-call-api">Reputation Token Call API</h2>
 <div class="highlight"><pre class="highlight javascript"><code><span class="c1">// Reputation Token Contract Call API Examples:</span>
@@ -9377,7 +9510,7 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
 
 <h3 id="augur-api-claimtradingproceeds-claimtradingproceeds-p">augur.api.ClaimTradingProceeds.claimTradingProceeds(p)</h3>
 
-<p>Collects trading profits from outstanding <a href="#share">Shares</a> in <a href="#finalized-market">Finalized Market</a> <code class="prettyprint">p._market</code> owned by <code class="prettyprint">p._shareHolder</code>. This transaction will trigger a <a href="#TradingProceedsClaimed"><code class="prettyprint">TradingProceedsClaimed</code></a> event if the trading proceeds are claimed without any errors.</p>
+<p>Collects trading profits from outstanding <a href="#share">Shares</a> in <a href="#finalized-market">Finalized Market</a> <code class="prettyprint">p._market</code> owned by <code class="prettyprint">p._shareHolder</code>. This transaction will trigger a <a href="#TradingProceedsClaimed"><code class="prettyprint">TradingProceedsClaimed</code></a> and <a href="#ProfitLossChanged"><code class="prettyprint">ProfitLossChanged</code></a> event if the trading proceeds are claimed without any errors.</p>
 
 <p>This transaction will fail if:</p>
 
@@ -10080,6 +10213,8 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
 <h3 id="augur-api-fillorder-publicfillorder-p">augur.api.FillOrder.publicFillOrder(p)</h3>
 
 <p>Attempts to Fill <code class="prettyprint">p._amountFillerWants</code> <a href="#share-unit">Share Units</a> for <a href="#order">Order</a> <code class="prettyprint">p._orderId</code>. If <code class="prettyprint">p._amountFillerWants</code> is enough to <a href="#fill-order">Fill</a> the Order completely, the Order will be removed from the <a href="#order-book">Order Book</a>. Otherwise, it will be adjusted to only include the remaining amount after Filling the <code class="prettyprint">p._amountFillerWants</code> value that the <a href="#order-filler">Filler</a> requests. This transaction will trigger an <a href="#OrderFilled"><code class="prettyprint">OrderFilled</code></a> event if the Order is Filled without any errors. Calling this function will also sell any <a href="#complete-set">Complete Sets</a> the <a href="#order-creator">Order Creator</a> or Filler would have otherwise ended up holding.</p>
+
+<p>This transaction will trigger a <a href="#MarketVolumeChanged"><code class="prettyprint">MarketVolumeChanged</code></a> and <a href="#ProfitLossChanged"><code class="prettyprint">ProfitLossChanged</code></a> event the Order is Filled without any errors.</p>
 
 <p>This transaction will fail if:</p>
 
@@ -10866,6 +11001,8 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
   <span class="na">onFailed</span><span class="p">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">result</span><span class="p">)</span> <span class="p">{</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">result</span><span class="p">);</span> <span class="p">}</span>
 <span class="p">});</span>
 </code></pre></div>
+<p>Provides JavaScript bindings for the <a href="https://github.com/AugurProject/augur/blob/master/packages/augur-core/source/contracts/trading/Orders.sol">Orders Solidity Contract</a>, which handles the storage of all data associated with <a href="#order">Orders</a>.</p>
+
 <h3 id="augur-api-orders-setorderprice-p">augur.api.Orders.setOrderPrice(p)</h3>
 
 <p>Updates the price of an existing <a href="#order">Order</a>. If the <a href="#order-creator">Order Creator</a> is owed a refund from the amount they originally escrowed, this amount will be transferred back to the Order Creator from the Market. If the Order Creator must escrow a larger amount to update the Order price, this additional amount will be transferred from their account to the Market.  This transaction will trigger an <a href="#OrderPriceChanged"><code class="prettyprint">OrderPriceChanged</code></a> event if the Order&rsquo;s price is updated without any errors.</p>
@@ -10888,6 +11025,66 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
 <li><strong><code class="prettyprint">p._price</code></strong>  (string) New price with which to update the Order.</li>
 <li><strong><code class="prettyprint">p._betterOrderId</code></strong> (string) Order ID of an existing Order on the Order Book with the next-best price with respect to the Order this transaction is intending to create, as a 32-byte hexadecimal value. Can be obtained by calling <code class="prettyprint">augur.trading.getBetterWorseOrders</code>.</li>
 <li><strong><code class="prettyprint">p._worseOrderId</code></strong> (string) Order ID of an existing Order on the Order Book with the next-worse price with respect to the Order this transaction is intending to create, as a 32-byte hexadecimal value. Can be obtained by calling <code class="prettyprint">augur.trading.getBetterWorseOrders</code>.</li>
+<li><strong><code class="prettyprint">p.tx</code></strong> (Object) Object containing details about how this transaction should be made.
+
+<ul>
+<li><strong><code class="prettyprint">p.tx.to</code></strong> (string) Ethereum contract address on which to call this function, as a 20-byte hexadecimal string.</li>
+<li><strong><code class="prettyprint">p.tx.gas</code></strong> (string) Gas limit to use when submitting this transaction, as a hexadecimal string.</li>
+</ul></li>
+<li><strong><code class="prettyprint">p.meta</code></strong>  (<a href="#Meta">Meta</a>) &lt;optional&gt; Authentication metadata for raw transactions.</li>
+<li><strong><code class="prettyprint">p.onSent</code></strong>  (function) Callback function that executes once the transaction has been sent.</li>
+<li><strong><code class="prettyprint">p.onSuccess</code></strong>  (function) &lt;optional&gt; Callback function that executes if the transaction returned successfully.</li>
+<li><strong><code class="prettyprint">p.onFailed</code></strong>  (function) &lt;optional&gt; Callback function that executes if the transaction failed.</li>
+</ul></li>
+</ul>
+
+<h4 id="strong-strong"><strong>Returns:</strong></h4>
+
+<ul>
+<li>Return value cannot be obtained because Ethereum nodes <a href="#transaction-return-values">discard</a> transaction return values.</li>
+</ul>
+
+<h2 id="profitloss-tx-api">ProfitLoss Tx API</h2>
+<div class="highlight"><pre class="highlight javascript"><code><span class="c1">// ProfitLoss Transaction API Examples:</span>
+
+<span class="c1">// The Ethereum contract address for Augur.sol can be </span>
+<span class="c1">// obtained by calling `augur.augurNode.getSyncData`.</span>
+<span class="kd">var</span> <span class="nx">profitLossAddress</span> <span class="o">=</span> <span class="s2">"0x999bf60a24ab922af99e6f335c0ff2b084d5b333"</span><span class="p">;</span>
+<span class="kd">var</span> <span class="nx">market</span> <span class="o">=</span> <span class="s2">"0xaaae83a8a2a904181ccfddd8292f17861406200b"</span><span class="p">;</span>
+
+<span class="nx">augur</span><span class="p">.</span><span class="nx">api</span><span class="p">.</span><span class="nx">ProfitLoss</span><span class="p">.</span><span class="nx">adjustForTrader</span><span class="p">({</span>
+  <span class="na">_market</span><span class="p">:</span> <span class="nx">market</span><span class="p">,</span>
+  <span class="na">_address</span><span class="p">:</span> <span class="s2">""</span><span class="p">,</span>
+  <span class="na">_outcome</span><span class="p">:</span> <span class="s2">""</span><span class="p">,</span>
+  <span class="na">_amount</span><span class="p">:</span> <span class="s2">""</span><span class="p">,</span>
+  <span class="na">_price</span><span class="p">:</span> <span class="s2">""</span><span class="p">,</span>
+  <span class="na">_frozenTokenDelta</span><span class="p">:</span> <span class="s2">""</span><span class="p">,</span>
+  <span class="na">tx</span><span class="p">:</span> <span class="p">{</span> 
+    <span class="na">to</span><span class="p">:</span> <span class="nx">profitLossAddress</span><span class="p">,</span>
+    <span class="na">gas</span><span class="p">:</span> <span class="s2">"0x632ea0"</span> 
+  <span class="p">},</span> 
+  <span class="na">meta</span><span class="p">:</span> <span class="p">{</span>
+    <span class="na">accountType</span><span class="p">:</span> <span class="s2">"privateKey"</span><span class="p">,</span>
+    <span class="na">address</span><span class="p">:</span> <span class="s2">"0x913dA4198E6bE1D5f5E4a40D0667f70C0B5430Ec"</span><span class="p">,</span>
+    <span class="na">signer</span><span class="p">:</span> <span class="p">[</span><span class="mi">252</span><span class="p">,</span> <span class="mi">111</span><span class="p">,</span> <span class="mi">32</span><span class="p">,</span> <span class="mi">94</span><span class="p">,</span> <span class="mi">233</span><span class="p">,</span> <span class="mi">213</span><span class="p">,</span> <span class="mi">105</span><span class="p">,</span> <span class="mi">71</span><span class="p">,</span> <span class="mi">89</span><span class="p">,</span> <span class="mi">162</span><span class="p">,</span> <span class="mi">243</span><span class="p">,</span> <span class="mi">247</span><span class="p">,</span> <span class="mi">56</span><span class="p">,</span> <span class="mi">81</span><span class="p">,</span> <span class="mi">213</span><span class="p">,</span> <span class="mi">103</span><span class="p">,</span> <span class="mi">239</span><span class="p">,</span> <span class="mi">75</span><span class="p">,</span> <span class="mi">212</span><span class="p">,</span> <span class="mi">240</span><span class="p">,</span> <span class="mi">234</span><span class="p">,</span> <span class="mi">95</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">201</span><span class="p">,</span> <span class="mi">217</span><span class="p">,</span> <span class="mi">55</span><span class="p">,</span> <span class="mi">225</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">85</span><span class="p">,</span> <span class="mi">109</span><span class="p">,</span> <span class="mi">158</span><span class="p">,</span> <span class="mi">25</span><span class="p">],</span>
+  <span class="p">},</span>
+  <span class="na">onSent</span><span class="p">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">result</span><span class="p">)</span> <span class="p">{</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">result</span><span class="p">);</span> <span class="p">},</span>
+  <span class="na">onSuccess</span><span class="p">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">result</span><span class="p">)</span> <span class="p">{</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">result</span><span class="p">);</span> <span class="p">},</span>
+  <span class="na">onFailed</span><span class="p">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">result</span><span class="p">)</span> <span class="p">{</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">result</span><span class="p">);</span> <span class="p">}</span>
+<span class="p">});</span>
+</code></pre></div>
+<p>Provides JavaScript bindings for the <a href="https://github.com/AugurProject/augur/blob/master/packages/augur-core/source/contracts/trading/ProfitLoss.sol">ProfitLoss Solidity Contract</a>, which keeps track of users&rsquo; trading profit &amp; loss information. </p>
+
+<h3 id="augur-api-profitloss-adjustfortrader-p">augur.api.ProfitLoss.adjustForTrader(p)</h3>
+
+<p>!!!TBD!!! Add description, explain params, &amp; add sample code (if this actually needs to be documented).</p>
+
+<h4 id="strong-strong"><strong>Parameters:</strong></h4>
+
+<ul>
+<li><strong><code class="prettyprint">p</code></strong> (Object) Parameters object.
+
+<ul>
 <li><strong><code class="prettyprint">p.tx</code></strong> (Object) Object containing details about how this transaction should be made.
 
 <ul>
@@ -13143,16 +13340,16 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
 <tr>
 <td><a name="CompleteSetsPurchased"></a>CompleteSetsPurchased</td>
 <td><a href="https://github.com/AugurProject/augur/blob/master/packages/augur-core/source/contracts/Augur.sol">Augur</a></td>
-<td>The Ethereum address <code class="prettyprint">account</code> purchased <code class="prettyprint">numCompleteSets</code> in <code class="prettyprint">market</code> of <code class="prettyprint">universe</code>.</td>
+<td>The Ethereum address <code class="prettyprint">account</code> purchased <code class="prettyprint">numCompleteSets</code> in <code class="prettyprint">market</code> of <code class="prettyprint">universe</code> at <code class="prettyprint">timestamp</code>.</td>
 <td>universe, market, account</td>
-<td>numCompleteSets</td>
+<td>numCompleteSets, timestamp</td>
 </tr>
 <tr>
 <td><a name="CompleteSetsSold"></a>CompleteSetsSold</td>
 <td><a href="https://github.com/AugurProject/augur/blob/master/packages/augur-core/source/contracts/Augur.sol">Augur</a></td>
-<td>The Ethereum address <code class="prettyprint">account</code> has sold <code class="prettyprint">numCompleteSets</code> in <code class="prettyprint">market</code> of <code class="prettyprint">universe</code> at <code class="prettyprint">timestamp</code>. The amount of <a href="#settlement-fees">Settlement Fees</a> paid was <code class="prettyprint">fees</code>, and the <a href="#market">Market&rsquo;s</a> <a href="#open-interest">Open Interest</a> after selling the <a href="#complete-set">Complete Sets</a> was <code class="prettyprint">marketOI</code> .</td>
+<td>The Ethereum address <code class="prettyprint">account</code> has sold <code class="prettyprint">numCompleteSets</code> in <code class="prettyprint">market</code> of <code class="prettyprint">universe</code> at <code class="prettyprint">timestamp</code>. The amount of <a href="#settlement-fees">Settlement Fees</a> paid was <code class="prettyprint">fees</code>.</td>
 <td>universe, market, account</td>
-<td>numCompleteSets, marketOI, fees, timestamp</td>
+<td>numCompleteSets, fees, timestamp</td>
 </tr>
 <tr>
 <td><a name="DisputeCrowdsourcerCompleted"></a>DisputeCrowdsourcerCompleted</td>
@@ -13246,6 +13443,13 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
 <td>from, to</td>
 </tr>
 <tr>
+<td><a name="MarketVolumeChanged"></a>MarketVolumeChanged</td>
+<td><a href="https://github.com/AugurProject/augur/blob/master/packages/augur-core/source/contracts/Augur.sol">Augur</a></td>
+<td>The volume for <code class="prettyprint">market</code> in <code class="prettyprint">universe</code> is now <code class="prettyprint">volume</code>. The volume for each outcome of the Market can be found in the array <code class="prettyprint">outcomeVolumes</code>.</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
 <td><a name="Mint"></a>Mint</td>
 <td><a href="https://github.com/AugurProject/augur/blob/master/packages/augur-core/source/contracts/libraries/token/VariableSupplyToken.sol">VariableSupplyToken</a></td>
 <td><code class="prettyprint">value</code> amount of brand new tokens were created for <code class="prettyprint">target</code>.</td>
@@ -13290,23 +13494,23 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
 <tr>
 <td><a name="TokensBurned"></a>TokensBurned</td>
 <td><a href="https://github.com/AugurProject/augur/blob/master/packages/augur-core/source/contracts/Augur.sol">Augur</a></td>
-<td>Burned (i.e., completely destroyed) <code class="prettyprint">amount</code> of <code class="prettyprint">target</code>&rsquo;s <a href="#atto-prefix">attotokens</a> in <code class="prettyprint">market</code> (if applicable) of <code class="prettyprint">universe</code>. The destroyed tokens were of type <code class="prettyprint">tokenType</code>, whose contract address is <code class="prettyprint">token</code>. (Valid <code class="prettyprint">tokenType</code> values are as follows: ReputationToken = 0, ShareToken = 1, DisputeCrowdsourcer = 2, FeeWindow = 3, FeeToken = 4, ParticipationToken = 5. The FeeWindow <code class="prettyprint">tokenType</code> represents <a href="#participation-token">Participation Tokens</a> in version 1 of Augur; however, this <code class="prettyprint">tokenType</code> value is deprecated in version 2 in favor of the ParticipationToken value. The FeeToken <code class="prettyprint">tokenType</code> is only used internally for accounting purposes in version 1 of Augur so that Stake holders can get Fees for every <a href="#dispute-window">Dispute Window</a> in which they have Stake. It is deprecated in version 2.)</td>
+<td>Burned (i.e., completely destroyed) <code class="prettyprint">amount</code> of <code class="prettyprint">target</code>&rsquo;s <a href="#atto-prefix">attotokens</a> in <code class="prettyprint">market</code> (if applicable) of <code class="prettyprint">universe</code>. The destroyed tokens were of type <code class="prettyprint">tokenType</code>, whose contract address is <code class="prettyprint">token</code>, and there are now <code class="prettyprint">totalSupply</code> of these tokens in existence. (Valid <code class="prettyprint">tokenType</code> values are as follows: ReputationToken = 0, ShareToken = 1, DisputeCrowdsourcer = 2, FeeWindow = 3, FeeToken = 4, ParticipationToken = 5. The FeeWindow <code class="prettyprint">tokenType</code> represents <a href="#participation-token">Participation Tokens</a> in version 1 of Augur; however, this <code class="prettyprint">tokenType</code> value is deprecated in version 2 in favor of the ParticipationToken value. The FeeToken <code class="prettyprint">tokenType</code> is only used internally for accounting purposes in version 1 of Augur so that Stake holders can get Fees for every <a href="#dispute-window">Dispute Window</a> in which they have Stake. It is deprecated in version 2.)</td>
 <td>universe, token, target</td>
-<td>amount, tokenType, market</td>
+<td>amount, tokenType, market, totalSupply</td>
 </tr>
 <tr>
 <td><a name="TokensMinted"></a>TokensMinted</td>
 <td><a href="https://github.com/AugurProject/augur/blob/master/packages/augur-core/source/contracts/Augur.sol">Augur</a></td>
-<td>Created <code class="prettyprint">amount</code> brand new <a href="#atto-prefix">attotokens</a> for <code class="prettyprint">target</code> in <code class="prettyprint">market</code> (if applicable) of <code class="prettyprint">universe</code> . The minted tokens are of type <code class="prettyprint">tokenType</code>, whose contract address is <code class="prettyprint">token</code>. (Valid <code class="prettyprint">tokenType</code> values are as follows: ReputationToken = 0, ShareToken = 1, DisputeCrowdsourcer = 2, FeeWindow = 3, FeeToken = 4, ParticipationToken = 5. The FeeWindow <code class="prettyprint">tokenType</code> represents <a href="#participation-token">Participation Tokens</a> in version 1 of Augur; however, this <code class="prettyprint">tokenType</code> value is deprecated in version 2 in favor of the ParticipationToken value. The FeeToken <code class="prettyprint">tokenType</code> is only used internally for accounting purposes in version 1 of Augur so that Stake holders can get Fees for every <a href="#dispute-window">Dispute Window</a> in which they have Stake. It is deprecated in version 2.)</td>
+<td>Created <code class="prettyprint">amount</code> brand new <a href="#atto-prefix">attotokens</a> for <code class="prettyprint">target</code> in <code class="prettyprint">market</code> (if applicable) of <code class="prettyprint">universe</code> . The minted tokens are of type <code class="prettyprint">tokenType</code>, whose contract address is <code class="prettyprint">token</code>, and there are now <code class="prettyprint">totalSupply</code> of these tokens in existence. (Valid <code class="prettyprint">tokenType</code> values are as follows: ReputationToken = 0, ShareToken = 1, DisputeCrowdsourcer = 2, FeeWindow = 3, FeeToken = 4, ParticipationToken = 5. The FeeWindow <code class="prettyprint">tokenType</code> represents <a href="#participation-token">Participation Tokens</a> in version 1 of Augur; however, this <code class="prettyprint">tokenType</code> value is deprecated in version 2 in favor of the ParticipationToken value. The FeeToken <code class="prettyprint">tokenType</code> is only used internally for accounting purposes in version 1 of Augur so that Stake holders can get Fees for every <a href="#dispute-window">Dispute Window</a> in which they have Stake. It is deprecated in version 2.)</td>
 <td>universe, token, target</td>
-<td>amount, tokenType, market</td>
+<td>amount, tokenType, market, totalSupply</td>
 </tr>
 <tr>
 <td><a name="TokensTransferred"></a>TokensTransferred</td>
 <td><a href="https://github.com/AugurProject/augur/blob/master/packages/augur-core/source/contracts/Augur.sol">Augur</a></td>
 <td><code class="prettyprint">value</code> amount of the tokens in <code class="prettyprint">market</code> (if applicable) of <code class="prettyprint">universe</code> have been transferred between account <code class="prettyprint">from</code> and <code class="prettyprint">to</code>. The transferred tokens are of type <code class="prettyprint">tokenType</code>, whose contract address is <code class="prettyprint">token</code>. (Valid <code class="prettyprint">tokenType</code> values are as follows: ReputationToken = 0, ShareToken = 1, DisputeCrowdsourcer = 2, FeeWindow = 3, FeeToken = 4, ParticipationToken = 5. The FeeWindow <code class="prettyprint">tokenType</code> represents <a href="#participation-token">Participation Tokens</a> in version 1 of Augur; however, this <code class="prettyprint">tokenType</code> value is deprecated in version 2 in favor of the ParticipationToken value. The FeeToken <code class="prettyprint">tokenType</code> is only used internally for accounting purposes in version 1 of Augur so that Stake holders can get Fees for every <a href="#dispute-window">Dispute Window</a> in which they have Stake. It is deprecated in version 2.)</td>
-<td>universe, token, from</td>
-<td>to, value, tokenType, market</td>
+<td>universe, from, to</td>
+<td>token, value, tokenType, market</td>
 </tr>
 <tr>
 <td><a name="TradingProceedsClaimed"></a>TradingProceedsClaimed</td>
