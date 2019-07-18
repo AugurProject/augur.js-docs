@@ -324,6 +324,14 @@ augur.api.DisputeCrowdsourcer.getPayoutNumerator({
 // example output:
 "1000"
 
+augur.api.DisputeCrowdsourcer.getPayoutNumerators({ 
+  tx: { to: disputeCrowdsourcer }, 
+}, function (error, payoutNumerators) { 
+  console.log(payoutNumerators); 
+});
+// example output:
+!!!TBD!!! Add example output
+
 augur.api.DisputeCrowdsourcer.getRemainingToFill({ 
   tx: { to: disputeCrowdsourcer } 
 }, function (error, remainingToFill) { 
@@ -426,6 +434,21 @@ Gets the [Payout Numerator](#payout-set) of a given [Outcome](#outcome) for a [D
 #### **Returns:**
 
 * (string)  Payout Numerator for the Dispute Crowdsourcer, as a stringified unsigned integer.
+
+### augur.api.DisputeCrowdsourcer.getPayoutNumerators(p, callback)
+
+Returns the [Payout Set](#payout-set) associated with this DisputeCrowdsourcer.
+
+#### **Parameters:**
+
+* **`p`** (Object) Parameters object.  
+    * **`p.tx`** (Object) Object containing details about how this function call should be made.
+        * **`p.tx.to`** (string) Ethereum contract address of the DisputeCrowdsourcer contract on which to call this function, as a 20-byte hexadecimal string.
+* **`callback`** (function) &lt;optional> Called after the function's result has been retrieved.
+
+#### **Returns:**
+
+* (Array.&lt;string>) The Payout Set associated with this DisputeCrowdsourcer, as an array of stringified unsigned integers.
 
 ### augur.api.DisputeCrowdsourcer.getRemainingToFill(p, callback)
 
@@ -836,6 +859,14 @@ augur.api.InitialReporter.getPayoutNumerator({
 // example output:
 "1000"
 
+augur.api.InitialReporter.getPayoutNumerators({ 
+  tx: { to: disputeCrowdsourcer }, 
+}, function (error, payoutNumerators) { 
+  console.log(payoutNumerators); 
+});
+// example output:
+!!!TBD!!! Add example output
+
 augur.api.InitialReporter.getReportTimestamp({ 
   tx: { to: initialReporter } 
 }, function (error, reportTimestamp) { 
@@ -975,6 +1006,21 @@ Returns the [Payout Numerator](#payout-set) of a given [Outcome](#outcome) for t
 #### **Returns:**
 
 * (string) Payout Numerator of a given Outcome for the InitialReporter contract, as a stringified unsigned integer.
+
+### augur.api.InitialReporter.getPayoutNumerators(p, callback)
+
+Returns the [Payout Set](#payout-set) associated with this InitialReporter.
+
+#### **Parameters:**
+
+* **`p`** (Object) Parameters object.  
+    * **`p.tx`** (Object) Object containing details about how this function call should be made.
+        * **`p.tx.to`** (string) Ethereum contract address of the InitialReporter contract on which to call this function, as a 20-byte hexadecimal string.
+* **`callback`** (function) &lt;optional> Called after the function's result has been retrieved.
+
+#### **Returns:**
+
+* (Array.&lt;string>) The Payout Set associated with this InitialReporter, as an array of stringified unsigned integers.
 
 ### augur.api.InitialReporter.getReportTimestamp(p, callback)
 
@@ -2599,7 +2645,7 @@ augur.api.Universe.calculateFloatingValue({
   console.log(floatingValue); 
 });
 // example output:
-""
+!!!TBD!!! Add example output
 
 augur.api.Universe.getChildUniverse({
   _parentPayoutDistributionHash: "0x4480ed40f94e2cb2ca244eb862df2d350300904a96039eb53cba0e34b8ace90a",
@@ -2721,6 +2767,14 @@ augur.api.Universe.getParentUniverse({
 });
 // example output:
 "0x63c59544b89cce1dd53b1b566862189b25adec41"
+
+augur.api.Universe.getPayoutNumerators({ 
+  tx: { to: universe } 
+}, function (error, payoutNumerators) { 
+  console.log(payoutNumerators); 
+});
+// example output:
+!!!TBD!!! Add example output
 
 augur.api.Universe.getPreviousDisputeWindow({ 
   _initial: false,
@@ -3065,6 +3119,23 @@ Returns the Ethereum contract address of the [Parent Universe](#parent-universe)
 #### **Returns:**
 
 * (string) Ethereum contract address of the Parent Universe for the specified Universe. If the Universe does not have a Parent Universe (that is, it is a [Genesis Universe](#genesis-universe)), the address "0x0000000000000000000000000000000000000000" will be returned.
+
+### augur.api.Universe.getPayoutNumerators(p, callback)
+
+Returns the [Payout Set](#payout-set) associated with this [Universe](#universe) if it is a [Child Universe](#child-universe) from a [Fork](#fork).
+
+!!!TBD!!! Add info on what's returned if universe is genesis universe.
+
+#### **Parameters:**
+
+* **`p`** (Object) Parameters object.  
+    * **`p.tx`** (Object) Object containing details about how this function call should be made.
+        * **`p.tx.to`** (string) Ethereum contract address of the Universe contract on which to call this function, as a 20-byte hexadecimal string.
+* **`callback`** (function) &lt;optional> Called after the function's result has been retrieved.
+
+#### **Returns:**
+
+* (Array.&lt;string>) The Payout Set associated with this Universe if it is a Child Universe from a Fork.
 
 ### augur.api.Universe.getPreviousDisputeWindow(p, callback)
 

@@ -174,7 +174,7 @@ Sends Ether to a specified Ethereum address.
 
 ### augur.assets.sendReputation(p)
 
-Sends [REP](#rep) to a specified Ethereum address. This function will trigger a [`TokensTransferred`](#TokensTransferred) event if the REP is successfully sent.
+Sends [REP](#rep) to a specified Ethereum address. This function will trigger [`TokensTransferred`](#TokensTransferred) and [`TokenBalanceChanged`](#TokenBalanceChanged) events if the REP is successfully sent.
 
 #### **Parameters:**
 
@@ -682,7 +682,7 @@ augur.createMarket.getMarketFromCreateMarketReceipt(
 ```
 ### augur.createMarket.createCategoricalMarket(p)
 
-Creates a [Categorical Market](#categorical-market) in a specified [Universe](#universe). This function will trigger a [`MarketCreated`](#MarketCreated) event and [`TokensTransferred`](#TokensTransferred) event if the [Market](#market) is created successfully.
+Creates a [Categorical Market](#categorical-market) in a specified [Universe](#universe). This function will trigger [`MarketCreated`](#MarketCreated), [`TokensTransferred`](#TokensTransferred), & [`TokenBalanceChanged`](#TokenBalanceChanged) events if the [Market](#market) is created successfully.
 
 This transaction will fail if:
 
@@ -718,7 +718,7 @@ NOTE: The account attempting to create the new market must have sufficient REP i
 
 ### augur.createMarket.createScalarMarket(p)
 
-Creates a [Scalar Market](#scalar-market) in a specified [Universe](#universe). This function will trigger a [`MarketCreated`](#MarketCreated) event and [`TokensTransferred`](#TokensTransferred) event if the [Market](#market) is created successfully.
+Creates a [Scalar Market](#scalar-market) in a specified [Universe](#universe). This function will trigger [`MarketCreated`](#MarketCreated), [`TokensTransferred`](#TokensTransferred), & ['TokenBalanceChanged'](#TokenBalanceChanged) events if the [Market](#market) is created successfully.
 
 This transaction will fail if:
 
@@ -756,7 +756,7 @@ NOTE: The account attempting to create the new market must have sufficient REP i
 
 ### augur.createMarket.createYesNoMarket(p)
 
-Creates a [Yes/No Market](#yes-no-market) in a specified [Universe](#universe). This function will trigger a [`MarketCreated`](#MarketCreated) event and [`TokensTransferred`](#TokensTransferred) event if the [Market](#market) is created successfully.
+Creates a [Yes/No Market](#yes-no-market) in a specified [Universe](#universe). This function will trigger [`MarketCreated`](#MarketCreated), [`TokensTransferred`](#TokensTransferred), & ['TokenBalanceChanged'](#TokenBalanceChanged) events if the [Market](#market) is created successfully.
 
 This transaction will fail if:
 
