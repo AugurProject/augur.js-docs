@@ -33,6 +33,14 @@ The Call API functions are part of the `augur.api` object and follow a pattern o
 Augur Call API
 ---------------------------
 ```javascript
+augur.api.Augur.getMarketOpenInterest({ 
+  _market: "0x1116eaefcfaf7ea1e17c4768a554d57800698888",
+}, function (error, openInterest) { 
+  console.log(openInterest); 
+});
+// example output:
+!!!TBD!!! Add example output
+
 augur.api.Augur.getTimestamp({ 
 }, function (error, timestamp) { 
   console.log(timestamp); 
@@ -94,6 +102,20 @@ Returns Augur's internal Unix timestamp.
 #### **Returns:**
 
 * (string) Augur's internal Unix timestamp, as a stringified unsigned integer.
+
+### augur.api.Augur.getMarketOpenInterest(p, callback)
+
+Returns the [Open Interest](#open-interest) (in [attoDai](#atto-prefix)) for a given [Market](#market).
+
+#### **Parameters:**
+
+* **`p`** (Object) Parameters object. 
+  * **`p._market`** (string) Market contract address, as a 20-byte hexadecimal value. 
+* **`callback`** (function) &lt;optional> Called after the function's result has been retrieved.
+
+#### **Returns:**
+
+* (string) The Open Interest (in attoDai) for  the Market, as a stringified unsigned integer.
 
 ### augur.api.Augur.isKnownCrowdsourcer(p, callback)
 
@@ -2271,23 +2293,95 @@ augur.api.ProfitLoss.getRealizedCost({
 ```
 Provides JavaScript bindings for the [ProfitLoss Solidity Contract](https://github.com/AugurProject/augur/blob/master/packages/augur-core/source/contracts/trading/ProfitLoss.sol), which keeps track of users' trading profit & loss information. 
 
-### augur.api.ProfitLoss.getRealizedCost(p, callback)
+### augur.api.ProfitLoss.getAvgPrice(p, callback)
 
-Returns the realized cost a user has incurred for an [Outcome](#outcome) on a specific [Market](#market).
+Returns the average [Order](#order) price (in [attoDai](#atto-prefix)) a user has incurred for an [Outcome](#outcome) on a specific [Market](#market).
 
 #### **Parameters:**
 
 * **`p`** (Object) Parameters object.  
     * **`p._market`** (string) Ethereum address of the Market.
-    * **`p._account`** (string) Ethereum address of the account.
-    * **`p._outcome`** (string) The Outcome for which to get the realized cost, as a hexadecimal string.
+    * **`p._account`** (string) Ethereum address of the user's account.
+    * **`p._outcome`** (string) The Outcome for which to get the average price, as a hexadecimal string.
+    * **`p.tx`** (Object) Object containing details about how this function call should be made.
+        * **`p.tx.to`** (string) Ethereum contract address of the ProfitLoss contract on which to call this function, as a 20-byte hexadecimal string.
+* **`callback`** (function) &lt;optional> Called after the function's result has been retrieved.
+
+#### **Returns:**
+
+(string) The average Order price (in attoDai) the user has incurred for an Outcome of the Market.
+
+### augur.api.ProfitLoss.getFrozenFunds(p, callback)
+
+Returns the amount of frozen funds (in [attoDai](#atto-prefix)) that a user has escrowed for an [Outcome](#outcome) on a specific [Market](#market).
+
+#### **Parameters:**
+
+* **`p`** (Object) Parameters object.  
+    * **`p._market`** (string) Ethereum address of the Market.
+    * **`p._account`** (string) Ethereum address of the user's account.
+    * **`p._outcome`** (string) The Outcome for which to get the frozen funds, as a hexadecimal string.
+    * **`p.tx`** (Object) Object containing details about how this function call should be made.
+        * **`p.tx.to`** (string) Ethereum contract address of the ProfitLoss contract on which to call this function, as a 20-byte hexadecimal string.
+* **`callback`** (function) &lt;optional> Called after the function's result has been retrieved.
+
+#### **Returns:**
+
+(string) The amount of frozen funds (in attoDai) the user has escrowed for an Outcome of the Market.
+
+### augur.api.ProfitLoss.getNetPosition(p, callback)
+
+Returns the net position (in [attoShares](#atto-prefix)) that a user has for an [Outcome](#outcome) on a specific [Market](#market).
+
+#### **Parameters:**
+
+* **`p`** (Object) Parameters object.  
+    * **`p._market`** (string) Ethereum address of the Market.
+    * **`p._account`** (string) Ethereum address of the user's account.
+    * **`p._outcome`** (string) The Outcome for which to get the net position, as a hexadecimal string.
     * **`p.tx`** (Object) Object containing details about how this function call should be made.
         * **`p.tx.to`** (string) Ethereum contract address of the ReputationToken contract on which to call this function, as a 20-byte hexadecimal string.
 * **`callback`** (function) &lt;optional> Called after the function's result has been retrieved.
 
 #### **Returns:**
 
-(string) The realized cost (in [attoDai](#atto-prefix)) the user has incurred for an Outcome of the Market.
+(string) The net position (in attoShares) that a user has for an Outcome of the Market.
+
+### augur.api.ProfitLoss.getRealizedCost(p, callback)
+
+Returns the realized cost (in [attoDai](#atto-prefix)) that a user has incurred for an [Outcome](#outcome) on a specific [Market](#market).
+
+#### **Parameters:**
+
+* **`p`** (Object) Parameters object.  
+    * **`p._market`** (string) Ethereum address of the Market.
+    * **`p._account`** (string) Ethereum address of the user's account.
+    * **`p._outcome`** (string) The Outcome for which to get the realized cost, as a hexadecimal string.
+    * **`p.tx`** (Object) Object containing details about how this function call should be made.
+        * **`p.tx.to`** (string) Ethereum contract address of the ProfitLoss contract on which to call this function, as a 20-byte hexadecimal string.
+* **`callback`** (function) &lt;optional> Called after the function's result has been retrieved.
+
+#### **Returns:**
+
+(string) The average Order price (in attoDai) the user has incurred for an Outcome of the Market.
+
+### augur.api.ProfitLoss.getRealizedProfit(p, callback)
+
+Returns the realized profit (in [attoDai](#atto-prefix)) that a user has made for an [Outcome](#outcome) on a specific [Market](#market).
+
+#### **Parameters:**
+
+* **`p`** (Object) Parameters object.  
+    * **`p._market`** (string) Ethereum address of the Market.
+    * **`p._account`** (string) Ethereum address of the user's account.
+    * **`p._outcome`** (string) The Outcome for which to get the realized profit, as a hexadecimal string.
+    * **`p.tx`** (Object) Object containing details about how this function call should be made.
+        * **`p.tx.to`** (string) Ethereum contract address of the ProfitLoss contract on which to call this function, as a 20-byte hexadecimal string.
+* **`callback`** (function) &lt;optional> Called after the function's result has been retrieved.
+
+#### **Returns:**
+
+(string) The average Order price (in attoDai) the user has made for an Outcome of the Market.
 
 Reputation Token Call API
 -------------------------

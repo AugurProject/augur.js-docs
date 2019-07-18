@@ -605,7 +605,7 @@ Calculates the [Reporting Fee](#reporting-fee) that will be paid when settling a
 
 ### augur.api.ClaimTradingProceeds.claimTradingProceeds(p)
 
-Collects trading profits from outstanding [Shares](#share) in [Finalized Market](#finalized-market) `p._market` owned by `p._shareHolder`. This transaction will trigger a [`TradingProceedsClaimed`](#TradingProceedsClaimed) event if the trading proceeds are claimed without any errors.
+Collects trading profits from outstanding [Shares](#share) in [Finalized Market](#finalized-market) `p._market` owned by `p._shareHolder`. This transaction will trigger a [`TradingProceedsClaimed`](#TradingProceedsClaimed) and [`ProfitLossChanged`](#ProfitLossChanged) event if the trading proceeds are claimed without any errors.
 
 This transaction will fail if:
 
@@ -1190,6 +1190,8 @@ Provides JavaScript bindings for the [FillOrder Solidity Contract](https://githu
 ### augur.api.FillOrder.publicFillOrder(p)
 
 Attempts to Fill `p._amountFillerWants` [Share Units](#share-unit) for [Order](#order) `p._orderId`. If `p._amountFillerWants` is enough to [Fill](#fill-order) the Order completely, the Order will be removed from the [Order Book](#order-book). Otherwise, it will be adjusted to only include the remaining amount after Filling the `p._amountFillerWants` value that the [Filler](#order-filler) requests. This transaction will trigger an [`OrderFilled`](#OrderFilled) event if the Order is Filled without any errors. Calling this function will also sell any [Complete Sets](#complete-set) the [Order Creator](#order-creator) or Filler would have otherwise ended up holding.
+
+This transaction will trigger a [`MarketVolumeChanged`](#MarketVolumeChanged) and [`ProfitLossChanged`](#ProfitLossChanged) event the Order is Filled without any errors.
 
 This transaction will fail if:
 
@@ -1818,6 +1820,7 @@ augur.api.Orders.setOrderPrice({
   onFailed: function (result) { console.log(result); }
 });
 ```
+Provides JavaScript bindings for the [Orders Solidity Contract](https://github.com/AugurProject/augur/blob/master/packages/augur-core/source/contracts/trading/Orders.sol), which handles the storage of all data associated with [Orders](#order).
 
 ### augur.api.Orders.setOrderPrice(p)
 
@@ -1836,6 +1839,58 @@ This transaction will fail if:
     * **`p._price`**  (string) New price with which to update the Order.
     * **`p._betterOrderId`** (string) Order ID of an existing Order on the Order Book with the next-best price with respect to the Order this transaction is intending to create, as a 32-byte hexadecimal value. Can be obtained by calling `augur.trading.getBetterWorseOrders`.
     * **`p._worseOrderId`** (string) Order ID of an existing Order on the Order Book with the next-worse price with respect to the Order this transaction is intending to create, as a 32-byte hexadecimal value. Can be obtained by calling `augur.trading.getBetterWorseOrders`.
+    * **`p.tx`** (Object) Object containing details about how this transaction should be made.
+        * **`p.tx.to`** (string) Ethereum contract address on which to call this function, as a 20-byte hexadecimal string.
+        * **`p.tx.gas`** (string) Gas limit to use when submitting this transaction, as a hexadecimal string.
+    * **`p.meta`**  (<a href="#Meta">Meta</a>) &lt;optional> Authentication metadata for raw transactions.
+    * **`p.onSent`**  (function) Callback function that executes once the transaction has been sent.
+    * **`p.onSuccess`**  (function) &lt;optional> Callback function that executes if the transaction returned successfully.
+    * **`p.onFailed`**  (function) &lt;optional> Callback function that executes if the transaction failed.
+
+#### **Returns:**
+
+* Return value cannot be obtained because Ethereum nodes [discard](#transaction-return-values) transaction return values.
+
+ProfitLoss Tx API
+--------------------------------
+```javascript
+// ProfitLoss Transaction API Examples:
+
+// The Ethereum contract address for Augur.sol can be 
+// obtained by calling `augur.augurNode.getSyncData`.
+var profitLossAddress = "0x999bf60a24ab922af99e6f335c0ff2b084d5b333";
+var market = "0xaaae83a8a2a904181ccfddd8292f17861406200b";
+
+augur.api.ProfitLoss.adjustForTrader({
+  _market: market,
+  _address: "",
+  _outcome: "",
+  _amount: "",
+  _price: "",
+  _frozenTokenDelta: "",
+  tx: { 
+    to: profitLossAddress,
+    gas: "0x632ea0" 
+  }, 
+  meta: {
+    accountType: "privateKey",
+    address: "0x913dA4198E6bE1D5f5E4a40D0667f70C0B5430Ec",
+    signer: [252, 111, 32, 94, 233, 213, 105, 71, 89, 162, 243, 247, 56, 81, 213, 103, 239, 75, 212, 240, 234, 95, 8, 201, 217, 55, 225, 0, 85, 109, 158, 25],
+  },
+  onSent: function (result) { console.log(result); },
+  onSuccess: function (result) { console.log(result); },
+  onFailed: function (result) { console.log(result); }
+});
+```
+Provides JavaScript bindings for the [ProfitLoss Solidity Contract](https://github.com/AugurProject/augur/blob/master/packages/augur-core/source/contracts/trading/ProfitLoss.sol), which keeps track of users' trading profit & loss information. 
+
+### augur.api.ProfitLoss.adjustForTrader(p)
+
+!!!TBD!!! Add description, explain params, & add sample code (if this actually needs to be documented).
+
+#### **Parameters:**
+
+* **`p`** (Object) Parameters object.
     * **`p.tx`** (Object) Object containing details about how this transaction should be made.
         * **`p.tx.to`** (string) Ethereum contract address on which to call this function, as a 20-byte hexadecimal string.
         * **`p.tx.gas`** (string) Gas limit to use when submitting this transaction, as a hexadecimal string.
