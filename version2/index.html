@@ -1487,7 +1487,7 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
 <li><code class="prettyprint">p._designatedReporterAddress</code> is set to the null address.</li>
 <li><code class="prettyprint">p._feePerCashInAttoCash</code> is greater than the maximum <a href="#creator-fee">Creator Fee</a> (15%).</li>
 <li><code class="prettyprint">p._endTime</code> has already passed.</li>
-<li><code class="prettyprint">p._endTime</code> is further in the future than the maximum market duration (365 days). </li>
+<li><code class="prettyprint">p._endTime</code> is further in the future than the maximum Market <a href="#end-time">End Time</a>.</li>
 <li>The Universe is Forking.</li>
 </ul>
 
@@ -1532,7 +1532,7 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
 <li><code class="prettyprint">p._numTicks</code> is less than 2.</li>
 <li><code class="prettyprint">p._feePerCashInAttoCash</code> is greater than the maximum <a href="#creator-fee">Creator Fee</a> (15%).</li>
 <li><code class="prettyprint">p._endTime</code> has already passed.</li>
-<li><code class="prettyprint">p._endTime</code> is further in the future than the maximum market duration (365 days). </li>
+<li><code class="prettyprint">p._endTime</code> is further in the future than the maximum Market <a href="#end-time">End Time</a>.</li>
 <li>The Universe is Forking.</li>
 </ul>
 
@@ -1578,7 +1578,7 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
 <li><code class="prettyprint">p._designatedReporterAddress</code> is set to the null address.</li>
 <li><code class="prettyprint">p._feePerCashInAttoCash</code> is greater than the maximum <a href="#creator-fee">Creator Fee</a> (15%).</li>
 <li><code class="prettyprint">p._endTime</code> has already passed.</li>
-<li><code class="prettyprint">p._endTime</code> is further in the future than the maximum market duration (365 days). </li>
+<li><code class="prettyprint">p._endTime</code> is further in the future than the maximum Market <a href="#end-time">End Time</a>.</li>
 <li>The Universe is Forking.</li>
 </ul>
 
@@ -4428,6 +4428,14 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
 <span class="c1">// example output:</span>
 <span class="o">!!!</span><span class="nx">TBD</span><span class="o">!!!</span> <span class="nx">Add</span> <span class="nx">example</span> <span class="nx">output</span>
 
+<span class="nx">augur</span><span class="p">.</span><span class="nx">api</span><span class="p">.</span><span class="nx">Augur</span><span class="p">.</span><span class="nx">getMaximumMarketEndDate</span><span class="p">({</span> 
+  <span class="na">_market</span><span class="p">:</span> <span class="s2">"0x1116eaefcfaf7ea1e17c4768a554d57800698888"</span><span class="p">,</span>
+<span class="p">},</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">error</span><span class="p">,</span> <span class="nx">openInterest</span><span class="p">)</span> <span class="p">{</span> 
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">openInterest</span><span class="p">);</span> 
+<span class="p">});</span>
+<span class="c1">// example output:</span>
+<span class="o">!!!</span><span class="nx">TBD</span><span class="o">!!!</span> <span class="nx">Add</span> <span class="nx">example</span> <span class="nx">output</span>
+
 <span class="nx">augur</span><span class="p">.</span><span class="nx">api</span><span class="p">.</span><span class="nx">Augur</span><span class="p">.</span><span class="nx">getTimestamp</span><span class="p">({</span> 
 <span class="p">},</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">error</span><span class="p">,</span> <span class="nx">timestamp</span><span class="p">)</span> <span class="p">{</span> 
   <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">timestamp</span><span class="p">);</span> 
@@ -4477,23 +4485,6 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
 </code></pre></div>
 <p>Provides JavaScript bindings for the <a href="https://github.com/AugurProject/augur/blob/master/packages/augur-core/source/contracts/Augur.sol">Augur Solidity Contract</a>, which handles <a href="#universe">Universe</a> creation and event logging.</p>
 
-<h3 id="augur-api-augur-gettimestamp-p-callback">augur.api.Augur.getTimestamp(p, callback)</h3>
-
-<p>Returns Augur&rsquo;s internal Unix timestamp.</p>
-
-<h4 id="strong-strong"><strong>Parameters:</strong></h4>
-
-<ul>
-<li><strong><code class="prettyprint">p</code></strong> (Object) Parameters object.<br></li>
-<li><strong><code class="prettyprint">callback</code></strong> (function) &lt;optional&gt; Called after the function&rsquo;s result has been retrieved.</li>
-</ul>
-
-<h4 id="strong-strong"><strong>Returns:</strong></h4>
-
-<ul>
-<li>(string) Augur&rsquo;s internal Unix timestamp, as a stringified unsigned integer.</li>
-</ul>
-
 <h3 id="augur-api-augur-getmarketopeninterest-p-callback">augur.api.Augur.getMarketOpenInterest(p, callback)</h3>
 
 <p>Returns the <a href="#open-interest">Open Interest</a> (in <a href="#atto-prefix">attoDai</a>) for a given <a href="#market">Market</a>.</p>
@@ -4513,6 +4504,40 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
 
 <ul>
 <li>(string) The Open Interest (in attoDai) for  the Market, as a stringified unsigned integer.</li>
+</ul>
+
+<h3 id="augur-api-augur-getmaximummarketenddate-p-callback">augur.api.Augur.getMaximumMarketEndDate(p, callback)</h3>
+
+<p>Returns the maximum <a href="#end-time">End Time</a> allowed for Markets.</p>
+
+<h4 id="strong-strong"><strong>Parameters:</strong></h4>
+
+<ul>
+<li><strong><code class="prettyprint">p</code></strong> (Object) Parameters object.<br></li>
+<li><strong><code class="prettyprint">callback</code></strong> (function) &lt;optional&gt; Called after the function&rsquo;s result has been retrieved.</li>
+</ul>
+
+<h4 id="strong-strong"><strong>Returns:</strong></h4>
+
+<ul>
+<li>(string) The maximum End Time allowed for Markets, as a stringified unsigned integer.</li>
+</ul>
+
+<h3 id="augur-api-augur-gettimestamp-p-callback">augur.api.Augur.getTimestamp(p, callback)</h3>
+
+<p>Returns Augur&rsquo;s internal Unix timestamp.</p>
+
+<h4 id="strong-strong"><strong>Parameters:</strong></h4>
+
+<ul>
+<li><strong><code class="prettyprint">p</code></strong> (Object) Parameters object.<br></li>
+<li><strong><code class="prettyprint">callback</code></strong> (function) &lt;optional&gt; Called after the function&rsquo;s result has been retrieved.</li>
+</ul>
+
+<h4 id="strong-strong"><strong>Returns:</strong></h4>
+
+<ul>
+<li>(string) Augur&rsquo;s internal Unix timestamp, as a stringified unsigned integer.</li>
 </ul>
 
 <h3 id="augur-api-augur-isknowncrowdsourcer-p-callback">augur.api.Augur.isKnownCrowdsourcer(p, callback)</h3>
@@ -5959,13 +5984,22 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
 <span class="c1">// example output:</span>
 <span class="s2">"0x0920d1513057572be46580b7ef75d1d01a99a3e5"</span>
 
-<span class="nx">augur</span><span class="p">.</span><span class="nx">api</span><span class="p">.</span><span class="nx">Market</span><span class="p">.</span><span class="nx">getValidityBondAttoeth</span><span class="p">(</span>
+<span class="nx">augur</span><span class="p">.</span><span class="nx">api</span><span class="p">.</span><span class="nx">Market</span><span class="p">.</span><span class="nx">getValidityBondAttoeth</span><span class="p">({</span>
   <span class="na">tx</span><span class="p">:</span> <span class="p">{</span> <span class="na">to</span><span class="p">:</span> <span class="nx">market</span> <span class="p">}</span> 
 <span class="p">},</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">error</span><span class="p">,</span> <span class="nx">validityBondAttoeth</span><span class="p">)</span> <span class="p">{</span> 
   <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">validityBondAttoeth</span><span class="p">);</span> 
 <span class="p">});</span>
 <span class="c1">// example output:</span>
 <span class="s2">"13570000000000000"</span>
+
+<span class="nx">augur</span><span class="p">.</span><span class="nx">api</span><span class="p">.</span><span class="nx">Market</span><span class="p">.</span><span class="nx">getWinningChildPayout</span><span class="p">({</span>
+  <span class="na">_outcome</span><span class="p">:</span> <span class="s2">"0"</span><span class="p">,</span>
+  <span class="na">tx</span><span class="p">:</span> <span class="p">{</span> <span class="na">to</span><span class="p">:</span> <span class="nx">market</span> <span class="p">}</span> 
+<span class="p">},</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">error</span><span class="p">,</span> <span class="nx">winningChildPayout</span><span class="p">)</span> <span class="p">{</span> 
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">winningChildPayout</span><span class="p">);</span> 
+<span class="p">});</span>
+<span class="c1">// example output:</span>
+<span class="s2">"100"</span>
 
 <span class="nx">augur</span><span class="p">.</span><span class="nx">api</span><span class="p">.</span><span class="nx">Market</span><span class="p">.</span><span class="nx">getWinningPayoutDistributionHash</span><span class="p">({</span> 
   <span class="na">tx</span><span class="p">:</span> <span class="p">{</span> <span class="na">to</span><span class="p">:</span> <span class="nx">market</span> <span class="p">}</span> 
@@ -6017,6 +6051,14 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
 <span class="p">});</span>
 <span class="c1">// example output:</span>
 <span class="kc">true</span>
+
+<span class="nx">augur</span><span class="p">.</span><span class="nx">api</span><span class="p">.</span><span class="nx">Market</span><span class="p">.</span><span class="nx">isForkingMarket</span><span class="p">({</span>
+  <span class="na">tx</span><span class="p">:</span> <span class="p">{</span> <span class="na">to</span><span class="p">:</span> <span class="nx">market</span> <span class="p">},</span>
+<span class="p">},</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">error</span><span class="p">,</span> <span class="nx">isForkingMarket</span><span class="p">)</span> <span class="p">{</span> 
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">isForkingMarket</span><span class="p">);</span> 
+<span class="p">});</span>
+<span class="c1">// example output:</span>
+<span class="kc">false</span>
 
 <span class="nx">augur</span><span class="p">.</span><span class="nx">api</span><span class="p">.</span><span class="nx">Market</span><span class="p">.</span><span class="nx">isInvalid</span><span class="p">({</span>
   <span class="na">tx</span><span class="p">:</span> <span class="p">{</span> <span class="na">to</span><span class="p">:</span> <span class="nx">market</span> <span class="p">}</span>
@@ -6664,6 +6706,34 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
 <li>(string) Amount the Market Creator must pay for the Validity Bond, denominated in attoETH.</li>
 </ul>
 
+<h3 id="augur-api-market-getwinningchildpayout-p-callback">augur.api.Market.getWinningChildPayout(p, callback)</h3>
+
+<p>Returns the <a href="#payout-set">Payout Numerator</a> for a specified <a href="#outcome">Outcome</a> of this <a href="#market">Market&rsquo;s</a> <a href="#winning-universe">Winning Universe</a>.</p>
+
+<p>!!!TBD!!! Add info on returned value if Market is not Forked.</p>
+
+<h4 id="strong-strong"><strong>Parameters:</strong></h4>
+
+<ul>
+<li><strong><code class="prettyprint">p</code></strong> (Object) Parameters object. 
+
+<ul>
+<li><strong><code class="prettyprint">p._outcome</code></strong> (string) Outcome for which to get the Payout Numerator, as a hexadecimal string. </li>
+<li><strong><code class="prettyprint">p.tx</code></strong> (Object) Object containing details about how this function call should be made.
+
+<ul>
+<li><strong><code class="prettyprint">p.tx.to</code></strong> (string) Ethereum contract address of the Market contract on which to call this function, as a 20-byte hexadecimal string.</li>
+</ul></li>
+</ul></li>
+<li><strong><code class="prettyprint">callback</code></strong> (function) &lt;optional&gt; Called after the function&rsquo;s result has been retrieved.</li>
+</ul>
+
+<h4 id="strong-strong"><strong>Returns:</strong></h4>
+
+<ul>
+<li>(string) The Payout Numerator for the specified Outcome of this Market&rsquo;s Winning Universe.</li>
+</ul>
+
 <h3 id="augur-api-market-getwinningpayoutdistributionhash-p-callback">augur.api.Market.getWinningPayoutDistributionHash(p, callback)</h3>
 
 <p>Returns the winning <a href="#payout-distribution-hash">Payout Distribution Hash</a> for a particular <a href="#market">Market</a>.</p>
@@ -6692,12 +6762,6 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
 <h3 id="augur-api-market-getwinningpayoutnumerator-p-callback">augur.api.Market.getWinningPayoutNumerator(p, callback)</h3>
 
 <p>Returns the winning <a href="#payout-set">Payout Numerator</a> for an <a href="#outcome">Outcome</a> in a particular <a href="#market">Market</a>.</p>
-
-<p>This call will fail if:</p>
-
-<ul>
-<li>The specified Market is not <a href="#finalized-market">Finalized</a>.</li>
-</ul>
 
 <h4 id="strong-strong"><strong>Parameters:</strong></h4>
 
@@ -6821,6 +6885,31 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
 
 <ul>
 <li>(boolean) <code class="prettyprint">true</code> if the Market has been Finalized, or <code class="prettyprint">false</code> otherwise.</li>
+</ul>
+
+<h3 id="augur-api-market-isforkingmarket-p-callback">augur.api.Market.isForkingMarket(p, callback)</h3>
+
+<p>Returns whether the <a href="#market">Market</a> is a <a href="#forked-market">Forked Market</a>.</p>
+
+<h4 id="strong-strong"><strong>Parameters:</strong></h4>
+
+<ul>
+<li><strong><code class="prettyprint">p</code></strong> (Object) Parameters object.<br>
+
+<ul>
+<li><strong><code class="prettyprint">p.tx</code></strong> (Object) Object containing details about how this function call should be made.
+
+<ul>
+<li><strong><code class="prettyprint">p.tx.to</code></strong> (string) Ethereum contract address of the Market contract on which to call this function, as a 20-byte hexadecimal string.</li>
+</ul></li>
+</ul></li>
+<li><strong><code class="prettyprint">callback</code></strong> (function) &lt;optional&gt; Called after the function&rsquo;s result has been retrieved.</li>
+</ul>
+
+<h4 id="strong-strong"><strong>Returns:</strong></h4>
+
+<ul>
+<li>(boolean) <code class="prettyprint">true</code> if the Market is a Forked Market, or <code class="prettyprint">false</code> otherwise.</li>
 </ul>
 
 <h3 id="augur-api-market-isinvalid-p-callback">augur.api.Market.isInvalid(p, callback)</h3>
@@ -7978,6 +8067,14 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
 <span class="c1">// example output:</span>
 <span class="s2">"0x63c59544b89cce1dd53b1b566862189b25adec41"</span>
 
+<span class="nx">augur</span><span class="p">.</span><span class="nx">api</span><span class="p">.</span><span class="nx">Universe</span><span class="p">.</span><span class="nx">getPayoutNumerator</span><span class="p">({</span> 
+  <span class="na">tx</span><span class="p">:</span> <span class="p">{</span> <span class="na">to</span><span class="p">:</span> <span class="nx">universe</span> <span class="p">}</span> 
+<span class="p">},</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">error</span><span class="p">,</span> <span class="nx">payoutNumerator</span><span class="p">)</span> <span class="p">{</span> 
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">payoutNumerator</span><span class="p">);</span> 
+<span class="p">});</span>
+<span class="c1">// example output:</span>
+<span class="o">!!!</span><span class="nx">TBD</span><span class="o">!!!</span> <span class="nx">Add</span> <span class="nx">example</span> <span class="nx">output</span>
+
 <span class="nx">augur</span><span class="p">.</span><span class="nx">api</span><span class="p">.</span><span class="nx">Universe</span><span class="p">.</span><span class="nx">getPayoutNumerators</span><span class="p">({</span> 
   <span class="na">tx</span><span class="p">:</span> <span class="p">{</span> <span class="na">to</span><span class="p">:</span> <span class="nx">universe</span> <span class="p">}</span> 
 <span class="p">},</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">error</span><span class="p">,</span> <span class="nx">payoutNumerators</span><span class="p">)</span> <span class="p">{</span> 
@@ -8018,6 +8115,14 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
 <span class="p">});</span>
 <span class="c1">// example output:</span>
 <span class="s2">"211250000000000000000"</span>
+
+<span class="nx">augur</span><span class="p">.</span><span class="nx">api</span><span class="p">.</span><span class="nx">Universe</span><span class="p">.</span><span class="nx">getWinningChildPayout</span><span class="p">({</span> 
+  <span class="na">tx</span><span class="p">:</span> <span class="p">{</span> <span class="na">to</span><span class="p">:</span> <span class="nx">universe</span> <span class="p">}</span> 
+<span class="p">},</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">error</span><span class="p">,</span> <span class="nx">winningChildPayout</span><span class="p">)</span> <span class="p">{</span> 
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">winningChildPayout</span><span class="p">);</span> 
+<span class="p">});</span>
+<span class="c1">// example output:</span>
+<span class="o">!!!</span><span class="nx">TBD</span><span class="o">!!!</span> <span class="nx">Add</span> <span class="nx">example</span> <span class="nx">output</span>
 
 <span class="nx">augur</span><span class="p">.</span><span class="nx">api</span><span class="p">.</span><span class="nx">Universe</span><span class="p">.</span><span class="nx">getWinningChildUniverse</span><span class="p">({</span> 
   <span class="na">tx</span><span class="p">:</span> <span class="p">{</span> <span class="na">to</span><span class="p">:</span> <span class="nx">universe</span> <span class="p">}</span> 
@@ -8450,6 +8555,32 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
 <li>(string) Ethereum contract address of the Parent Universe for the specified Universe. If the Universe does not have a Parent Universe (that is, it is a <a href="#genesis-universe">Genesis Universe</a>), the address &ldquo;0x0000000000000000000000000000000000000000&rdquo; will be returned.</li>
 </ul>
 
+<h3 id="augur-api-universe-getpayoutnumerator-p-callback">augur.api.Universe.getPayoutNumerator(p, callback)</h3>
+
+<p>Returns the <a href="#payout-set">Payout Numerator</a> for an <a href="#outcome">Outcome</a> in this <a href="#universe">Universe</a>.</p>
+
+<h4 id="strong-strong"><strong>Parameters:</strong></h4>
+
+<ul>
+<li><strong><code class="prettyprint">p</code></strong> (Object) Parameters object.<br>
+
+<ul>
+<li><strong><code class="prettyprint">p._outcome</code></strong> (string) Outcome for which to get the Payout Numerator, as a hexadecimal string.</li>
+<li><strong><code class="prettyprint">p.tx</code></strong> (Object) Object containing details about how this function call should be made.
+
+<ul>
+<li><strong><code class="prettyprint">p.tx.to</code></strong> (string) Ethereum contract address of the Universe contract on which to call this function, as a 20-byte hexadecimal string.</li>
+</ul></li>
+</ul></li>
+<li><strong><code class="prettyprint">callback</code></strong> (function) &lt;optional&gt; Called after the function&rsquo;s result has been retrieved.</li>
+</ul>
+
+<h4 id="strong-strong"><strong>Returns:</strong></h4>
+
+<ul>
+<li>(string) The Payout Numerator for an Outcome in this Universe, as a stringified unsigned integer.</li>
+</ul>
+
 <h3 id="augur-api-universe-getpayoutnumerators-p-callback">augur.api.Universe.getPayoutNumerators(p, callback)</h3>
 
 <p>Returns the <a href="#payout-set">Payout Set</a> associated with this <a href="#universe">Universe</a> if it is a <a href="#child-universe">Child Universe</a> from a <a href="#fork">Fork</a>.</p>
@@ -8576,6 +8707,34 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
 
 <ul>
 <li>(string) REP market cap that Augur targets when calculating Reporting Fees, in <a href="#atto-prefix">attoETH</a>, as a stringified unsigned integer.</li>
+</ul>
+
+<h3 id="augur-api-universe-getwinningchildpayout-p-callback">augur.api.Universe.getWinningChildPayout(p, callback)</h3>
+
+<p>Returns the <a href="#payout-set">Payout Numerator</a> for a specified <a href="#outcome">Outcome</a> of this <a href="#universe">Universe&rsquo;s</a> <a href="#winning-universe">Winning Universe</a>.</p>
+
+<p>!!!TBD!!! Add info on returned value if Universe does not have Forked Market.</p>
+
+<h4 id="strong-strong"><strong>Parameters:</strong></h4>
+
+<ul>
+<li><strong><code class="prettyprint">p</code></strong> (Object) Parameters object. 
+
+<ul>
+<li><strong><code class="prettyprint">p._outcome</code></strong> (string) Outcome for which to get the Payout Numerator, as a hexadecimal string. </li>
+<li><strong><code class="prettyprint">p.tx</code></strong> (Object) Object containing details about how this function call should be made.
+
+<ul>
+<li><strong><code class="prettyprint">p.tx.to</code></strong> (string) Ethereum contract address of the Universe contract on which to call this function, as a 20-byte hexadecimal string.</li>
+</ul></li>
+</ul></li>
+<li><strong><code class="prettyprint">callback</code></strong> (function) &lt;optional&gt; Called after the function&rsquo;s result has been retrieved.</li>
+</ul>
+
+<h4 id="strong-strong"><strong>Returns:</strong></h4>
+
+<ul>
+<li>(string) The Payout Numerator for the specified Outcome of this Universe&rsquo;s Winning Universe.</li>
 </ul>
 
 <h3 id="augur-api-universe-getwinningchilduniverse-p-callback">augur.api.Universe.getWinningChildUniverse(p, callback)</h3>
@@ -9114,7 +9273,9 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
 
 <h3 id="augur-api-cancelorder-cancelorder-p">augur.api.CancelOrder.cancelOrder(p)</h3>
 
-<p>Cancels and refunds an existing <a href="#order">Order</a> on the <a href="#order-book">Order Book</a> with ID <code class="prettyprint">p._orderId</code>. This transaction will trigger an <a href="#OrderCanceled"><code class="prettyprint">OrderCanceled</code></a> event if the Order is canceled without any errors.</p>
+<p>Cancels and refunds an existing <a href="#order">Order</a> on the <a href="#order-book">Order Book</a> with ID <code class="prettyprint">p._orderId</code>. </p>
+
+<p>This transaction will trigger an <a href="#OrderCanceled"><code class="prettyprint">OrderCanceled</code></a> and <a href="#ProfitLossChanged"><code class="prettyprint">ProfitLossChanged</code></a> event if the Order is canceled without any errors.</p>
 
 <p>This function will fail if:</p>
 
@@ -9151,7 +9312,9 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
 
 <h3 id="augur-api-cancelorder-cancelorders-p">augur.api.CancelOrder.cancelOrders(p)</h3>
 
-<p>Cancels and refunds a existing <a href="#order">Orders</a> on the <a href="#order-book">Order Book</a> with IDs <code class="prettyprint">p._orderIds</code>. This transaction will trigger <a href="#OrderCanceled"><code class="prettyprint">OrderCanceled</code></a> events.</p>
+<p>Cancels and refunds a existing <a href="#order">Orders</a> on the <a href="#order-book">Order Book</a> with IDs <code class="prettyprint">p._orderIds</code>. </p>
+
+<p>This transaction will trigger <a href="#OrderCanceled"><code class="prettyprint">OrderCanceled</code></a> and <a href="#ProfitLossChanged"><code class="prettyprint">ProfitLossChanged</code></a> events if the Order is canceled without any errors.</p>
 
 <p>This function will fail if:</p>
 
@@ -9274,7 +9437,9 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
 
 <h3 id="augur-api-cash-approve-p">augur.api.Cash.approve(p)</h3>
 
-<p>Many of the transaction functions in Augur&rsquo;s smart contracts will only work if the Augur.sol contract has been approved to spend <a href="#cash">Cash</a> on behalf of the account executing the transaction. This function allows <code class="prettyprint">p._spender</code> to spend up to <code class="prettyprint">p._value</code> Cash for the <code class="prettyprint">msg.sender</code> of this transaction. This transaction will trigger an <a href="#Approval"><code class="prettyprint">Approval</code></a> event, which will record the owner address (<code class="prettyprint">msg.sender</code>), <code class="prettyprint">p._spender</code>, and <code class="prettyprint">p._value</code> in <a href="#atto-prefix">attoCash</a> approved. The amount that <code class="prettyprint">p.spender</code> is approved to spend can be increased or decreased later by calling <code class="prettyprint">augur.api.Cash.increaseApproval</code> or <code class="prettyprint">augur.api.Cash.decreaseApproval</code>.</p>
+<p>Many of the transaction functions in Augur&rsquo;s smart contracts will only work if the Augur.sol contract has been approved to spend <a href="#cash">Cash</a> on behalf of the account executing the transaction. This function allows <code class="prettyprint">p._spender</code> to spend up to <code class="prettyprint">p._value</code> Cash for the <code class="prettyprint">msg.sender</code> of this transaction. </p>
+
+<p>This transaction will trigger an <a href="#Approval"><code class="prettyprint">Approval</code></a> event, which will record the owner address (<code class="prettyprint">msg.sender</code>), <code class="prettyprint">p._spender</code>, and <code class="prettyprint">p._value</code> in <a href="#atto-prefix">attoCash</a> approved. The amount that <code class="prettyprint">p.spender</code> is approved to spend can be increased or decreased later by calling <code class="prettyprint">augur.api.Cash.increaseApproval</code> or <code class="prettyprint">augur.api.Cash.decreaseApproval</code>.</p>
 
 <h4 id="strong-strong"><strong>Parameters:</strong></h4>
 
@@ -9472,7 +9637,9 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
 
 <h3 id="augur-api-claimtradingproceeds-claimtradingproceeds-p">augur.api.ClaimTradingProceeds.claimTradingProceeds(p)</h3>
 
-<p>Collects trading profits from outstanding <a href="#share">Shares</a> in <a href="#finalized-market">Finalized Market</a> <code class="prettyprint">p._market</code> owned by <code class="prettyprint">p._shareHolder</code>. This transaction will trigger a <a href="#TradingProceedsClaimed"><code class="prettyprint">TradingProceedsClaimed</code></a> and <a href="#ProfitLossChanged"><code class="prettyprint">ProfitLossChanged</code></a> event if the trading proceeds are claimed without any errors.</p>
+<p>Collects trading profits from outstanding <a href="#share">Shares</a> in <a href="#finalized-market">Finalized Market</a> <code class="prettyprint">p._market</code> owned by <code class="prettyprint">p._shareHolder</code>. </p>
+
+<p>This transaction will trigger a <a href="#TradingProceedsClaimed"><code class="prettyprint">TradingProceedsClaimed</code></a> and <a href="#ProfitLossChanged"><code class="prettyprint">ProfitLossChanged</code></a> event if the trading proceeds are claimed without any errors.</p>
 
 <p>This transaction will fail if:</p>
 
@@ -9792,7 +9959,9 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
 
 <h3 id="augur-api-createorder-publiccreateorder-p">augur.api.CreateOrder.publicCreateOrder(p)</h3>
 
-<p>Creates a new <a href="#bid-order">Bid Order</a> or <a href="#ask-order">Ask Order</a> on the <a href="#order-book">Order Book</a>. The parameters <code class="prettyprint">p._betterOrderId</code> and <code class="prettyprint">p._worseOrderId</code> are the <a href="#order">Orders</a> with the next best/next worse price after <code class="prettyprint">p._price</code>, and they are used to optimize the process of sorting the new Order on the Order Book. Their IDs can be obtained by calling <code class="prettyprint">augur.trading.getBetterWorseOrders</code>. This transaction will trigger an <a href="#OrderCreated"><code class="prettyprint">OrderCreated</code></a> event if the Order is created without any errors.</p>
+<p>Creates a new <a href="#bid-order">Bid Order</a> or <a href="#ask-order">Ask Order</a> on the <a href="#order-book">Order Book</a>. The parameters <code class="prettyprint">p._betterOrderId</code> and <code class="prettyprint">p._worseOrderId</code> are the <a href="#order">Orders</a> with the next best/next worse price after <code class="prettyprint">p._price</code>, and they are used to optimize the process of sorting the new Order on the Order Book. Their IDs can be obtained by calling <code class="prettyprint">augur.trading.getBetterWorseOrders</code>. </p>
+
+<p>This transaction will trigger an <a href="#OrderCreated"><code class="prettyprint">OrderCreated</code></a> and <a href="#ProfitLossChanged"><code class="prettyprint">ProfitLossChanged</code></a> event if the Order is created without any errors.</p>
 
 <p>This transaction will fail if:</p>
 
@@ -9801,7 +9970,7 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
 <li><code class="prettyprint">p._type</code> is not a valid value of 0 or 1.</li>
 <li><code class="prettyprint">p._attoshares</code> is less than or equal to 0.</li>
 <li><code class="prettyprint">p._outcome</code> is less than 0 or greater than or equal to the total number of <a href="#outcome">Outcomes</a> for <code class="prettyprint">p._market</code> (including <a href="#invalid-outcome">Invalid</a>).</li>
-<li><code class="prettyprint">p._price</code> is equal to 0 or is below <code class="prettyprint">p._market</code>&rsquo;s <a href="#minimum-display-price">Minimum Display Price</a> or above <code class="prettyprint">p.market</code>&rsquo;s <a href="#maximum-display-price">Maximum Display Price</a>.</li>
+<li><code class="prettyprint">p._price</code> is equal to 0 or is less than <code class="prettyprint">p._market</code>&rsquo;s <a href="#number-of-ticks">Number of Ticks</a>.</li>
 </ul>
 
 <h4 id="strong-strong"><strong>Parameters:</strong></h4>
@@ -9840,19 +10009,18 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
 
 <h3 id="augur-api-createorder-publiccreateorders-p">augur.api.CreateOrder.publicCreateOrders(p)</h3>
 
-<p>Creates new <a href="#bid-order">Bid Orders</a> or <a href="#ask-order">Ask Orders</a> on the <a href="#order-book">Order Book</a>. This transaction will trigger <a href="#OrderCreated"><code class="prettyprint">OrderCreated</code></a> events.</p>
+<p>Creates new <a href="#bid-order">Bid Orders</a> or <a href="#ask-order">Ask Orders</a> on the <a href="#order-book">Order Book</a>. </p>
+
+<p>This transaction will trigger <a href="#OrderCreated"><code class="prettyprint">OrderCreated</code></a> and <a href="#ProfitLossChanged"><code class="prettyprint">ProfitLossChanged</code></a> events if the Orders were created without errors.</p>
 
 <p>This transaction will fail if:</p>
-
-<p>uint256[] _outcomes, Order.Types[] _types, uint256[] _attoshareAmounts, uint256[] _prices, IMarket _market, bool _ignoreShares, bytes32 _tradeGroupId</p>
 
 <ul>
 <li><code class="prettyprint">p._market</code> is not a Market known to Augur.</li>
 <li>A value in <code class="prettyprint">p._outcomes</code> is less than 0 or greater than the total number of Outcomes for <code class="prettyprint">p._market</code> (including <a href="#invalid-outcome">Invalid</a>).</li>
 <li>A value in <code class="prettyprint">p._types</code> is not a valid value of 0 or 1.</li>
 <li>A value in <code class="prettyprint">p._attoshareAmounts</code> is less than 0.</li>
-<li>A value in <code class="prettyprint">p._prices</code> is below <code class="prettyprint">p._market</code>&rsquo;s <a href="#minimum-display-price">Minimum Display Price</a> or above <code class="prettyprint">p.market</code>&rsquo;s <a href="#maximum-display-price">Maximum Display Price</a>.</li>
-<li><code class="prettyprint">p._market</code> is undefined.</li>
+<li>A value in <code class="prettyprint">p._prices</code> is 0 or is less than <code class="prettyprint">p._market</code>&rsquo;s <a href="#number-of-ticks">Number of Ticks</a>.</li>
 </ul>
 
 <h4 id="strong-strong"><strong>Parameters:</strong></h4>
@@ -9932,7 +10100,7 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
 
 <h3 id="augur-api-disputecrowdsourcer-forkandredeem-p">augur.api.DisputeCrowdsourcer.forkAndRedeem(p)</h3>
 
-<p>Causes a <a href="#child-universe">Child Universe</a> to be created for the <a href="#outcome">Outcome</a> of the <a href="#crowdsourcer">Dispute Crowdsourcer</a> and migrates the <a href="#rep">REP</a> in the Crowdsourcer to the Child Universe. This function can be called only on the Crowdsourcers of a <a href="#forked-market">Forked Market</a>, and it can be called at any time after the <a href="#fork">Fork</a> has begun (including after the <a href="#market">Market</a> has been <a href="#finalized-market">Finalized</a>). When called by a user who <a href="#dispute-stake">Staked</a> on the Dispute Crowdsourcer&rsquo;s Outcome, it will redeem their Staked REP and collect any <a href="#reporting-fee">Reporting Fees</a> (in Ether) that they are owed.</p>
+<p>Causes a <a href="#child-universe">Child Universe</a> to be created for the <a href="#outcome">Outcome</a> of the <a href="#crowdsourcer">Dispute Crowdsourcer</a> and migrates the <a href="#rep">REP</a> in the Crowdsourcer to the Child Universe. This function can be called only on the Crowdsourcers of a <a href="#forked-market">Forked Market</a>, and it can be called at any time after the <a href="#fork">Fork</a> has begun (including after the <a href="#market">Market</a> has been <a href="#finalized-market">Finalized</a>). When called by a user who <a href="#dispute-stake">Staked</a> on the Dispute Crowdsourcer&rsquo;s Outcome, it will redeem their Staked REP and collect any <a href="#reporting-fee">Reporting Fees</a> (in Ether) that they are owed. </p>
 
 <p>This transaction will trigger a <a href="#ReportingParticipantDisavowed">ReportingParticipantDisavowed</a> event if the DisputeCrowdsourcer was forked without any errors.</p>
 
@@ -9941,8 +10109,6 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
 <ul>
 <li>The DisputeCrowdsourcer belongs to a Market that is not Forked.</li>
 </ul>
-
-<p>This transaction will trigger a <a href="#ReportingParticipantDisavowed">ReportingParticipantDisavowed</a> event if the DisputeCrowdsourcer was forked without any errors.</p>
 
 <h4 id="strong-strong"><strong>Parameters:</strong></h4>
 
@@ -10042,9 +10208,9 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
   <span class="na">onFailed</span><span class="p">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">result</span><span class="p">)</span> <span class="p">{</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">result</span><span class="p">);</span> <span class="p">}</span>
 <span class="p">});</span>
 
-<span class="kd">var</span> <span class="nx">_sender</span> <span class="o">=</span> <span class="s2">"0x8886eaefcfaf7ea1e17c4768a554d57800699888"</span><span class="p">;</span>
+<span class="kd">var</span> <span class="nx">_account</span> <span class="o">=</span> <span class="s2">"0x8886eaefcfaf7ea1e17c4768a554d57800699888"</span><span class="p">;</span>
 <span class="nx">augur</span><span class="p">.</span><span class="nx">api</span><span class="p">.</span><span class="nx">DisputeWindow</span><span class="p">.</span><span class="nx">redeem</span><span class="p">({</span>
-  <span class="na">_sender</span><span class="p">:</span> <span class="nx">_sender</span><span class="p">,</span>
+  <span class="na">_account</span><span class="p">:</span> <span class="nx">_account</span><span class="p">,</span>
   <span class="na">tx</span><span class="p">:</span> <span class="p">{</span> 
     <span class="na">to</span><span class="p">:</span> <span class="nx">disputeWindowAddress</span><span class="p">,</span>
     <span class="na">gas</span><span class="p">:</span> <span class="s2">"0x632ea0"</span> 
@@ -10103,7 +10269,7 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
 
 <h3 id="augur-api-disputewindow-redeem-p">augur.api.DisputeWindow.redeem(p)</h3>
 
-<p>Converts any <a href="#participation-token">Participation Tokens</a> <code class="prettyprint">p._sender</code> has in the specified <a href="#dispute-window">Dispute Window</a> to <a href="#rep">Reputation Tokens</a>, and gives the user any <a href="#reporting-fee">Reporting Fees</a> he or she is owed in Ether. The parameter <code class="prettyprint">p._sender</code> is the Ethereum address of the user redeeming the Participation Tokens, as a 20-byte hexadecimal string.</p>
+<p>Converts any <a href="#participation-token">Participation Tokens</a> <code class="prettyprint">p._account</code> has in the specified <a href="#dispute-window">Dispute Window</a> to <a href="#rep">Reputation Tokens</a>, and gives the user any <a href="#reporting-fee">Reporting Fees</a> he or she is owed in Dai. The parameter <code class="prettyprint">p._account</code> is the Ethereum address of the user, as a 20-byte hexadecimal string. </p>
 
 <p>This transaction will trigger a <a href="#ParticipationTokensRedeemed"><code class="prettyprint">ParticipationTokensRedeemed</code></a> event if the REP/Ether was redeemed without any errors.</p>
 
@@ -10119,7 +10285,7 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
 <li><strong><code class="prettyprint">p</code></strong> (Object) Parameters object.
 
 <ul>
-<li><strong><code class="prettyprint">p._sender</code></strong> (string) Ethereum address to send redeemed REP/Ether to, as a 20-byte hexadecimal value.</li>
+<li><strong><code class="prettyprint">p._account</code></strong> (string) Ethereum address to send redeemed REP/Dai to, as a 20-byte hexadecimal value.</li>
 <li><strong><code class="prettyprint">p.tx</code></strong> (Object) Object containing details about how this transaction should be made.
 
 <ul>
@@ -10174,9 +10340,9 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
 
 <h3 id="augur-api-fillorder-publicfillorder-p">augur.api.FillOrder.publicFillOrder(p)</h3>
 
-<p>Attempts to Fill <code class="prettyprint">p._amountFillerWants</code> <a href="#share-unit">Share Units</a> for <a href="#order">Order</a> <code class="prettyprint">p._orderId</code>. If <code class="prettyprint">p._amountFillerWants</code> is enough to <a href="#fill-order">Fill</a> the Order completely, the Order will be removed from the <a href="#order-book">Order Book</a>. Otherwise, it will be adjusted to only include the remaining amount after Filling the <code class="prettyprint">p._amountFillerWants</code> value that the <a href="#order-filler">Filler</a> requests. This transaction will trigger an <a href="#OrderFilled"><code class="prettyprint">OrderFilled</code></a> event if the Order is Filled without any errors. Calling this function will also sell any <a href="#complete-set">Complete Sets</a> the <a href="#order-creator">Order Creator</a> or Filler would have otherwise ended up holding.</p>
+<p>Attempts to Fill <code class="prettyprint">p._amountFillerWants</code> <a href="#share-unit">Share Units</a> for <a href="#order">Order</a> <code class="prettyprint">p._orderId</code>. If <code class="prettyprint">p._amountFillerWants</code> is enough to <a href="#fill-order">Fill</a> the Order completely, the Order will be removed from the <a href="#order-book">Order Book</a>. Otherwise, it will be adjusted to only include the remaining amount after Filling the <code class="prettyprint">p._amountFillerWants</code> value that the <a href="#order-filler">Filler</a> requests. Calling this function will also sell any <a href="#complete-set">Complete Sets</a> the <a href="#order-creator">Order Creator</a> or Filler would have otherwise ended up holding.</p>
 
-<p>This transaction will trigger a <a href="#MarketVolumeChanged"><code class="prettyprint">MarketVolumeChanged</code></a> and <a href="#ProfitLossChanged"><code class="prettyprint">ProfitLossChanged</code></a> event the Order is Filled without any errors.</p>
+<p>This transaction will trigger an <a href="#OrderFilled"><code class="prettyprint">OrderFilled</code></a>, <a href="#MarketVolumeChanged"><code class="prettyprint">MarketVolumeChanged</code></a> event if the Order is Filled without any errors. If the Order Creator and Order Filler are the same, a <a href="#ProfitLossChanged"><code class="prettyprint">ProfitLossChanged</code></a> event will also be triggered.</p>
 
 <p>This transaction will fail if:</p>
 
@@ -10721,7 +10887,9 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
 
 <h3 id="augur-api-market-finalize-p">augur.api.Market.finalize(p)</h3>
 
-<p><a href="#finalized-market">Finalizes</a> the <a href="#market">Market</a>, meaning it sets the winning <a href="#payout-distribution-hash">Payout Distribution Hash</a> for the Market, redistributes <a href="#rep">REP</a> Staked on non-winning <a href="#outcome">Outcomes</a> to REP holders who Staked on the winning Outcome, and distributes the <a href="#validity-bond">Validity Bond</a> based on whether the Market resolved as <a href="#invalid-outcome">Invalid</a>. Once the Market has been Finalized, users can <a href="#settlement">Settle</a> their <a href="#share">Shares</a>. This transaction will trigger a <a href="#MarketFinalized"><code class="prettyprint">MarketFinalized</code></a> event if the Market Finalized without any errors.</p>
+<p><a href="#finalized-market">Finalizes</a> the <a href="#market">Market</a>, meaning it sets the winning <a href="#payout-distribution-hash">Payout Distribution Hash</a> for the Market, redistributes <a href="#rep">REP</a> Staked on non-winning <a href="#outcome">Outcomes</a> to REP holders who Staked on the winning Outcome, and distributes the <a href="#validity-bond">Validity Bond</a> based on whether the Market resolved as <a href="#invalid-outcome">Invalid</a>. Once the Market has been Finalized, users can <a href="#settlement">Settle</a> their <a href="#share">Shares</a>. </p>
+
+<p>This transaction will trigger a <a href="#MarketFinalized"><code class="prettyprint">MarketFinalized</code></a> event if the Market Finalized without any errors.</p>
 
 <p>If the market resolved to <a href="#invalid-outcome">Invalid</a>, the <a href="#validity-bond">Validity Bond</a> gets sent to the <a href="#auction">Auction</a>; otherwise it gets returned to the <a href="#market-creator">Market Creator</a>.</p>
 
@@ -10731,7 +10899,7 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
 <li>The Market has already been Finalized.</li>
 <li>The <a href="#initial-report">Initial Report</a> has not been submitted.</li>
 <li>The <a href="#dispute-window">Dispute Window</a> has not ended.</li>
-<li>The Market is a Forked Market.</li>
+<li>The Market is a <a href="#forked-market">Forked Market</a>.</li>
 </ul>
 
 <h4 id="strong-strong"><strong>Parameters:</strong></h4>
@@ -10874,7 +11042,9 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
 
 <h3 id="augur-api-market-transferownership-p">augur.api.Market.transferOwnership(p)</h3>
 
-<p>Changes the owner of the <a href="#market">Market</a> from the current owner to <code class="prettyprint">p._newOwner</code>. This transaction will trigger a <a href="#MarketTransferred"><code class="prettyprint">MarketTransferred</code></a> event, which will record the <a href="#market">Market</a> and <a href="#universe">Universe</a> it belongs to, as well as the old owner&rsquo;s address and the new owner&rsquo;s address.</p>
+<p>Changes the owner of the <a href="#market">Market</a> from the current owner to <code class="prettyprint">p._newOwner</code>. </p>
+
+<p>This transaction will trigger a <a href="#MarketTransferred"><code class="prettyprint">MarketTransferred</code></a> event, which will record the <a href="#market">Market</a> and <a href="#universe">Universe</a> it belongs to, as well as the old owner&rsquo;s address and the new owner&rsquo;s address.</p>
 
 <p>This transaction will fail if:</p>
 
@@ -10913,6 +11083,12 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
 <p>Transfers an <a href="#affiliate">Affiliate&rsquo;s</a> <a href="#affiliate-fee">Affiliate Fee</a> from the <a href="#market">Market</a> to the specified Affiliate address.</p>
 
 <p>This transaction will trigger a <a href="#Transfer"><code class="prettyprint">Transfer</code></a> event, which will record the <code class="prettyprint">from</code> address, <code class="prettyprint">to</code> address, and <code class="prettyprint">value</code> transferred, in attoETH. </p>
+
+<p>This transaction will fail if:</p>
+
+<ul>
+<li>The Market is <a href="#invalid-outcome">Invalid</a>.</li>
+</ul>
 
 <h4 id="strong-strong"><strong>Parameters:</strong></h4>
 
@@ -10967,7 +11143,9 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
 
 <h3 id="augur-api-orders-setorderprice-p">augur.api.Orders.setOrderPrice(p)</h3>
 
-<p>Updates the price of an existing <a href="#order">Order</a>. If the <a href="#order-creator">Order Creator</a> is owed a refund from the amount they originally escrowed, this amount will be transferred back to the Order Creator from the Market. If the Order Creator must escrow a larger amount to update the Order price, this additional amount will be transferred from their account to the Market.  This transaction will trigger an <a href="#OrderPriceChanged"><code class="prettyprint">OrderPriceChanged</code></a> event if the Order&rsquo;s price is updated without any errors.</p>
+<p>Updates the price of an existing <a href="#order">Order</a>. If the <a href="#order-creator">Order Creator</a> is owed a refund from the amount they originally escrowed, this amount will be transferred back to the Order Creator from the Market. If the Order Creator must escrow a larger amount to update the Order price, this additional amount will be transferred from their account to the Market.  </p>
+
+<p>This transaction will trigger an <a href="#OrderPriceChanged"><code class="prettyprint">OrderPriceChanged</code></a> event if the Order&rsquo;s price is updated without any errors. It will also trigger a <a href="#ProfitLossChanged"><code class="prettyprint">ProfitLossChanged</code></a> event if the amount of escrowed funds changes.</p>
 
 <p>This transaction will fail if:</p>
 
@@ -11211,21 +11389,6 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
   <span class="na">onSuccess</span><span class="p">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">result</span><span class="p">)</span> <span class="p">{</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">result</span><span class="p">);</span> <span class="p">},</span>
   <span class="na">onFailed</span><span class="p">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">result</span><span class="p">)</span> <span class="p">{</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">result</span><span class="p">);</span> <span class="p">}</span>
 <span class="p">});</span>
-
-<span class="nx">augur</span><span class="p">.</span><span class="nx">api</span><span class="p">.</span><span class="nx">ReputationToken</span><span class="p">.</span><span class="nx">updateTotalTheoreticalSupply</span><span class="p">({</span>
-  <span class="na">tx</span><span class="p">:</span> <span class="p">{</span> 
-    <span class="na">to</span><span class="p">:</span> <span class="nx">reputationTokenAddress</span><span class="p">,</span>
-    <span class="na">gas</span><span class="p">:</span> <span class="s2">"0x632ea0"</span> 
-  <span class="p">},</span> 
-  <span class="na">meta</span><span class="p">:</span> <span class="p">{</span>
-    <span class="na">accountType</span><span class="p">:</span> <span class="s2">"privateKey"</span><span class="p">,</span>
-    <span class="na">address</span><span class="p">:</span> <span class="s2">"0x913dA4198E6bE1D5f5E4a40D0667f70C0B5430Ec"</span><span class="p">,</span>
-    <span class="na">signer</span><span class="p">:</span> <span class="p">[</span><span class="mi">252</span><span class="p">,</span> <span class="mi">111</span><span class="p">,</span> <span class="mi">32</span><span class="p">,</span> <span class="mi">94</span><span class="p">,</span> <span class="mi">233</span><span class="p">,</span> <span class="mi">213</span><span class="p">,</span> <span class="mi">105</span><span class="p">,</span> <span class="mi">71</span><span class="p">,</span> <span class="mi">89</span><span class="p">,</span> <span class="mi">162</span><span class="p">,</span> <span class="mi">243</span><span class="p">,</span> <span class="mi">247</span><span class="p">,</span> <span class="mi">56</span><span class="p">,</span> <span class="mi">81</span><span class="p">,</span> <span class="mi">213</span><span class="p">,</span> <span class="mi">103</span><span class="p">,</span> <span class="mi">239</span><span class="p">,</span> <span class="mi">75</span><span class="p">,</span> <span class="mi">212</span><span class="p">,</span> <span class="mi">240</span><span class="p">,</span> <span class="mi">234</span><span class="p">,</span> <span class="mi">95</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">201</span><span class="p">,</span> <span class="mi">217</span><span class="p">,</span> <span class="mi">55</span><span class="p">,</span> <span class="mi">225</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">85</span><span class="p">,</span> <span class="mi">109</span><span class="p">,</span> <span class="mi">158</span><span class="p">,</span> <span class="mi">25</span><span class="p">],</span>
-  <span class="p">},</span>
-  <span class="na">onSent</span><span class="p">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">result</span><span class="p">)</span> <span class="p">{</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">result</span><span class="p">);</span> <span class="p">},</span>
-  <span class="na">onSuccess</span><span class="p">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">result</span><span class="p">)</span> <span class="p">{</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">result</span><span class="p">);</span> <span class="p">},</span>
-  <span class="na">onFailed</span><span class="p">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">result</span><span class="p">)</span> <span class="p">{</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">result</span><span class="p">);</span> <span class="p">}</span>
-<span class="p">});</span>
 </code></pre></div>
 <p>Provides JavaScript bindings for the <a href="https://github.com/AugurProject/augur/tree/master/packages/augur-core/source/contracts/reporting/ReputationToken.sol">ReputationToken Solidity Contract</a>, which handles the approval, migration, and transfering of <a href="#rep">Reputation Tokens</a>.</p>
 
@@ -11233,7 +11396,9 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
 
 <h3 id="augur-api-reputationtoken-approve-p">augur.api.ReputationToken.approve(p)</h3>
 
-<p>Allows <code class="prettyprint">p._spender</code> to spend up to <code class="prettyprint">p._value</code> <a href="#rep">REP</a> for the <code class="prettyprint">msg.sender</code> of this transaction. This transaction will trigger an <a href="#Approval"><code class="prettyprint">Approval</code></a> event, which will record the owner address (<code class="prettyprint">msg.sender</code>), <code class="prettyprint">p._spender</code>, and <code class="prettyprint">p._value</code> in <a href="#atto-prefix">attoREP</a> approved. The amount that <code class="prettyprint">p.spender</code> is approved to spend can be increased or decreased later by calling <code class="prettyprint">augur.api.ReputationToken.increaseApproval</code> or <code class="prettyprint">augur.api.ReputationToken.decreaseApproval</code>.</p>
+<p>Allows <code class="prettyprint">p._spender</code> to spend up to <code class="prettyprint">p._value</code> <a href="#rep">REP</a> for the <code class="prettyprint">msg.sender</code> of this transaction. </p>
+
+<p>This transaction will trigger an <a href="#Approval"><code class="prettyprint">Approval</code></a> event, which will record the owner address (<code class="prettyprint">msg.sender</code>), <code class="prettyprint">p._spender</code>, and <code class="prettyprint">p._value</code> in <a href="#atto-prefix">attoREP</a> approved. The amount that <code class="prettyprint">p.spender</code> is approved to spend can be increased or decreased later by calling <code class="prettyprint">augur.api.ReputationToken.increaseApproval</code> or <code class="prettyprint">augur.api.ReputationToken.decreaseApproval</code>.</p>
 
 <h4 id="strong-strong"><strong>Parameters:</strong></h4>
 
@@ -11327,6 +11492,12 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
 <h3 id="augur-api-reputationtoken-migratefromlegacyreputationtoken-p">augur.api.ReputationToken.migrateFromLegacyReputationToken(p)</h3>
 
 <p>Migrates <a href="#legacy-rep">Legacy REP</a> tokens owned by <code class="prettyprint">msg.sender</code> from the Legacy REP contract to the <code class="prettyprint">reputationToken</code> provided. This transaction will add whatever <code class="prettyprint">msg.sender</code>&rsquo;s balance was for the <a href="https://github.com/AugurProject/augur/blob/master/packages/augur-core/source/contracts/LegacyReputationToken.sol">Legacy REP contract</a> to the <code class="prettyprint">reputationToken</code> contract.</p>
+
+<p>This transaction will fail if:</p>
+
+<ul>
+<li>The Reputation Token&rsquo;s <a href="#parent-universe">Universe</a> is a <a href="#child-universe">Child Universe</a>.</li>
+</ul>
 
 <h4 id="strong-strong"><strong>Parameters:</strong></h4>
 
@@ -11434,7 +11605,9 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
 
 <h3 id="augur-api-reputationtoken-transfer-p">augur.api.ReputationToken.transfer(p)</h3>
 
-<p>Sends <code class="prettyprint">p.amount</code> worth of <a href="#atto-prefix">attoREP</a> to the Ethereum address <code class="prettyprint">p.recipient</code>. If this transaction transfers without any errors, it will trigger a <a href="#Transfer"><code class="prettyprint">Transfer</code></a> event, which will record the from address (<code class="prettyprint">msg.sender</code>), <code class="prettyprint">p.recipient</code> address, and <code class="prettyprint">p.amount</code> amount transferred.</p>
+<p>Sends <code class="prettyprint">p.amount</code> worth of <a href="#atto-prefix">attoREP</a> to the Ethereum address <code class="prettyprint">p.recipient</code>. </p>
+
+<p>If this transaction transfers without any errors, it will trigger a <a href="#Transfer"><code class="prettyprint">Transfer</code></a> event, which will record the from address (<code class="prettyprint">msg.sender</code>), <code class="prettyprint">p.recipient</code> address, and <code class="prettyprint">p.amount</code> amount transferred.</p>
 
 <p>This transaction will fail if:</p>
 
@@ -11471,7 +11644,9 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
 
 <h3 id="augur-api-reputationtoken-transferfrom-p">augur.api.ReputationToken.transferFrom(p)</h3>
 
-<p>Sends <code class="prettyprint">p.amount</code> worth of <a href="#atto-prefix">attoREP</a> from the Ethereum addres <code class="prettyprint">p.holder</code> to the Ethereum address <code class="prettyprint">p.recipient</code>. If this transaction transfers without any errors, it will trigger a <code class="prettyprint">Transfer</code> event, which will record the <code class="prettyprint">p.holder</code> address, <code class="prettyprint">p.recipient</code> address, and <code class="prettyprint">p.amount</code> (in attoREP) amount transferred.</p>
+<p>Sends <code class="prettyprint">p.amount</code> worth of <a href="#atto-prefix">attoREP</a> from the Ethereum addres <code class="prettyprint">p.holder</code> to the Ethereum address <code class="prettyprint">p.recipient</code>. </p>
+
+<p>If this transaction transfers without any errors, it will trigger a <code class="prettyprint">Transfer</code> event, which will record the <code class="prettyprint">p.holder</code> address, <code class="prettyprint">p.recipient</code> address, and <code class="prettyprint">p.amount</code> (in attoREP) amount transferred.</p>
 
 <p>This transaction will fail if:</p>
 
@@ -11489,35 +11664,6 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
 <li><strong><code class="prettyprint">p.holder</code></strong>  (string) Ethereum address to send REP from, as a 20-byte hexadecimal value.</li>
 <li><strong><code class="prettyprint">p.recipient</code></strong>  (string) Ethereum address to send REP to, as a 20-byte hexadecimal value.</li>
 <li><strong><code class="prettyprint">p.amount</code></strong>  (string) Number of attoREP to send, between 1 and 2<sup>254</sup>, as a hexadecimal string.</li>
-<li><strong><code class="prettyprint">p.tx</code></strong> (Object) Object containing details about how this transaction should be made.
-
-<ul>
-<li><strong><code class="prettyprint">p.tx.to</code></strong> (string) Ethereum contract address on which to call this function, as a 20-byte hexadecimal string.</li>
-<li><strong><code class="prettyprint">p.tx.gas</code></strong> (string) Gas limit to use when submitting this transaction, as a hexadecimal string.</li>
-</ul></li>
-<li><strong><code class="prettyprint">p.meta</code></strong>  (<a href="#Meta">Meta</a>) &lt;optional&gt; Authentication metadata for raw transactions.</li>
-<li><strong><code class="prettyprint">p.onSent</code></strong>  (function) Callback function that executes once the transaction has been sent.</li>
-<li><strong><code class="prettyprint">p.onSuccess</code></strong>  (function) &lt;optional&gt; Callback function that executes if the transaction returned successfully.</li>
-<li><strong><code class="prettyprint">p.onFailed</code></strong>  (function) &lt;optional&gt; Callback function that executes if the transaction failed.</li>
-</ul></li>
-</ul>
-
-<h4 id="strong-strong"><strong>Returns:</strong></h4>
-
-<ul>
-<li>Return value cannot be obtained because Ethereum nodes <a href="#transaction-return-values">discard</a> transaction return values.</li>
-</ul>
-
-<h3 id="augur-api-reputationtoken-updatetotaltheoreticalsupply-p">augur.api.ReputationToken.updateTotalTheoreticalSupply(p)</h3>
-
-<p>Updates this ReputationToken contract&rsquo;s total <a href="#theoretical-rep-supply">Theoretical REP Supply</a>.</p>
-
-<h4 id="strong-strong"><strong>Parameters:</strong></h4>
-
-<ul>
-<li><strong><code class="prettyprint">p</code></strong> (Object) Parameters object.
-
-<ul>
 <li><strong><code class="prettyprint">p.tx</code></strong> (Object) Object containing details about how this transaction should be made.
 
 <ul>
@@ -11641,7 +11787,9 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
 
 <h3 id="augur-api-sharetoken-approve-p">augur.api.ShareToken.approve(p)</h3>
 
-<p>Allows <code class="prettyprint">p._spender</code> to spend up to <code class="prettyprint">p._value</code> <a href="#share">Shares</a> for the <code class="prettyprint">msg.sender</code> of this transaction. This transaction will trigger an <a href="#Approval"><code class="prettyprint">Approval</code></a> event, which will record the owner address (<code class="prettyprint">msg.sender</code>), <code class="prettyprint">p._spender</code>, and <code class="prettyprint">p._value</code>, in <a href="#share-unit">Share Units</a>, approved. The amount that <code class="prettyprint">p.spender</code> is approved to spend can be increased or decreased later by calling <code class="prettyprint">augur.api.ShareToken.increaseApproval</code> or <code class="prettyprint">augur.api.ShareToken.decreaseApproval</code>.</p>
+<p>Allows <code class="prettyprint">p._spender</code> to spend up to <code class="prettyprint">p._value</code> <a href="#share">Shares</a> for the <code class="prettyprint">msg.sender</code> of this transaction. </p>
+
+<p>This transaction will trigger an <a href="#Approval"><code class="prettyprint">Approval</code></a> event, which will record the owner address (<code class="prettyprint">msg.sender</code>), <code class="prettyprint">p._spender</code>, and <code class="prettyprint">p._value</code>, in <a href="#share-unit">Share Units</a>, approved. The amount that <code class="prettyprint">p.spender</code> is approved to spend can be increased or decreased later by calling <code class="prettyprint">augur.api.ShareToken.increaseApproval</code> or <code class="prettyprint">augur.api.ShareToken.decreaseApproval</code>.</p>
 
 <h4 id="strong-strong"><strong>Parameters:</strong></h4>
 
@@ -11734,7 +11882,9 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
 
 <h3 id="augur-api-sharetoken-transfer-p">augur.api.ShareToken.transfer(p)</h3>
 
-<p>Sends <code class="prettyprint">p.amount</code> worth of <a href="#share-unit">Share Units</a> to the Ethereum address <code class="prettyprint">p.recipient</code>. If this transaction transfers without any errors, it will trigger a <a href="#Transfer"><code class="prettyprint">Transfer</code></a> event, which will record the from address (<code class="prettyprint">msg.sender</code>), <code class="prettyprint">p.recipient</code> address, and <code class="prettyprint">p.amount</code> amount transferred.</p>
+<p>Sends <code class="prettyprint">p.amount</code> worth of <a href="#share-unit">Share Units</a> to the Ethereum address <code class="prettyprint">p.recipient</code>. </p>
+
+<p>If this transaction transfers without any errors, it will trigger a <a href="#Transfer"><code class="prettyprint">Transfer</code></a> event, which will record the from address (<code class="prettyprint">msg.sender</code>), <code class="prettyprint">p.recipient</code> address, and <code class="prettyprint">p.amount</code> amount transferred.</p>
 
 <p>This transaction will fail if:</p>
 
@@ -11771,7 +11921,9 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
 
 <h3 id="augur-api-sharetoken-transferfrom-p">augur.api.ShareToken.transferFrom(p)</h3>
 
-<p>Sends <code class="prettyprint">p.amount</code> worth of <a href="#share-unit">Share Units</a> from the Ethereum addres <code class="prettyprint">p.holder</code> to the Ethereum address <code class="prettyprint">p.recipient</code>. If this transaction transfers without any errors, it will trigger a <a href="#Transfer"><code class="prettyprint">Transfer</code></a> event, which will record the <code class="prettyprint">p.holder</code> address, <code class="prettyprint">p.recipient</code> address, and <code class="prettyprint">p.amount</code> (in Share Units) amount transferred.</p>
+<p>Sends <code class="prettyprint">p.amount</code> worth of <a href="#share-unit">Share Units</a> from the Ethereum addres <code class="prettyprint">p.holder</code> to the Ethereum address <code class="prettyprint">p.recipient</code>. </p>
+
+<p>If this transaction transfers without any errors, it will trigger a <a href="#Transfer"><code class="prettyprint">Transfer</code></a> event, which will record the <code class="prettyprint">p.holder</code> address, <code class="prettyprint">p.recipient</code> address, and <code class="prettyprint">p.amount</code> (in Share Units) amount transferred.</p>
 
 <p>This transaction will fail if:</p>
 
@@ -12006,7 +12158,9 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
 
 <p>Buys or sells <code class="prettyprint">p._fxpAmount</code> number of <a href="#share">Shares</a> in <a href="#outcome">Outcome</a> <code class="prettyprint">p._outcome</code> of <a href="#market">Market</a> <code class="prettyprint">p._market</code> at <code class="prettyprint">p._price</code> <a href="#atto-prefix">attoETH</a> per Share. The <code class="prettyprint">p._direction</code> must be specified as &ldquo;0x0&rdquo; for long or &ldquo;0x1&rdquo; for short. </p>
 
-<p>This transaction takes <a href="#order">Orders</a> off the <a href="#order-book">Order Book</a> that can be <a href="#fill-order">Filled</a> with this request, otherwise it creates a new Order to buy/sell <code class="prettyprint">p._fxpAmount</code> of <a href="#share-unit">Share Units</a> at <code class="prettyprint">p._price</code>. The parameters <code class="prettyprint">p._betterOrderId</code> and <code class="prettyprint">p._worseOrderId</code> are the Orders with the next best/next worse price after <code class="prettyprint">p._price</code>, and they are used to optimize the process of sorting the new Order on the Order Book. Their IDs can be obtained by calling <code class="prettyprint">augur.trading.getBetterWorseOrders</code>. This transaction will trigger an <a href="#OrderCreated"><code class="prettyprint">OrderCreated</code></a> event if the Order is created without any errors.</p>
+<p>This transaction takes <a href="#order">Orders</a> off the <a href="#order-book">Order Book</a> that can be <a href="#fill-order">Filled</a> with this request, otherwise it creates a new Order to buy/sell <code class="prettyprint">p._fxpAmount</code> of <a href="#share-unit">Share Units</a> at <code class="prettyprint">p._price</code>. The parameters <code class="prettyprint">p._betterOrderId</code> and <code class="prettyprint">p._worseOrderId</code> are the Orders with the next best/next worse price after <code class="prettyprint">p._price</code>, and they are used to optimize the process of sorting the new Order on the Order Book. Their IDs can be obtained by calling <code class="prettyprint">augur.trading.getBetterWorseOrders</code>. </p>
+
+<p>This transaction will trigger an <a href="#OrderCreated"><code class="prettyprint">OrderCreated</code></a> event if the Order is created without any errors.</p>
 
 <p>This transaction will fail if:</p>
 
@@ -12383,7 +12537,9 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
 
 <h3 id="augur-api-universe-createcategoricalmarket-p">augur.api.Universe.createCategoricalMarket(p)</h3>
 
-<p>Creates a new <a href="#categorical-market">Categorical Market</a>. This transaction will trigger a <a href="#MarketCreated"><code class="prettyprint">MarketCreated</code></a> event if the <a href="#market">Market</a> is created successfully. After the transaction has completed successfully, the Market address can be obtained by calling <code class="prettyprint">augur.createMarket.getMarketFromCreateMarketReceipt</code>.</p>
+<p>Creates a new <a href="#categorical-market">Categorical Market</a>. After the transaction has completed successfully, the Market address can be obtained by calling <code class="prettyprint">augur.createMarket.getMarketFromCreateMarketReceipt</code>.</p>
+
+<p>This transaction will trigger a <a href="#MarketCreated"><code class="prettyprint">MarketCreated</code></a> event if the <a href="#market">Market</a> is created successfully. </p>
 
 <p>This transaction will fail if:</p>
 
@@ -12392,7 +12548,7 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
 <li><code class="prettyprint">p._designatedReporterAddress</code> is set to the null address.</li>
 <li><code class="prettyprint">p._feePerCashInAttoCash</code> is greater than the maximum <a href="#creator-fee">Creator Fee</a> (15%).</li>
 <li><code class="prettyprint">p._endTime</code> has already passed.</li>
-<li><code class="prettyprint">p._endTime</code> is further in the future than the maximum market duration (365 days). </li>
+<li><code class="prettyprint">p._endTime</code> is further in the future than the maximum Market <a href="#end-time">End Time</a>.</li>
 <li>The <a href="#universe">Universe</a> is <a href="#fork">Forking</a>.</li>
 </ul>
 
@@ -12440,7 +12596,9 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
 
 <h3 id="augur-api-universe-createchilduniverse-p">augur.api.Universe.createChildUniverse(p)</h3>
 
-<p>Creates a new <a href="#child-universe">Child Universe</a> (if it does not already exist) with the given <a href="#payout-set">Payout Set</a> <code class="prettyprint">p._parentPayoutNumerators</code>. This transaction will trigger a <a href="#UniverseCreated"><code class="prettyprint">UniverseCreated</code></a> event if the Child Universe has not been created yet.</p>
+<p>Creates a new <a href="#child-universe">Child Universe</a> (if it does not already exist) with the given <a href="#payout-set">Payout Set</a> <code class="prettyprint">p._parentPayoutNumerators</code>. </p>
+
+<p>This transaction will trigger a <a href="#UniverseCreated"><code class="prettyprint">UniverseCreated</code></a> event if the Child Universe has not been created yet.</p>
 
 <p>This transaction will fail if:</p>
 
@@ -12477,7 +12635,9 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
 
 <h3 id="augur-api-universe-createscalarmarket-p">augur.api.Universe.createScalarMarket(p)</h3>
 
-<p>Creates a new <a href="#scalar-market">Scalar Market</a>. This transaction will trigger a <a href="#MarketCreated"><code class="prettyprint">MarketCreated</code></a> event if the <a href="#market">Market</a> is created successfully. After the transaction has completed successfully, the Market address can be obtained by calling <code class="prettyprint">augur.createMarket.getMarketFromCreateMarketReceipt</code>.</p>
+<p>Creates a new <a href="#scalar-market">Scalar Market</a>. After the transaction has completed successfully, the Market address can be obtained by calling <code class="prettyprint">augur.createMarket.getMarketFromCreateMarketReceipt</code>.</p>
+
+<p>This transaction will trigger a <a href="#MarketCreated"><code class="prettyprint">MarketCreated</code></a> event if the <a href="#market">Market</a> is created successfully. </p>
 
 <p>This transaction will fail if:</p>
 
@@ -12486,7 +12646,7 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
 <li><code class="prettyprint">p._numTicks</code> is less than 2.</li>
 <li><code class="prettyprint">p._feePerCashInAttoCash</code> is greater than the maximum <a href="#creator-fee">Creator Fee</a> (15%).</li>
 <li><code class="prettyprint">p._endTime</code> has already passed.</li>
-<li><code class="prettyprint">p._endTime</code> is further in the future than the maximum market duration (365 days). </li>
+<li><code class="prettyprint">p._endTime</code> is further in the future than the maximum Market <a href="#end-time">End Time</a>. </li>
 <li>The <a href="#universe">Universe</a> is <a href="#fork">Forking</a>.</li>
 </ul>
 
@@ -12535,7 +12695,9 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
 
 <h3 id="augur-api-universe-createyesnomarket-p">augur.api.Universe.createYesNoMarket(p)</h3>
 
-<p>Creates a new <a href="#yes-no-market">Yes/No Market</a>. This transaction will trigger a <a href="#MarketCreated"><code class="prettyprint">MarketCreated</code></a> event if the <a href="#market">Market</a> is created successfully. After the transaction has completed successfully, the Market address can be obtained by calling <code class="prettyprint">augur.createMarket.getMarketFromCreateMarketReceipt</code>.</p>
+<p>Creates a new <a href="#yes-no-market">Yes/No Market</a>. After the transaction has completed successfully, the Market address can be obtained by calling <code class="prettyprint">augur.createMarket.getMarketFromCreateMarketReceipt</code>.</p>
+
+<p>This transaction will trigger a <a href="#MarketCreated"><code class="prettyprint">MarketCreated</code></a> event if the <a href="#market">Market</a> is created successfully. </p>
 
 <p>This transaction will fail if:</p>
 
@@ -12543,7 +12705,7 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
 <li><code class="prettyprint">p._designatedReporterAddress</code> is set to the null address.</li>
 <li><code class="prettyprint">p._feePerCashInAttoCash</code> is greater than the maximum <a href="#creator-fee">Creator Fee</a> (15%).</li>
 <li><code class="prettyprint">p._endTime</code> has already passed.</li>
-<li><code class="prettyprint">p._endTime</code> is further in the future than the maximum market duration (365 days). </li>
+<li><code class="prettyprint">p._endTime</code> is further in the future than the maximum Market <a href="#end-time">End Time</a>. </li>
 <li>The <a href="#universe">Universe</a> is <a href="#fork">Forking</a>.</li>
 </ul>
 
@@ -12650,6 +12812,12 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
 <h3 id="augur-api-universe-getorcachedesignatedreportstake-p">augur.api.Universe.getOrCacheDesignatedReportStake(p)</h3>
 
 <p>Gets the amount of Staked <a href="#rep">REP</a> the <a href="#designated-reporter">Designated Reporter</a> must put up when submitting a <a href="#designated-report">Designated Report</a> in the <a href="#universe">Universe</a>. If this value for the current <a href="#dispute-window">Dispute Window</a> has not already been cached in the Universe contract, this function will cache it.</p>
+
+<p>This transaction will fail if:</p>
+
+<ul>
+<li>The Universe has a <a href="#forked-market">Forked Market</a>.</li>
+</ul>
 
 <h4 id="parameters">Parameters:</h4>
 
@@ -12830,7 +12998,9 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
 
 <h3 id="augur-api-universe-getorcreatedisputewindowbytimestamp-p">augur.api.Universe.getOrCreateDisputeWindowByTimestamp(p)</h3>
 
-<p>Gets the Ethereum contract address of the active <a href="#dispute-window">Dispute Window</a> at the specified Unix timestamp in a given <a href="#universe">Universe</a>. If the Ethereum contract address for the Dispute Window does not already exist, this function will create it. This transaction will trigger a <a href="#DisputeWindowCreated"><code class="prettyprint">DisputeWindowCreated</code></a> event if the Dispute Window is created without any errors.</p>
+<p>Gets the Ethereum contract address of the active <a href="#dispute-window">Dispute Window</a> at the specified Unix timestamp in a given <a href="#universe">Universe</a>. If the Ethereum contract address for the Dispute Window does not already exist, this function will create it. </p>
+
+<p>This transaction will trigger a <a href="#DisputeWindowCreated"><code class="prettyprint">DisputeWindowCreated</code></a> event if the Dispute Window is created without any errors.</p>
 
 <h4 id="parameters">Parameters:</h4>
 
@@ -12955,7 +13125,7 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
 
 <h3 id="augur-api-universe-redeemstake-p">augur.api.Universe.redeemStake(p)</h3>
 
-<p>Calls the <code class="prettyprint">redeem</code> function for all Ethereum contract addresses in the arrays <code class="prettyprint">p._reportingParticipants</code> and <code class="prettyprint">p._disputeWindows</code> using the caller&rsquo;s Ethereum address as the redeemer. <code class="prettyprint">p._reportingParticipants</code> can contain Ethereum contract addresses for <a href="#dispute-crowdsourcer-tx-api">DisputeCrowdsourcers</a>, <a href="#initial-reporter-tx-api">InitialReporters</a>, or both, as hexadecimal strings. <code class="prettyprint">p._disputeWindows</code> can only contain the Ethereum contract addresses of <a href="#dispute-window">Dispute Windows</a>. This function is intended as easy way to redeem Staked REP and/or Ether in multiple <a href="#dispute-crowdsourcer">Dispute Crowdsourcers</a>, <a href="#initial-report">Initial Reports</a>, and Dispute Windows at once.</p>
+<p>Calls the <code class="prettyprint">redeem</code> function for all Ethereum contract addresses in the arrays <code class="prettyprint">p._reportingParticipants</code> and <code class="prettyprint">p._disputeWindows</code> using the caller&rsquo;s Ethereum address as the redeemer. <code class="prettyprint">p._reportingParticipants</code> can contain Ethereum contract addresses for <a href="#dispute-crowdsourcer-tx-api">DisputeCrowdsourcers</a>, <a href="#initial-reporter-tx-api">InitialReporters</a>, or both, as hexadecimal strings. <code class="prettyprint">p._disputeWindows</code> can only contain the Ethereum contract addresses of <a href="#dispute-window">Dispute Windows</a>. This function is intended as easy way to redeem Staked REP, Dai, and/or <a href="#participation-token">Participation Tokens</a> in multiple <a href="#dispute-crowdsourcer">Dispute Crowdsourcers</a>, <a href="#initial-report">Initial Reports</a>, and Dispute Windows at once.</p>
 
 <h4 id="parameters">Parameters:</h4>
 
@@ -15165,7 +15335,11 @@ During the very first <a href="#dispute-window">Dispute Window</a> after launch,
 
 <h2 id="end-time">End Time</h2>
 
-<p>A Market&rsquo;s End Time is the date and time by which a <a href="#market">Market</a>&rsquo;s event will have come to pass and should be known. After this date and time has passed the Market will get <a href="#report">Reported</a> on and eventually <a href="#finalized-market">Finalized</a>. A Market&rsquo;s End Time can be a maximum of 365 days from the time at which it was creatd.</p>
+<p>A Market&rsquo;s End Time is the date and time by which a <a href="#market">Market</a>&rsquo;s event will have come to pass and should be known. After this date and time has passed the Market will get <a href="#report">Reported</a> on and eventually <a href="#finalized-market">Finalized</a>. </p>
+
+<p>!!!TBD!!! Improve description of maximum market end time below?</p>
+
+<p>Due to the fact that Augur&rsquo;s smart contracts will need to be upgraded periodically, the maximum allowed End Time will vary over time in order to allow Augur&rsquo;s developers to upgrade the smart contracts without disrupting existing Markets. This maximum End Time will calculated based off of an Upgrade Timestamp. At the launch of version 2 of Augur, the upgrade timestamp will be set to July 15th, 2021. This means that July 15th, 2021 will be the first maximum allowed End Time. After this date, the Upgrade Timestamp will increase by one year every July 15. In most cases, the Upgrade Timestamp will also be used as the maximum End Time for Markets. However, if the Upgrade Timestamp is less than 30 days away from the current time, Markets will have a maximum End Time of 30 days in the future from the current time.</p>
 
 <h2 id="fee-divisor">Fee Divisor</h2>
 
