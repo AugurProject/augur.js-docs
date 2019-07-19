@@ -1238,13 +1238,22 @@ augur.api.Market.getUniverse({
 // example output:
 "0x0920d1513057572be46580b7ef75d1d01a99a3e5"
 
-augur.api.Market.getValidityBondAttoeth(
+augur.api.Market.getValidityBondAttoeth({
   tx: { to: market } 
 }, function (error, validityBondAttoeth) { 
   console.log(validityBondAttoeth); 
 });
 // example output:
 "13570000000000000"
+
+augur.api.Market.getWinningChildPayout({
+  _outcome: "0",
+  tx: { to: market } 
+}, function (error, winningChildPayout) { 
+  console.log(winningChildPayout); 
+});
+// example output:
+"100"
 
 augur.api.Market.getWinningPayoutDistributionHash({ 
   tx: { to: market } 
@@ -1296,6 +1305,14 @@ augur.api.Market.isFinalized({
 });
 // example output:
 true
+
+augur.api.Market.isForkingMarket({
+  tx: { to: market },
+}, function (error, isForkingMarket) { 
+  console.log(isForkingMarket); 
+});
+// example output:
+false
 
 augur.api.Market.isInvalid({
   tx: { to: market }
@@ -1694,6 +1711,24 @@ Returns the amount the [Market Creator](#market-creator) must pay for the [Valid
 
 * (string) Amount the Market Creator must pay for the Validity Bond, denominated in attoETH.
 
+### augur.api.Market.getWinningChildPayout(p, callback)
+
+Returns the [Payout Numerator](#payout-set) for a specified [Outcome](#outcome) of this [Market's](#market) [Winning Universe](#winning-universe).
+
+!!!TBD!!! Add info on returned value if Market is not Forked.
+
+#### **Parameters:**
+
+* **`p`** (Object) Parameters object. 
+    * **`p._outcome`** (string) Outcome for which to get the Payout Numerator, as a hexadecimal string. 
+    * **`p.tx`** (Object) Object containing details about how this function call should be made.
+        * **`p.tx.to`** (string) Ethereum contract address of the Market contract on which to call this function, as a 20-byte hexadecimal string.
+* **`callback`** (function) &lt;optional> Called after the function's result has been retrieved.
+
+#### **Returns:**
+
+* (string) The Payout Numerator for the specified Outcome of this Market's Winning Universe.
+
 ### augur.api.Market.getWinningPayoutDistributionHash(p, callback)
 
 Returns the winning [Payout Distribution Hash](#payout-distribution-hash) for a particular [Market](#market).
@@ -1712,10 +1747,6 @@ Returns the winning [Payout Distribution Hash](#payout-distribution-hash) for a 
 ### augur.api.Market.getWinningPayoutNumerator(p, callback)
 
 Returns the winning [Payout Numerator](#payout-set) for an [Outcome](#outcome) in a particular [Market](#market).
-
-This call will fail if:
-
-* The specified Market is not [Finalized](#finalized-market).
 
 #### **Parameters:**
 
@@ -1789,6 +1820,20 @@ Returns whether the [Market](#market) has been [Finalized](#finalized-market) (t
 #### **Returns:**
 
 * (boolean) `true` if the Market has been Finalized, or `false` otherwise.
+
+### augur.api.Market.isForkingMarket(p, callback)
+Returns whether the [Market](#market) is a [Forked Market](#forked-market).
+
+#### **Parameters:**
+
+* **`p`** (Object) Parameters object.  
+    * **`p.tx`** (Object) Object containing details about how this function call should be made.
+        * **`p.tx.to`** (string) Ethereum contract address of the Market contract on which to call this function, as a 20-byte hexadecimal string.
+* **`callback`** (function) &lt;optional> Called after the function's result has been retrieved.
+
+#### **Returns:**
+
+* (boolean) `true` if the Market is a Forked Market, or `false` otherwise.
 
 ### augur.api.Market.isInvalid(p, callback)
 
@@ -2707,6 +2752,14 @@ augur.api.Universe.getParentUniverse({
 // example output:
 "0x63c59544b89cce1dd53b1b566862189b25adec41"
 
+augur.api.Universe.getPayoutNumerator({ 
+  tx: { to: universe } 
+}, function (error, payoutNumerator) { 
+  console.log(payoutNumerator); 
+});
+// example output:
+!!!TBD!!! Add example output
+
 augur.api.Universe.getPayoutNumerators({ 
   tx: { to: universe } 
 }, function (error, payoutNumerators) { 
@@ -2747,6 +2800,14 @@ augur.api.Universe.getTargetRepMarketCapInAttoeth({
 });
 // example output:
 "211250000000000000000"
+
+augur.api.Universe.getWinningChildPayout({ 
+  tx: { to: universe } 
+}, function (error, winningChildPayout) { 
+  console.log(winningChildPayout); 
+});
+// example output:
+!!!TBD!!! Add example output
 
 augur.api.Universe.getWinningChildUniverse({ 
   tx: { to: universe } 
@@ -3039,6 +3100,22 @@ Returns the Ethereum contract address of the [Parent Universe](#parent-universe)
 
 * (string) Ethereum contract address of the Parent Universe for the specified Universe. If the Universe does not have a Parent Universe (that is, it is a [Genesis Universe](#genesis-universe)), the address "0x0000000000000000000000000000000000000000" will be returned.
 
+### augur.api.Universe.getPayoutNumerator(p, callback)
+
+Returns the [Payout Numerator](#payout-set) for an [Outcome](#outcome) in this [Universe](#universe).
+
+#### **Parameters:**
+
+* **`p`** (Object) Parameters object.  
+    * **`p._outcome`** (string) Outcome for which to get the Payout Numerator, as a hexadecimal string.
+    * **`p.tx`** (Object) Object containing details about how this function call should be made.
+        * **`p.tx.to`** (string) Ethereum contract address of the Universe contract on which to call this function, as a 20-byte hexadecimal string.
+* **`callback`** (function) &lt;optional> Called after the function's result has been retrieved.
+
+#### **Returns:**
+
+* (string) The Payout Numerator for an Outcome in this Universe, as a stringified unsigned integer.
+
 ### augur.api.Universe.getPayoutNumerators(p, callback)
 
 Returns the [Payout Set](#payout-set) associated with this [Universe](#universe) if it is a [Child Universe](#child-universe) from a [Fork](#fork).
@@ -3116,6 +3193,24 @@ Returns the [REP](#rep) market cap that Augur targets when calculating [Reportin
 #### **Returns:**
 
 * (string) REP market cap that Augur targets when calculating Reporting Fees, in [attoETH](#atto-prefix), as a stringified unsigned integer.
+
+### augur.api.Universe.getWinningChildPayout(p, callback)
+
+Returns the [Payout Numerator](#payout-set) for a specified [Outcome](#outcome) of this [Universe's](#universe) [Winning Universe](#winning-universe).
+
+!!!TBD!!! Add info on returned value if Universe does not have Forked Market.
+
+#### **Parameters:**
+
+* **`p`** (Object) Parameters object. 
+    * **`p._outcome`** (string) Outcome for which to get the Payout Numerator, as a hexadecimal string. 
+    * **`p.tx`** (Object) Object containing details about how this function call should be made.
+        * **`p.tx.to`** (string) Ethereum contract address of the Universe contract on which to call this function, as a 20-byte hexadecimal string.
+* **`callback`** (function) &lt;optional> Called after the function's result has been retrieved.
+
+#### **Returns:**
+
+* (string) The Payout Numerator for the specified Outcome of this Universe's Winning Universe.
 
 ### augur.api.Universe.getWinningChildUniverse(p, callback)
 

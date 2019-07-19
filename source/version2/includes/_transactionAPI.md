@@ -1664,7 +1664,7 @@ This transaction will fail if:
 * The Market has already been Finalized.
 * The [Initial Report](#initial-report) has not been submitted.
 * The [Dispute Window](#dispute-window) has not ended.
-* The Market is a Forked Market.
+* The Market is a [Forked Market](#forked-market).
 
 #### **Parameters:**
 
