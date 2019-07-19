@@ -690,7 +690,7 @@ This transaction will fail if:
 * `p._designatedReporterAddress` is set to the null address.
 * `p._feePerCashInAttoCash` is greater than the maximum [Creator Fee](#creator-fee) (15%).
 * `p._endTime` has already passed.
-* `p._endTime` is further in the future than the maximum market duration (181 days). 
+* `p._endTime` is further in the future than the maximum market duration (365 days). 
 * The Universe is Forking.
 
 NOTE: The account attempting to create the new market must have sufficient REP in order for the market to be created. This is also true when calling `eth_estimateGas`, which essentially does a trial run of the transaction to determine what the gas cost would be to actually run it. 
@@ -726,7 +726,7 @@ This transaction will fail if:
 * `p._numTicks` is less than 2.
 * `p._feePerCashInAttoCash` is greater than the maximum [Creator Fee](#creator-fee) (15%).
 * `p._endTime` has already passed.
-* `p._endTime` is further in the future than the maximum market duration (181 days). 
+* `p._endTime` is further in the future than the maximum market duration (365 days). 
 * The Universe is Forking.
 
 NOTE: The account attempting to create the new market must have sufficient REP in order for the market to be created. This is also true when calling `eth_estimateGas`, which essentially does a trial run of the transaction to determine what the gas cost would be to actually run it. 
@@ -763,7 +763,7 @@ This transaction will fail if:
 * `p._designatedReporterAddress` is set to the null address.
 * `p._feePerCashInAttoCash` is greater than the maximum [Creator Fee](#creator-fee) (15%).
 * `p._endTime` has already passed.
-* `p._endTime` is further in the future than the maximum market duration (181 days). 
+* `p._endTime` is further in the future than the maximum market duration (365 days). 
 * The Universe is Forking.
 
 NOTE: The account attempting to create the new market must have sufficient REP in order for the market to be created. This is also true when calling `eth_estimateGas`, which essentially does a trial run of the transaction to determine what the gas cost would be to actually run it. 
@@ -1019,13 +1019,13 @@ augur.markets.getMarketsInfo({
     designatedReporter: "0x0000000000000000000000000000000000000b0b",
     designatedReportStake: "10",
     resolutionSource: "https://www.trusted-third-party.com",
-    numTicks: "10000",
+    numTicks: "100",
     tickSize: "0.0001",
     consensus: {
       isInvalid: false,
       payout: [
         "0",
-        "10000",
+        "100",
       ],
     },
     outcomes: [{
@@ -1109,12 +1109,12 @@ augur.markets.getMarketsInfo({
     designatedReporter: "0x0000000000000000000000000000000000000b0b",
     designatedReportStake: 10,
     resolutionSource: "http://www.trusted-third-party.com",
-    numTicks: "10000",
+    numTicks: "100",
     consensus: {
       isInvalid: false,
       payout: [
         "0",
-        "10000",
+        "100",
       ],
     },
     outcomes: [{
@@ -1385,7 +1385,8 @@ augur.reporting.getDisputeInfo({
     stakes: [
       {
         payout: [
-          "10000",
+          "0",
+          "100",
           "0",
         ],
         isInvalid: false,
@@ -1402,7 +1403,8 @@ augur.reporting.getDisputeInfo({
       {
         payout: [
           "0",
-          "10000",
+          "0",
+          "100",
         ],
         isInvalid: false,
         accountStakeCompleted: "102",
@@ -1412,8 +1414,9 @@ augur.reporting.getDisputeInfo({
       },
       {
         payout: [
-          "5000",
-          "5000",
+          "100",
+          "0",
+          "0",
         ],
         isInvalid: true,
         bondSizeCurrent: "204",
@@ -1663,7 +1666,7 @@ augur.reporting.getReportingHistory({
         creationTime: 1506474500,
         marketId: "0x0000000000000000000000000000000000000011",
         disputeWindow: "0x1000000000000000000000000000000000000000",
-        payoutNumerators: ["0", "2"],
+        payoutNumerators: ["0", "0", "2"],
         amountStaked: "17",
         crowdsourcerId: "0x0000000000000000001000000000000000000001",
         isCategorical: false,
@@ -1684,7 +1687,7 @@ augur.reporting.getReportingHistory({
         creationTime: 1506474515,
         marketId: "0x0000000000000000000000000000000000000019",
         disputeWindow: "0x1000000000000000000000000000000000000000",
-        payoutNumerators: ["10000", "0", "0", "0", "0"],
+        payoutNumerators: ["0", "100", "0", "0", "0", "0"],
         amountStaked: "229",
         crowdsourcerId: "0x0000000000000000001000000000000000000003",
         isCategorical: false,
@@ -2597,12 +2600,12 @@ augur.trading.tradeUntilAmountIsZero({
   _price: "0.5",
   _fxpAmount: "10",
   sharesProvided: "0",
-  numTicks: "10000",
+  numTicks: "100",
   minPrice: "0",
   maxPrice: "1",
   _direction: 0,
   _market: "0x8092bdf939e23a0e926021ffce5a062d0f598d1f",
-  _outcome: 0,
+  _outcome: 1,
   numOutcomes: 2,
   doNotCreateOrders: false,
   meta: {
@@ -2619,7 +2622,7 @@ augur.trading.tradeUntilAmountIsZero({
 {
   "_price": "0.5",
   "_fxpAmount": "10",
-  "numTicks": "10000",
+  "numTicks": "100",
   "minPrice": "0",
   "maxPrice": "1",
   "_direction": 0,
@@ -2773,7 +2776,7 @@ undefined
 {
   "_price": "0.5",
   "_fxpAmount": "0",
-  "numTicks": "10000",
+  "numTicks": "100",
   "minPrice": "0",
   "maxPrice": "1",
   "_direction": 0,

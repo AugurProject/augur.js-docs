@@ -23,7 +23,7 @@ Augur also extracts Fees to help support the [Reporting System](#reporting) know
 
 The Augur contracts will track the [Open Interest](#open-interest) of all Markets passively as people interact with Augur, which allows Augur to always have access to the Open Interest numbers. Once the Open Interest and REP market caps are known Augur can then determine wether the Reporting Fee is too high or too low. Augur then calculates the new Reporter Fee using the following formula:
 
-`current_reporting_fee * (augur_open_interest * 3 / rep_market_cap)`
+`current_reporting_fee * (augur_open_interest * 5 / rep_market_cap)`
 
 The Reporting Fee will be updated once every 7 days, or once every [Dispute Window](#dispute-window). If updates where to occur too frequently, the Market will not have time to adjust to the new fees. If we update too infrequently, then we are at risk of the security model becoming invalid due to a sudden growth in Augur that isn't yet accounted for by the fee system.
 

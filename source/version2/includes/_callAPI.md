@@ -546,38 +546,6 @@ augur.api.DisputeWindow.getEndTime({
 // example output:
 "1517443200"
 
-augur.api.DisputeWindow.getNumDesignatedReportNoShows({ 
-  tx: { to: disputeWindow } 
-}, function (error, numDesignatedReportNoShows) { 
-  console.log(numDesignatedReportNoShows); 
-});
-// example output:
-"2"
-
-augur.api.DisputeWindow.getNumIncorrectDesignatedReportMarkets({ 
-  tx: { to: disputeWindow } 
-}, function (error, numIncorrectDesignatedReportMarkets) { 
-  console.log(numIncorrectDesignatedReportMarkets); 
-});
-// example output:
-"10"
-
-augur.api.DisputeWindow.getNumInvalidMarkets({ 
-  tx: { to: disputeWindow } 
-}, function (error, numInvalidMarkets) { 
-  console.log(numInvalidMarkets); 
-});
-// example output:
-"3"
-
-augur.api.DisputeWindow.getNumMarkets({ 
-  tx: { to: disputeWindow } 
-}, function (error, numMarkets) { 
-  console.log(numMarkets); 
-});
-// example output:
-"65"
-
 augur.api.DisputeWindow.getReputationToken({ 
   tx: { to: disputeWindow } 
 }, function (error, reputationToken) { 
@@ -606,6 +574,14 @@ augur.api.DisputeWindow.getWindowId({
   tx: { to: disputeWindow } 
 }, function (error, windowId) { 
   console.log(windowId); 
+});
+// example output:
+!!!TBD!!! Add example output
+
+augur.api.DisputeWindow.getValidityBondAttoCash({ 
+  tx: { to: disputeWindow } 
+}, function (error, validityBondAttoCash) { 
+  console.log(validityBondAttoCash); 
 });
 // example output:
 !!!TBD!!! Add example output
@@ -642,66 +618,6 @@ Returns a Unix timestamp for when the specified [Dispute Window](#dispute-window
 #### **Returns:**
 
 * (string) Unix timestamp at which the Dispute Window ends, as a stringified unsigned integer.
-
-### augur.api.DisputeWindow.getNumDesignatedReportNoShows(p, callback)
-
-Returns the number of [Markets](#market) belonging to the specified [Dispute Window](#dispute-window), in which the [Designated Reporter](#designated-reporter) failed to [Report](#report) during the [Designated Reporting Phase](#designated-reporting-phase). These Markets will have a [No-Show Bond](#no-show-bond) up for grabs for the [First Public Reporter](#first-public-reporter) because these Markets have yet to receive a [Report](#report). This only includes Markets where Designated Reporters failed to Report, and does not include Markets where the Designated Reporter's [Tentative Outcome](#tentative-outcome) was [Challenged](#challenge).
-
-#### **Parameters:**
-
-* **`p`** (Object) Parameters object.  
-    * **`p.tx`** (Object) Object containing details about how this function call should be made.
-        * **`p.tx.to`** (string) Ethereum contract address of the Dispute Window on which to call this function, as a 20-byte hexadecimal string.
-* **`callback`** (function) &lt;optional> Called after the function's result has been retrieved.
-
-#### **Returns:**
-
-* (string) Number of Markets belonging to the Dispute Window, where the Designated Reporter failed to Report during the Designated Reporting Phase, as a stringified unsigned integer.
-
-### augur.api.DisputeWindow.getNumIncorrectDesignatedReportMarkets(p, callback)
-
-Returns the number of [Unfinalized Markets](#finalized-market) belonging to the specified [Dispute Window](#dispute-window) in which [Designated Reporter's](#designated-reporter) [Tentative Outcome](#tentative-outcome) was [Challenged](#challenge) during the current [Dispute Round Phase](#dispute-round-phase), or the [Designated Reporter](#designated-reporter) failed to submit a [Designated Report](#designated-report).
-
-#### **Parameters:**
-
-* **`p`** (Object) Parameters object.  
-    * **`p.tx`** (Object) Object containing details about how this function call should be made.
-        * **`p.tx.to`** (string) Ethereum contract address of the Dispute Window on which to call this function, as a 20-byte hexadecimal string.
-* **`callback`** (function) &lt;optional> Called after the function's result has been retrieved.
-
-#### **Returns:**
-
-* (string) Number of Markets in the Dispute Window, where the Designated Report was Challenged in the current Dispute Round Phase or the Designated Reporter did not Report, as a stringified unsigned integer.
-
-### augur.api.DisputeWindow.getNumInvalidMarkets(p, callback)
-
-Returns the number of [Markets](#market) that were [Reported](#report) to be [Invalid](#invalid-outcome) during the specified [Dispute Window](#dispute-window). [Invalid](#invalid-outcome) Markets are Markets that aren't clearly defined or do not fit one of the [Outcomes](#outcome) set for this Market. [Reporters](#reporter) are encouraged to [Report](#report) the Market as Invalid if they can't confidently Stake their [REP](#rep) into a single Outcome for the Market.
-
-#### **Parameters:**
-
-* **`p`** (Object) Parameters object.  
-    * **`p.tx`** (Object) Object containing details about how this function call should be made.
-        * **`p.tx.to`** (string) Ethereum contract address of the Dispute Window on which to call this function, as a 20-byte hexadecimal string.
-* **`callback`** (function) &lt;optional> Called after the function's result has been retrieved.
-
-#### **Returns:**
-
-* (string) Number of Markets Reported as Invalid in the Dispute Window, as a stringified unsigned integer.
-
-### augur.api.DisputeWindow.getNumMarkets(p, callback)
-
-Returns the total number of [Markets](#market) that are in the [Dispute Round Phase](#dispute-round-phase) for the specified [Dispute Window](#dispute-window).
-
-#### **Parameters:**
-
-* **`p`** (Object) Parameters object.  
-    * **`p.tx`** (Object) Object containing details about how this function call should be made.
-        * **`p.tx.to`** (string) Ethereum contract address of the Dispute Window on which to call this function, as a 20-byte hexadecimal string.
-* **`callback`** (function) &lt;optional> Called after the function's result has been retrieved.
-
-#### **Returns:**
-
-* (string) Number of Markets in the Dispute Round Phase for the Dispute Window, as a stringified unsigned integer.
 
 ### augur.api.DisputeWindow.getReputationToken(p, callback)
 
@@ -751,6 +667,21 @@ Returns the [Universe](#universe) to which the specified [Dispute Window](#dispu
 ### augur.api.DisputeWindow.getWindowId(p, callback)
 
 Returns the [Dispute Window](#dispute-window) ID of the Dispute Window.
+
+#### **Parameters:**
+
+* **`p`** (Object) Parameters object.  
+    * **`p.tx`** (Object) Object containing details about how this function call should be made.
+        * **`p.tx.to`** (string) Ethereum contract address of the Dispute Window on which to call this function, as a 20-byte hexadecimal string.
+* **`callback`** (function) &lt;optional> Called after the function's result has been retrieved.
+
+#### **Returns:**
+
+* (string) !!!TBD!!! Add return value info
+
+### augur.api.DisputeWindow.getValidityBondAttoCash(p, callback)
+
+Returns the size of the [Market's](#market) [Validity Bond](#validity-bond) (in [attoDai](#atto-prefix)).
 
 #### **Parameters:**
 
@@ -2634,19 +2565,6 @@ Universe Call API
 // can be obtained by calling `augur.augurNode.getSyncData`.
 var universe = "0x0920d1513057572be46580b7ef75d1d01a99a3e5";
 
-augur.api.Universe.calculateFloatingValue({
-  _badMarkets: "",
-  _totalMarkets: "",
-  _targetDivisor: "",
-  _previousValue: "",
-  _floor: "",
-  tx: { to: universe },
-}, function (error, floatingValue) { 
-  console.log(floatingValue); 
-});
-// example output:
-!!!TBD!!! Add example output
-
 augur.api.Universe.getChildUniverse({
   _parentPayoutDistributionHash: "0x4480ed40f94e2cb2ca244eb862df2d350300904a96039eb53cba0e34b8ace90a",
   tx: { to: universe },
@@ -2880,26 +2798,6 @@ augur.api.Universe.isParentOf({
 true
 ```
 Provides JavaScript bindings for the [Universe Solidity Contract](https://github.com/AugurProject/augur/blob/master/packages/augur-core/source/contracts/reporting/Universe.sol), which allows for the creation of [Markets](#market) and provides functions for obtaining information about a given [Universe](#universe).
-
-### augur.api.Universe.calculateFloatingValue(p, callback)
-
-!!!TBD!!! Add description & sample code
-
-#### **Parameters:**
-
-* **`p`** (Object) Parameters object.  
-    * **`p._badMarkets`** (string) 
-    * **`p._totalMarkets`** (string) 
-    * **`p._targetDivisor`** (string) 
-    * **`p._previousValue`** (string) 
-    * **`p._floor`** (string) 
-    * **`p.tx`** (Object) Object containing details about how this function call should be made.
-        * **`p.tx.to`** (string) Ethereum contract address of the Universe contract on which to call this function, as a 20-byte hexadecimal string.
-* **`callback`** (function) &lt;optional> Called after the function's result has been retrieved.
-
-#### **Returns:**
-
-* (string) 
 
 ### augur.api.Universe.getChildUniverse(p, callback)
 
@@ -3185,7 +3083,7 @@ Returns the Ethereum contract address of the [Reputation Token](#rep) for the sp
 
 ### augur.api.Universe.getTargetRepMarketCapInAttoeth(p, callback)
 
-Returns the [REP](#rep) market cap that Augur targets when calculating [Reporting Fees](#reporting-fee). Augur attempts to set Reporting Fees such that the REP market cap equals 3 times the amount of [Open Interest](#open-interest). 
+Returns the [REP](#rep) market cap that Augur targets when calculating [Reporting Fees](#reporting-fee). Augur attempts to set Reporting Fees such that the REP market cap equals 5 times the amount of [Open Interest](#open-interest). 
 
 #### **Parameters:**
 

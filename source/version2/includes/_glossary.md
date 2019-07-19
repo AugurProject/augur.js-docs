@@ -76,7 +76,7 @@ A Designated Reporter is a single Ethereum address designated to submit the [Ten
 
 When a [Designated Reporter](#designated-reporter) submits a [Report](#report), they must put up an amount of REP on an [Outcome](#outcome) that is equal to the Designated Reporter Stake. Note that this amount is calculated differently than the [No-Show Bond](#no-show-bond).
 
-!!!TBD!!! Update calculations (see Universe.calculateFloatingValue)
+!!!TBD!!! Update calculations (see Formulas.calculateFloatingValue)
 During the very first [Dispute Window](#dispute-window) after launch, the amount of the Designated Reporter Stake will be set at 0.35 [REP](#rep). The amount of the Designated Reporter Stake is dynamically adjusted according to how many [Designated Reports](#designated-report) were incorrect (failed to concur with the [Market's](#market) [Final Outcome](#final-outcome)) during the previous Dispute Window. In particular, we let δ be the proportion of Designated Reports that were incorrect during the previous Dispute Window, and we let b<sub>d</sub> be the amount of the Designated Reporter Stake during the previous Dispute Window, then the amount of the Designated Reporter Stake for the current Dispute Window is max &#123;0.35, b<sub>d</sub>f(δ)&#125;.
 
 ## Designated Reporting
@@ -139,7 +139,7 @@ Augur’s [Reporting](#report) system runs on a cycle of consecutive 7-day long 
 
 ## End Time
 
-A Market's End Time is the date and time by which a [Market](#market)'s event will have come to pass and should be known. After this date and time has passed the Market will get [Reported](#report) on and eventually [Finalized](#finalized-market). A Market's End Time can be a maximum of 181 days from the time at which it was creatd.
+A Market's End Time is the date and time by which a [Market](#market)'s event will have come to pass and should be known. After this date and time has passed the Market will get [Reported](#report) on and eventually [Finalized](#finalized-market). A Market's End Time can be a maximum of 365 days from the time at which it was creatd.
 
 ## Fee Divisor
 
@@ -224,7 +224,7 @@ A [Market](#market) should be considered Invalid if any of the following are tru
   - The Resolution Source does not provide a readily available answer.
   - The Resolution Rource provides different answers to different viewers.
 
-If the Outcome of a Market is Invalid, [Reporters](#reporters) can [Report](#report) its [Tentative Outcome](#tentative-outcome) as Invalid. Additionally, if the Market is in the [Dispute Round Phase](#dispute-round-phase), users can [Stake](#dispute-stake) [REP](#rep) on Invalid as the Tentative Outcome, or if the Market has [Forked](#fork), users can migrate their REP to the [Child Universe](#child-universe) where the Outcome is Invalid. If the Market's [Final Outcome](#final-outcome) becomes Invalid, its [Payout Set](#payout-set) will have the [Invalid Market Payout Numerator](#invalid-market-payout-numerator) set to the [Number of Ticks](#number-of-ticks). For example, in a [Categorical Market](#categorical-market) with 10,000 [Ticks](#tick) and 4 potential Outcomes (excluding Invalid), the Payout Set would be [10000, 0, 0, 0, 0].
+If the Outcome of a Market is Invalid, [Reporters](#reporters) can [Report](#report) its [Tentative Outcome](#tentative-outcome) as Invalid. Additionally, if the Market is in the [Dispute Round Phase](#dispute-round-phase), users can [Stake](#dispute-stake) [REP](#rep) on Invalid as the Tentative Outcome, or if the Market has [Forked](#fork), users can migrate their REP to the [Child Universe](#child-universe) where the Outcome is Invalid. If the Market's [Final Outcome](#final-outcome) becomes Invalid, its [Payout Set](#payout-set) will have the [Invalid Market Payout Numerator](#invalid-market-payout-numerator) set to the [Number of Ticks](#number-of-ticks). For example, in a [Categorical Market](#categorical-market) with 100 [Ticks](#tick) and 4 potential Outcomes (excluding Invalid), the Payout Set would be [100, 0, 0, 0, 0].
 
 ## KYC Token
 
@@ -270,18 +270,18 @@ The Minimum Display Price (often seen as `minDisplayPrice`) is the minimum price
 
 The No-Show Bond is paid for using [REP](#rep) by the [Market Creator](#market-creator) during [Market](#market) creation. If the [Designated Reporter](#designed-reporter) submits a [Report](#report) during the [Designated Reporting Phase](#designated-reporting-phase), the Bond is refunded to the Market Creator. If the Designated Reporter fails to Report during the Designated Reporting Phase, then the No-Show Bond is applied as Stake on the [Tentative Outcome](#tentative-outcome) Reported by the [First Public Reporter](#first-public-reporter). If the Tentative Outcome selected by the First Public Reporter becomes the [Final Outcome](#final-outcome) of the Market, the First Public Reporter receives the No-Show Bond. If the Tentative Outcome selected by the First Public Reporter is [Disputed](#disputed) and then still becomes the [Final Outcome](#final-outcome) of the Market, the First Public Reporter receives the No-Show Bond plus an additional 50% of the Bond amount. This actually allows for someone to stake 0 REP for the [First Public Report](#first-public-report) because the Bond is added to whatever is staked. This means someone without any REP has the potential to Report and if the Market is eventually [Finalized](#finalized-market) the way that person Reported, then they can earn REP without having to purchase any. (Note that they will have to pay the gas cost to submit the Report.)
 
-!!!TBD!!! Update calculations (see Universe.calculateFloatingValue)
-During the very first [Dispute Window](#dispute-window) after launch, the No-Show Bond will be set at 0.35 REP. As with the [Validity Bond](#validity-bond), the No-Show Bond is adjusted up or down, targeting a 1% no-show rate with a floor of 0.35 REP. Specifically, we let ρ be the proportion of Markets in the previous Dispute Window whose Designated Reporters failed to Report on time, and we let b<sub>r</sub> be amount of the No-Show Bond from the previous Dispute Window. Then the amount of the No-Show Bond for the current Dispute Window is max &#123;0.35, b<sub>r</sub>f(ρ)&#125;.
+!!!TBD!!! Update calculations (see Formulas.calculateFloatingValue)
+During the very first [Dispute Window](#dispute-window) after launch, the No-Show Bond will be set at 0.35 REP. As with the [Validity Bond](#validity-bond), the No-Show Bond is adjusted up or down, targeting a 5% no-show rate with a floor of 0.35 REP. Specifically, we let ρ be the proportion of Markets in the previous Dispute Window whose Designated Reporters failed to Report on time, and we let b<sub>r</sub> be amount of the No-Show Bond from the previous Dispute Window. Then the amount of the No-Show Bond for the current Dispute Window is max &#123;0.35, b<sub>r</sub>f(ρ)&#125;.
 
 ## Number of Ticks
 
 A [Market's](#market) Number of Ticks can be thought of as the number of possible prices, or [Ticks](#tick), between the [Minimum Display Price](#minimum-display-price) and [Maximum Display Price](#maximum-display-price) for that Market. It is also the amount of [attoETH](#atto-prefix) that must be escrowed with the Market contract to purchase a single [Complete Set](#complete-set) of indivisible [Shares](#share) for a Market. Each Outcome in the [Payout Set](#payout-set) of an [Invalid](#invalid-outcome) Market is set to the Number of Ticks divided by the number of Outcomes (in order to ensure that the holders of each type of [Share](#share) in the Market receive the same payout during [Settlement](#settlement)). 
 
-After Market [Finalization](#finalized-market), each winning Share can be Settled by sending it to the Market contract in exchange for an amount of attoETH equal to the Number of Ticks. In the event that the Market Finalizes as Invalid, Shares of Invalid the Market can be returned to the Market contract in exchange for an amount of attoETH equal to Number of Ticks. For example, if a 3-Outcome Market with no Creator Fee and 10,000 as the Number of Ticks resolves to Invalid, the Payout Set would be [10000, 0, 0, 0].
+After Market [Finalization](#finalized-market), each winning Share can be Settled by sending it to the Market contract in exchange for an amount of attoETH equal to the Number of Ticks. In the event that the Market Finalizes as Invalid, Shares of Invalid the Market can be returned to the Market contract in exchange for an amount of attoETH equal to Number of Ticks. For example, if a 3-Outcome Market with no Creator Fee and 100 as the Number of Ticks resolves to Invalid, the Payout Set would be [100, 0, 0, 0].
 
 The [attoETH](#atto-prefix) yielded when a Complete Set of Shares is Settled is what [Settlement Fees](#settlement-fees) are extracted from prior to paying out traders for their closed [Positions](#position). Settlement Fees are paid proportionally so that the trader set to receive more payout will have to pay more Fees. The price of an Order can be set to anywhere between 0 and the Number of Ticks set for the Market.
 
-For Yes/No and Categorical Markets, the Number of Ticks is always set to 10,000. For Scalar Markets, the Number of Ticks is determined implicitly by the range and precision set by the Market Creator, and must be evenly divisible by 2. In particular, the Number of Ticks equals (rangeMax - rangeMin) / precision. For example, if the Market Creator sets the range of Outcomes to `[-10, 30]` and the precision to 0.01, then the Number of Ticks equals (30-(-10)) / 0.01, or 4,000.
+For Yes/No and Categorical Markets, the Number of Ticks is always set to 100. For Scalar Markets, the Number of Ticks is determined implicitly by the range and precision set by the Market Creator, and must be evenly divisible by 2. In particular, the Number of Ticks equals (rangeMax - rangeMin) / precision. For example, if the Market Creator sets the range of Outcomes to `[-10, 30]` and the precision to 0.01, then the Number of Ticks equals (30-(-10)) / 0.01, or 4,000.
 
 ## Open Interest
 
@@ -378,7 +378,7 @@ A Reporter is a [REP](#rep) holder who Stakes [REP](#rep) on an [Outcome](#outco
 
 The Reporting Fee is used to help pay for Augur's [Decentralized Oracle](#decentralized-oracle) system. When [Shares](#share) are [Settled](#settlement) (i.e., destroyed), before paying out to the Share holders, Augur will extract [Settlement Fees](#settlement-fees) in ETH. These Settlement Fees include the [Creator Fee](#creator-fee) and the Reporting Fee. 
 
-The Reporting Fee is a dynamic amount based on the price of [REP](#rep) and the value of the [Open Interest](#open-interest) across all of Augur's [Markets](#market). Augur sets the Reporting Fee so as to target a REP market cap that is 3 times the value of the [Open Interest](#open-interest) across all of Augur's markets. This means the [Reporting Fee](#reporting-fee) will go up if the market cap of REP is not sufficiently high (but will never be higher than 33.3%) and will go down if it is higher than this target.
+The Reporting Fee is a dynamic amount based on the price of [REP](#rep) and the value of the [Open Interest](#open-interest) across all of Augur's [Markets](#market). Augur sets the Reporting Fee so as to target a REP market cap that is 5 times the value of the [Open Interest](#open-interest) across all of Augur's markets. This means the [Reporting Fee](#reporting-fee) will go up if the market cap of REP is not sufficiently high (but will never be higher than 33.3%) and will go down if it is higher than this target.
 
 The Reporting Fee is sent to the [Dispute Window](#dispute-window) that contains the Market being traded on, and is later used to pay REP holders for engaging in [Reporting](#report).
 
@@ -459,7 +459,7 @@ All [Markets](#market) created on Augur belong to a Universe. Augur has only one
 
 The Validity Bond is paid by the [Market Creator](#market-creator) during [Market](#market) creation. The bond is paid in ETH and is refunded to the Market Creator if the [Final Outcome](#final-outcome) of the [Market](#market) is not [Invalid](#invalid-outcome).
 
-!!!TBD!!! Update calculations (see Universe.calculateFloatingValue)
+!!!TBD!!! Update calculations (see Formulas.calculateFloatingValue)
 The Validity Bond is a dynamic amount based on the percentage of Markets in Augur that are being [Finalized](#finalized-market) as Invalid. Augur targets having 1% of its Markets Finalized as Invalid. During the very first [Dispute Window](#dispute-window) after launch, the Validity Bond will be set at 0.01 ETH. Then, if more than 1% of the Finalized Markets in the previous Dispute Window were Invalid, the Validity Bond will be increased. If less than 1% of the Finalized Markets in the previous Dispute Window were Invalid, then the Validity Bond will be decreased (but will never be lower than 0.01 ETH). In particular, we let ν be the proportion of Finalized Markets in the previous Dispute Window that were Invalid, and b<sub>v</sub> be the amount of the Validity Bond from the previous Dispute Window. Then the Validity Bond for the current window is max &#123;1/100, b<sub>v</sub>f(ν)&#125;.
 
 ## Waiting for the Next Dispute Window to Begin Phase
