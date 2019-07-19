@@ -139,7 +139,11 @@ Augur’s [Reporting](#report) system runs on a cycle of consecutive 7-day long 
 
 ## End Time
 
-A Market's End Time is the date and time by which a [Market](#market)'s event will have come to pass and should be known. After this date and time has passed the Market will get [Reported](#report) on and eventually [Finalized](#finalized-market). A Market's End Time can be a maximum of 365 days from the time at which it was creatd.
+A Market's End Time is the date and time by which a [Market](#market)'s event will have come to pass and should be known. After this date and time has passed the Market will get [Reported](#report) on and eventually [Finalized](#finalized-market). 
+
+!!!TBD!!! Improve description of maximum market end time below?
+
+Due to the fact that Augur's smart contracts will need to be upgraded periodically, the maximum allowed End Time will vary over time in order to allow Augur's developers to upgrade the smart contracts without disrupting existing Markets. This maximum End Time will calculated based off of an Upgrade Timestamp. At the launch of version 2 of Augur, the upgrade timestamp will be set to July 15th, 2021. This means that July 15th, 2021 will be the first maximum allowed End Time. After this date, the Upgrade Timestamp will increase by one year every July 15. In most cases, the Upgrade Timestamp will also be used as the maximum End Time for Markets. However, if the Upgrade Timestamp is less than 30 days away from the current time, Markets will have a maximum End Time of 30 days in the future from the current time.
 
 ## Fee Divisor
 

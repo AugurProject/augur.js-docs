@@ -3071,7 +3071,7 @@ This transaction will fail if:
 * `p._designatedReporterAddress` is set to the null address.
 * `p._feePerCashInAttoCash` is greater than the maximum [Creator Fee](#creator-fee) (15%).
 * `p._endTime` has already passed.
-* `p._endTime` is further in the future than the maximum market duration (365 days). 
+* `p._endTime` is further in the future than the maximum Market [End Time](#end-time).
 * The [Universe](#universe) is [Forking](#fork).
 
 NOTE: The account attempting to create the new market must have sufficient REP in order for the market to be created. This is also true when calling `eth_estimateGas`, which essentially does a trial run of the transaction to determine what the gas cost would be to actually run it. 
@@ -3142,7 +3142,7 @@ This transaction will fail if:
 * `p._numTicks` is less than 2.
 * `p._feePerCashInAttoCash` is greater than the maximum [Creator Fee](#creator-fee) (15%).
 * `p._endTime` has already passed.
-* `p._endTime` is further in the future than the maximum market duration (365 days). 
+* `p._endTime` is further in the future than the maximum Market [End Time](#end-time). 
 * The [Universe](#universe) is [Forking](#fork).
 
 
@@ -3187,7 +3187,7 @@ This transaction will fail if:
 * `p._designatedReporterAddress` is set to the null address.
 * `p._feePerCashInAttoCash` is greater than the maximum [Creator Fee](#creator-fee) (15%).
 * `p._endTime` has already passed.
-* `p._endTime` is further in the future than the maximum market duration (365 days). 
+* `p._endTime` is further in the future than the maximum Market [End Time](#end-time). 
 * The [Universe](#universe) is [Forking](#fork).
 
 

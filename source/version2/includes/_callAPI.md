@@ -41,6 +41,14 @@ augur.api.Augur.getMarketOpenInterest({
 // example output:
 !!!TBD!!! Add example output
 
+augur.api.Augur.getMaximumMarketEndDate({ 
+  _market: "0x1116eaefcfaf7ea1e17c4768a554d57800698888",
+}, function (error, openInterest) { 
+  console.log(openInterest); 
+});
+// example output:
+!!!TBD!!! Add example output
+
 augur.api.Augur.getTimestamp({ 
 }, function (error, timestamp) { 
   console.log(timestamp); 
@@ -90,19 +98,6 @@ true
 ```
 Provides JavaScript bindings for the [Augur Solidity Contract](https://github.com/AugurProject/augur/blob/master/packages/augur-core/source/contracts/Augur.sol), which handles [Universe](#universe) creation and event logging.
 
-### augur.api.Augur.getTimestamp(p, callback)
-
-Returns Augur's internal Unix timestamp.
-
-#### **Parameters:**
-
-* **`p`** (Object) Parameters object.  
-* **`callback`** (function) &lt;optional> Called after the function's result has been retrieved.
-
-#### **Returns:**
-
-* (string) Augur's internal Unix timestamp, as a stringified unsigned integer.
-
 ### augur.api.Augur.getMarketOpenInterest(p, callback)
 
 Returns the [Open Interest](#open-interest) (in [attoDai](#atto-prefix)) for a given [Market](#market).
@@ -116,6 +111,32 @@ Returns the [Open Interest](#open-interest) (in [attoDai](#atto-prefix)) for a g
 #### **Returns:**
 
 * (string) The Open Interest (in attoDai) for  the Market, as a stringified unsigned integer.
+
+### augur.api.Augur.getMaximumMarketEndDate(p, callback)
+
+Returns the maximum [End Time](#end-time) allowed for Markets.
+
+#### **Parameters:**
+
+* **`p`** (Object) Parameters object.  
+* **`callback`** (function) &lt;optional> Called after the function's result has been retrieved.
+
+#### **Returns:**
+
+* (string) The maximum End Time allowed for Markets, as a stringified unsigned integer.
+
+### augur.api.Augur.getTimestamp(p, callback)
+
+Returns Augur's internal Unix timestamp.
+
+#### **Parameters:**
+
+* **`p`** (Object) Parameters object.  
+* **`callback`** (function) &lt;optional> Called after the function's result has been retrieved.
+
+#### **Returns:**
+
+* (string) Augur's internal Unix timestamp, as a stringified unsigned integer.
 
 ### augur.api.Augur.isKnownCrowdsourcer(p, callback)
 
