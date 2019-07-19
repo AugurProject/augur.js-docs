@@ -25,6 +25,7 @@ includes:
   - typeDefinitions
   - constants
   - tests
+  - flash
   - uiConventions
   - glossary
   - contributing
