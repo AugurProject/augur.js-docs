@@ -1086,9 +1086,9 @@ augur.api.DisputeWindow.buy({
   onFailed: function (result) { console.log(result); }
 });
 
-var _sender = "0x8886eaefcfaf7ea1e17c4768a554d57800699888";
+var _account = "0x8886eaefcfaf7ea1e17c4768a554d57800699888";
 augur.api.DisputeWindow.redeem({
-  _sender: _sender,
+  _account: _account,
   tx: { 
     to: disputeWindowAddress,
     gas: "0x632ea0" 
@@ -1135,7 +1135,7 @@ These Participation Tokens can be redeemed later once the Dispute Window is no l
 
 ### augur.api.DisputeWindow.redeem(p)
 
-Converts any [Participation Tokens](#participation-token) `p._sender` has in the specified [Dispute Window](#dispute-window) to [Reputation Tokens](#rep), and gives the user any [Reporting Fees](#reporting-fee) he or she is owed in Ether. The parameter `p._sender` is the Ethereum address of the user redeeming the Participation Tokens, as a 20-byte hexadecimal string. 
+Converts any [Participation Tokens](#participation-token) `p._account` has in the specified [Dispute Window](#dispute-window) to [Reputation Tokens](#rep), and gives the user any [Reporting Fees](#reporting-fee) he or she is owed in Dai. The parameter `p._account` is the Ethereum address of the user, as a 20-byte hexadecimal string. 
 
 This transaction will trigger a [`ParticipationTokensRedeemed`](#ParticipationTokensRedeemed) event if the REP/Ether was redeemed without any errors.
 
@@ -1146,7 +1146,7 @@ This transaction will fail if:
 #### **Parameters:**
 
 * **`p`** (Object) Parameters object.
-    * **`p._sender`** (string) Ethereum address to send redeemed REP/Ether to, as a 20-byte hexadecimal value.
+    * **`p._account`** (string) Ethereum address to send redeemed REP/Dai to, as a 20-byte hexadecimal value.
     * **`p.tx`** (Object) Object containing details about how this transaction should be made.
         * **`p.tx.to`** (string) Ethereum contract address on which to call this function, as a 20-byte hexadecimal string.
         * **`p.tx.gas`** (string) Gas limit to use when submitting this transaction, as a hexadecimal string.
@@ -1790,6 +1790,10 @@ Transfers an [Affiliate's](#affiliate) [Affiliate Fee](#affiliate-fee) from the 
 
 This transaction will trigger a [`Transfer`](#Transfer) event, which will record the `from` address, `to` address, and `value` transferred, in attoETH. 
 
+This transaction will fail if:
+
+* The Market is [Invalid](#invalid-outcome).
+
 #### **Parameters:**
 
 * **`p`** (Object) Parameters object.
@@ -2063,21 +2067,6 @@ augur.api.ReputationToken.transferFrom({
   onSuccess: function (result) { console.log(result); },
   onFailed: function (result) { console.log(result); }
 });
-
-augur.api.ReputationToken.updateTotalTheoreticalSupply({
-  tx: { 
-    to: reputationTokenAddress,
-    gas: "0x632ea0" 
-  }, 
-  meta: {
-    accountType: "privateKey",
-    address: "0x913dA4198E6bE1D5f5E4a40D0667f70C0B5430Ec",
-    signer: [252, 111, 32, 94, 233, 213, 105, 71, 89, 162, 243, 247, 56, 81, 213, 103, 239, 75, 212, 240, 234, 95, 8, 201, 217, 55, 225, 0, 85, 109, 158, 25],
-  },
-  onSent: function (result) { console.log(result); },
-  onSuccess: function (result) { console.log(result); },
-  onFailed: function (result) { console.log(result); }
-});
 ```
 Provides JavaScript bindings for the [ReputationToken Solidity Contract](https://github.com/AugurProject/augur/tree/master/packages/augur-core/source/contracts/reporting/ReputationToken.sol), which handles the approval, migration, and transfering of [Reputation Tokens](#rep).
 
@@ -2151,6 +2140,10 @@ Increases the amount of [REP](#rep) `p._spender` is approved to spend on behalf 
 ### augur.api.ReputationToken.migrateFromLegacyReputationToken(p)
 
 Migrates [Legacy REP](#legacy-rep) tokens owned by `msg.sender` from the Legacy REP contract to the `reputationToken` provided. This transaction will add whatever `msg.sender`'s balance was for the [Legacy REP contract](https://github.com/AugurProject/augur/blob/master/packages/augur-core/source/contracts/LegacyReputationToken.sol) to the `reputationToken` contract.
+
+This transaction will fail if:
+
+* The Reputation Token's [Universe](#parent-universe) is a [Child Universe](#child-universe).
 
 #### **Parameters:**
 
@@ -2266,25 +2259,6 @@ This transaction will fail if:
     * **`p.holder`**  (string) Ethereum address to send REP from, as a 20-byte hexadecimal value.
     * **`p.recipient`**  (string) Ethereum address to send REP to, as a 20-byte hexadecimal value.
     * **`p.amount`**  (string) Number of attoREP to send, between 1 and 2<sup>254</sup>, as a hexadecimal string.
-    * **`p.tx`** (Object) Object containing details about how this transaction should be made.
-        * **`p.tx.to`** (string) Ethereum contract address on which to call this function, as a 20-byte hexadecimal string.
-        * **`p.tx.gas`** (string) Gas limit to use when submitting this transaction, as a hexadecimal string.
-    * **`p.meta`**  (<a href="#Meta">Meta</a>) &lt;optional> Authentication metadata for raw transactions.
-    * **`p.onSent`**  (function) Callback function that executes once the transaction has been sent.
-    * **`p.onSuccess`**  (function) &lt;optional> Callback function that executes if the transaction returned successfully.
-    * **`p.onFailed`**  (function) &lt;optional> Callback function that executes if the transaction failed.
-
-#### **Returns:**
-
-* Return value cannot be obtained because Ethereum nodes [discard](#transaction-return-values) transaction return values.
-
-### augur.api.ReputationToken.updateTotalTheoreticalSupply(p)
-
-Updates this ReputationToken contract's total [Theoretical REP Supply](#theoretical-rep-supply).
-
-#### **Parameters:**
-
-* **`p`** (Object) Parameters object.
     * **`p.tx`** (Object) Object containing details about how this transaction should be made.
         * **`p.tx.to`** (string) Ethereum contract address on which to call this function, as a 20-byte hexadecimal string.
         * **`p.tx.gas`** (string) Gas limit to use when submitting this transaction, as a hexadecimal string.
@@ -3262,6 +3236,10 @@ Gets the [No-Show Bond](#no-show-bond) for [Markets](#market) in the specified [
 
 Gets the amount of Staked [REP](#rep) the [Designated Reporter](#designated-reporter) must put up when submitting a [Designated Report](#designated-report) in the [Universe](#universe). If this value for the current [Dispute Window](#dispute-window) has not already been cached in the Universe contract, this function will cache it.
 
+This transaction will fail if:
+
+* The Universe has a [Forked Market](#forked-market).
+
 #### Parameters:
 
 * **`p`** (Object) Parameters object.
@@ -3468,7 +3446,7 @@ Gets the Ethereum contract address of the [Dispute Window](#dispute-window) that
 
 ### augur.api.Universe.redeemStake(p)
 
-Calls the `redeem` function for all Ethereum contract addresses in the arrays `p._reportingParticipants` and `p._disputeWindows` using the caller's Ethereum address as the redeemer. `p._reportingParticipants` can contain Ethereum contract addresses for [DisputeCrowdsourcers](#dispute-crowdsourcer-tx-api), [InitialReporters](#initial-reporter-tx-api), or both, as hexadecimal strings. `p._disputeWindows` can only contain the Ethereum contract addresses of [Dispute Windows](#dispute-window). This function is intended as easy way to redeem Staked REP and/or Ether in multiple [Dispute Crowdsourcers](#dispute-crowdsourcer), [Initial Reports](#initial-report), and Dispute Windows at once.
+Calls the `redeem` function for all Ethereum contract addresses in the arrays `p._reportingParticipants` and `p._disputeWindows` using the caller's Ethereum address as the redeemer. `p._reportingParticipants` can contain Ethereum contract addresses for [DisputeCrowdsourcers](#dispute-crowdsourcer-tx-api), [InitialReporters](#initial-reporter-tx-api), or both, as hexadecimal strings. `p._disputeWindows` can only contain the Ethereum contract addresses of [Dispute Windows](#dispute-window). This function is intended as easy way to redeem Staked REP, Dai, and/or [Participation Tokens](#participation-token) in multiple [Dispute Crowdsourcers](#dispute-crowdsourcer), [Initial Reports](#initial-report), and Dispute Windows at once.
 
 #### Parameters:
 
