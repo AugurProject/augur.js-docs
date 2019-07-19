@@ -186,7 +186,7 @@ The <code>--ws</code> flag allows WebSocket connections, which are recommended f
 
 <p>The Augur contracts will track the <a href="#open-interest">Open Interest</a> of all Markets passively as people interact with Augur, which allows Augur to always have access to the Open Interest numbers. Once the Open Interest and REP market caps are known Augur can then determine wether the Reporting Fee is too high or too low. Augur then calculates the new Reporter Fee using the following formula:</p>
 
-<p><code class="prettyprint">current_reporting_fee * (augur_open_interest * 3 / rep_market_cap)</code></p>
+<p><code class="prettyprint">current_reporting_fee * (augur_open_interest * 5 / rep_market_cap)</code></p>
 
 <p>The Reporting Fee will be updated once every 7 days, or once every <a href="#dispute-window">Dispute Window</a>. If updates where to occur too frequently, the Market will not have time to adjust to the new fees. If we update too infrequently, then we are at risk of the security model becoming invalid due to a sudden growth in Augur that isn&rsquo;t yet accounted for by the fee system.</p>
 
@@ -1487,7 +1487,7 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
 <li><code class="prettyprint">p._designatedReporterAddress</code> is set to the null address.</li>
 <li><code class="prettyprint">p._feePerCashInAttoCash</code> is greater than the maximum <a href="#creator-fee">Creator Fee</a> (15%).</li>
 <li><code class="prettyprint">p._endTime</code> has already passed.</li>
-<li><code class="prettyprint">p._endTime</code> is further in the future than the maximum market duration (181 days). </li>
+<li><code class="prettyprint">p._endTime</code> is further in the future than the maximum market duration (365 days). </li>
 <li>The Universe is Forking.</li>
 </ul>
 
@@ -1532,7 +1532,7 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
 <li><code class="prettyprint">p._numTicks</code> is less than 2.</li>
 <li><code class="prettyprint">p._feePerCashInAttoCash</code> is greater than the maximum <a href="#creator-fee">Creator Fee</a> (15%).</li>
 <li><code class="prettyprint">p._endTime</code> has already passed.</li>
-<li><code class="prettyprint">p._endTime</code> is further in the future than the maximum market duration (181 days). </li>
+<li><code class="prettyprint">p._endTime</code> is further in the future than the maximum market duration (365 days). </li>
 <li>The Universe is Forking.</li>
 </ul>
 
@@ -1578,7 +1578,7 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
 <li><code class="prettyprint">p._designatedReporterAddress</code> is set to the null address.</li>
 <li><code class="prettyprint">p._feePerCashInAttoCash</code> is greater than the maximum <a href="#creator-fee">Creator Fee</a> (15%).</li>
 <li><code class="prettyprint">p._endTime</code> has already passed.</li>
-<li><code class="prettyprint">p._endTime</code> is further in the future than the maximum market duration (181 days). </li>
+<li><code class="prettyprint">p._endTime</code> is further in the future than the maximum market duration (365 days). </li>
 <li>The Universe is Forking.</li>
 </ul>
 
@@ -1862,13 +1862,13 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
     <span class="nx">designatedReporter</span><span class="p">:</span> <span class="s2">"0x0000000000000000000000000000000000000b0b"</span><span class="p">,</span>
     <span class="nx">designatedReportStake</span><span class="p">:</span> <span class="s2">"10"</span><span class="p">,</span>
     <span class="nx">resolutionSource</span><span class="p">:</span> <span class="s2">"https://www.trusted-third-party.com"</span><span class="p">,</span>
-    <span class="nx">numTicks</span><span class="p">:</span> <span class="s2">"10000"</span><span class="p">,</span>
+    <span class="nx">numTicks</span><span class="p">:</span> <span class="s2">"100"</span><span class="p">,</span>
     <span class="nx">tickSize</span><span class="p">:</span> <span class="s2">"0.0001"</span><span class="p">,</span>
     <span class="nx">consensus</span><span class="p">:</span> <span class="p">{</span>
       <span class="nl">isInvalid</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
       <span class="nx">payout</span><span class="p">:</span> <span class="p">[</span>
         <span class="s2">"0"</span><span class="p">,</span>
-        <span class="s2">"10000"</span><span class="p">,</span>
+        <span class="s2">"100"</span><span class="p">,</span>
       <span class="p">],</span>
     <span class="p">},</span>
     <span class="nx">outcomes</span><span class="p">:</span> <span class="p">[{</span>
@@ -1952,12 +1952,12 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
     <span class="nx">designatedReporter</span><span class="p">:</span> <span class="s2">"0x0000000000000000000000000000000000000b0b"</span><span class="p">,</span>
     <span class="nx">designatedReportStake</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span>
     <span class="nx">resolutionSource</span><span class="p">:</span> <span class="s2">"http://www.trusted-third-party.com"</span><span class="p">,</span>
-    <span class="nx">numTicks</span><span class="p">:</span> <span class="s2">"10000"</span><span class="p">,</span>
+    <span class="nx">numTicks</span><span class="p">:</span> <span class="s2">"100"</span><span class="p">,</span>
     <span class="nx">consensus</span><span class="p">:</span> <span class="p">{</span>
       <span class="nl">isInvalid</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
       <span class="nx">payout</span><span class="p">:</span> <span class="p">[</span>
         <span class="s2">"0"</span><span class="p">,</span>
-        <span class="s2">"10000"</span><span class="p">,</span>
+        <span class="s2">"100"</span><span class="p">,</span>
       <span class="p">],</span>
     <span class="p">},</span>
     <span class="nx">outcomes</span><span class="p">:</span> <span class="p">[{</span>
@@ -2280,7 +2280,8 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
     <span class="na">stakes</span><span class="p">:</span> <span class="p">[</span>
       <span class="p">{</span>
         <span class="na">payout</span><span class="p">:</span> <span class="p">[</span>
-          <span class="s2">"10000"</span><span class="p">,</span>
+          <span class="s2">"0"</span><span class="p">,</span>
+          <span class="s2">"100"</span><span class="p">,</span>
           <span class="s2">"0"</span><span class="p">,</span>
         <span class="p">],</span>
         <span class="na">isInvalid</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
@@ -2297,7 +2298,8 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
       <span class="p">{</span>
         <span class="na">payout</span><span class="p">:</span> <span class="p">[</span>
           <span class="s2">"0"</span><span class="p">,</span>
-          <span class="s2">"10000"</span><span class="p">,</span>
+          <span class="s2">"0"</span><span class="p">,</span>
+          <span class="s2">"100"</span><span class="p">,</span>
         <span class="p">],</span>
         <span class="na">isInvalid</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
         <span class="na">accountStakeCompleted</span><span class="p">:</span> <span class="s2">"102"</span><span class="p">,</span>
@@ -2307,8 +2309,9 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
       <span class="p">},</span>
       <span class="p">{</span>
         <span class="na">payout</span><span class="p">:</span> <span class="p">[</span>
-          <span class="s2">"5000"</span><span class="p">,</span>
-          <span class="s2">"5000"</span><span class="p">,</span>
+          <span class="s2">"100"</span><span class="p">,</span>
+          <span class="s2">"0"</span><span class="p">,</span>
+          <span class="s2">"0"</span><span class="p">,</span>
         <span class="p">],</span>
         <span class="na">isInvalid</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
         <span class="na">bondSizeCurrent</span><span class="p">:</span> <span class="s2">"204"</span><span class="p">,</span>
@@ -2558,7 +2561,7 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
         <span class="na">creationTime</span><span class="p">:</span> <span class="mi">1506474500</span><span class="p">,</span>
         <span class="na">marketId</span><span class="p">:</span> <span class="s2">"0x0000000000000000000000000000000000000011"</span><span class="p">,</span>
         <span class="na">disputeWindow</span><span class="p">:</span> <span class="s2">"0x1000000000000000000000000000000000000000"</span><span class="p">,</span>
-        <span class="na">payoutNumerators</span><span class="p">:</span> <span class="p">[</span><span class="s2">"0"</span><span class="p">,</span> <span class="s2">"2"</span><span class="p">],</span>
+        <span class="na">payoutNumerators</span><span class="p">:</span> <span class="p">[</span><span class="s2">"0"</span><span class="p">,</span> <span class="s2">"0"</span><span class="p">,</span> <span class="s2">"2"</span><span class="p">],</span>
         <span class="na">amountStaked</span><span class="p">:</span> <span class="s2">"17"</span><span class="p">,</span>
         <span class="na">crowdsourcerId</span><span class="p">:</span> <span class="s2">"0x0000000000000000001000000000000000000001"</span><span class="p">,</span>
         <span class="na">isCategorical</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
@@ -2579,7 +2582,7 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
         <span class="na">creationTime</span><span class="p">:</span> <span class="mi">1506474515</span><span class="p">,</span>
         <span class="na">marketId</span><span class="p">:</span> <span class="s2">"0x0000000000000000000000000000000000000019"</span><span class="p">,</span>
         <span class="na">disputeWindow</span><span class="p">:</span> <span class="s2">"0x1000000000000000000000000000000000000000"</span><span class="p">,</span>
-        <span class="na">payoutNumerators</span><span class="p">:</span> <span class="p">[</span><span class="s2">"10000"</span><span class="p">,</span> <span class="s2">"0"</span><span class="p">,</span> <span class="s2">"0"</span><span class="p">,</span> <span class="s2">"0"</span><span class="p">,</span> <span class="s2">"0"</span><span class="p">],</span>
+        <span class="na">payoutNumerators</span><span class="p">:</span> <span class="p">[</span><span class="s2">"0"</span><span class="p">,</span> <span class="s2">"100"</span><span class="p">,</span> <span class="s2">"0"</span><span class="p">,</span> <span class="s2">"0"</span><span class="p">,</span> <span class="s2">"0"</span><span class="p">,</span> <span class="s2">"0"</span><span class="p">],</span>
         <span class="na">amountStaked</span><span class="p">:</span> <span class="s2">"229"</span><span class="p">,</span>
         <span class="na">crowdsourcerId</span><span class="p">:</span> <span class="s2">"0x0000000000000000001000000000000000000003"</span><span class="p">,</span>
         <span class="na">isCategorical</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
@@ -3623,12 +3626,12 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
   <span class="na">_price</span><span class="p">:</span> <span class="s2">"0.5"</span><span class="p">,</span>
   <span class="na">_fxpAmount</span><span class="p">:</span> <span class="s2">"10"</span><span class="p">,</span>
   <span class="na">sharesProvided</span><span class="p">:</span> <span class="s2">"0"</span><span class="p">,</span>
-  <span class="na">numTicks</span><span class="p">:</span> <span class="s2">"10000"</span><span class="p">,</span>
+  <span class="na">numTicks</span><span class="p">:</span> <span class="s2">"100"</span><span class="p">,</span>
   <span class="na">minPrice</span><span class="p">:</span> <span class="s2">"0"</span><span class="p">,</span>
   <span class="na">maxPrice</span><span class="p">:</span> <span class="s2">"1"</span><span class="p">,</span>
   <span class="na">_direction</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
   <span class="na">_market</span><span class="p">:</span> <span class="s2">"0x8092bdf939e23a0e926021ffce5a062d0f598d1f"</span><span class="p">,</span>
-  <span class="na">_outcome</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+  <span class="na">_outcome</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
   <span class="na">numOutcomes</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
   <span class="na">doNotCreateOrders</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
   <span class="na">meta</span><span class="p">:</span> <span class="p">{</span>
@@ -3645,7 +3648,7 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
 <span class="p">{</span>
   <span class="s2">"_price"</span><span class="p">:</span> <span class="s2">"0.5"</span><span class="p">,</span>
   <span class="s2">"_fxpAmount"</span><span class="p">:</span> <span class="s2">"10"</span><span class="p">,</span>
-  <span class="s2">"numTicks"</span><span class="p">:</span> <span class="s2">"10000"</span><span class="p">,</span>
+  <span class="s2">"numTicks"</span><span class="p">:</span> <span class="s2">"100"</span><span class="p">,</span>
   <span class="s2">"minPrice"</span><span class="p">:</span> <span class="s2">"0"</span><span class="p">,</span>
   <span class="s2">"maxPrice"</span><span class="p">:</span> <span class="s2">"1"</span><span class="p">,</span>
   <span class="s2">"_direction"</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
@@ -3799,7 +3802,7 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
 <span class="p">{</span>
   <span class="s2">"_price"</span><span class="p">:</span> <span class="s2">"0.5"</span><span class="p">,</span>
   <span class="s2">"_fxpAmount"</span><span class="p">:</span> <span class="s2">"0"</span><span class="p">,</span>
-  <span class="s2">"numTicks"</span><span class="p">:</span> <span class="s2">"10000"</span><span class="p">,</span>
+  <span class="s2">"numTicks"</span><span class="p">:</span> <span class="s2">"100"</span><span class="p">,</span>
   <span class="s2">"minPrice"</span><span class="p">:</span> <span class="s2">"0"</span><span class="p">,</span>
   <span class="s2">"maxPrice"</span><span class="p">:</span> <span class="s2">"1"</span><span class="p">,</span>
   <span class="s2">"_direction"</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
@@ -5089,38 +5092,6 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
 <span class="c1">// example output:</span>
 <span class="s2">"1517443200"</span>
 
-<span class="nx">augur</span><span class="p">.</span><span class="nx">api</span><span class="p">.</span><span class="nx">DisputeWindow</span><span class="p">.</span><span class="nx">getNumDesignatedReportNoShows</span><span class="p">({</span> 
-  <span class="na">tx</span><span class="p">:</span> <span class="p">{</span> <span class="na">to</span><span class="p">:</span> <span class="nx">disputeWindow</span> <span class="p">}</span> 
-<span class="p">},</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">error</span><span class="p">,</span> <span class="nx">numDesignatedReportNoShows</span><span class="p">)</span> <span class="p">{</span> 
-  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">numDesignatedReportNoShows</span><span class="p">);</span> 
-<span class="p">});</span>
-<span class="c1">// example output:</span>
-<span class="s2">"2"</span>
-
-<span class="nx">augur</span><span class="p">.</span><span class="nx">api</span><span class="p">.</span><span class="nx">DisputeWindow</span><span class="p">.</span><span class="nx">getNumIncorrectDesignatedReportMarkets</span><span class="p">({</span> 
-  <span class="na">tx</span><span class="p">:</span> <span class="p">{</span> <span class="na">to</span><span class="p">:</span> <span class="nx">disputeWindow</span> <span class="p">}</span> 
-<span class="p">},</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">error</span><span class="p">,</span> <span class="nx">numIncorrectDesignatedReportMarkets</span><span class="p">)</span> <span class="p">{</span> 
-  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">numIncorrectDesignatedReportMarkets</span><span class="p">);</span> 
-<span class="p">});</span>
-<span class="c1">// example output:</span>
-<span class="s2">"10"</span>
-
-<span class="nx">augur</span><span class="p">.</span><span class="nx">api</span><span class="p">.</span><span class="nx">DisputeWindow</span><span class="p">.</span><span class="nx">getNumInvalidMarkets</span><span class="p">({</span> 
-  <span class="na">tx</span><span class="p">:</span> <span class="p">{</span> <span class="na">to</span><span class="p">:</span> <span class="nx">disputeWindow</span> <span class="p">}</span> 
-<span class="p">},</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">error</span><span class="p">,</span> <span class="nx">numInvalidMarkets</span><span class="p">)</span> <span class="p">{</span> 
-  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">numInvalidMarkets</span><span class="p">);</span> 
-<span class="p">});</span>
-<span class="c1">// example output:</span>
-<span class="s2">"3"</span>
-
-<span class="nx">augur</span><span class="p">.</span><span class="nx">api</span><span class="p">.</span><span class="nx">DisputeWindow</span><span class="p">.</span><span class="nx">getNumMarkets</span><span class="p">({</span> 
-  <span class="na">tx</span><span class="p">:</span> <span class="p">{</span> <span class="na">to</span><span class="p">:</span> <span class="nx">disputeWindow</span> <span class="p">}</span> 
-<span class="p">},</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">error</span><span class="p">,</span> <span class="nx">numMarkets</span><span class="p">)</span> <span class="p">{</span> 
-  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">numMarkets</span><span class="p">);</span> 
-<span class="p">});</span>
-<span class="c1">// example output:</span>
-<span class="s2">"65"</span>
-
 <span class="nx">augur</span><span class="p">.</span><span class="nx">api</span><span class="p">.</span><span class="nx">DisputeWindow</span><span class="p">.</span><span class="nx">getReputationToken</span><span class="p">({</span> 
   <span class="na">tx</span><span class="p">:</span> <span class="p">{</span> <span class="na">to</span><span class="p">:</span> <span class="nx">disputeWindow</span> <span class="p">}</span> 
 <span class="p">},</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">error</span><span class="p">,</span> <span class="nx">reputationToken</span><span class="p">)</span> <span class="p">{</span> 
@@ -5149,6 +5120,14 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
   <span class="na">tx</span><span class="p">:</span> <span class="p">{</span> <span class="na">to</span><span class="p">:</span> <span class="nx">disputeWindow</span> <span class="p">}</span> 
 <span class="p">},</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">error</span><span class="p">,</span> <span class="nx">windowId</span><span class="p">)</span> <span class="p">{</span> 
   <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">windowId</span><span class="p">);</span> 
+<span class="p">});</span>
+<span class="c1">// example output:</span>
+<span class="o">!!!</span><span class="nx">TBD</span><span class="o">!!!</span> <span class="nx">Add</span> <span class="nx">example</span> <span class="nx">output</span>
+
+<span class="nx">augur</span><span class="p">.</span><span class="nx">api</span><span class="p">.</span><span class="nx">DisputeWindow</span><span class="p">.</span><span class="nx">getValidityBondAttoCash</span><span class="p">({</span> 
+  <span class="na">tx</span><span class="p">:</span> <span class="p">{</span> <span class="na">to</span><span class="p">:</span> <span class="nx">disputeWindow</span> <span class="p">}</span> 
+<span class="p">},</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">error</span><span class="p">,</span> <span class="nx">validityBondAttoCash</span><span class="p">)</span> <span class="p">{</span> 
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">validityBondAttoCash</span><span class="p">);</span> 
 <span class="p">});</span>
 <span class="c1">// example output:</span>
 <span class="o">!!!</span><span class="nx">TBD</span><span class="o">!!!</span> <span class="nx">Add</span> <span class="nx">example</span> <span class="nx">output</span>
@@ -5194,106 +5173,6 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
 
 <ul>
 <li>(string) Unix timestamp at which the Dispute Window ends, as a stringified unsigned integer.</li>
-</ul>
-
-<h3 id="augur-api-disputewindow-getnumdesignatedreportnoshows-p-callback">augur.api.DisputeWindow.getNumDesignatedReportNoShows(p, callback)</h3>
-
-<p>Returns the number of <a href="#market">Markets</a> belonging to the specified <a href="#dispute-window">Dispute Window</a>, in which the <a href="#designated-reporter">Designated Reporter</a> failed to <a href="#report">Report</a> during the <a href="#designated-reporting-phase">Designated Reporting Phase</a>. These Markets will have a <a href="#no-show-bond">No-Show Bond</a> up for grabs for the <a href="#first-public-reporter">First Public Reporter</a> because these Markets have yet to receive a <a href="#report">Report</a>. This only includes Markets where Designated Reporters failed to Report, and does not include Markets where the Designated Reporter&rsquo;s <a href="#tentative-outcome">Tentative Outcome</a> was <a href="#challenge">Challenged</a>.</p>
-
-<h4 id="strong-strong"><strong>Parameters:</strong></h4>
-
-<ul>
-<li><strong><code class="prettyprint">p</code></strong> (Object) Parameters object.<br>
-
-<ul>
-<li><strong><code class="prettyprint">p.tx</code></strong> (Object) Object containing details about how this function call should be made.
-
-<ul>
-<li><strong><code class="prettyprint">p.tx.to</code></strong> (string) Ethereum contract address of the Dispute Window on which to call this function, as a 20-byte hexadecimal string.</li>
-</ul></li>
-</ul></li>
-<li><strong><code class="prettyprint">callback</code></strong> (function) &lt;optional&gt; Called after the function&rsquo;s result has been retrieved.</li>
-</ul>
-
-<h4 id="strong-strong"><strong>Returns:</strong></h4>
-
-<ul>
-<li>(string) Number of Markets belonging to the Dispute Window, where the Designated Reporter failed to Report during the Designated Reporting Phase, as a stringified unsigned integer.</li>
-</ul>
-
-<h3 id="augur-api-disputewindow-getnumincorrectdesignatedreportmarkets-p-callback">augur.api.DisputeWindow.getNumIncorrectDesignatedReportMarkets(p, callback)</h3>
-
-<p>Returns the number of <a href="#finalized-market">Unfinalized Markets</a> belonging to the specified <a href="#dispute-window">Dispute Window</a> in which <a href="#designated-reporter">Designated Reporter&rsquo;s</a> <a href="#tentative-outcome">Tentative Outcome</a> was <a href="#challenge">Challenged</a> during the current <a href="#dispute-round-phase">Dispute Round Phase</a>, or the <a href="#designated-reporter">Designated Reporter</a> failed to submit a <a href="#designated-report">Designated Report</a>.</p>
-
-<h4 id="strong-strong"><strong>Parameters:</strong></h4>
-
-<ul>
-<li><strong><code class="prettyprint">p</code></strong> (Object) Parameters object.<br>
-
-<ul>
-<li><strong><code class="prettyprint">p.tx</code></strong> (Object) Object containing details about how this function call should be made.
-
-<ul>
-<li><strong><code class="prettyprint">p.tx.to</code></strong> (string) Ethereum contract address of the Dispute Window on which to call this function, as a 20-byte hexadecimal string.</li>
-</ul></li>
-</ul></li>
-<li><strong><code class="prettyprint">callback</code></strong> (function) &lt;optional&gt; Called after the function&rsquo;s result has been retrieved.</li>
-</ul>
-
-<h4 id="strong-strong"><strong>Returns:</strong></h4>
-
-<ul>
-<li>(string) Number of Markets in the Dispute Window, where the Designated Report was Challenged in the current Dispute Round Phase or the Designated Reporter did not Report, as a stringified unsigned integer.</li>
-</ul>
-
-<h3 id="augur-api-disputewindow-getnuminvalidmarkets-p-callback">augur.api.DisputeWindow.getNumInvalidMarkets(p, callback)</h3>
-
-<p>Returns the number of <a href="#market">Markets</a> that were <a href="#report">Reported</a> to be <a href="#invalid-outcome">Invalid</a> during the specified <a href="#dispute-window">Dispute Window</a>. <a href="#invalid-outcome">Invalid</a> Markets are Markets that aren&rsquo;t clearly defined or do not fit one of the <a href="#outcome">Outcomes</a> set for this Market. <a href="#reporter">Reporters</a> are encouraged to <a href="#report">Report</a> the Market as Invalid if they can&rsquo;t confidently Stake their <a href="#rep">REP</a> into a single Outcome for the Market.</p>
-
-<h4 id="strong-strong"><strong>Parameters:</strong></h4>
-
-<ul>
-<li><strong><code class="prettyprint">p</code></strong> (Object) Parameters object.<br>
-
-<ul>
-<li><strong><code class="prettyprint">p.tx</code></strong> (Object) Object containing details about how this function call should be made.
-
-<ul>
-<li><strong><code class="prettyprint">p.tx.to</code></strong> (string) Ethereum contract address of the Dispute Window on which to call this function, as a 20-byte hexadecimal string.</li>
-</ul></li>
-</ul></li>
-<li><strong><code class="prettyprint">callback</code></strong> (function) &lt;optional&gt; Called after the function&rsquo;s result has been retrieved.</li>
-</ul>
-
-<h4 id="strong-strong"><strong>Returns:</strong></h4>
-
-<ul>
-<li>(string) Number of Markets Reported as Invalid in the Dispute Window, as a stringified unsigned integer.</li>
-</ul>
-
-<h3 id="augur-api-disputewindow-getnummarkets-p-callback">augur.api.DisputeWindow.getNumMarkets(p, callback)</h3>
-
-<p>Returns the total number of <a href="#market">Markets</a> that are in the <a href="#dispute-round-phase">Dispute Round Phase</a> for the specified <a href="#dispute-window">Dispute Window</a>.</p>
-
-<h4 id="strong-strong"><strong>Parameters:</strong></h4>
-
-<ul>
-<li><strong><code class="prettyprint">p</code></strong> (Object) Parameters object.<br>
-
-<ul>
-<li><strong><code class="prettyprint">p.tx</code></strong> (Object) Object containing details about how this function call should be made.
-
-<ul>
-<li><strong><code class="prettyprint">p.tx.to</code></strong> (string) Ethereum contract address of the Dispute Window on which to call this function, as a 20-byte hexadecimal string.</li>
-</ul></li>
-</ul></li>
-<li><strong><code class="prettyprint">callback</code></strong> (function) &lt;optional&gt; Called after the function&rsquo;s result has been retrieved.</li>
-</ul>
-
-<h4 id="strong-strong"><strong>Returns:</strong></h4>
-
-<ul>
-<li>(string) Number of Markets in the Dispute Round Phase for the Dispute Window, as a stringified unsigned integer.</li>
 </ul>
 
 <h3 id="augur-api-disputewindow-getreputationtoken-p-callback">augur.api.DisputeWindow.getReputationToken(p, callback)</h3>
@@ -5374,6 +5253,31 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
 <h3 id="augur-api-disputewindow-getwindowid-p-callback">augur.api.DisputeWindow.getWindowId(p, callback)</h3>
 
 <p>Returns the <a href="#dispute-window">Dispute Window</a> ID of the Dispute Window.</p>
+
+<h4 id="strong-strong"><strong>Parameters:</strong></h4>
+
+<ul>
+<li><strong><code class="prettyprint">p</code></strong> (Object) Parameters object.<br>
+
+<ul>
+<li><strong><code class="prettyprint">p.tx</code></strong> (Object) Object containing details about how this function call should be made.
+
+<ul>
+<li><strong><code class="prettyprint">p.tx.to</code></strong> (string) Ethereum contract address of the Dispute Window on which to call this function, as a 20-byte hexadecimal string.</li>
+</ul></li>
+</ul></li>
+<li><strong><code class="prettyprint">callback</code></strong> (function) &lt;optional&gt; Called after the function&rsquo;s result has been retrieved.</li>
+</ul>
+
+<h4 id="strong-strong"><strong>Returns:</strong></h4>
+
+<ul>
+<li>(string) !!!TBD!!! Add return value info</li>
+</ul>
+
+<h3 id="augur-api-disputewindow-getvaliditybondattocash-p-callback">augur.api.DisputeWindow.getValidityBondAttoCash(p, callback)</h3>
+
+<p>Returns the size of the <a href="#market">Market&rsquo;s</a> <a href="#validity-bond">Validity Bond</a> (in <a href="#atto-prefix">attoDai</a>).</p>
 
 <h4 id="strong-strong"><strong>Parameters:</strong></h4>
 
@@ -7953,19 +7857,6 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
 <span class="c1">// can be obtained by calling `augur.augurNode.getSyncData`.</span>
 <span class="kd">var</span> <span class="nx">universe</span> <span class="o">=</span> <span class="s2">"0x0920d1513057572be46580b7ef75d1d01a99a3e5"</span><span class="p">;</span>
 
-<span class="nx">augur</span><span class="p">.</span><span class="nx">api</span><span class="p">.</span><span class="nx">Universe</span><span class="p">.</span><span class="nx">calculateFloatingValue</span><span class="p">({</span>
-  <span class="na">_badMarkets</span><span class="p">:</span> <span class="s2">""</span><span class="p">,</span>
-  <span class="na">_totalMarkets</span><span class="p">:</span> <span class="s2">""</span><span class="p">,</span>
-  <span class="na">_targetDivisor</span><span class="p">:</span> <span class="s2">""</span><span class="p">,</span>
-  <span class="na">_previousValue</span><span class="p">:</span> <span class="s2">""</span><span class="p">,</span>
-  <span class="na">_floor</span><span class="p">:</span> <span class="s2">""</span><span class="p">,</span>
-  <span class="na">tx</span><span class="p">:</span> <span class="p">{</span> <span class="na">to</span><span class="p">:</span> <span class="nx">universe</span> <span class="p">},</span>
-<span class="p">},</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">error</span><span class="p">,</span> <span class="nx">floatingValue</span><span class="p">)</span> <span class="p">{</span> 
-  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">floatingValue</span><span class="p">);</span> 
-<span class="p">});</span>
-<span class="c1">// example output:</span>
-<span class="o">!!!</span><span class="nx">TBD</span><span class="o">!!!</span> <span class="nx">Add</span> <span class="nx">example</span> <span class="nx">output</span>
-
 <span class="nx">augur</span><span class="p">.</span><span class="nx">api</span><span class="p">.</span><span class="nx">Universe</span><span class="p">.</span><span class="nx">getChildUniverse</span><span class="p">({</span>
   <span class="na">_parentPayoutDistributionHash</span><span class="p">:</span> <span class="s2">"0x4480ed40f94e2cb2ca244eb862df2d350300904a96039eb53cba0e34b8ace90a"</span><span class="p">,</span>
   <span class="na">tx</span><span class="p">:</span> <span class="p">{</span> <span class="na">to</span><span class="p">:</span> <span class="nx">universe</span> <span class="p">},</span>
@@ -8199,36 +8090,6 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
 <span class="kc">true</span>
 </code></pre></div>
 <p>Provides JavaScript bindings for the <a href="https://github.com/AugurProject/augur/blob/master/packages/augur-core/source/contracts/reporting/Universe.sol">Universe Solidity Contract</a>, which allows for the creation of <a href="#market">Markets</a> and provides functions for obtaining information about a given <a href="#universe">Universe</a>.</p>
-
-<h3 id="augur-api-universe-calculatefloatingvalue-p-callback">augur.api.Universe.calculateFloatingValue(p, callback)</h3>
-
-<p>!!!TBD!!! Add description &amp; sample code</p>
-
-<h4 id="strong-strong"><strong>Parameters:</strong></h4>
-
-<ul>
-<li><strong><code class="prettyprint">p</code></strong> (Object) Parameters object.<br>
-
-<ul>
-<li><strong><code class="prettyprint">p._badMarkets</code></strong> (string) </li>
-<li><strong><code class="prettyprint">p._totalMarkets</code></strong> (string) </li>
-<li><strong><code class="prettyprint">p._targetDivisor</code></strong> (string) </li>
-<li><strong><code class="prettyprint">p._previousValue</code></strong> (string) </li>
-<li><strong><code class="prettyprint">p._floor</code></strong> (string) </li>
-<li><strong><code class="prettyprint">p.tx</code></strong> (Object) Object containing details about how this function call should be made.
-
-<ul>
-<li><strong><code class="prettyprint">p.tx.to</code></strong> (string) Ethereum contract address of the Universe contract on which to call this function, as a 20-byte hexadecimal string.</li>
-</ul></li>
-</ul></li>
-<li><strong><code class="prettyprint">callback</code></strong> (function) &lt;optional&gt; Called after the function&rsquo;s result has been retrieved.</li>
-</ul>
-
-<h4 id="strong-strong"><strong>Returns:</strong></h4>
-
-<ul>
-<li>(string) </li>
-</ul>
 
 <h3 id="augur-api-universe-getchilduniverse-p-callback">augur.api.Universe.getChildUniverse(p, callback)</h3>
 
@@ -8694,7 +8555,7 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
 
 <h3 id="augur-api-universe-gettargetrepmarketcapinattoeth-p-callback">augur.api.Universe.getTargetRepMarketCapInAttoeth(p, callback)</h3>
 
-<p>Returns the <a href="#rep">REP</a> market cap that Augur targets when calculating <a href="#reporting-fee">Reporting Fees</a>. Augur attempts to set Reporting Fees such that the REP market cap equals 3 times the amount of <a href="#open-interest">Open Interest</a>. </p>
+<p>Returns the <a href="#rep">REP</a> market cap that Augur targets when calculating <a href="#reporting-fee">Reporting Fees</a>. Augur attempts to set Reporting Fees such that the REP market cap equals 5 times the amount of <a href="#open-interest">Open Interest</a>. </p>
 
 <h4 id="strong-strong"><strong>Parameters:</strong></h4>
 
@@ -10941,7 +10802,7 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
 <p>This transaction will fail if:</p>
 
 <ul>
-<li>The Market has not been <a href="#finalized-market">Finalized</a>.</li>
+<li>The Market has been <a href="#finalized-market">Finalized</a>.</li>
 </ul>
 
 <h4 id="strong-strong"><strong>Parameters:</strong></h4>
@@ -12531,7 +12392,7 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
 <li><code class="prettyprint">p._designatedReporterAddress</code> is set to the null address.</li>
 <li><code class="prettyprint">p._feePerCashInAttoCash</code> is greater than the maximum <a href="#creator-fee">Creator Fee</a> (15%).</li>
 <li><code class="prettyprint">p._endTime</code> has already passed.</li>
-<li><code class="prettyprint">p._endTime</code> is further in the future than the maximum market duration (181 days). </li>
+<li><code class="prettyprint">p._endTime</code> is further in the future than the maximum market duration (365 days). </li>
 <li>The <a href="#universe">Universe</a> is <a href="#fork">Forking</a>.</li>
 </ul>
 
@@ -12625,7 +12486,7 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
 <li><code class="prettyprint">p._numTicks</code> is less than 2.</li>
 <li><code class="prettyprint">p._feePerCashInAttoCash</code> is greater than the maximum <a href="#creator-fee">Creator Fee</a> (15%).</li>
 <li><code class="prettyprint">p._endTime</code> has already passed.</li>
-<li><code class="prettyprint">p._endTime</code> is further in the future than the maximum market duration (181 days). </li>
+<li><code class="prettyprint">p._endTime</code> is further in the future than the maximum market duration (365 days). </li>
 <li>The <a href="#universe">Universe</a> is <a href="#fork">Forking</a>.</li>
 </ul>
 
@@ -12682,7 +12543,7 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
 <li><code class="prettyprint">p._designatedReporterAddress</code> is set to the null address.</li>
 <li><code class="prettyprint">p._feePerCashInAttoCash</code> is greater than the maximum <a href="#creator-fee">Creator Fee</a> (15%).</li>
 <li><code class="prettyprint">p._endTime</code> has already passed.</li>
-<li><code class="prettyprint">p._endTime</code> is further in the future than the maximum market duration (181 days). </li>
+<li><code class="prettyprint">p._endTime</code> is further in the future than the maximum market duration (365 days). </li>
 <li>The <a href="#universe">Universe</a> is <a href="#fork">Forking</a>.</li>
 </ul>
 
@@ -13121,6 +12982,16 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
 
 <ul>
 <li>Return value cannot be obtained because Ethereum nodes <a href="#transaction-return-values">discard</a> transaction return values.</li>
+</ul>
+
+<h3 id="augur-api-universe-updateforkvalues-p">augur.api.Universe.updateForkValues(p)</h3>
+
+<p>!!!TBD!!! Add description, explain params, &amp; add sample code.</p>
+
+<p>This function will fail if:</p>
+
+<ul>
+<li>The Universe has a Market that is Forking.</li>
 </ul>
 
           <h1 id="events-api">Events API</h1>
@@ -15231,7 +15102,7 @@ Goals:
 
 <p>When a <a href="#designated-reporter">Designated Reporter</a> submits a <a href="#report">Report</a>, they must put up an amount of REP on an <a href="#outcome">Outcome</a> that is equal to the Designated Reporter Stake. Note that this amount is calculated differently than the <a href="#no-show-bond">No-Show Bond</a>.</p>
 
-<p>!!!TBD!!! Update calculations (see Universe.calculateFloatingValue)
+<p>!!!TBD!!! Update calculations (see Formulas.calculateFloatingValue)
 During the very first <a href="#dispute-window">Dispute Window</a> after launch, the amount of the Designated Reporter Stake will be set at 0.35 <a href="#rep">REP</a>. The amount of the Designated Reporter Stake is dynamically adjusted according to how many <a href="#designated-report">Designated Reports</a> were incorrect (failed to concur with the <a href="#market">Market&rsquo;s</a> <a href="#final-outcome">Final Outcome</a>) during the previous Dispute Window. In particular, we let δ be the proportion of Designated Reports that were incorrect during the previous Dispute Window, and we let b<sub>d</sub> be the amount of the Designated Reporter Stake during the previous Dispute Window, then the amount of the Designated Reporter Stake for the current Dispute Window is max &#123;0.35, b<sub>d</sub>f(δ)&#125;.</p>
 
 <h2 id="designated-reporting">Designated Reporting</h2>
@@ -15294,7 +15165,7 @@ During the very first <a href="#dispute-window">Dispute Window</a> after launch,
 
 <h2 id="end-time">End Time</h2>
 
-<p>A Market&rsquo;s End Time is the date and time by which a <a href="#market">Market</a>&rsquo;s event will have come to pass and should be known. After this date and time has passed the Market will get <a href="#report">Reported</a> on and eventually <a href="#finalized-market">Finalized</a>. A Market&rsquo;s End Time can be a maximum of 181 days from the time at which it was creatd.</p>
+<p>A Market&rsquo;s End Time is the date and time by which a <a href="#market">Market</a>&rsquo;s event will have come to pass and should be known. After this date and time has passed the Market will get <a href="#report">Reported</a> on and eventually <a href="#finalized-market">Finalized</a>. A Market&rsquo;s End Time can be a maximum of 365 days from the time at which it was creatd.</p>
 
 <h2 id="fee-divisor">Fee Divisor</h2>
 
@@ -15381,7 +15252,7 @@ During the very first <a href="#dispute-window">Dispute Window</a> after launch,
 <li>The Resolution Rource provides different answers to different viewers.</li>
 </ul>
 
-<p>If the Outcome of a Market is Invalid, <a href="#reporters">Reporters</a> can <a href="#report">Report</a> its <a href="#tentative-outcome">Tentative Outcome</a> as Invalid. Additionally, if the Market is in the <a href="#dispute-round-phase">Dispute Round Phase</a>, users can <a href="#dispute-stake">Stake</a> <a href="#rep">REP</a> on Invalid as the Tentative Outcome, or if the Market has <a href="#fork">Forked</a>, users can migrate their REP to the <a href="#child-universe">Child Universe</a> where the Outcome is Invalid. If the Market&rsquo;s <a href="#final-outcome">Final Outcome</a> becomes Invalid, its <a href="#payout-set">Payout Set</a> will have the <a href="#invalid-market-payout-numerator">Invalid Market Payout Numerator</a> set to the <a href="#number-of-ticks">Number of Ticks</a>. For example, in a <a href="#categorical-market">Categorical Market</a> with 10,000 <a href="#tick">Ticks</a> and 4 potential Outcomes (excluding Invalid), the Payout Set would be [10000, 0, 0, 0, 0].</p>
+<p>If the Outcome of a Market is Invalid, <a href="#reporters">Reporters</a> can <a href="#report">Report</a> its <a href="#tentative-outcome">Tentative Outcome</a> as Invalid. Additionally, if the Market is in the <a href="#dispute-round-phase">Dispute Round Phase</a>, users can <a href="#dispute-stake">Stake</a> <a href="#rep">REP</a> on Invalid as the Tentative Outcome, or if the Market has <a href="#fork">Forked</a>, users can migrate their REP to the <a href="#child-universe">Child Universe</a> where the Outcome is Invalid. If the Market&rsquo;s <a href="#final-outcome">Final Outcome</a> becomes Invalid, its <a href="#payout-set">Payout Set</a> will have the <a href="#invalid-market-payout-numerator">Invalid Market Payout Numerator</a> set to the <a href="#number-of-ticks">Number of Ticks</a>. For example, in a <a href="#categorical-market">Categorical Market</a> with 100 <a href="#tick">Ticks</a> and 4 potential Outcomes (excluding Invalid), the Payout Set would be [100, 0, 0, 0, 0].</p>
 
 <h2 id="kyc-token">KYC Token</h2>
 
@@ -15427,18 +15298,18 @@ During the very first <a href="#dispute-window">Dispute Window</a> after launch,
 
 <p>The No-Show Bond is paid for using <a href="#rep">REP</a> by the <a href="#market-creator">Market Creator</a> during <a href="#market">Market</a> creation. If the <a href="#designed-reporter">Designated Reporter</a> submits a <a href="#report">Report</a> during the <a href="#designated-reporting-phase">Designated Reporting Phase</a>, the Bond is refunded to the Market Creator. If the Designated Reporter fails to Report during the Designated Reporting Phase, then the No-Show Bond is applied as Stake on the <a href="#tentative-outcome">Tentative Outcome</a> Reported by the <a href="#first-public-reporter">First Public Reporter</a>. If the Tentative Outcome selected by the First Public Reporter becomes the <a href="#final-outcome">Final Outcome</a> of the Market, the First Public Reporter receives the No-Show Bond. If the Tentative Outcome selected by the First Public Reporter is <a href="#disputed">Disputed</a> and then still becomes the <a href="#final-outcome">Final Outcome</a> of the Market, the First Public Reporter receives the No-Show Bond plus an additional 50% of the Bond amount. This actually allows for someone to stake 0 REP for the <a href="#first-public-report">First Public Report</a> because the Bond is added to whatever is staked. This means someone without any REP has the potential to Report and if the Market is eventually <a href="#finalized-market">Finalized</a> the way that person Reported, then they can earn REP without having to purchase any. (Note that they will have to pay the gas cost to submit the Report.)</p>
 
-<p>!!!TBD!!! Update calculations (see Universe.calculateFloatingValue)
-During the very first <a href="#dispute-window">Dispute Window</a> after launch, the No-Show Bond will be set at 0.35 REP. As with the <a href="#validity-bond">Validity Bond</a>, the No-Show Bond is adjusted up or down, targeting a 1% no-show rate with a floor of 0.35 REP. Specifically, we let ρ be the proportion of Markets in the previous Dispute Window whose Designated Reporters failed to Report on time, and we let b<sub>r</sub> be amount of the No-Show Bond from the previous Dispute Window. Then the amount of the No-Show Bond for the current Dispute Window is max &#123;0.35, b<sub>r</sub>f(ρ)&#125;.</p>
+<p>!!!TBD!!! Update calculations (see Formulas.calculateFloatingValue)
+During the very first <a href="#dispute-window">Dispute Window</a> after launch, the No-Show Bond will be set at 0.35 REP. As with the <a href="#validity-bond">Validity Bond</a>, the No-Show Bond is adjusted up or down, targeting a 5% no-show rate with a floor of 0.35 REP. Specifically, we let ρ be the proportion of Markets in the previous Dispute Window whose Designated Reporters failed to Report on time, and we let b<sub>r</sub> be amount of the No-Show Bond from the previous Dispute Window. Then the amount of the No-Show Bond for the current Dispute Window is max &#123;0.35, b<sub>r</sub>f(ρ)&#125;.</p>
 
 <h2 id="number-of-ticks">Number of Ticks</h2>
 
 <p>A <a href="#market">Market&rsquo;s</a> Number of Ticks can be thought of as the number of possible prices, or <a href="#tick">Ticks</a>, between the <a href="#minimum-display-price">Minimum Display Price</a> and <a href="#maximum-display-price">Maximum Display Price</a> for that Market. It is also the amount of <a href="#atto-prefix">attoETH</a> that must be escrowed with the Market contract to purchase a single <a href="#complete-set">Complete Set</a> of indivisible <a href="#share">Shares</a> for a Market. Each Outcome in the <a href="#payout-set">Payout Set</a> of an <a href="#invalid-outcome">Invalid</a> Market is set to the Number of Ticks divided by the number of Outcomes (in order to ensure that the holders of each type of <a href="#share">Share</a> in the Market receive the same payout during <a href="#settlement">Settlement</a>). </p>
 
-<p>After Market <a href="#finalized-market">Finalization</a>, each winning Share can be Settled by sending it to the Market contract in exchange for an amount of attoETH equal to the Number of Ticks. In the event that the Market Finalizes as Invalid, Shares of Invalid the Market can be returned to the Market contract in exchange for an amount of attoETH equal to Number of Ticks. For example, if a 3-Outcome Market with no Creator Fee and 10,000 as the Number of Ticks resolves to Invalid, the Payout Set would be [10000, 0, 0, 0].</p>
+<p>After Market <a href="#finalized-market">Finalization</a>, each winning Share can be Settled by sending it to the Market contract in exchange for an amount of attoETH equal to the Number of Ticks. In the event that the Market Finalizes as Invalid, Shares of Invalid the Market can be returned to the Market contract in exchange for an amount of attoETH equal to Number of Ticks. For example, if a 3-Outcome Market with no Creator Fee and 100 as the Number of Ticks resolves to Invalid, the Payout Set would be [100, 0, 0, 0].</p>
 
 <p>The <a href="#atto-prefix">attoETH</a> yielded when a Complete Set of Shares is Settled is what <a href="#settlement-fees">Settlement Fees</a> are extracted from prior to paying out traders for their closed <a href="#position">Positions</a>. Settlement Fees are paid proportionally so that the trader set to receive more payout will have to pay more Fees. The price of an Order can be set to anywhere between 0 and the Number of Ticks set for the Market.</p>
 
-<p>For Yes/No and Categorical Markets, the Number of Ticks is always set to 10,000. For Scalar Markets, the Number of Ticks is determined implicitly by the range and precision set by the Market Creator, and must be evenly divisible by 2. In particular, the Number of Ticks equals (rangeMax - rangeMin) / precision. For example, if the Market Creator sets the range of Outcomes to <code class="prettyprint">[-10, 30]</code> and the precision to 0.01, then the Number of Ticks equals (30-(-10)) / 0.01, or 4,000.</p>
+<p>For Yes/No and Categorical Markets, the Number of Ticks is always set to 100. For Scalar Markets, the Number of Ticks is determined implicitly by the range and precision set by the Market Creator, and must be evenly divisible by 2. In particular, the Number of Ticks equals (rangeMax - rangeMin) / precision. For example, if the Market Creator sets the range of Outcomes to <code class="prettyprint">[-10, 30]</code> and the precision to 0.01, then the Number of Ticks equals (30-(-10)) / 0.01, or 4,000.</p>
 
 <h2 id="open-interest">Open Interest</h2>
 
@@ -15537,7 +15408,7 @@ Note: When calculating the Payout Set for a Scalar Market using integer-only mat
 
 <p>The Reporting Fee is used to help pay for Augur&rsquo;s <a href="#decentralized-oracle">Decentralized Oracle</a> system. When <a href="#share">Shares</a> are <a href="#settlement">Settled</a> (i.e., destroyed), before paying out to the Share holders, Augur will extract <a href="#settlement-fees">Settlement Fees</a> in ETH. These Settlement Fees include the <a href="#creator-fee">Creator Fee</a> and the Reporting Fee. </p>
 
-<p>The Reporting Fee is a dynamic amount based on the price of <a href="#rep">REP</a> and the value of the <a href="#open-interest">Open Interest</a> across all of Augur&rsquo;s <a href="#market">Markets</a>. Augur sets the Reporting Fee so as to target a REP market cap that is 3 times the value of the <a href="#open-interest">Open Interest</a> across all of Augur&rsquo;s markets. This means the <a href="#reporting-fee">Reporting Fee</a> will go up if the market cap of REP is not sufficiently high (but will never be higher than 33.3%) and will go down if it is higher than this target.</p>
+<p>The Reporting Fee is a dynamic amount based on the price of <a href="#rep">REP</a> and the value of the <a href="#open-interest">Open Interest</a> across all of Augur&rsquo;s <a href="#market">Markets</a>. Augur sets the Reporting Fee so as to target a REP market cap that is 5 times the value of the <a href="#open-interest">Open Interest</a> across all of Augur&rsquo;s markets. This means the <a href="#reporting-fee">Reporting Fee</a> will go up if the market cap of REP is not sufficiently high (but will never be higher than 33.3%) and will go down if it is higher than this target.</p>
 
 <p>The Reporting Fee is sent to the <a href="#dispute-window">Dispute Window</a> that contains the Market being traded on, and is later used to pay REP holders for engaging in <a href="#report">Reporting</a>.</p>
 
@@ -15618,7 +15489,7 @@ Bid Orders/Ask Orders on the Order Book are closer together and of higher qualit
 
 <p>The Validity Bond is paid by the <a href="#market-creator">Market Creator</a> during <a href="#market">Market</a> creation. The bond is paid in ETH and is refunded to the Market Creator if the <a href="#final-outcome">Final Outcome</a> of the <a href="#market">Market</a> is not <a href="#invalid-outcome">Invalid</a>.</p>
 
-<p>!!!TBD!!! Update calculations (see Universe.calculateFloatingValue)
+<p>!!!TBD!!! Update calculations (see Formulas.calculateFloatingValue)
 The Validity Bond is a dynamic amount based on the percentage of Markets in Augur that are being <a href="#finalized-market">Finalized</a> as Invalid. Augur targets having 1% of its Markets Finalized as Invalid. During the very first <a href="#dispute-window">Dispute Window</a> after launch, the Validity Bond will be set at 0.01 ETH. Then, if more than 1% of the Finalized Markets in the previous Dispute Window were Invalid, the Validity Bond will be increased. If less than 1% of the Finalized Markets in the previous Dispute Window were Invalid, then the Validity Bond will be decreased (but will never be lower than 0.01 ETH). In particular, we let ν be the proportion of Finalized Markets in the previous Dispute Window that were Invalid, and b<sub>v</sub> be the amount of the Validity Bond from the previous Dispute Window. Then the Validity Bond for the current window is max &#123;1/100, b<sub>v</sub>f(ν)&#125;.</p>
 
 <h2 id="waiting-for-the-next-dispute-window-to-begin-phase">Waiting for the Next Dispute Window to Begin Phase</h2>
