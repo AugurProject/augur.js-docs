@@ -1,8 +1,10 @@
 Flash
 =====
+Flash is a set of scripts to facilitate the testing of Augur, including the ability to simulate moving time forward.
+
 The flash scripts live in the [Tools](https://github.com/AugurProject/augur-tools) repository.
 
-The flash scripts can be invoked from the monorepo root or from `packages/augur-tools` with:
+They can be invoked from the monorepo root or from `packages/augur-tools` with:
 
 `yarn flash --help`
 
