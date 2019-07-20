@@ -14905,6 +14905,71 @@ net position in that Market Outcome. This is a cashflow amount that the user rem
 
 <aside class="notice">All pull requests made to the augur.js project must be properly linted first and any new functionality added must include tests or updated tests. The Augur team will not accept a pull request that doesn&rsquo;t include updated tests or breaks the linting standards we have for the augur.js codebase.</aside>
 
+          <h1 id="flash">Flash</h1>
+
+<p>Flash is a set of scripts to facilitate the testing of Augur, including the ability to simulate moving time forward.</p>
+
+<p>The flash scripts live in the <a href="https://github.com/AugurProject/augur-tools">Tools</a> repository.</p>
+
+<p>They can be invoked from the monorepo root or from <code class="prettyprint">packages/augur-tools</code> with:</p>
+
+<p><code class="prettyprint">yarn flash --help</code></p>
+
+<p>There are two modes: <code class="prettyprint">run</code> and <code class="prettyprint">interactive</code>.</p>
+
+<p>Use <code class="prettyprint">run</code> when you want to execute a single script. However, not all scripts work in this manner. The default network used is the local node but you can specify others with <code class="prettyprint">--network</code>.</p>
+
+<p>Use <code class="prettyprint">interactive</code> when you want to run a local ganache node. You have a lot of control over its state.</p>
+
+<h2 id="deploying">Deploying</h2>
+
+<p>To deploy to the Kovan test network, run:</p>
+
+<p><code class="prettyprint">yarn flash run --network kovan deploy --write-artifacts</code></p>
+
+<p>To deploy locally, you don&rsquo;t need to specify network since the local node is the default:</p>
+
+<p><code class="prettyprint">yarn flash run deploy --write-artifacts</code></p>
+
+<p>Some local testing does not require overwriting the <code class="prettyprint">addresses.json</code> etc files but for deploys from the command-line, you typically want to, so specify <code class="prettyprint">--write-artifacts</code>.</p>
+
+<h2 id="running-a-pre-populated-local-node">Running a pre-populated local node</h2>
+
+<p>Enter interactive mode: <code class="prettyprint">yarn flash interactive</code>
+In interactive mode (it will show <code class="prettyprint">augur$</code> in the terminal):</p>
+
+<p><code class="prettyprint">ganache</code>
+<code class="prettyprint">deploy</code>
+<code class="prettyprint">create-canned-markets-and-orders</code></p>
+
+<p>(Pro Tip: Interactive mode has tab-completion.)</p>
+
+<p>Now you have a local ganache node running in your terminal. You can interact with it using flash commands. To see a list of commands, type <code class="prettyprint">help</code>.</p>
+
+<h2 id="setting-time-forward-4-hours">Setting time forward 4 hours</h2>
+
+<p>Once you have ganache running in your interactive flash session, you can manipulate time.</p>
+
+<p>There&rsquo;s <code class="prettyprint">get-timestamp</code>, <code class="prettyprint">set-timestamp</code>, and <code class="prettyprint">push-timestamp</code>. We want <code class="prettyprint">push-timestamp</code>.</p>
+
+<p>To see it in action, type these commands in the interactive flash session:</p>
+
+<p><code class="prettyprint">get-timestamp</code>
+<code class="prettyprint">push-timestamp --count 4h</code>
+<code class="prettyprint">get-timestamp</code></p>
+
+<p>Here, <code class="prettyprint">4h</code> stands for <code class="prettyprint">4 hours</code>. If you specify <code class="prettyprint">s</code> or omit the letter entirely then it will set the timestamp some number of seconds into the future. For example, <code class="prettyprint">push-timestamp --count 45</code> sets the timestamp 45 seconds into the future. As with all commands, you can type <code class="prettyprint">--help</code> after the command to get the details:</p>
+
+<p><code class="prettyprint">push-timestamp --help</code></p>
+
+<h2 id="saving-and-loading-ganache-state">Saving and loading ganache state</h2>
+
+<p>We store the ganache blockchain state in <code class="prettyprint">Seeds</code>. They can be saved as files and loaded in later sessions. The chief benefit to seeds is that you can manually create a scenario for testing, save a seed of that state to a file, and bring it back later. Aside from saving you a bunch of time reproducing a particular testing state, you can save a &ldquo;checkpoint&rdquo; before you do destructive exploratory testing and reload that state after. Also if you find a strange or buggy blockchain/contract state then you can upload the seed file along with the bug report so the developers can see the errant behavior themselves.</p>
+
+<p>The commands are <code class="prettyprint">make-seed</code>, <code class="prettyprint">save-seed-to-file</code>, <code class="prettyprint">load-seed-file</code>, <code class="prettyprint">use-seed</code>, and <code class="prettyprint">list-seeds</code>. There&rsquo;s also <code class="prettyprint">create-basic-seed</code>, which is used by the automated tests.</p>
+
+<p>The basic idea behind seed management is that you have a list of seeds in-memory that you can swap into ganache at-will. Use <code class="prettyprint">list-seeds</code> to see them. Each seed has a name but if you don&rsquo;t specify one then <code class="prettyprint">&quot;default&quot;</code> is used. Save them to disk for later and load them as-needed.</p>
+
           <h1 id="ui-conventions">UI Conventions</h1>
 
 <h2 id="numbers">Numbers</h2>
