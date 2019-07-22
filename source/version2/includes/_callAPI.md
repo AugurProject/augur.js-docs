@@ -1863,6 +1863,7 @@ var _type = "0x1";
 var _market = "0x9368ff3e9ce1c0459b309fac6dd4e69229b91a42";
 var _outcome = "0x1";
 var _price = "0x63eb89da4ed0000"; // 0.45
+var _kycToken =  "0x7898ff3e9ce1c0459b309fac6dd4e69229b91a12";
 
 augur.api.Orders.ascendOrderList({
   _type: _type,
@@ -1905,7 +1906,8 @@ augur.api.Orders.getAmount({
 augur.api.Orders.getBestOrderId({
   _type: _type,
   _market: _market,
-  _outcome: _outcome
+  _outcome: _outcome,
+  _kycToken: _kycToken
 }, function (error, bestOrderId) { 
   console.log(bestOrderdD); 
 });
@@ -1929,6 +1931,14 @@ augur.api.Orders.getLastOutcomePrice({
 // example output:
 "490000000000000000"
 
+augur.api.Orders.getKYCToken({
+  _orderId: _orderId
+}, function (error, kycToken) { 
+  console.log(kycToken); 
+});
+// example output:
+!!!TBD!!! Add example output
+
 augur.api.Orders.getMarket({ 
   _orderId: _orderId
 }, function (error, market) { 
@@ -1944,6 +1954,23 @@ augur.api.Orders.getOrderCreator({
 });
 // example output:
 "0x438f2aeb8a16745b1cd711e168581ebce744ffaa";
+
+augur.api.Orders.getOrderId({ 
+  _type: _type,
+  _market: _market,
+  _amount: "0x15",
+  _price: _price,
+  _sender: "0x7898ff3e9ce1c0459b309fac6dd4e69229b91356",
+  _blockNumber: "8201474",
+  _outcome: _outcome,
+  _moneyEscrowed: _moneyEscrowed,
+  _sharesEscrowed: _sharesEscrowed,
+  _kycToken: _kycToken
+}, function (error, orderId) { 
+  console.log(orderId); 
+});
+// example output:
+!!!TBD!!! Add example output
 
 augur.api.Orders.getOrderMoneyEscrowed({ 
   _orderId: _orderId 
@@ -2004,7 +2031,8 @@ augur.api.Orders.getWorseOrderId({
 augur.api.Orders.getWorstOrderId({
   _type: _type,
   _market: _market,
-  _outcome: _outcome
+  _outcome: _outcome,
+  _kycToken: _kycToken
 }, function (error, worstOrderId) { 
   console.log(worstOrderId); 
 });
@@ -2109,6 +2137,7 @@ Returns the [Order](#order) ID of the best Order of a particular type (either [A
     * **`p._type`** (string) Type of Order, as a hexadecimal string ("0x0" for a Bid Order, "0x1" for an Ask Order).
     * **`p._market`** (string) Ethereum contract address of the Market for which to get the best Order ID, as a 20-byte hexadecimal string.
     * **`p._outcome`** (string) [Outcome](#outcome) of the Market, as a hexadecimal string.
+    * **`p._kycToken`** (string) &lt;optional> [Know-Your-Customer Token](#know-your-customer-token) address of the Order.
 * **`callback`** (function) &lt;optional> Called after the function's result has been retrieved.
 
 #### **Returns:**
@@ -2128,6 +2157,20 @@ Returns the [Order](#order) ID of an Order with a better price than the specifie
 #### **Returns:**
 
 * (string) ID of an Order with a better price than the specified Order, as a 32-byte hexadecimal string.
+
+### augur.api.Orders.getKYCToken(p, callback)
+
+Returns the [Know-Your-Customer Token](#know-your-customer-token) address associated with a given [Order](#order).
+
+#### **Parameters:**
+
+* **`p`** (Object) Parameters object.  
+    * **`p._orderId`** (string) Order ID, as a 32-byte hexadecimal string.
+* **`callback`** (function) &lt;optional> Called after the function's result has been retrieved.
+
+#### **Returns:**
+
+* (string) The Know-Your-Customer Token address associated with the Order, as a 20-byte hexadecimal string.
 
 ### augur.api.Orders.getLastOutcomePrice(p, callback)
 
@@ -2171,6 +2214,29 @@ Returns the Ethereum address of the [Creator](#order-creator) of the specified [
 #### **Returns:**
 
 * (string) Ethereum address of the Creator of the specified Order, as a 20-byte hexadecimal string.
+
+### augur.api.Orders.getOrderId(p, callback)
+
+Returns the [Order](#order) ID that satisfies the given parameters.
+
+#### **Parameters:**
+
+* **`p`** (Object) Parameters object.  
+    * **`p._type`** (string) Type of Order, as a hexadecimal string ("0x0" for a Bid Order, "0x1" for an Ask Order).
+    * **`p._market`** (string) Ethereum contract address of a Market, as a 20-byte hexadecimal string.
+    * **`p._amount`** (string) Amount (in [attoShares](#atto-prefix)) that the Order is for.
+    * **`p._price`** (string) Price (in attoDai) of the Order, as a hexadecimal string.
+    * **`p._sender`** (string) Ethereum address of the account that created the Order, as a 20-byte hexadecimal string.
+    * **`p._blockNumber`** (string) Block number on which the Order was created.
+    * **`p._outcome`** (string) (string) [Outcome](#outcome) of the Market, as a hexadecimal string.
+    * **`p._moneyEscrowed`** (string) &lt;optional> Amount of attoDai escrowed to create the Order.
+    * **`p._sharesEscrowed`** (string) &lt;optional> Amount of attoShares escrowed to create the Order.
+    * **`p._kycToken`** (string) &lt;optional> [Know-Your-Customer Token](#know-your-customer-token) address of the Order.
+* **`callback`** (function) &lt;optional> Called after the function's result has been retrieved.
+
+#### **Returns:**
+
+* (string) Ethereum contract address of the Market for the specified Order, as a 20-byte hexadecimal string.
 
 ### augur.api.Orders.getOrderMoneyEscrowed(p, callback)
 
@@ -2280,6 +2346,7 @@ Returns the [Order](#order) ID of the worst Order of a particular type (either [
     * **`p._type`** (string) Type of Order, as a hexadecimal string ("0x0" for a Bid Order, "0x1" for an Ask Order). 
     * **`p._market`** (string) Ethereum contract address of the Market for which to get the worst Order ID, as a 20-byte hexadecimal string.
     * **`p._outcome`** (string) [Outcome](#outcome) of the Market, as a hexadecimal string.
+    * **`p._kycToken`** (string) &lt;optional> [Know-Your-Customer Token](#know-your-customer-token) address of the Order.
 * **`callback`** (function) &lt;optional> Called after the function's result has been retrieved.
 
 #### **Returns:**

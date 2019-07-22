@@ -230,7 +230,7 @@ A [Market](#market) should be considered Invalid if any of the following are tru
 
 If the Outcome of a Market is Invalid, [Reporters](#reporters) can [Report](#report) its [Tentative Outcome](#tentative-outcome) as Invalid. Additionally, if the Market is in the [Dispute Round Phase](#dispute-round-phase), users can [Stake](#dispute-stake) [REP](#rep) on Invalid as the Tentative Outcome, or if the Market has [Forked](#fork), users can migrate their REP to the [Child Universe](#child-universe) where the Outcome is Invalid. If the Market's [Final Outcome](#final-outcome) becomes Invalid, its [Payout Set](#payout-set) will have the [Invalid Market Payout Numerator](#invalid-market-payout-numerator) set to the [Number of Ticks](#number-of-ticks). For example, in a [Categorical Market](#categorical-market) with 100 [Ticks](#tick) and 4 potential Outcomes (excluding Invalid), the Payout Set would be [100, 0, 0, 0, 0].
 
-## KYC Token
+## Know-Your-Customer Token
 
 !!!TBD!!! Add definition
 

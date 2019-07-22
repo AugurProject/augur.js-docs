@@ -833,6 +833,8 @@ var createOrderAddress = "0xdadc071ecc3b7e97b139d2ef692defdc398c8211";
 var _betterOrderId = "0x12328a31378e925ea122ea73e8c81baaf5c731d408487f6884d2e4c81baa3456";
 var _worseOrderId = "0x91c28a31378e925ea122ea73e8c81baaf5c731d408487f6884d2e4c81baa39dd";
 
+var _kycToken =  "0x7898ff3e9ce1c0459b309fac6dd4e69229b91a12";
+  
 augur.api.CreateOrder.publicCreateOrder({
   _type: "0x0",
   _attoshares: "0x5af3107a4000",
@@ -843,6 +845,7 @@ augur.api.CreateOrder.publicCreateOrder({
   _worseOrderId: _worseOrderId,
   _tradeGroupId: "0x0000000000000000000000000000000000000000000000000000000000000000",
   _ignoreShares: true,
+  _kycToken: _kycToken,
   tx: { 
     to: createOrderAddress,
   },
@@ -864,6 +867,7 @@ augur.api.CreateOrder.publicCreateOrders({
   _market: "0xc4ba20cbafe3a3655a2f2e4df4ac7f942a722017",
   _ignoreShares: true,
   _tradeGroupId: "0x0000000000000000000000000000000000000000000000000000000000000000",
+  _kycToken: _kycToken,
   tx: { 
     to: createOrderAddress,
   },
@@ -888,6 +892,7 @@ This transaction will trigger an [`OrderCreated`](#OrderCreated) and [`ProfitLos
 This transaction will fail if:
 
 * `p._market` is not a Market known to Augur.
+* `p._kycToken` is specified but is not an ERC20 token address, or is an ERC20 token address but its balance for the [Order Creator](#order-creator) is not greater than 0.
 * `p._type` is not a valid value of 0 or 1.
 * `p._attoshares` is less than or equal to 0.
 * `p._outcome` is less than 0 or greater than or equal to the total number of [Outcomes](#outcome) for `p._market` (including [Invalid](#invalid-outcome)).
@@ -905,6 +910,7 @@ This transaction will fail if:
     * **`p._worseOrderId`** (string) Order ID of an existing Order on the Order Book with the next-worse price with respect to the Order this transaction is intending to create, as a 32-byte hexadecimal value. The Order ID for `p._worseOrderId` can be obtained by calling `augur.trading.getBetterWorseOrders`.
     * **`p._tradeGroupId`** (string) &lt;optional> ID used by the Augur UI to group transactions, as a 32-byte hexadecimal value.
     * **`p._ignoreShares`** (boolean) Whether to ignore the [Creator's](#market-creator) owned Shares when creating the Order.
+    * **`p._kycToken`** (string) &lt;optional> [Know-Your-Customer Token](#know-your-customer-token) address (if applicable). Specifying this will use an [Order Book](#order-book) that is only available to acounts which have a non-zero balance of the specified token.
     * **`p.tx`** (Object) Object containing details about how this transaction should be made.
         * **`p.tx.to`** (string) Ethereum contract address on which to call this function, as a 20-byte hexadecimal string.
         * **`p.tx.gas`** (string) Gas limit to use when submitting this transaction, as a hexadecimal string.
@@ -926,6 +932,7 @@ This transaction will trigger [`OrderCreated`](#OrderCreated) and [`ProfitLossCh
 This transaction will fail if:
 
 * `p._market` is not a Market known to Augur.
+* `p._kycToken` is specified but is not an ERC20 token address, or is an ERC20 token address but its balance for the [Order Creator](#order-creator) is not greater than 0.
 * A value in `p._outcomes` is less than 0 or greater than the total number of Outcomes for `p._market` (including [Invalid](#invalid-outcome)).
 * A value in `p._types` is not a valid value of 0 or 1.
 * A value in `p._attoshareAmounts` is less than 0.
@@ -941,6 +948,7 @@ This transaction will fail if:
     * **`p._market`** (string) Market contract address in which to place the Order, as a 20-byte hexadecimal value.
     * **`p._ignoreShares`** (boolean) Whether to ignore the [Creator's](#market-creator) owned Shares when creating the Order.
     * **`p._tradeGroupId`** (string) &lt;optional> ID used by the Augur UI to group transactions, as a 32-byte hexadecimal value.
+    * **`p._kycToken`** (string) &lt;optional> [Know-Your-Customer Token](#know-your-customer-token) address (if applicable). Specifying this will use an [Order Book](#order-book) that is only available to acounts which have a non-zero balance of the specified token.
     * **`p.tx`** (Object) Object containing details about how this transaction should be made.
         * **`p.tx.to`** (string) Ethereum contract address on which to call this function, as a 20-byte hexadecimal string.
         * **`p.tx.gas`** (string) Gas limit to use when submitting this transaction, as a hexadecimal string.
@@ -1203,6 +1211,7 @@ This transaction will trigger an [`OrderFilled`](#OrderFilled), [`MarketVolumeCh
 This transaction will fail if:
 
 * `p._orderId` or `p._amountFillerWants` is `undefined`.
+* The Order's [Know-Your-Customer Token](#know-your-customer-token) is specified but is not an ERC20 token address, or the KYC token is an ERC20 token address but its balance for the Filler is not greater than 0.
 * `msg.sender` of this transaction is the [Creator](#order-creator) of `p._orderId`.
 
 #### **Parameters:**
@@ -2513,6 +2522,7 @@ var _price = "0x6f05b59d3b20000"; // 0.5
 var _betterOrderId = "0xea2c7476e61f5e2625e57df17fcce74741d3c2004ac657675f686a23d06e6091";
 var _worseOrderId = "0xed42c0fab97ee6fbde7c47dc62dc3ad09e8d3af53517245c77c659f7cd561426";
 var _tradeGroupId = "0x0000000000000000000000000000000000000000000000000000000000000003";
+var _kycToken =  "0x7898ff3e9ce1c0459b309fac6dd4e69229b91a12";
 var _loopLimit = "0x2";
 augur.api.Trade.publicFillBestOrder({
   _direction: "0x1",
@@ -2524,6 +2534,7 @@ augur.api.Trade.publicFillBestOrder({
   _loopLimit: _loopLimit,
   _ignoreShares: true,
   _affiliateAddress: 0x1237f6af7b3b5fed8ca980414a97c62da2830abc,
+  _kycToken: _kycToken,
   tx: { 
     to: tradeAddress,
     gas: "0x632ea0" 
@@ -2548,6 +2559,7 @@ augur.api.Trade.publicFillBestOrderWithTotalCost({
   _loopLimit: _loopLimit,
   _ignoreShares: true,
   _affiliateAddress: 0x1237f6af7b3b5fed8ca980414a97c62da2830abc,
+  _kycToken: _kycToken,
   tx: { 
     to: tradeAddress,
     gas: "0x632ea0" 
@@ -2574,6 +2586,7 @@ augur.api.Trade.publicTrade({
   _loopLimit: _loopLimit,
   _ignoreShares: true,
   _affiliateAddress: 0x1237f6af7b3b5fed8ca980414a97c62da2830abc,
+  _kycToken: _kycToken,
   tx: { 
     to: tradeAddress,
     gas: "0x632ea0" 
@@ -2600,6 +2613,7 @@ augur.api.Trade.publicTradeWithTotalCost({
   _loopLimit: _loopLimit,
   _ignoreShares: true,
   _affiliateAddress: 0x1237f6af7b3b5fed8ca980414a97c62da2830abc,
+  _kycToken: _kycToken,
   tx: { 
     to: tradeAddress,
     gas: "0x632ea0" 
@@ -2632,6 +2646,7 @@ Works similarly to `augur.api.Trade.publicTrade`, except it does not create an [
     * **`p._loopLimit`** (string) Maximum number of [Fill Order](#fill-order) operations to make, as a stringified unsigned integer.
     * **`p._ignoreShares`** (boolean) Whether to ignore the filler's owned [Shares](#shares) when creating the Order.
     * **`p._affiliateAddress`** (string) &lt;optional> Ethereum address of the [Affiliate](#affiliate), as a 20-byte hexadecimal value.
+    * **`p._kycToken`** (string) &lt;optional> [Know-Your-Customer Token](#know-your-customer-token) address (if applicable). Specifying this will use an Order Book that is only available to acounts which have a non-zero balance of the specified token.
     * **`p.tx`** (Object) Object containing details about how this transaction should be made.
         * **`p.tx.to`** (string) Ethereum contract address on which to call this function, as a 20-byte hexadecimal string.
         * **`p.tx.gas`** (string) Gas limit to use when submitting this transaction, as a hexadecimal string.
@@ -2660,6 +2675,7 @@ Works like `augur.api.Trade.publicFillBestOrder`, but uses the parameter `p._tot
     * **`p._loopLimit`** (string) Maximum number of Fill Order operations to make, as a stringified unsigned integer.
     * **`p._ignoreShares`** (boolean) Whether to ignore the filler's owned [Shares](#shares) when creating the Order.
     * **`p._affiliateAddress`** (string) &lt;optional> Ethereum address of the [Affiliate](#affiliate), as a 20-byte hexadecimal value.
+    * **`p._kycToken`** (string) &lt;optional> [Know-Your-Customer Token](#know-your-customer-token) address (if applicable). Specifying this will use an [Order Book](#order-book) that is only available to acounts which have a non-zero balance of the specified token.
     * **`p.tx`** (Object) Object containing details about how this transaction should be made.
         * **`p.tx.to`** (string) Ethereum contract address on which to call this function, as a 20-byte hexadecimal string.
         * **`p.tx.gas`** (string) Gas limit to use when submitting this transaction, as a hexadecimal string.
@@ -2699,6 +2715,7 @@ This transaction will fail if:
     * **`p._loopLimit`** (string) Maximum number of trade operations to make, as a stringified unsigned integer.
     * **`p._ignoreShares`** (boolean) Whether to ignore the trader's owned Shares when creating the Order.
     * **`p._affiliateAddress`** (string) &lt;optional> Ethereum address of the [Affiliate](#affiliate), as a 20-byte hexadecimal value.
+    * **`p._kycToken`** (string) &lt;optional> [Know-Your-Customer Token](#know-your-customer-token) address (if applicable). Specifying this will use an Order Book that is only available to acounts which have a non-zero balance of the specified token.
     * **`p.tx`** (Object) Object containing details about how this transaction should be made.
         * **`p.tx.to`** (string) Ethereum contract address on which to call this function, as a 20-byte hexadecimal string.
         * **`p.tx.gas`** (string) Gas limit to use when submitting this transaction, as a hexadecimal string.
@@ -2729,6 +2746,7 @@ Works like `augur.api.Trade.publicTrade`, but uses the parameter `p._totalCost` 
     * **`p._loopLimit`** (string) Maximum number of trade operations to make, as a stringified unsigned integer.
     * **`p._ignoreShares`** (boolean) Whether to ignore the trader's owned [Shares](#shares) when creating the Order.
     * **`p._affiliateAddress`** (string) &lt;optional> Ethereum address of the [Affiliate](#affiliate), as a 20-byte hexadecimal value.
+    * **`p._kycToken`** (string) &lt;optional> [Know-Your-Customer Token](#know-your-customer-token) address (if applicable). Specifying this will use an [Order Book](#order-book) that is only available to acounts which have a non-zero balance of the specified token.
     * **`p.tx`** (Object) Object containing details about how this transaction should be made.
         * **`p.tx.to`** (string) Ethereum contract address on which to call this function, as a 20-byte hexadecimal string.
         * **`p.tx.gas`** (string) Gas limit to use when submitting this transaction, as a hexadecimal string.
