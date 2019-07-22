@@ -6950,6 +6950,7 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
 <span class="kd">var</span> <span class="nx">_market</span> <span class="o">=</span> <span class="s2">"0x9368ff3e9ce1c0459b309fac6dd4e69229b91a42"</span><span class="p">;</span>
 <span class="kd">var</span> <span class="nx">_outcome</span> <span class="o">=</span> <span class="s2">"0x1"</span><span class="p">;</span>
 <span class="kd">var</span> <span class="nx">_price</span> <span class="o">=</span> <span class="s2">"0x63eb89da4ed0000"</span><span class="p">;</span> <span class="c1">// 0.45</span>
+<span class="kd">var</span> <span class="nx">_kycToken</span> <span class="o">=</span>  <span class="s2">"0x7898ff3e9ce1c0459b309fac6dd4e69229b91a12"</span><span class="p">;</span>
 
 <span class="nx">augur</span><span class="p">.</span><span class="nx">api</span><span class="p">.</span><span class="nx">Orders</span><span class="p">.</span><span class="nx">ascendOrderList</span><span class="p">({</span>
   <span class="na">_type</span><span class="p">:</span> <span class="nx">_type</span><span class="p">,</span>
@@ -6992,7 +6993,8 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
 <span class="nx">augur</span><span class="p">.</span><span class="nx">api</span><span class="p">.</span><span class="nx">Orders</span><span class="p">.</span><span class="nx">getBestOrderId</span><span class="p">({</span>
   <span class="na">_type</span><span class="p">:</span> <span class="nx">_type</span><span class="p">,</span>
   <span class="na">_market</span><span class="p">:</span> <span class="nx">_market</span><span class="p">,</span>
-  <span class="na">_outcome</span><span class="p">:</span> <span class="nx">_outcome</span>
+  <span class="na">_outcome</span><span class="p">:</span> <span class="nx">_outcome</span><span class="p">,</span>
+  <span class="na">_kycToken</span><span class="p">:</span> <span class="nx">_kycToken</span>
 <span class="p">},</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">error</span><span class="p">,</span> <span class="nx">bestOrderId</span><span class="p">)</span> <span class="p">{</span> 
   <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">bestOrderdD</span><span class="p">);</span> 
 <span class="p">});</span>
@@ -7016,6 +7018,14 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
 <span class="c1">// example output:</span>
 <span class="s2">"490000000000000000"</span>
 
+<span class="nx">augur</span><span class="p">.</span><span class="nx">api</span><span class="p">.</span><span class="nx">Orders</span><span class="p">.</span><span class="nx">getKYCToken</span><span class="p">({</span>
+  <span class="na">_orderId</span><span class="p">:</span> <span class="nx">_orderId</span>
+<span class="p">},</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">error</span><span class="p">,</span> <span class="nx">kycToken</span><span class="p">)</span> <span class="p">{</span> 
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">kycToken</span><span class="p">);</span> 
+<span class="p">});</span>
+<span class="c1">// example output:</span>
+<span class="o">!!!</span><span class="nx">TBD</span><span class="o">!!!</span> <span class="nx">Add</span> <span class="nx">example</span> <span class="nx">output</span>
+
 <span class="nx">augur</span><span class="p">.</span><span class="nx">api</span><span class="p">.</span><span class="nx">Orders</span><span class="p">.</span><span class="nx">getMarket</span><span class="p">({</span> 
   <span class="na">_orderId</span><span class="p">:</span> <span class="nx">_orderId</span>
 <span class="p">},</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">error</span><span class="p">,</span> <span class="nx">market</span><span class="p">)</span> <span class="p">{</span> 
@@ -7031,6 +7041,23 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
 <span class="p">});</span>
 <span class="c1">// example output:</span>
 <span class="s2">"0x438f2aeb8a16745b1cd711e168581ebce744ffaa"</span><span class="p">;</span>
+
+<span class="nx">augur</span><span class="p">.</span><span class="nx">api</span><span class="p">.</span><span class="nx">Orders</span><span class="p">.</span><span class="nx">getOrderId</span><span class="p">({</span> 
+  <span class="na">_type</span><span class="p">:</span> <span class="nx">_type</span><span class="p">,</span>
+  <span class="na">_market</span><span class="p">:</span> <span class="nx">_market</span><span class="p">,</span>
+  <span class="na">_amount</span><span class="p">:</span> <span class="s2">"0x15"</span><span class="p">,</span>
+  <span class="na">_price</span><span class="p">:</span> <span class="nx">_price</span><span class="p">,</span>
+  <span class="na">_sender</span><span class="p">:</span> <span class="s2">"0x7898ff3e9ce1c0459b309fac6dd4e69229b91356"</span><span class="p">,</span>
+  <span class="na">_blockNumber</span><span class="p">:</span> <span class="s2">"8201474"</span><span class="p">,</span>
+  <span class="na">_outcome</span><span class="p">:</span> <span class="nx">_outcome</span><span class="p">,</span>
+  <span class="na">_moneyEscrowed</span><span class="p">:</span> <span class="nx">_moneyEscrowed</span><span class="p">,</span>
+  <span class="na">_sharesEscrowed</span><span class="p">:</span> <span class="nx">_sharesEscrowed</span><span class="p">,</span>
+  <span class="na">_kycToken</span><span class="p">:</span> <span class="nx">_kycToken</span>
+<span class="p">},</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">error</span><span class="p">,</span> <span class="nx">orderId</span><span class="p">)</span> <span class="p">{</span> 
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">orderId</span><span class="p">);</span> 
+<span class="p">});</span>
+<span class="c1">// example output:</span>
+<span class="o">!!!</span><span class="nx">TBD</span><span class="o">!!!</span> <span class="nx">Add</span> <span class="nx">example</span> <span class="nx">output</span>
 
 <span class="nx">augur</span><span class="p">.</span><span class="nx">api</span><span class="p">.</span><span class="nx">Orders</span><span class="p">.</span><span class="nx">getOrderMoneyEscrowed</span><span class="p">({</span> 
   <span class="na">_orderId</span><span class="p">:</span> <span class="nx">_orderId</span> 
@@ -7091,7 +7118,8 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
 <span class="nx">augur</span><span class="p">.</span><span class="nx">api</span><span class="p">.</span><span class="nx">Orders</span><span class="p">.</span><span class="nx">getWorstOrderId</span><span class="p">({</span>
   <span class="na">_type</span><span class="p">:</span> <span class="nx">_type</span><span class="p">,</span>
   <span class="na">_market</span><span class="p">:</span> <span class="nx">_market</span><span class="p">,</span>
-  <span class="na">_outcome</span><span class="p">:</span> <span class="nx">_outcome</span>
+  <span class="na">_outcome</span><span class="p">:</span> <span class="nx">_outcome</span><span class="p">,</span>
+  <span class="na">_kycToken</span><span class="p">:</span> <span class="nx">_kycToken</span>
 <span class="p">},</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">error</span><span class="p">,</span> <span class="nx">worstOrderId</span><span class="p">)</span> <span class="p">{</span> 
   <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">worstOrderId</span><span class="p">);</span> 
 <span class="p">});</span>
@@ -7227,6 +7255,7 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
 <li><strong><code class="prettyprint">p._type</code></strong> (string) Type of Order, as a hexadecimal string (&ldquo;0x0&rdquo; for a Bid Order, &ldquo;0x1&rdquo; for an Ask Order).</li>
 <li><strong><code class="prettyprint">p._market</code></strong> (string) Ethereum contract address of the Market for which to get the best Order ID, as a 20-byte hexadecimal string.</li>
 <li><strong><code class="prettyprint">p._outcome</code></strong> (string) <a href="#outcome">Outcome</a> of the Market, as a hexadecimal string.</li>
+<li><strong><code class="prettyprint">p._kycToken</code></strong> (string) &lt;optional&gt; <a href="#know-your-customer-token">Know-Your-Customer Token</a> address of the Order.</li>
 </ul></li>
 <li><strong><code class="prettyprint">callback</code></strong> (function) &lt;optional&gt; Called after the function&rsquo;s result has been retrieved.</li>
 </ul>
@@ -7256,6 +7285,27 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
 
 <ul>
 <li>(string) ID of an Order with a better price than the specified Order, as a 32-byte hexadecimal string.</li>
+</ul>
+
+<h3 id="augur-api-orders-getkyctoken-p-callback">augur.api.Orders.getKYCToken(p, callback)</h3>
+
+<p>Returns the <a href="#know-your-customer-token">Know-Your-Customer Token</a> address associated with a given <a href="#order">Order</a>.</p>
+
+<h4 id="strong-strong"><strong>Parameters:</strong></h4>
+
+<ul>
+<li><strong><code class="prettyprint">p</code></strong> (Object) Parameters object.<br>
+
+<ul>
+<li><strong><code class="prettyprint">p._orderId</code></strong> (string) Order ID, as a 32-byte hexadecimal string.</li>
+</ul></li>
+<li><strong><code class="prettyprint">callback</code></strong> (function) &lt;optional&gt; Called after the function&rsquo;s result has been retrieved.</li>
+</ul>
+
+<h4 id="strong-strong"><strong>Returns:</strong></h4>
+
+<ul>
+<li>(string) The Know-Your-Customer Token address associated with the Order, as a 20-byte hexadecimal string.</li>
 </ul>
 
 <h3 id="augur-api-orders-getlastoutcomeprice-p-callback">augur.api.Orders.getLastOutcomePrice(p, callback)</h3>
@@ -7320,6 +7370,36 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
 
 <ul>
 <li>(string) Ethereum address of the Creator of the specified Order, as a 20-byte hexadecimal string.</li>
+</ul>
+
+<h3 id="augur-api-orders-getorderid-p-callback">augur.api.Orders.getOrderId(p, callback)</h3>
+
+<p>Returns the <a href="#order">Order</a> ID that satisfies the given parameters.</p>
+
+<h4 id="strong-strong"><strong>Parameters:</strong></h4>
+
+<ul>
+<li><strong><code class="prettyprint">p</code></strong> (Object) Parameters object.<br>
+
+<ul>
+<li><strong><code class="prettyprint">p._type</code></strong> (string) Type of Order, as a hexadecimal string (&ldquo;0x0&rdquo; for a Bid Order, &ldquo;0x1&rdquo; for an Ask Order).</li>
+<li><strong><code class="prettyprint">p._market</code></strong> (string) Ethereum contract address of a Market, as a 20-byte hexadecimal string.</li>
+<li><strong><code class="prettyprint">p._amount</code></strong> (string) Amount (in <a href="#atto-prefix">attoShares</a>) that the Order is for.</li>
+<li><strong><code class="prettyprint">p._price</code></strong> (string) Price (in attoDai) of the Order, as a hexadecimal string.</li>
+<li><strong><code class="prettyprint">p._sender</code></strong> (string) Ethereum address of the account that created the Order, as a 20-byte hexadecimal string.</li>
+<li><strong><code class="prettyprint">p._blockNumber</code></strong> (string) Block number on which the Order was created.</li>
+<li><strong><code class="prettyprint">p._outcome</code></strong> (string) (string) <a href="#outcome">Outcome</a> of the Market, as a hexadecimal string.</li>
+<li><strong><code class="prettyprint">p._moneyEscrowed</code></strong> (string) &lt;optional&gt; Amount of attoDai escrowed to create the Order.</li>
+<li><strong><code class="prettyprint">p._sharesEscrowed</code></strong> (string) &lt;optional&gt; Amount of attoShares escrowed to create the Order.</li>
+<li><strong><code class="prettyprint">p._kycToken</code></strong> (string) &lt;optional&gt; <a href="#know-your-customer-token">Know-Your-Customer Token</a> address of the Order.</li>
+</ul></li>
+<li><strong><code class="prettyprint">callback</code></strong> (function) &lt;optional&gt; Called after the function&rsquo;s result has been retrieved.</li>
+</ul>
+
+<h4 id="strong-strong"><strong>Returns:</strong></h4>
+
+<ul>
+<li>(string) Ethereum contract address of the Market for the specified Order, as a 20-byte hexadecimal string.</li>
 </ul>
 
 <h3 id="augur-api-orders-getordermoneyescrowed-p-callback">augur.api.Orders.getOrderMoneyEscrowed(p, callback)</h3>
@@ -7482,6 +7562,7 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
 <li><strong><code class="prettyprint">p._type</code></strong> (string) Type of Order, as a hexadecimal string (&ldquo;0x0&rdquo; for a Bid Order, &ldquo;0x1&rdquo; for an Ask Order). </li>
 <li><strong><code class="prettyprint">p._market</code></strong> (string) Ethereum contract address of the Market for which to get the worst Order ID, as a 20-byte hexadecimal string.</li>
 <li><strong><code class="prettyprint">p._outcome</code></strong> (string) <a href="#outcome">Outcome</a> of the Market, as a hexadecimal string.</li>
+<li><strong><code class="prettyprint">p._kycToken</code></strong> (string) &lt;optional&gt; <a href="#know-your-customer-token">Know-Your-Customer Token</a> address of the Order.</li>
 </ul></li>
 <li><strong><code class="prettyprint">callback</code></strong> (function) &lt;optional&gt; Called after the function&rsquo;s result has been retrieved.</li>
 </ul>
@@ -9911,6 +9992,8 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
 <span class="kd">var</span> <span class="nx">_betterOrderId</span> <span class="o">=</span> <span class="s2">"0x12328a31378e925ea122ea73e8c81baaf5c731d408487f6884d2e4c81baa3456"</span><span class="p">;</span>
 <span class="kd">var</span> <span class="nx">_worseOrderId</span> <span class="o">=</span> <span class="s2">"0x91c28a31378e925ea122ea73e8c81baaf5c731d408487f6884d2e4c81baa39dd"</span><span class="p">;</span>
 
+<span class="kd">var</span> <span class="nx">_kycToken</span> <span class="o">=</span>  <span class="s2">"0x7898ff3e9ce1c0459b309fac6dd4e69229b91a12"</span><span class="p">;</span>
+
 <span class="nx">augur</span><span class="p">.</span><span class="nx">api</span><span class="p">.</span><span class="nx">CreateOrder</span><span class="p">.</span><span class="nx">publicCreateOrder</span><span class="p">({</span>
   <span class="na">_type</span><span class="p">:</span> <span class="s2">"0x0"</span><span class="p">,</span>
   <span class="na">_attoshares</span><span class="p">:</span> <span class="s2">"0x5af3107a4000"</span><span class="p">,</span>
@@ -9921,6 +10004,7 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
   <span class="na">_worseOrderId</span><span class="p">:</span> <span class="nx">_worseOrderId</span><span class="p">,</span>
   <span class="na">_tradeGroupId</span><span class="p">:</span> <span class="s2">"0x0000000000000000000000000000000000000000000000000000000000000000"</span><span class="p">,</span>
   <span class="na">_ignoreShares</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+  <span class="na">_kycToken</span><span class="p">:</span> <span class="nx">_kycToken</span><span class="p">,</span>
   <span class="na">tx</span><span class="p">:</span> <span class="p">{</span> 
     <span class="na">to</span><span class="p">:</span> <span class="nx">createOrderAddress</span><span class="p">,</span>
   <span class="p">},</span>
@@ -9942,6 +10026,7 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
   <span class="na">_market</span><span class="p">:</span> <span class="s2">"0xc4ba20cbafe3a3655a2f2e4df4ac7f942a722017"</span><span class="p">,</span>
   <span class="na">_ignoreShares</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
   <span class="na">_tradeGroupId</span><span class="p">:</span> <span class="s2">"0x0000000000000000000000000000000000000000000000000000000000000000"</span><span class="p">,</span>
+  <span class="na">_kycToken</span><span class="p">:</span> <span class="nx">_kycToken</span><span class="p">,</span>
   <span class="na">tx</span><span class="p">:</span> <span class="p">{</span> 
     <span class="na">to</span><span class="p">:</span> <span class="nx">createOrderAddress</span><span class="p">,</span>
   <span class="p">},</span>
@@ -9967,6 +10052,7 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
 
 <ul>
 <li><code class="prettyprint">p._market</code> is not a Market known to Augur.</li>
+<li><code class="prettyprint">p._kycToken</code> is specified but is not an ERC20 token address, or is an ERC20 token address but its balance for the <a href="#order-creator">Order Creator</a> is not greater than 0.</li>
 <li><code class="prettyprint">p._type</code> is not a valid value of 0 or 1.</li>
 <li><code class="prettyprint">p._attoshares</code> is less than or equal to 0.</li>
 <li><code class="prettyprint">p._outcome</code> is less than 0 or greater than or equal to the total number of <a href="#outcome">Outcomes</a> for <code class="prettyprint">p._market</code> (including <a href="#invalid-outcome">Invalid</a>).</li>
@@ -9988,6 +10074,7 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
 <li><strong><code class="prettyprint">p._worseOrderId</code></strong> (string) Order ID of an existing Order on the Order Book with the next-worse price with respect to the Order this transaction is intending to create, as a 32-byte hexadecimal value. The Order ID for <code class="prettyprint">p._worseOrderId</code> can be obtained by calling <code class="prettyprint">augur.trading.getBetterWorseOrders</code>.</li>
 <li><strong><code class="prettyprint">p._tradeGroupId</code></strong> (string) &lt;optional&gt; ID used by the Augur UI to group transactions, as a 32-byte hexadecimal value.</li>
 <li><strong><code class="prettyprint">p._ignoreShares</code></strong> (boolean) Whether to ignore the <a href="#market-creator">Creator&rsquo;s</a> owned Shares when creating the Order.</li>
+<li><strong><code class="prettyprint">p._kycToken</code></strong> (string) &lt;optional&gt; <a href="#know-your-customer-token">Know-Your-Customer Token</a> address (if applicable). Specifying this will use an <a href="#order-book">Order Book</a> that is only available to acounts which have a non-zero balance of the specified token.</li>
 <li><strong><code class="prettyprint">p.tx</code></strong> (Object) Object containing details about how this transaction should be made.
 
 <ul>
@@ -10017,6 +10104,7 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
 
 <ul>
 <li><code class="prettyprint">p._market</code> is not a Market known to Augur.</li>
+<li><code class="prettyprint">p._kycToken</code> is specified but is not an ERC20 token address, or is an ERC20 token address but its balance for the <a href="#order-creator">Order Creator</a> is not greater than 0.</li>
 <li>A value in <code class="prettyprint">p._outcomes</code> is less than 0 or greater than the total number of Outcomes for <code class="prettyprint">p._market</code> (including <a href="#invalid-outcome">Invalid</a>).</li>
 <li>A value in <code class="prettyprint">p._types</code> is not a valid value of 0 or 1.</li>
 <li>A value in <code class="prettyprint">p._attoshareAmounts</code> is less than 0.</li>
@@ -10036,6 +10124,7 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
 <li><strong><code class="prettyprint">p._market</code></strong> (string) Market contract address in which to place the Order, as a 20-byte hexadecimal value.</li>
 <li><strong><code class="prettyprint">p._ignoreShares</code></strong> (boolean) Whether to ignore the <a href="#market-creator">Creator&rsquo;s</a> owned Shares when creating the Order.</li>
 <li><strong><code class="prettyprint">p._tradeGroupId</code></strong> (string) &lt;optional&gt; ID used by the Augur UI to group transactions, as a 32-byte hexadecimal value.</li>
+<li><strong><code class="prettyprint">p._kycToken</code></strong> (string) &lt;optional&gt; <a href="#know-your-customer-token">Know-Your-Customer Token</a> address (if applicable). Specifying this will use an <a href="#order-book">Order Book</a> that is only available to acounts which have a non-zero balance of the specified token.</li>
 <li><strong><code class="prettyprint">p.tx</code></strong> (Object) Object containing details about how this transaction should be made.
 
 <ul>
@@ -10348,6 +10437,7 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
 
 <ul>
 <li><code class="prettyprint">p._orderId</code> or <code class="prettyprint">p._amountFillerWants</code> is <code class="prettyprint">undefined</code>.</li>
+<li>The Order&rsquo;s <a href="#know-your-customer-token">Know-Your-Customer Token</a> is specified but is not an ERC20 token address, or the KYC token is an ERC20 token address but its balance for the Filler is not greater than 0.</li>
 <li><code class="prettyprint">msg.sender</code> of this transaction is the <a href="#order-creator">Creator</a> of <code class="prettyprint">p._orderId</code>.</li>
 </ul>
 
@@ -11975,6 +12065,7 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
 <span class="kd">var</span> <span class="nx">_betterOrderId</span> <span class="o">=</span> <span class="s2">"0xea2c7476e61f5e2625e57df17fcce74741d3c2004ac657675f686a23d06e6091"</span><span class="p">;</span>
 <span class="kd">var</span> <span class="nx">_worseOrderId</span> <span class="o">=</span> <span class="s2">"0xed42c0fab97ee6fbde7c47dc62dc3ad09e8d3af53517245c77c659f7cd561426"</span><span class="p">;</span>
 <span class="kd">var</span> <span class="nx">_tradeGroupId</span> <span class="o">=</span> <span class="s2">"0x0000000000000000000000000000000000000000000000000000000000000003"</span><span class="p">;</span>
+<span class="kd">var</span> <span class="nx">_kycToken</span> <span class="o">=</span>  <span class="s2">"0x7898ff3e9ce1c0459b309fac6dd4e69229b91a12"</span><span class="p">;</span>
 <span class="kd">var</span> <span class="nx">_loopLimit</span> <span class="o">=</span> <span class="s2">"0x2"</span><span class="p">;</span>
 <span class="nx">augur</span><span class="p">.</span><span class="nx">api</span><span class="p">.</span><span class="nx">Trade</span><span class="p">.</span><span class="nx">publicFillBestOrder</span><span class="p">({</span>
   <span class="na">_direction</span><span class="p">:</span> <span class="s2">"0x1"</span><span class="p">,</span>
@@ -11986,6 +12077,7 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
   <span class="na">_loopLimit</span><span class="p">:</span> <span class="nx">_loopLimit</span><span class="p">,</span>
   <span class="na">_ignoreShares</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
   <span class="na">_affiliateAddress</span><span class="p">:</span> <span class="mh">0x1237f6af7b3b5fed8ca980414a97c62da2830abc</span><span class="p">,</span>
+  <span class="na">_kycToken</span><span class="p">:</span> <span class="nx">_kycToken</span><span class="p">,</span>
   <span class="na">tx</span><span class="p">:</span> <span class="p">{</span> 
     <span class="na">to</span><span class="p">:</span> <span class="nx">tradeAddress</span><span class="p">,</span>
     <span class="na">gas</span><span class="p">:</span> <span class="s2">"0x632ea0"</span> 
@@ -12010,6 +12102,7 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
   <span class="na">_loopLimit</span><span class="p">:</span> <span class="nx">_loopLimit</span><span class="p">,</span>
   <span class="na">_ignoreShares</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
   <span class="na">_affiliateAddress</span><span class="p">:</span> <span class="mh">0x1237f6af7b3b5fed8ca980414a97c62da2830abc</span><span class="p">,</span>
+  <span class="na">_kycToken</span><span class="p">:</span> <span class="nx">_kycToken</span><span class="p">,</span>
   <span class="na">tx</span><span class="p">:</span> <span class="p">{</span> 
     <span class="na">to</span><span class="p">:</span> <span class="nx">tradeAddress</span><span class="p">,</span>
     <span class="na">gas</span><span class="p">:</span> <span class="s2">"0x632ea0"</span> 
@@ -12036,6 +12129,7 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
   <span class="na">_loopLimit</span><span class="p">:</span> <span class="nx">_loopLimit</span><span class="p">,</span>
   <span class="na">_ignoreShares</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
   <span class="na">_affiliateAddress</span><span class="p">:</span> <span class="mh">0x1237f6af7b3b5fed8ca980414a97c62da2830abc</span><span class="p">,</span>
+  <span class="na">_kycToken</span><span class="p">:</span> <span class="nx">_kycToken</span><span class="p">,</span>
   <span class="na">tx</span><span class="p">:</span> <span class="p">{</span> 
     <span class="na">to</span><span class="p">:</span> <span class="nx">tradeAddress</span><span class="p">,</span>
     <span class="na">gas</span><span class="p">:</span> <span class="s2">"0x632ea0"</span> 
@@ -12062,6 +12156,7 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
   <span class="na">_loopLimit</span><span class="p">:</span> <span class="nx">_loopLimit</span><span class="p">,</span>
   <span class="na">_ignoreShares</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
   <span class="na">_affiliateAddress</span><span class="p">:</span> <span class="mh">0x1237f6af7b3b5fed8ca980414a97c62da2830abc</span><span class="p">,</span>
+  <span class="na">_kycToken</span><span class="p">:</span> <span class="nx">_kycToken</span><span class="p">,</span>
   <span class="na">tx</span><span class="p">:</span> <span class="p">{</span> 
     <span class="na">to</span><span class="p">:</span> <span class="nx">tradeAddress</span><span class="p">,</span>
     <span class="na">gas</span><span class="p">:</span> <span class="s2">"0x632ea0"</span> 
@@ -12097,6 +12192,7 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
 <li><strong><code class="prettyprint">p._loopLimit</code></strong> (string) Maximum number of <a href="#fill-order">Fill Order</a> operations to make, as a stringified unsigned integer.</li>
 <li><strong><code class="prettyprint">p._ignoreShares</code></strong> (boolean) Whether to ignore the filler&rsquo;s owned <a href="#shares">Shares</a> when creating the Order.</li>
 <li><strong><code class="prettyprint">p._affiliateAddress</code></strong> (string) &lt;optional&gt; Ethereum address of the <a href="#affiliate">Affiliate</a>, as a 20-byte hexadecimal value.</li>
+<li><strong><code class="prettyprint">p._kycToken</code></strong> (string) &lt;optional&gt; <a href="#know-your-customer-token">Know-Your-Customer Token</a> address (if applicable). Specifying this will use an Order Book that is only available to acounts which have a non-zero balance of the specified token.</li>
 <li><strong><code class="prettyprint">p.tx</code></strong> (Object) Object containing details about how this transaction should be made.
 
 <ul>
@@ -12135,6 +12231,7 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
 <li><strong><code class="prettyprint">p._loopLimit</code></strong> (string) Maximum number of Fill Order operations to make, as a stringified unsigned integer.</li>
 <li><strong><code class="prettyprint">p._ignoreShares</code></strong> (boolean) Whether to ignore the filler&rsquo;s owned <a href="#shares">Shares</a> when creating the Order.</li>
 <li><strong><code class="prettyprint">p._affiliateAddress</code></strong> (string) &lt;optional&gt; Ethereum address of the <a href="#affiliate">Affiliate</a>, as a 20-byte hexadecimal value.</li>
+<li><strong><code class="prettyprint">p._kycToken</code></strong> (string) &lt;optional&gt; <a href="#know-your-customer-token">Know-Your-Customer Token</a> address (if applicable). Specifying this will use an <a href="#order-book">Order Book</a> that is only available to acounts which have a non-zero balance of the specified token.</li>
 <li><strong><code class="prettyprint">p.tx</code></strong> (Object) Object containing details about how this transaction should be made.
 
 <ul>
@@ -12186,6 +12283,7 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
 <li><strong><code class="prettyprint">p._loopLimit</code></strong> (string) Maximum number of trade operations to make, as a stringified unsigned integer.</li>
 <li><strong><code class="prettyprint">p._ignoreShares</code></strong> (boolean) Whether to ignore the trader&rsquo;s owned Shares when creating the Order.</li>
 <li><strong><code class="prettyprint">p._affiliateAddress</code></strong> (string) &lt;optional&gt; Ethereum address of the <a href="#affiliate">Affiliate</a>, as a 20-byte hexadecimal value.</li>
+<li><strong><code class="prettyprint">p._kycToken</code></strong> (string) &lt;optional&gt; <a href="#know-your-customer-token">Know-Your-Customer Token</a> address (if applicable). Specifying this will use an Order Book that is only available to acounts which have a non-zero balance of the specified token.</li>
 <li><strong><code class="prettyprint">p.tx</code></strong> (Object) Object containing details about how this transaction should be made.
 
 <ul>
@@ -12226,6 +12324,7 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
 <li><strong><code class="prettyprint">p._loopLimit</code></strong> (string) Maximum number of trade operations to make, as a stringified unsigned integer.</li>
 <li><strong><code class="prettyprint">p._ignoreShares</code></strong> (boolean) Whether to ignore the trader&rsquo;s owned <a href="#shares">Shares</a> when creating the Order.</li>
 <li><strong><code class="prettyprint">p._affiliateAddress</code></strong> (string) &lt;optional&gt; Ethereum address of the <a href="#affiliate">Affiliate</a>, as a 20-byte hexadecimal value.</li>
+<li><strong><code class="prettyprint">p._kycToken</code></strong> (string) &lt;optional&gt; <a href="#know-your-customer-token">Know-Your-Customer Token</a> address (if applicable). Specifying this will use an <a href="#order-book">Order Book</a> that is only available to acounts which have a non-zero balance of the specified token.</li>
 <li><strong><code class="prettyprint">p.tx</code></strong> (Object) Object containing details about how this transaction should be made.
 
 <ul>
@@ -15493,7 +15592,7 @@ During the very first <a href="#dispute-window">Dispute Window</a> after launch,
 
 <p>If the Outcome of a Market is Invalid, <a href="#reporters">Reporters</a> can <a href="#report">Report</a> its <a href="#tentative-outcome">Tentative Outcome</a> as Invalid. Additionally, if the Market is in the <a href="#dispute-round-phase">Dispute Round Phase</a>, users can <a href="#dispute-stake">Stake</a> <a href="#rep">REP</a> on Invalid as the Tentative Outcome, or if the Market has <a href="#fork">Forked</a>, users can migrate their REP to the <a href="#child-universe">Child Universe</a> where the Outcome is Invalid. If the Market&rsquo;s <a href="#final-outcome">Final Outcome</a> becomes Invalid, its <a href="#payout-set">Payout Set</a> will have the <a href="#invalid-market-payout-numerator">Invalid Market Payout Numerator</a> set to the <a href="#number-of-ticks">Number of Ticks</a>. For example, in a <a href="#categorical-market">Categorical Market</a> with 100 <a href="#tick">Ticks</a> and 4 potential Outcomes (excluding Invalid), the Payout Set would be [100, 0, 0, 0, 0].</p>
 
-<h2 id="kyc-token">KYC Token</h2>
+<h2 id="know-your-customer-token">Know-Your-Customer Token</h2>
 
 <p>!!!TBD!!! Add definition</p>
 
