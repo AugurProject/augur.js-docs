@@ -4482,6 +4482,14 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
 <span class="p">});</span>
 <span class="c1">// example output:</span>
 <span class="kc">true</span>
+
+<span class="nx">augur</span><span class="p">.</span><span class="nx">api</span><span class="p">.</span><span class="nx">Augur</span><span class="p">.</span><span class="nx">lookup</span><span class="p">({</span> 
+  <span class="na">key</span><span class="p">:</span> <span class="s2">""</span>
+<span class="p">},</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">error</span><span class="p">,</span> <span class="nx">contractAddress</span><span class="p">)</span> <span class="p">{</span> 
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">contractAddress</span><span class="p">);</span> 
+<span class="p">});</span>
+<span class="c1">// example output:</span>
+<span class="o">!!!</span><span class="nx">TBD</span><span class="o">!!!</span> <span class="nx">Add</span> <span class="nx">example</span> <span class="nx">output</span> <span class="o">&amp;</span> <span class="nx">example</span> <span class="s2">`key`</span> <span class="nx">param</span>
 </code></pre></div>
 <p>Provides JavaScript bindings for the <a href="https://github.com/AugurProject/augur/blob/master/packages/augur-core/source/contracts/Augur.sol">Augur Solidity Contract</a>, which handles <a href="#universe">Universe</a> creation and event logging.</p>
 
@@ -4643,6 +4651,27 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
 
 <ul>
 <li>(boolean) <code class="prettyprint">true</code> if the specified Market is in Augur&rsquo;s list of known Markets, or <code class="prettyprint">false</code> otherwise.</li>
+</ul>
+
+<h3 id="augur-api-augur-lookup-p-callback">augur.api.Augur.lookup(p, callback)</h3>
+
+<p>Augur keeps track of its contract addresses in a keyed registry. This function returns the contract address that corresponds to a given key.</p>
+
+<h4 id="strong-strong"><strong>Parameters:</strong></h4>
+
+<ul>
+<li><strong><code class="prettyprint">p</code></strong> (Object) Parameters object.<br>
+
+<ul>
+<li><strong><code class="prettyprint">p._key</code></strong> (string) Registry key to use to look up the contract address, as a 32-byte hexadecimal string.</li>
+</ul></li>
+<li><strong><code class="prettyprint">callback</code></strong> (function) &lt;optional&gt; Called after the function&rsquo;s result has been retrieved.</li>
+</ul>
+
+<h4 id="strong-strong"><strong>Returns:</strong></h4>
+
+<ul>
+<li>(string) The contract address that corresponds to the specified key.</li>
 </ul>
 
 <h2 id="cash-call-api">Cash Call API</h2>
@@ -5149,14 +5178,6 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
 <span class="c1">// example output:</span>
 <span class="o">!!!</span><span class="nx">TBD</span><span class="o">!!!</span> <span class="nx">Add</span> <span class="nx">example</span> <span class="nx">output</span>
 
-<span class="nx">augur</span><span class="p">.</span><span class="nx">api</span><span class="p">.</span><span class="nx">DisputeWindow</span><span class="p">.</span><span class="nx">getValidityBondAttoCash</span><span class="p">({</span> 
-  <span class="na">tx</span><span class="p">:</span> <span class="p">{</span> <span class="na">to</span><span class="p">:</span> <span class="nx">disputeWindow</span> <span class="p">}</span> 
-<span class="p">},</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">error</span><span class="p">,</span> <span class="nx">validityBondAttoCash</span><span class="p">)</span> <span class="p">{</span> 
-  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">validityBondAttoCash</span><span class="p">);</span> 
-<span class="p">});</span>
-<span class="c1">// example output:</span>
-<span class="o">!!!</span><span class="nx">TBD</span><span class="o">!!!</span> <span class="nx">Add</span> <span class="nx">example</span> <span class="nx">output</span>
-
 <span class="nx">augur</span><span class="p">.</span><span class="nx">api</span><span class="p">.</span><span class="nx">DisputeWindow</span><span class="p">.</span><span class="nx">isActive</span><span class="p">({</span> 
   <span class="na">tx</span><span class="p">:</span> <span class="p">{</span> <span class="na">to</span><span class="p">:</span> <span class="nx">disputeWindow</span> <span class="p">}</span> 
 <span class="p">},</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">error</span><span class="p">,</span> <span class="nx">isActive</span><span class="p">)</span> <span class="p">{</span> 
@@ -5278,31 +5299,6 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
 <h3 id="augur-api-disputewindow-getwindowid-p-callback">augur.api.DisputeWindow.getWindowId(p, callback)</h3>
 
 <p>Returns the <a href="#dispute-window">Dispute Window</a> ID of the Dispute Window.</p>
-
-<h4 id="strong-strong"><strong>Parameters:</strong></h4>
-
-<ul>
-<li><strong><code class="prettyprint">p</code></strong> (Object) Parameters object.<br>
-
-<ul>
-<li><strong><code class="prettyprint">p.tx</code></strong> (Object) Object containing details about how this function call should be made.
-
-<ul>
-<li><strong><code class="prettyprint">p.tx.to</code></strong> (string) Ethereum contract address of the Dispute Window on which to call this function, as a 20-byte hexadecimal string.</li>
-</ul></li>
-</ul></li>
-<li><strong><code class="prettyprint">callback</code></strong> (function) &lt;optional&gt; Called after the function&rsquo;s result has been retrieved.</li>
-</ul>
-
-<h4 id="strong-strong"><strong>Returns:</strong></h4>
-
-<ul>
-<li>(string) !!!TBD!!! Add return value info</li>
-</ul>
-
-<h3 id="augur-api-disputewindow-getvaliditybondattocash-p-callback">augur.api.DisputeWindow.getValidityBondAttoCash(p, callback)</h3>
-
-<p>Returns the size of the <a href="#market">Market&rsquo;s</a> <a href="#validity-bond">Validity Bond</a> (in <a href="#atto-prefix">attoDai</a>).</p>
 
 <h4 id="strong-strong"><strong>Parameters:</strong></h4>
 
@@ -5478,6 +5474,14 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
 <span class="p">});</span>
 <span class="c1">// example output:</span>
 <span class="s2">"78000"</span>
+
+<span class="nx">augur</span><span class="p">.</span><span class="nx">api</span><span class="p">.</span><span class="nx">InitialReporter</span><span class="p">.</span><span class="nx">isDisavowed</span><span class="p">({</span> 
+  <span class="na">tx</span><span class="p">:</span> <span class="p">{</span> <span class="na">to</span><span class="p">:</span> <span class="nx">initialReporter</span> <span class="p">}</span> 
+<span class="p">},</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">error</span><span class="p">,</span> <span class="nx">isDisavowed</span><span class="p">)</span> <span class="p">{</span> 
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">isDisavowed</span><span class="p">);</span> 
+<span class="p">});</span>
+<span class="c1">// example output:</span>
+<span class="kc">true</span>
 </code></pre></div>
 <p>Provides JavaScript bindings for the <a href="https://github.com/AugurProject/augur/blob/master/packages/augur-core/source/contracts/reporting/InitialReporter.sol">InitialReporter Solidity Contract</a>, which enables functionality related to <a href="#initial-report">Initial Reports</a>.</p>
 
@@ -5782,6 +5786,37 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
 <li>(string) Amount of attoREP Staked on the Initial Report for the Market of the specified InitialReporter contract, as a stringified unsigned integer.</li>
 </ul>
 
+<h3 id="augur-api-initialreporter-isdisavowed-p-callback">augur.api.InitialReporter.isDisavowed(p, callback)</h3>
+
+<p>Returns whether an InitialReporter has been &ldquo;disavowed&rdquo;. A disavowed InitialReporter is one from which <a href="#dispute-stake">Staked</a> <a href="#rep">REP</a> and/or <a href="#reporting-fee">Reporting Fees</a> can be redeemed (by calling <code class="prettyprint">augur.api.InitialReporter.redeem</code>) and whose <a href="#market">Market</a> has not necessarily been <a href="#finalized-market">Finalized</a>. An InitialReporter can become disavowed if any of the following occurs:</p>
+
+<ol>
+<li>A Dispute Crowdsourcer belonging to the same Market and in the same <a href="#dispute-window">Dispute Window</a> successfully fills its <a href="#dispute-bond">Dispute Bond</a>.</li>
+<li>A Market other than the InitialReporter&rsquo;s Market causes a <a href="#fork">Fork</a>, and <code class="prettyprint">augur.api.Market.disavowCrowdsourcers</code> is called on the InitialReporter&rsquo;s Market.</li>
+<li>The InitialReporter&rsquo;s Market Forks, and <code class="prettyprint">augur.api.InitialReporter.fork</code> is called on the InitialReporter.</li>
+</ol>
+
+<h4 id="strong-strong"><strong>Parameters:</strong></h4>
+
+<ul>
+<li><strong><code class="prettyprint">p</code></strong> (Object) Parameters object.<br>
+
+<ul>
+<li><strong><code class="prettyprint">p.tx</code></strong> (Object) Object containing details about how this function call should be made.
+
+<ul>
+<li><strong><code class="prettyprint">p.tx.to</code></strong> (string) Ethereum contract address of the Dispute Crowdsourcer on which to call this function, as a 20-byte hexadecimal string.</li>
+</ul></li>
+</ul></li>
+<li><strong><code class="prettyprint">callback</code></strong> (function) &lt;optional&gt; Called after the function&rsquo;s result has been retrieved.</li>
+</ul>
+
+<h4 id="strong-strong"><strong>Returns:</strong></h4>
+
+<ul>
+<li>(boolean) <code class="prettyprint">true</code> if the Dispute Crowdsourcer has been disavowed, or <code class="prettyprint">false</code> otherwise.</li>
+</ul>
+
 <h2 id="market-call-api">Market Call API</h2>
 <div class="highlight"><pre class="highlight javascript"><code><span class="c1">// Market Contract Call API Examples:</span>
 <span class="kd">var</span> <span class="nx">market</span> <span class="o">=</span> <span class="s2">"0x9368ff3e9ce1c0459b309fac6dd4e69229b91a42"</span><span class="p">;</span>
@@ -5828,14 +5863,6 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
 <span class="p">});</span>
 <span class="c1">// example output:</span>
 <span class="s2">"0xbbb0cc6b4e89303e451c9b852827b5791667face"</span>
-
-<span class="nx">augur</span><span class="p">.</span><span class="nx">api</span><span class="p">.</span><span class="nx">Market</span><span class="p">.</span><span class="nx">getDenominationToken</span><span class="p">({</span> 
-  <span class="na">tx</span><span class="p">:</span> <span class="p">{</span> <span class="na">to</span><span class="p">:</span> <span class="nx">market</span> <span class="p">}</span> 
-<span class="p">},</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">error</span><span class="p">,</span> <span class="nx">denominationToken</span><span class="p">)</span> <span class="p">{</span> 
-  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">denominationToken</span><span class="p">);</span> 
-<span class="p">});</span>
-<span class="c1">// example output:</span>
-<span class="s2">"0x30e3852448f4ab5d62bbf7544ca3c92daca5c957"</span>
 
 <span class="nx">augur</span><span class="p">.</span><span class="nx">api</span><span class="p">.</span><span class="nx">Market</span><span class="p">.</span><span class="nx">getDesignatedReporter</span><span class="p">({</span> 
   <span class="na">tx</span><span class="p">:</span> <span class="p">{</span> <span class="na">to</span><span class="p">:</span> <span class="nx">market</span> <span class="p">}</span> 
@@ -5925,6 +5952,14 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
 <span class="c1">// example output:</span>
 <span class="s2">"2"</span>
 
+<span class="nx">augur</span><span class="p">.</span><span class="nx">api</span><span class="p">.</span><span class="nx">Market</span><span class="p">.</span><span class="nx">getNumParticipants</span><span class="p">({</span> 
+  <span class="na">tx</span><span class="p">:</span> <span class="p">{</span> <span class="na">to</span><span class="p">:</span> <span class="nx">market</span> <span class="p">}</span> 
+<span class="p">},</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">error</span><span class="p">,</span> <span class="nx">numParticipants</span><span class="p">)</span> <span class="p">{</span> 
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">numParticipants</span><span class="p">);</span> 
+<span class="p">});</span>
+<span class="c1">// example output:</span>
+<span class="s2">"2"</span>
+
 <span class="nx">augur</span><span class="p">.</span><span class="nx">api</span><span class="p">.</span><span class="nx">Market</span><span class="p">.</span><span class="nx">getNumTicks</span><span class="p">({</span> 
   <span class="na">tx</span><span class="p">:</span> <span class="p">{</span> <span class="na">to</span><span class="p">:</span> <span class="nx">market</span> <span class="p">}</span> 
 <span class="p">},</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">error</span><span class="p">,</span> <span class="nx">numTicks</span><span class="p">)</span> <span class="p">{</span> 
@@ -5984,10 +6019,10 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
 <span class="c1">// example output:</span>
 <span class="s2">"0x0920d1513057572be46580b7ef75d1d01a99a3e5"</span>
 
-<span class="nx">augur</span><span class="p">.</span><span class="nx">api</span><span class="p">.</span><span class="nx">Market</span><span class="p">.</span><span class="nx">getValidityBondAttoeth</span><span class="p">({</span>
+<span class="nx">augur</span><span class="p">.</span><span class="nx">api</span><span class="p">.</span><span class="nx">Market</span><span class="p">.</span><span class="nx">getValidityBondAttoCash</span><span class="p">({</span>
   <span class="na">tx</span><span class="p">:</span> <span class="p">{</span> <span class="na">to</span><span class="p">:</span> <span class="nx">market</span> <span class="p">}</span> 
-<span class="p">},</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">error</span><span class="p">,</span> <span class="nx">validityBondAttoeth</span><span class="p">)</span> <span class="p">{</span> 
-  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">validityBondAttoeth</span><span class="p">);</span> 
+<span class="p">},</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">error</span><span class="p">,</span> <span class="nx">validityBondAttoCash</span><span class="p">)</span> <span class="p">{</span> 
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">validityBondAttoCash</span><span class="p">);</span> 
 <span class="p">});</span>
 <span class="c1">// example output:</span>
 <span class="s2">"13570000000000000"</span>
@@ -6199,31 +6234,6 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
 
 <ul>
 <li>(string) Ethereum address for the DisputeCrowdsourcer contract that corresponds to the given Payout Distribution Hash, as a 20-byte hexadecimal string.</li>
-</ul>
-
-<h3 id="augur-api-market-getdenominationtoken-p-callback">augur.api.Market.getDenominationToken(p, callback)</h3>
-
-<p>Returns the Ethereum contract address of the token used to denominate the specified <a href="#market">Market</a>. A Denomination Token is the <a href="https://eips.ethereum.org/EIPS/eip-20">ERC-20 Token</a>/<a href="https://eips.ethereum.org/EIPS/eip-777">ERC-777 Token</a> used as the currency to trade on the <a href="#outcome">Outcome</a> of a <a href="#market">Market</a>. Currently, this function will always return the address of a <a href="https://github.com/AugurProject/augur/blob/master/packages/augur-core/source/contracts/Cash.sol">Cash</a> contract; however, Augur will eventually support other types of Denomination Tokens.</p>
-
-<h4 id="strong-strong"><strong>Parameters:</strong></h4>
-
-<ul>
-<li><strong><code class="prettyprint">p</code></strong> (Object) Parameters object.<br>
-
-<ul>
-<li><strong><code class="prettyprint">p.tx</code></strong> (Object) Object containing details about how this function call should be made.
-
-<ul>
-<li><strong><code class="prettyprint">p.tx.to</code></strong> (string) Ethereum contract address of the Market contract on which to call this function, as a 20-byte hexadecimal string.</li>
-</ul></li>
-</ul></li>
-<li><strong><code class="prettyprint">callback</code></strong> (function) &lt;optional&gt; Called after the function&rsquo;s result has been retrieved.</li>
-</ul>
-
-<h4 id="strong-strong"><strong>Returns:</strong></h4>
-
-<ul>
-<li>(string) Ethereum contract address of the token used to denominate the specified <a href="#market">Market</a>, as a 20-byte hexadecimal string.</li>
 </ul>
 
 <h3 id="augur-api-market-getdesignatedreporter-p-callback">augur.api.Market.getDesignatedReporter(p, callback)</h3>
@@ -6501,6 +6511,31 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
 <li>(string) Number of Outcomes for the Market (including Invalid), as a stringified unsigned integer.</li>
 </ul>
 
+<h3 id="augur-api-market-getnumparticipants-p-callback">augur.api.Market.getNumParticipants(p, callback)</h3>
+
+<p>Returns the number of InitialReporters + DisputeCrowdsourcers the <a href="#market">Market</a> has. This is equivalent to the number of rounds of <a href="#initial-report">Initial Reports</a> + <a href="#dispute-round">Dispute Rounds</a> that have occured.</p>
+
+<h4 id="strong-strong"><strong>Parameters:</strong></h4>
+
+<ul>
+<li><strong><code class="prettyprint">p</code></strong> (Object) Parameters object.<br>
+
+<ul>
+<li><strong><code class="prettyprint">p.tx</code></strong> (Object) Object containing details about how this function call should be made.
+
+<ul>
+<li><strong><code class="prettyprint">p.tx.to</code></strong> (string) Ethereum contract address of the Market contract on which to call this function, as a 20-byte hexadecimal string.</li>
+</ul></li>
+</ul></li>
+<li><strong><code class="prettyprint">callback</code></strong> (function) &lt;optional&gt; Called after the function&rsquo;s result has been retrieved.</li>
+</ul>
+
+<h4 id="strong-strong"><strong>Returns:</strong></h4>
+
+<ul>
+<li>(string) The number of InitialReporters + DisputeCrowdsourcers the Market has.</li>
+</ul>
+
 <h3 id="augur-api-market-getnumticks-p-callback">augur.api.Market.getNumTicks(p, callback)</h3>
 
 <p>Returns the <a href="#number-of-ticks">Number of Ticks</a> set for a specific <a href="#market">Market</a>. The Number of Ticks represents the number of valid price points between the <a href="#market">Market</a>&rsquo;s <a href="#minimum-display-price">Minimum Price</a> and <a href="#maximum-display-price">Maximum Price</a>.</p>
@@ -6681,9 +6716,9 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
 <li>(string) Etherem address of the Universe in which the Market exists, as a 20-byte hexadecimal string.</li>
 </ul>
 
-<h3 id="augur-api-market-getvaliditybondattoeth-p-callback">augur.api.Market.getValidityBondAttoeth(p, callback)</h3>
+<h3 id="augur-api-market-getvaliditybondattocash-p-callback">augur.api.Market.getValidityBondAttoCash(p, callback)</h3>
 
-<p>Returns the amount the <a href="#market-creator">Market Creator</a> must pay for the <a href="#validity-bond">Validity Bond</a>, denominated in <a href="#atto-prefix">AttoETH</a>, when creating a <a href="#market">Market</a>. (This amount will be refunded to the Market Creator if the <a href="#final-outcome">Final Outcome</a> of the Market is not invalid.)</p>
+<p>Returns the amount the <a href="#market-creator">Market Creator</a> must pay for the <a href="#validity-bond">Validity Bond</a>, denominated in <a href="#atto-prefix">attoDai</a>, when creating a <a href="#market">Market</a>. (This amount will be refunded to the Market Creator if the <a href="#final-outcome">Final Outcome</a> of the Market is not invalid.)</p>
 
 <h4 id="strong-strong"><strong>Parameters:</strong></h4>
 
@@ -6703,7 +6738,7 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
 <h4 id="strong-strong"><strong>Returns:</strong></h4>
 
 <ul>
-<li>(string) Amount the Market Creator must pay for the Validity Bond, denominated in attoETH.</li>
+<li>(string) Amount the Market Creator must pay for the Validity Bond, denominated in attoDai.</li>
 </ul>
 
 <h3 id="augur-api-market-getwinningchildpayout-p-callback">augur.api.Market.getWinningChildPayout(p, callback)</h3>
@@ -9725,7 +9760,7 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
 <p>This transaction will fail if:</p>
 
 <ul>
-<li><code class="prettyprint">p._market</code> is not a Market known to Augur.</li>
+<li><code class="prettyprint">p._market</code> is not a <a href="#market">Market</a> known to Augur.</li>
 <li><code class="prettyprint">p._market</code> has not been Finalized.</li>
 </ul>
 
@@ -11091,7 +11126,7 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
 
 <h3 id="augur-api-market-migratethroughonefork-p">augur.api.Market.migrateThroughOneFork(p)</h3>
 
-<p>Migrates the <a href="#market">Market</a> into a winning <a href="#child-universe">Child Universe</a> from a <a href="#fork">Forked</a> <a href="#parent-universe">Parent Universe</a>. When a Fork occurs, there is a <a href="#fork-period">Fork Period</a>, wherein <a href="#rep">REP</a> holders migrate their REP to the <a href="#universe">Universe</a> they want to continue in. Once the Fork Period ends, the Child Universe with the most REP migrated to it is declared the <a href="#winning-universe">Winning Universe</a>. Calling this transaction calls <code class="prettyprint">augur.api.Market.disavowCrowdsourcers</code> and then moves the Market from a Parent Universe to the Winning Universe after it&rsquo;s been decided. If the Market is a non-<a href="#forked-market">Forked Markets</a> and has not had an <a href="#initial-report">Initial Report</a> submitted yet, the owner of the Market will get paid the <a href="#no-show-bond">No-Show Bond</a> using REP from the Market&rsquo;s former Universe. Regardless of whether the Market already has an Initial Report, the account that is performing the migration will place a new No-Show Bond (which could be a different size based on the new Universe).</p>
+<p>Migrates the <a href="#market">Market</a> into a winning <a href="#child-universe">Child Universe</a> from a <a href="#fork">Forked</a> <a href="#parent-universe">Parent Universe</a>. When a Fork occurs, there is a <a href="#fork-period">Fork Period</a>, wherein <a href="#rep">REP</a> holders migrate their REP to the <a href="#universe">Universe</a> they want to continue in. Once the Fork Period ends, the Child Universe with the most REP migrated to it is declared the <a href="#winning-universe">Winning Universe</a>. Calling this transaction calls <code class="prettyprint">augur.api.Market.disavowCrowdsourcers</code> and then moves the Market from a Parent Universe to the Winning Universe after it&rsquo;s been decided. If the Market is a non-<a href="#forked-market">Forked Markets</a> and has not had an <a href="#initial-report">Initial Report</a> submitted yet, the owner of the Market will get paid the <a href="#no-show-bond">No-Show Bond</a> using REP from the Market&rsquo;s former Universe. Regardless of whether the Market already has an Initial Report, the account that is performing the migration will place a new No-Show Bond (which could be a different size based on the new Universe). If the Market is in the <a href="#report">Reporting</a> Phase, a new Report will need to be made as well.</p>
 
 <p>NOTE: If the End Time has elapsed, any existing Initial Report that has been submitted on the Market will be reset, and the parameter <code class="prettyprint">p._payoutNumerators</code> &amp; <code class="prettyprint">p._description</code> will be used to submit an <a href="#initial-report">Initial Report</a> on the Market in the Market&rsquo;s new Universe. If the End Time has not elapsed, these parameters will not be used.</p>
 
@@ -11209,12 +11244,15 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
 <h2 id="orders-tx-api">Orders Tx API</h2>
 <div class="highlight"><pre class="highlight javascript"><code><span class="c1">// Orders Transaction API Examples:</span>
 <span class="kd">var</span> <span class="nx">ordersAddress</span> <span class="o">=</span> <span class="s2">"0xaaae83a8a2a904181ccfddd8292f17861406200b"</span><span class="p">;</span>
+<span class="kd">var</span> <span class="nx">_orderId</span> <span class="o">=</span> <span class="s2">"0x122c7476e61f5e2625e57df17fcce74741d3c2004ac657675f686a23d06e6012"</span><span class="p">;</span>
+<span class="kd">var</span> <span class="nx">_betterOrderId</span> <span class="o">=</span> <span class="s2">"0xea2c7476e61f5e2625e57df17fcce74741d3c2004ac657675f686a23d06e6091"</span><span class="p">;</span>
+<span class="kd">var</span> <span class="nx">_worseOrderId</span> <span class="o">=</span> <span class="s2">"0xed42c0fab97ee6fbde7c47dc62dc3ad09e8d3af53517245c77c659f7cd561426"</span><span class="p">;</span>
 
 <span class="nx">augur</span><span class="p">.</span><span class="nx">api</span><span class="p">.</span><span class="nx">Orders</span><span class="p">.</span><span class="nx">setOrderPrice</span><span class="p">({</span>
-  <span class="na">_orderId</span><span class="p">:</span> <span class="nx">_augurContractAddress</span><span class="p">,</span>
+  <span class="na">_orderId</span><span class="p">:</span> <span class="nx">_orderId</span><span class="p">,</span>
   <span class="na">_price</span><span class="p">:</span> <span class="s2">"0xff"</span><span class="p">,</span>
-  <span class="na">_betterOrderId</span><span class="p">:</span> <span class="s2">""</span><span class="p">,</span>
-  <span class="na">_worseOrderId</span><span class="p">:</span> <span class="s2">""</span><span class="p">,</span>
+  <span class="na">_betterOrderId</span><span class="p">:</span> <span class="nx">_betterOrderId</span><span class="p">,</span>
+  <span class="na">_worseOrderId</span><span class="p">:</span> <span class="nx">_worseOrderId</span><span class="p">,</span>
   <span class="na">tx</span><span class="p">:</span> <span class="p">{</span> 
     <span class="na">to</span><span class="p">:</span> <span class="nx">ordersAddress</span><span class="p">,</span>
     <span class="na">gas</span><span class="p">:</span> <span class="s2">"0x632ea0"</span> 
@@ -11253,8 +11291,8 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
 <ul>
 <li><strong><code class="prettyprint">p._orderId</code></strong> (string) ID of the Order for which to set the price, as a 32-byte hexadecimal value. (To get the order ID for a specific Order, call the function <code class="prettyprint">augur.api.Order.getOrderId</code>.)</li>
 <li><strong><code class="prettyprint">p._price</code></strong>  (string) New price with which to update the Order.</li>
-<li><strong><code class="prettyprint">p._betterOrderId</code></strong> (string) Order ID of an existing Order on the Order Book with the next-best price with respect to the Order this transaction is intending to create, as a 32-byte hexadecimal value. Can be obtained by calling <code class="prettyprint">augur.trading.getBetterWorseOrders</code>.</li>
-<li><strong><code class="prettyprint">p._worseOrderId</code></strong> (string) Order ID of an existing Order on the Order Book with the next-worse price with respect to the Order this transaction is intending to create, as a 32-byte hexadecimal value. Can be obtained by calling <code class="prettyprint">augur.trading.getBetterWorseOrders</code>.</li>
+<li><strong><code class="prettyprint">p._betterOrderId</code></strong> (string) Order ID of an existing Order on the Order Book with the next-best price with respect to the Order this transaction is intending to create, as a 32-byte hexadecimal value. Used to reduce gas costs when sorting. Can be obtained by calling <code class="prettyprint">augur.trading.getBetterWorseOrders</code>.</li>
+<li><strong><code class="prettyprint">p._worseOrderId</code></strong> (string) Order ID of an existing Order on the Order Book with the next-worse price with respect to the Order this transaction is intending to create, as a 32-byte hexadecimal value. Used to reduce gas costs when sorting. Can be obtained by calling <code class="prettyprint">augur.trading.getBetterWorseOrders</code>.</li>
 <li><strong><code class="prettyprint">p.tx</code></strong> (Object) Object containing details about how this transaction should be made.
 
 <ul>
@@ -12472,17 +12510,6 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
   <span class="na">onFailed</span><span class="p">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">result</span><span class="p">)</span> <span class="p">{</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"onFailed result:"</span><span class="p">,</span> <span class="nx">result</span><span class="p">);</span> <span class="p">},</span>
 <span class="p">});</span>
 
-<span class="nx">augur</span><span class="p">.</span><span class="nx">api</span><span class="p">.</span><span class="nx">Universe</span><span class="p">.</span><span class="nx">getInitialReportStakeSize</span><span class="p">({</span> 
-  <span class="na">tx</span><span class="p">:</span> <span class="p">{</span> 
-    <span class="na">to</span><span class="p">:</span> <span class="nx">universeAddress</span><span class="p">,</span>
-    <span class="na">send</span><span class="p">:</span> <span class="kc">false</span>
-  <span class="p">}</span>
-<span class="p">},</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">error</span><span class="p">,</span> <span class="nx">initialReportStakeSize</span><span class="p">)</span> <span class="p">{</span> 
-    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">initialReportStakeSize</span><span class="p">);</span> 
-<span class="p">});</span>
-<span class="c1">// example output:</span>
-<span class="s2">"349680582682291667"</span>
-
 <span class="nx">augur</span><span class="p">.</span><span class="nx">api</span><span class="p">.</span><span class="nx">Universe</span><span class="p">.</span><span class="nx">getOrCacheDesignatedReportNoShowBond</span><span class="p">({</span>
   <span class="na">tx</span><span class="p">:</span> <span class="p">{</span> 
     <span class="na">to</span><span class="p">:</span> <span class="nx">universeAddress</span><span class="p">,</span>
@@ -12846,36 +12873,6 @@ should lose all economic value, while any REP Staked on the Market’s true Outc
 
 <ul>
 <li>Return value cannot be obtained because Ethereum nodes <a href="#transaction-return-values">discard</a> transaction return values. However, <code class="prettyprint">augur.createMarket.getMarketFromCreateMarketReceipt</code> can be called from within the <code class="prettyprint">onSuccess</code> callback to retrieve the Ethereum address of the newly-created Market. (See example code.)</li>
-</ul>
-
-<h3 id="augur-api-universe-getinitialreportstakesize-p-callback">augur.api.Universe.getInitialReportStakeSize(p, callback)</h3>
-
-<p>Returns either the size of the <a href="#no-show-bond">No-Show Bond</a> or the size of the Stake placed on the <a href="#designated-report">Designated Report</a> (whichever is greater).</p>
-
-<h4 id="strong-strong"><strong>Parameters:</strong></h4>
-
-<ul>
-<li><strong><code class="prettyprint">p</code></strong> (Object) Parameters object.<br>
-
-<ul>
-<li><strong><code class="prettyprint">p.tx</code></strong> (Object) Object containing details about how this transaction should be made.
-
-<ul>
-<li><strong><code class="prettyprint">p.tx.to</code></strong> (string) Ethereum contract address on which to call this function, as a 20-byte hexadecimal string.</li>
-<li><strong><code class="prettyprint">p.tx.send</code></strong> (boolean) &lt;optional&gt; Whether this function should be executed as a transaction. When set to <code class="prettyprint">true</code>, this function will be executed as a transaction, which will calculate the value (and thus uses gas). When set to <code class="prettyprint">false</code>, this function will be executed as a call, which will return the <a href="#initial-report">Initial Report</a> Stake size and will not use any gas. </li>
-<li><strong><code class="prettyprint">p.tx.gas</code></strong> (string) &lt;optional&gt; Gas limit to use when submitting this transaction, as a hexadecimal string. This does not need to be set if <code class="prettyprint">p.tx.send</code> is <code class="prettyprint">false</code>.</li>
-</ul></li>
-<li><strong><code class="prettyprint">p.meta</code></strong>  (<a href="#Meta">Meta</a>) &lt;optional&gt; Authentication metadata for raw transactions.</li>
-<li><strong><code class="prettyprint">p.onSent</code></strong>  (function) Callback function that executes once the transaction has been sent.</li>
-<li><strong><code class="prettyprint">p.onSuccess</code></strong>  (function) &lt;optional&gt; Callback function that executes if the transaction returned successfully.</li>
-<li><strong><code class="prettyprint">p.onFailed</code></strong>  (function) &lt;optional&gt; Callback function that executes if the transaction failed.</li>
-</ul></li>
-</ul>
-
-<h4 id="strong-strong"><strong>Returns:</strong></h4>
-
-<ul>
-<li>(null|string) Return value cannot be obtained when executed as a transaction because Ethereum nodes <a href="#transaction-return-values">discard</a> transaction return values. However, if <code class="prettyprint">p.tx.send</code> is set to <code class="prettyprint">false</code>, this function will be executed as a call and will return the Initial Report Stake size, in attoREP, as a stringified unsigned integer.</li>
 </ul>
 
 <h3 id="augur-api-universe-getorcachedesignatedreportnoshowbond-p">augur.api.Universe.getOrCacheDesignatedReportNoShowBond(p)</h3>
