@@ -617,7 +617,7 @@ This transaction will trigger a [`TradingProceedsClaimed`](#TradingProceedsClaim
 
 This transaction will fail if:
 
-* `p._market` is not a Market known to Augur.
+* `p._market` is not a [Market](#market) known to Augur.
 * `p._market` has not been Finalized.
 
 #### **Parameters:**
@@ -1740,7 +1740,7 @@ This transaction will fail if:
 
 ### augur.api.Market.migrateThroughOneFork(p)
 
-Migrates the [Market](#market) into a winning [Child Universe](#child-universe) from a [Forked](#fork) [Parent Universe](#parent-universe). When a Fork occurs, there is a [Fork Period](#fork-period), wherein [REP](#rep) holders migrate their REP to the [Universe](#universe) they want to continue in. Once the Fork Period ends, the Child Universe with the most REP migrated to it is declared the [Winning Universe](#winning-universe). Calling this transaction calls `augur.api.Market.disavowCrowdsourcers` and then moves the Market from a Parent Universe to the Winning Universe after it's been decided. If the Market is a non-[Forked Markets](#forked-market) and has not had an [Initial Report](#initial-report) submitted yet, the owner of the Market will get paid the [No-Show Bond](#no-show-bond) using REP from the Market's former Universe. Regardless of whether the Market already has an Initial Report, the account that is performing the migration will place a new No-Show Bond (which could be a different size based on the new Universe).
+Migrates the [Market](#market) into a winning [Child Universe](#child-universe) from a [Forked](#fork) [Parent Universe](#parent-universe). When a Fork occurs, there is a [Fork Period](#fork-period), wherein [REP](#rep) holders migrate their REP to the [Universe](#universe) they want to continue in. Once the Fork Period ends, the Child Universe with the most REP migrated to it is declared the [Winning Universe](#winning-universe). Calling this transaction calls `augur.api.Market.disavowCrowdsourcers` and then moves the Market from a Parent Universe to the Winning Universe after it's been decided. If the Market is a non-[Forked Markets](#forked-market) and has not had an [Initial Report](#initial-report) submitted yet, the owner of the Market will get paid the [No-Show Bond](#no-show-bond) using REP from the Market's former Universe. Regardless of whether the Market already has an Initial Report, the account that is performing the migration will place a new No-Show Bond (which could be a different size based on the new Universe). If the Market is in the [Reporting](#report) Phase, a new Report will need to be made as well.
 
 NOTE: If the End Time has elapsed, any existing Initial Report that has been submitted on the Market will be reset, and the parameter `p._payoutNumerators` & `p._description` will be used to submit an [Initial Report](#initial-report) on the Market in the Market's new Universe. If the End Time has not elapsed, these parameters will not be used.
 
@@ -1824,12 +1824,15 @@ Orders Tx API
 ```javascript
 // Orders Transaction API Examples:
 var ordersAddress = "0xaaae83a8a2a904181ccfddd8292f17861406200b";
+var _orderId = "0x122c7476e61f5e2625e57df17fcce74741d3c2004ac657675f686a23d06e6012";
+var _betterOrderId = "0xea2c7476e61f5e2625e57df17fcce74741d3c2004ac657675f686a23d06e6091";
+var _worseOrderId = "0xed42c0fab97ee6fbde7c47dc62dc3ad09e8d3af53517245c77c659f7cd561426";
 
 augur.api.Orders.setOrderPrice({
-  _orderId: _augurContractAddress,
+  _orderId: _orderId,
   _price: "0xff",
-  _betterOrderId: "",
-  _worseOrderId: "",
+  _betterOrderId: _betterOrderId,
+  _worseOrderId: _worseOrderId,
   tx: { 
     to: ordersAddress,
     gas: "0x632ea0" 
@@ -1863,8 +1866,8 @@ This transaction will fail if:
 * **`p`** (Object) Parameters object.
     * **`p._orderId`** (string) ID of the Order for which to set the price, as a 32-byte hexadecimal value. (To get the order ID for a specific Order, call the function `augur.api.Order.getOrderId`.)
     * **`p._price`**  (string) New price with which to update the Order.
-    * **`p._betterOrderId`** (string) Order ID of an existing Order on the Order Book with the next-best price with respect to the Order this transaction is intending to create, as a 32-byte hexadecimal value. Can be obtained by calling `augur.trading.getBetterWorseOrders`.
-    * **`p._worseOrderId`** (string) Order ID of an existing Order on the Order Book with the next-worse price with respect to the Order this transaction is intending to create, as a 32-byte hexadecimal value. Can be obtained by calling `augur.trading.getBetterWorseOrders`.
+    * **`p._betterOrderId`** (string) Order ID of an existing Order on the Order Book with the next-best price with respect to the Order this transaction is intending to create, as a 32-byte hexadecimal value. Used to reduce gas costs when sorting. Can be obtained by calling `augur.trading.getBetterWorseOrders`.
+    * **`p._worseOrderId`** (string) Order ID of an existing Order on the Order Book with the next-worse price with respect to the Order this transaction is intending to create, as a 32-byte hexadecimal value. Used to reduce gas costs when sorting. Can be obtained by calling `augur.trading.getBetterWorseOrders`.
     * **`p.tx`** (Object) Object containing details about how this transaction should be made.
         * **`p.tx.to`** (string) Ethereum contract address on which to call this function, as a 20-byte hexadecimal string.
         * **`p.tx.gas`** (string) Gas limit to use when submitting this transaction, as a hexadecimal string.
@@ -2889,17 +2892,6 @@ augur.api.Universe.createYesNoMarket({
   onFailed: function (result) { console.log("onFailed result:", result); },
 });
 
-augur.api.Universe.getInitialReportStakeSize({ 
-  tx: { 
-    to: universeAddress,
-    send: false
-  }
-}, function (error, initialReportStakeSize) { 
-    console.log(initialReportStakeSize); 
-});
-// example output:
-"349680582682291667"
-
 augur.api.Universe.getOrCacheDesignatedReportNoShowBond({
   tx: { 
     to: universeAddress,
@@ -3182,7 +3174,6 @@ This transaction will fail if:
 * `p._endTime` is further in the future than the maximum Market [End Time](#end-time). 
 * The [Universe](#universe) is [Forking](#fork).
 
-
 NOTE: The account attempting to create the new market must have sufficient REP in order for the market to be created. This is also true when calling `eth_estimateGas`, which essentially does a trial run of the transaction to determine what the gas cost would be to actually run it. 
 
 #### Parameters:
@@ -3209,26 +3200,6 @@ NOTE: The account attempting to create the new market must have sufficient REP i
 #### **Returns:**
 
 * Return value cannot be obtained because Ethereum nodes [discard](#transaction-return-values) transaction return values. However, `augur.createMarket.getMarketFromCreateMarketReceipt` can be called from within the `onSuccess` callback to retrieve the Ethereum address of the newly-created Market. (See example code.)
-
-### augur.api.Universe.getInitialReportStakeSize(p, callback)
-
-Returns either the size of the [No-Show Bond](#no-show-bond) or the size of the Stake placed on the [Designated Report](#designated-report) (whichever is greater).
-
-#### **Parameters:**
-
-* **`p`** (Object) Parameters object.  
-    * **`p.tx`** (Object) Object containing details about how this transaction should be made.
-        * **`p.tx.to`** (string) Ethereum contract address on which to call this function, as a 20-byte hexadecimal string.
-        * **`p.tx.send`** (boolean) &lt;optional> Whether this function should be executed as a transaction. When set to `true`, this function will be executed as a transaction, which will calculate the value (and thus uses gas). When set to `false`, this function will be executed as a call, which will return the [Initial Report](#initial-report) Stake size and will not use any gas. 
-        * **`p.tx.gas`** (string) &lt;optional> Gas limit to use when submitting this transaction, as a hexadecimal string. This does not need to be set if `p.tx.send` is `false`.
-    * **`p.meta`**  (<a href="#Meta">Meta</a>) &lt;optional> Authentication metadata for raw transactions.
-    * **`p.onSent`**  (function) Callback function that executes once the transaction has been sent.
-    * **`p.onSuccess`**  (function) &lt;optional> Callback function that executes if the transaction returned successfully.
-    * **`p.onFailed`**  (function) &lt;optional> Callback function that executes if the transaction failed.
-
-#### **Returns:**
-
-* (null|string) Return value cannot be obtained when executed as a transaction because Ethereum nodes [discard](#transaction-return-values) transaction return values. However, if `p.tx.send` is set to `false`, this function will be executed as a call and will return the Initial Report Stake size, in attoREP, as a stringified unsigned integer.
 
 ### augur.api.Universe.getOrCacheDesignatedReportNoShowBond(p)
 

@@ -95,6 +95,14 @@ augur.api.Augur.isKnownMarket({
 });
 // example output:
 true
+
+augur.api.Augur.lookup({ 
+  key: ""
+}, function (error, contractAddress) { 
+  console.log(contractAddress); 
+});
+// example output:
+!!!TBD!!! Add example output & example `key` param
 ```
 Provides JavaScript bindings for the [Augur Solidity Contract](https://github.com/AugurProject/augur/blob/master/packages/augur-core/source/contracts/Augur.sol), which handles [Universe](#universe) creation and event logging.
 
@@ -207,6 +215,20 @@ Augur keeps track of its [Markets](#market) internally. This function returns wh
 #### **Returns:**
 
 * (boolean) `true` if the specified Market is in Augur's list of known Markets, or `false` otherwise.
+
+### augur.api.Augur.lookup(p, callback)
+
+Augur keeps track of its contract addresses in a keyed registry. This function returns the contract address that corresponds to a given key.
+
+#### **Parameters:**
+
+* **`p`** (Object) Parameters object.  
+  * **`p._key`** (string) Registry key to use to look up the contract address, as a 32-byte hexadecimal string.
+* **`callback`** (function) &lt;optional> Called after the function's result has been retrieved.
+
+#### **Returns:**
+
+* (string) The contract address that corresponds to the specified key.
 
 Cash Call API
 ---------------
@@ -599,14 +621,6 @@ augur.api.DisputeWindow.getWindowId({
 // example output:
 !!!TBD!!! Add example output
 
-augur.api.DisputeWindow.getValidityBondAttoCash({ 
-  tx: { to: disputeWindow } 
-}, function (error, validityBondAttoCash) { 
-  console.log(validityBondAttoCash); 
-});
-// example output:
-!!!TBD!!! Add example output
-
 augur.api.DisputeWindow.isActive({ 
   tx: { to: disputeWindow } 
 }, function (error, isActive) { 
@@ -688,21 +702,6 @@ Returns the [Universe](#universe) to which the specified [Dispute Window](#dispu
 ### augur.api.DisputeWindow.getWindowId(p, callback)
 
 Returns the [Dispute Window](#dispute-window) ID of the Dispute Window.
-
-#### **Parameters:**
-
-* **`p`** (Object) Parameters object.  
-    * **`p.tx`** (Object) Object containing details about how this function call should be made.
-        * **`p.tx.to`** (string) Ethereum contract address of the Dispute Window on which to call this function, as a 20-byte hexadecimal string.
-* **`callback`** (function) &lt;optional> Called after the function's result has been retrieved.
-
-#### **Returns:**
-
-* (string) !!!TBD!!! Add return value info
-
-### augur.api.DisputeWindow.getValidityBondAttoCash(p, callback)
-
-Returns the size of the [Market's](#market) [Validity Bond](#validity-bond) (in [attoDai](#atto-prefix)).
 
 #### **Parameters:**
 
@@ -850,6 +849,14 @@ augur.api.InitialReporter.getStake({
 });
 // example output:
 "78000"
+
+augur.api.InitialReporter.isDisavowed({ 
+  tx: { to: initialReporter } 
+}, function (error, isDisavowed) { 
+  console.log(isDisavowed); 
+});
+// example output:
+true
 ```
 Provides JavaScript bindings for the [InitialReporter Solidity Contract](https://github.com/AugurProject/augur/blob/master/packages/augur-core/source/contracts/reporting/InitialReporter.sol), which enables functionality related to [Initial Reports](#initial-report).
 
@@ -1034,6 +1041,25 @@ Returns the amount of [attoREP](#atto-prefix) [Staked](#dispute-stake) on the [R
 
 * (string) Amount of attoREP Staked on the Initial Report for the Market of the specified InitialReporter contract, as a stringified unsigned integer.
 
+### augur.api.InitialReporter.isDisavowed(p, callback)
+
+Returns whether an InitialReporter has been "disavowed". A disavowed InitialReporter is one from which [Staked](#dispute-stake) [REP](#rep) and/or [Reporting Fees](#reporting-fee) can be redeemed (by calling `augur.api.InitialReporter.redeem`) and whose [Market](#market) has not necessarily been [Finalized](#finalized-market). An InitialReporter can become disavowed if any of the following occurs:
+
+1. A Dispute Crowdsourcer belonging to the same Market and in the same [Dispute Window](#dispute-window) successfully fills its [Dispute Bond](#dispute-bond).
+2. A Market other than the InitialReporter's Market causes a [Fork](#fork), and `augur.api.Market.disavowCrowdsourcers` is called on the InitialReporter's Market.
+3. The InitialReporter's Market Forks, and `augur.api.InitialReporter.fork` is called on the InitialReporter.
+
+#### **Parameters:**
+
+* **`p`** (Object) Parameters object.  
+    * **`p.tx`** (Object) Object containing details about how this function call should be made.
+        * **`p.tx.to`** (string) Ethereum contract address of the Dispute Crowdsourcer on which to call this function, as a 20-byte hexadecimal string.
+* **`callback`** (function) &lt;optional> Called after the function's result has been retrieved.
+
+#### **Returns:**
+
+* (boolean) `true` if the Dispute Crowdsourcer has been disavowed, or `false` otherwise.
+
 Market Call API
 ----------------
 ```javascript
@@ -1082,14 +1108,6 @@ augur.api.Market.getCrowdsourcer({
 });
 // example output:
 "0xbbb0cc6b4e89303e451c9b852827b5791667face"
-
-augur.api.Market.getDenominationToken({ 
-  tx: { to: market } 
-}, function (error, denominationToken) { 
-  console.log(denominationToken); 
-});
-// example output:
-"0x30e3852448f4ab5d62bbf7544ca3c92daca5c957"
 
 augur.api.Market.getDesignatedReporter({ 
   tx: { to: market } 
@@ -1179,6 +1197,14 @@ augur.api.Market.getNumberOfOutcomes({
 // example output:
 "2"
 
+augur.api.Market.getNumParticipants({ 
+  tx: { to: market } 
+}, function (error, numParticipants) { 
+  console.log(numParticipants); 
+});
+// example output:
+"2"
+
 augur.api.Market.getNumTicks({ 
   tx: { to: market } 
 }, function (error, numTicks) { 
@@ -1238,10 +1264,10 @@ augur.api.Market.getUniverse({
 // example output:
 "0x0920d1513057572be46580b7ef75d1d01a99a3e5"
 
-augur.api.Market.getValidityBondAttoeth({
+augur.api.Market.getValidityBondAttoCash({
   tx: { to: market } 
-}, function (error, validityBondAttoeth) { 
-  console.log(validityBondAttoeth); 
+}, function (error, validityBondAttoCash) { 
+  console.log(validityBondAttoCash); 
 });
 // example output:
 "13570000000000000"
@@ -1405,21 +1431,6 @@ Note: Calling this function only works for retrieving a DisputeCrowdsourcer if t
 #### **Returns:**
 
 * (string) Ethereum address for the DisputeCrowdsourcer contract that corresponds to the given Payout Distribution Hash, as a 20-byte hexadecimal string.
-
-### augur.api.Market.getDenominationToken(p, callback)
-
-Returns the Ethereum contract address of the token used to denominate the specified [Market](#market). A Denomination Token is the [ERC-20 Token](https://eips.ethereum.org/EIPS/eip-20)/[ERC-777 Token](https://eips.ethereum.org/EIPS/eip-777) used as the currency to trade on the [Outcome](#outcome) of a [Market](#market). Currently, this function will always return the address of a [Cash](https://github.com/AugurProject/augur/blob/master/packages/augur-core/source/contracts/Cash.sol) contract; however, Augur will eventually support other types of Denomination Tokens.
-
-#### **Parameters:**
-
-* **`p`** (Object) Parameters object.  
-    * **`p.tx`** (Object) Object containing details about how this function call should be made.
-        * **`p.tx.to`** (string) Ethereum contract address of the Market contract on which to call this function, as a 20-byte hexadecimal string.
-* **`callback`** (function) &lt;optional> Called after the function's result has been retrieved.
-
-#### **Returns:**
-
-* (string) Ethereum contract address of the token used to denominate the specified [Market](#market), as a 20-byte hexadecimal string.
 
 ### augur.api.Market.getDesignatedReporter(p, callback)
 
@@ -1586,6 +1597,21 @@ Returns the number of [Outcomes](#outcome) for the specified [Market](#market). 
 
 * (string) Number of Outcomes for the Market (including Invalid), as a stringified unsigned integer.
 
+### augur.api.Market.getNumParticipants(p, callback)
+
+Returns the number of InitialReporters + DisputeCrowdsourcers the [Market](#market) has. This is equivalent to the number of rounds of [Initial Reports](#initial-report) + [Dispute Rounds](#dispute-round) that have occured.
+
+#### **Parameters:**
+
+* **`p`** (Object) Parameters object.  
+    * **`p.tx`** (Object) Object containing details about how this function call should be made.
+        * **`p.tx.to`** (string) Ethereum contract address of the Market contract on which to call this function, as a 20-byte hexadecimal string.
+* **`callback`** (function) &lt;optional> Called after the function's result has been retrieved.
+
+#### **Returns:**
+
+* (string) The number of InitialReporters + DisputeCrowdsourcers the Market has.
+
 ### augur.api.Market.getNumTicks(p, callback)
 
 Returns the [Number of Ticks](#number-of-ticks) set for a specific [Market](#market). The Number of Ticks represents the number of valid price points between the [Market](#market)'s [Minimum Price](#minimum-display-price) and [Maximum Price](#maximum-display-price).
@@ -1696,9 +1722,9 @@ Returns the Etherem address of the [Universe](#universe) in which the specified 
 
 * (string) Etherem address of the Universe in which the Market exists, as a 20-byte hexadecimal string.
 
-### augur.api.Market.getValidityBondAttoeth(p, callback)
+### augur.api.Market.getValidityBondAttoCash(p, callback)
 
-Returns the amount the [Market Creator](#market-creator) must pay for the [Validity Bond](#validity-bond), denominated in [AttoETH](#atto-prefix), when creating a [Market](#market). (This amount will be refunded to the Market Creator if the [Final Outcome](#final-outcome) of the Market is not invalid.)
+Returns the amount the [Market Creator](#market-creator) must pay for the [Validity Bond](#validity-bond), denominated in [attoDai](#atto-prefix), when creating a [Market](#market). (This amount will be refunded to the Market Creator if the [Final Outcome](#final-outcome) of the Market is not invalid.)
 
 #### **Parameters:**
 
@@ -1709,7 +1735,7 @@ Returns the amount the [Market Creator](#market-creator) must pay for the [Valid
 
 #### **Returns:**
 
-* (string) Amount the Market Creator must pay for the Validity Bond, denominated in attoETH.
+* (string) Amount the Market Creator must pay for the Validity Bond, denominated in attoDai.
 
 ### augur.api.Market.getWinningChildPayout(p, callback)
 
