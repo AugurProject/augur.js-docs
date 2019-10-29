@@ -163,7 +163,7 @@ Sends Ether to a specified Ethereum address.
     * **`p.etherToSend`**  (string) Amount of Ether to send, as a base-10 string.
     * **`p.from`**  (string) Ethereum address of the sender, as a 20-byte hexadecimal string.
     * **`p.to`**  (string) Ethereum address of the recipient, as a 20-byte hexadecimal string.
-    * **`p.meta`**  (<a href="#Meta">Meta</a>) &lt;optional> Authentication metadata for raw transactions.
+    * **`p.meta`**  (<a href="#Meta">Meta</a>) Authentication metadata for raw transactions.
     * **`p.onSent`**  (function) Called if/when the transaction is broadcast to the network.
     * **`p.onSuccess`**  (function) Called if/when the transaction is sealed and confirmed.
     * **`p.onFailed`**  (function) Called if/when the transaction fails.
@@ -182,7 +182,7 @@ Sends [REP](#rep) to a specified Ethereum address. This function will trigger a 
     * **`p.universe`**  (string) The universe of Reputation to use.
     * **`p.reputationToSend`**  (string) Amount of Reputation to send, as a base-10 string.
     * **`p._to`**  (string) Ethereum address of the recipient, as a 20-byte hexadecimal string.
-    * **`p.meta`**  (<a href="#Meta">Meta</a>) &lt;optional> Authentication metadata for raw transactions.
+    * **`p.meta`**  (<a href="#Meta">Meta</a>) Authentication metadata for raw transactions.
     * **`p.onSent`**  (function) Called if/when the transaction is broadcast to the network.
     * **`p.onSuccess`**  (function) Called if/when the transaction is sealed and confirmed.
     * **`p.onFailed`**  (function) Called if/when the transaction fails.
@@ -694,6 +694,7 @@ This transaction will fail if:
 * `p._feePerEthInWei` is greater than the maximum fee (0.5 ETH).
 * `p._endTime` has already passed.
 * The Universe is Forking.
+* A connection to an Augur Node has not been established.
 
 NOTE: The account attempting to create the new market must have sufficient REP in order for the market to be created. This is also true when calling `eth_estimateGas`, which essentially does a trial run of the transaction to determine what the gas cost would be to actually run it. 
 
@@ -709,7 +710,7 @@ NOTE: The account attempting to create the new market must have sufficient REP i
     * **`p._topic`**  (string) The topic (category) to which this Market belongs, as a UTF8 string. Note: This string is limited to 32-characters.
     * **`p._description`**  (string) Description of the Market, as a UTF8 string.
     * **`p._extraInfo`**  ([ExtraInfo](#ExtraInfo)) &lt;optional> Extra info which will be converted to JSON and logged to the chain in the `MarketCreated` event.
-    * **`p.meta`**  (<a href="#Meta">Meta</a>) &lt;optional> Authentication metadata for raw transactions.
+    * **`p.meta`**  (<a href="#Meta">Meta</a>) Authentication metadata for raw transactions.
     * **`p.onSent`**  (function) Called if/when the createCategoricalMarket transaction is broadcast to the network.
     * **`p.onSuccess`**  (function) Called if/when the createCategoricalMarket transaction is sealed and confirmed.
     * **`p.onFailed`**  (function) Called if/when the createCategoricalMarket transaction fails.
@@ -729,6 +730,7 @@ This transaction will fail if:
 * `p._feePerEthInWei` is greater than the maximum fee (0.5 ETH).
 * `p._endTime` has already passed.
 * The Universe is Forking.
+* A connection to an Augur Node has not been established.
 
 NOTE: The account attempting to create the new market must have sufficient REP in order for the market to be created. This is also true when calling `eth_estimateGas`, which essentially does a trial run of the transaction to determine what the gas cost would be to actually run it. 
 
@@ -746,7 +748,7 @@ NOTE: The account attempting to create the new market must have sufficient REP i
     * **`p._description`**  (string) Description of the Market, as a UTF8 string.
     * **`p.tickSize`**  (string) &lt;optional> The [Tick](#tick) size for this Market, as a base-10 string.
     * **`p._extraInfo`**  (ExtraInfo) &lt;optional> Extra info which will be converted to JSON and logged to the chain in the `MarketCreated` event.
-    * **`p.meta`**  (<a href="#Meta">Meta</a>) &lt;optional> Authentication metadata for raw transactions.
+    * **`p.meta`**  (<a href="#Meta">Meta</a>) Authentication metadata for raw transactions.
     * **`p.onSent`**  (function) Called if/when the createScalarMarket transaction is broadcast to the network.
     * **`p.onSuccess`**  (function) Called if/when the createScalarMarket transaction is sealed and confirmed.
     * **`p.onFailed`**  (function) Called if/when the createScalarMarket transaction fails.
@@ -765,6 +767,7 @@ This transaction will fail if:
 * `p._feePerEthInWei` is greater than the maximum fee (0.5 ETH).
 * `p._endTime` has already passed.
 * The Universe is Forking.
+* A connection to an Augur Node has not been established.
 
 NOTE: The account attempting to create the new market must have sufficient REP in order for the market to be created. This is also true when calling `eth_estimateGas`, which essentially does a trial run of the transaction to determine what the gas cost would be to actually run it.
 
@@ -779,7 +782,7 @@ NOTE: The account attempting to create the new market must have sufficient REP i
     * **`p._topic`**  (string) The topic (category) to which this Market belongs, as a UTF8 string. Note: This string is limited to 32-characters.
     * **`p._description`**  (string) Description of the Market, as a UTF8 string.
     * **`p._extraInfo`**  ([ExtraInfo](#ExtraInfo)) &lt;optional> Extra info which will be converted to JSON and logged to the chain in the `MarketCreated` event.
-    * **`p.meta`**  (<a href="#Meta">Meta</a>) &lt;optional> Authentication metadata for raw transactions.
+    * **`p.meta`**  (<a href="#Meta">Meta</a>) Authentication metadata for raw transactions.
     * **`p.onSent`**  (function) Called if/when the createYesNoMarket transaction is broadcast to the network.
     * **`p.onSuccess`**  (function) Called if/when the createYesNoMarket transaction is sealed and confirmed.
     * **`p.onFailed`**  (function) Called if/when the createYesNoMarket transaction fails.
@@ -1736,7 +1739,7 @@ The claiming process works as follows:
     * **`p.redeemer`**  (string) Ethereum address attempting to redeem reporting fees, as a hexadecimal string.
     * **`p.forkedMarket`**  (<a href="#ClaimReportingFeesForkedMarket">ClaimReportingFeesForkedMarket</a>) Object containing information about the Forked Market in which the user has unclaimed fees in the current universe .
     * **`p.estimateGas`**  (boolean) Whether to return gas estimates for the transactions instead of actually making the transactions.
-    * **`p.meta`**  (<a href="#Meta">Meta</a>) &lt;optional> Authentication metadata for raw transactions.
+    * **`p.meta`**  (<a href="#Meta">Meta</a>) Authentication metadata for raw transactions.
     * **`p.onSent`**  (function) Called if/when the transactions are broadcast to the network. (Currently used as a placeholder and not actually used by this function.)
     * **`p.onSuccess`**  (function) Called if/when all transactions are sealed and confirmed.
     * **`p.onFailed`**  (function) Called if/when all transactions have been attempted and at least one transaction has failed. Error message shows which transactions succeeded and which ones failed.
@@ -1772,7 +1775,7 @@ The claiming process works as follows:
     * **`p.feeWindows`** (Array.&lt;string>) Array of Fee Window Ethereum contract addresses, as hexadecimal strings.
     * **`p.nonforkedMarkets`** (Array.&lt;<a href="#ClaimReportingFeesNonforkedMarket">ClaimReportingFeesNonforkedMarket</a>>) Array of ClaimReportingFeesNonforkedMarket objects.
     * **`p.estimateGas`**  (boolean) Whether to return gas estimates for the transactions instead of actually making the transactions.
-    * **`p.meta`**  (<a href="#Meta">Meta</a>) &lt;optional> Authentication metadata for raw transactions.
+    * **`p.meta`**  (<a href="#Meta">Meta</a>) Authentication metadata for raw transactions.
     * **`p.onSent`**  (function) Called if/when the transactions are broadcast to the network. (Currently used as a placeholder and not actually used by this function.)
     * **`p.onSuccess`**  (function) Called if/when all transactions are sealed and confirmed.
     * **`p.onFailed`**  (function) Called if/when all transactions have been attempted and at least one transaction has failed. Error message shows which transactions succeeded and which ones failed.
@@ -1795,7 +1798,7 @@ This transaction will fail if:
 
 * **`p`** (Object) Parameters object.
     * **`p.market`**  (string) Address of the Market to Finalize, as a hex string.
-    * **`p.meta`**  (<a href="#Meta">Meta</a>) &lt;optional> Authentication metadata for raw transactions.
+    * **`p.meta`**  (<a href="#Meta">Meta</a>) Authentication metadata for raw transactions.
     * **`p.onSent`**  (function) Called if/when the transaction is broadcast to the network.
     * **`p.onSuccess`**  (function) Called if/when the transaction is sealed and confirmed.
     * **`p.onFailed`**  (function) Called if/when the transaction fails.
@@ -2830,7 +2833,7 @@ Similar to the function `augur.trading.claimTradingProceeds`, but attempts to co
 * **`p`** (Object) Parameters object.
     * **`p.markets`**  (Array.&lt;string>) Array of [Market](#market) addresses for which to claim proceeds.
     * **`p._shareHolder`**  (string) User address that holds the shares, as a 20-byte hexadecimal string.
-    * **`p.meta`**  (<a href="#Meta">Meta</a>) &lt;optional> Authentication metadata for raw transactions.
+    * **`p.meta`**  (<a href="#Meta">Meta</a>) Authentication metadata for raw transactions.
     * **`p.onSent`**  (function) Called if/when each transaction is broadcast to the network.
     * **`p.onSuccess`**  (function) Called if/when all transactions are sealed and confirmed.
     * **`p.onFailed`**  (function) Called if/when any of the transactions fail.
@@ -2853,7 +2856,7 @@ This function will fail if:
 * **`p`** (Object) Parameters object.
     * **`p._market`**  (string) [Market](#market) address for which to claim proceeds.
     * **`p._shareHolder`**  (string) Ethereum address that holds the shares, as a 20-byte hexadecimal string.
-    * **`p.meta`**  (<a href="#Meta">Meta</a>) &lt;optional> Authentication metadata for raw transactions.
+    * **`p.meta`**  (<a href="#Meta">Meta</a>) Authentication metadata for raw transactions.
     * **`p.onSent`**  (function) Called if/when each transaction is broadcast to the network.
     * **`p.onSuccess`**  (function) Called if/when all transactions are sealed and confirmed.
     * **`p.onFailed`**  (function) Called if/when any of the transactions fail.
@@ -3059,7 +3062,7 @@ Rescales a price to lie on [0, 1]: normalizedPrice = (price - minPrice) / (maxPr
     * **`p._outcome`**  (number) Outcome ID to trade, must be an integer value in between 0 and 7.
     * **`p._tradeGroupId`**  (string) &lt;optional> ID logged with each trade transaction, as a hexadecimal string. (This is generally just used by Augur's UI to group trades client-side.)
     * **`p.doNotCreateOrders`**  (boolean) &lt;optional> If set to true, this trade will only take existing Orders off the [Order Book](#order-book), not create new ones Defaults to `false`.
-    * **`p.meta`**  (<a href="#Meta">Meta</a>) &lt;optional> Authentication metadata for raw transactions.
+    * **`p.meta`**  (<a href="#Meta">Meta</a>) Authentication metadata for raw transactions.
     * **`p.onSent`**  (function) Called when the first trading transaction is broadcast to the network.
     * **`p.onSuccess`**  (function) Called when the full trade completes successfully.
     * **`p.onFailed`**  (function) Called if any part of the trade fails.
@@ -3113,7 +3116,7 @@ If `p.doNotCreateOrders` is set to `false`, this function will place trades unti
     * **`p.maxPrice`**  (string) The [Maximum Display Price](#maximum-display-price) for this Market, as a base-10 string.
     * **`p._tradeGroupId`**  (string) &lt;optional> ID logged with each trade transaction, as a hexadecimal string. (This is generally just used by Augur's UI to group trades client-side.)
     * **`p.doNotCreateOrders`**  (boolean) &lt;optional> If set to true, this trade will only take existing orders off the book, not create new ones. Defaults to `false`.
-    * **`p.meta`**  (<a href="#Meta">Meta</a>) &lt;optional> Authentication metadata for raw transactions.
+    * **`p.meta`**  (<a href="#Meta">Meta</a>) Authentication metadata for raw transactions.
     * **`p.onSent`**  (function) Called when the first trading transaction is broadcast to the network.
     * **`p.onSuccess`**  (function) Called when the full trade completes successfully.
     * **`p.onFailed`**  (function) Called if any part of the trade fails.

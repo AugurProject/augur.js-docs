@@ -89,7 +89,7 @@ The other properties that can be specified in the `tx` object are discussed in t
 
 ### The `meta` Object
 
-All Transaction API functions accept a `meta` object as a parameter in order to sign the transaction. The `meta` object contains a `signer` property, which should be set to the private key buffer or a signing function, provided by a hardware wallet, of the account that wishes to initiate the transaction. (When logged in using an Edge account, the private key buffer can be obtained by outputting the value `state.loginAccount.meta.signer`.) The `meta` object also contains an `accountType` property, which should be set to "privateKey", "ledger", "trezor", "edge", or "unlockedEthereumNode". The Transaction API functions attempt to modify information on the blockchain, which requires the transaction to be signed. The `meta` parameter is not required when calling Transaction API functions while using MetaMask (which will pop up a separate window asking to confirm the transaction).
+All Transaction API functions accept a `meta` object as a parameter in order to sign the transaction. The `meta` object contains a `signer` property, which should be set to the private key buffer or a signing function, provided by a hardware wallet, of the account that wishes to initiate the transaction. (When logged in using an Edge account, the private key buffer can be obtained by outputting the value `state.loginAccount.meta.signer`.) The `meta` object also contains an `accountType` property, which should be set to "privateKey", "ledger", "trezor", "edge", "metaMask", or "unlockedEthereumNode". The Transaction API functions attempt to modify information on the blockchain, which requires the transaction to be signed.
 
 ### Callbacks
 
@@ -261,7 +261,7 @@ Allows the caller to create a new [Genesis Universe](#genesis-universe). Users m
     * **`p.tx`** (Object) Object containing details about how this transaction should be made.
         * **`p.tx.to`** (string) Ethereum contract address on which to call this function, as a 20-byte hexadecimal string.
         * **`p.tx.gas`** (string) Gas limit to use when submitting this transaction, as a hexadecimal string.
-    * **`p.meta`**  (<a href="#Meta">Meta</a>) &lt;optional> Authentication metadata for raw transactions.
+    * **`p.meta`**  (<a href="#Meta">Meta</a>) Authentication metadata for raw transactions.
     * **`p.onSent`**  (function) Callback function that executes once the transaction has been sent.
     * **`p.onSuccess`**  (function) &lt;optional> Callback function that executes if the transaction returned successfully.
     * **`p.onFailed`**  (function) &lt;optional> Callback function that executes if the transaction failed.
@@ -314,7 +314,7 @@ This function will fail if:
     * **`p.tx`** (Object) Object containing details about how this transaction should be made.
         * **`p.tx.to`** (string) Ethereum contract address on which to call this function, as a 20-byte hexadecimal string.
         * **`p.tx.gas`** (string) Gas limit to use when submitting this transaction, as a hexadecimal string.
-    * **`p.meta`**  (<a href="#Meta">Meta</a>) &lt;optional> Authentication metadata for raw transactions.
+    * **`p.meta`**  (<a href="#Meta">Meta</a>) Authentication metadata for raw transactions.
     * **`p.onSent`**  (function) Callback function that executes once the transaction has been sent.
     * **`p.onSuccess`**  (function) &lt;optional> Callback function that executes if the transaction returned successfully.
     * **`p.onFailed`**  (function) &lt;optional> Callback function that executes if the transaction failed.
@@ -423,7 +423,7 @@ Many of the transaction functions in Augur's smart contracts will only work if t
     * **`p.tx`** (Object) Object containing details about how this transaction should be made.
         * **`p.tx.to`** (string) Ethereum contract address on which to call this function, as a 20-byte hexadecimal string.
         * **`p.tx.gas`** (string) Gas limit to use when submitting this transaction, as a hexadecimal string.
-    * **`p.meta`**  (<a href="#Meta">Meta</a>) &lt;optional> Authentication metadata for raw transactions.
+    * **`p.meta`**  (<a href="#Meta">Meta</a>) Authentication metadata for raw transactions.
     * **`p.onSent`**  (function) Callback function that executes once the transaction has been sent.
     * **`p.onSuccess`**  (function) &lt;optional> Callback function that executes if the transaction returned successfully.
     * **`p.onFailed`**  (function) &lt;optional> Callback function that executes if the transaction failed.
@@ -444,7 +444,7 @@ Decreases the amount of [Cash](#cash) `p._spender` is approved to spend on behal
     * **`p.tx`** (Object) Object containing details about how this transaction should be made.
         * **`p.tx.to`** (string) Ethereum contract address on which to call this function, as a 20-byte hexadecimal string.
         * **`p.tx.gas`** (string) Gas limit to use when submitting this transaction, as a hexadecimal string.
-    * **`p.meta`**  (<a href="#Meta">Meta</a>) &lt;optional> Authentication metadata for raw transactions.
+    * **`p.meta`**  (<a href="#Meta">Meta</a>) Authentication metadata for raw transactions.
     * **`p.onSent`**  (function) Callback function that executes once the transaction has been sent.
     * **`p.onSuccess`**  (function) &lt;optional> Callback function that executes if the transaction returned successfully.
     * **`p.onFailed`**  (function) &lt;optional> Callback function that executes if the transaction failed.
@@ -465,7 +465,7 @@ Increases the amount of [Cash](#cash) `p._spender` is approved to spend on behal
     * **`p.tx`** (Object) Object containing details about how this transaction should be made.
         * **`p.tx.to`** (string) Ethereum contract address on which to call this function, as a 20-byte hexadecimal string.
         * **`p.tx.gas`** (string) Gas limit to use when submitting this transaction, as a hexadecimal string.
-    * **`p.meta`**  (<a href="#Meta">Meta</a>) &lt;optional> Authentication metadata for raw transactions.
+    * **`p.meta`**  (<a href="#Meta">Meta</a>) Authentication metadata for raw transactions.
     * **`p.onSent`**  (function) Callback function that executes once the transaction has been sent.
     * **`p.onSuccess`**  (function) &lt;optional> Callback function that executes if the transaction returned successfully.
     * **`p.onFailed`**  (function) &lt;optional> Callback function that executes if the transaction failed.
@@ -486,7 +486,7 @@ Withdraws a certain amount of the user's [Cash](#cash) to a particular address a
     * **`p.tx`** (Object) Object containing details about how this transaction should be made.
         * **`p.tx.to`** (string) Ethereum contract address on which to call this function, as a 20-byte hexadecimal string.
         * **`p.tx.gas`** (string) Gas limit to use when submitting this transaction, as a hexadecimal string.
-    * **`p.meta`**  (<a href="#Meta">Meta</a>) &lt;optional> Authentication metadata for raw transactions.
+    * **`p.meta`**  (<a href="#Meta">Meta</a>) Authentication metadata for raw transactions.
     * **`p.onSent`**  (function) Callback function that executes once the transaction has been sent.
     * **`p.onSuccess`**  (function) &lt;optional> Callback function that executes if the transaction returned successfully.
     * **`p.onFailed`**  (function) &lt;optional> Callback function that executes if the transaction failed.
@@ -552,7 +552,7 @@ Calculates the [Reporting Fee](#reporting-fee) that will be paid when settling a
         * **`p.tx.to`** (string) Ethereum contract address on which to call this function, as a 20-byte hexadecimal string.
         * **`p.tx.send`** (boolean) &lt;optional> Whether this function should be executed as a transaction. When set to `true`, this function will be executed as a transaction, which will calculate the value (and thus uses gas). When set to `false`, this function will be executed as a call, which will return the Reporting Fee amount and will not use any gas. 
         * **`p.tx.gas`** (string) Gas limit to use when submitting this transaction, as a hexadecimal string.
-    * **`p.meta`**  (<a href="#Meta">Meta</a>) &lt;optional> Authentication metadata for raw transactions.
+    * **`p.meta`**  (<a href="#Meta">Meta</a>) Authentication metadata for raw transactions.
     * **`p.onSent`**  (function) Callback function that executes once the transaction has been sent.
     * **`p.onSuccess`**  (function) &lt;optional> Callback function that executes if the transaction returned successfully.
     * **`p.onFailed`**  (function) &lt;optional> Callback function that executes if the transaction failed.
@@ -578,7 +578,7 @@ This transaction will fail if:
     * **`p.tx`** (Object) Object containing details about how this transaction should be made.
         * **`p.tx.to`** (string) Ethereum contract address on which to call this function, as a 20-byte hexadecimal string.
         * **`p.tx.gas`** (string) Gas limit to use when submitting this transaction, as a hexadecimal string.
-    * **`p.meta`**  (<a href="#Meta">Meta</a>) &lt;optional> Authentication metadata for raw transactions.
+    * **`p.meta`**  (<a href="#Meta">Meta</a>) Authentication metadata for raw transactions.
     * **`p.onSent`**  (function) Callback function that executes once the transaction has been sent.
     * **`p.onSuccess`**  (function) &lt;optional> Callback function that executes if the transaction returned successfully.
     * **`p.onFailed`**  (function) &lt;optional> Callback function that executes if the transaction failed.
@@ -690,7 +690,7 @@ When successful, this transaction will trigger a [`CompleteSetsPurchased`](#Comp
         * **`p.tx.to`** (string) Ethereum contract address on which to call this function, as a 20-byte hexadecimal string.
         * **`p.tx.value`**  (string) Number of [attoETH](atto-prefix) required to buy a [Complete Set](#complete-set), as a hexadecimal string.
         * **`p.tx.gas`** (string) Gas limit to use when submitting this transaction, as a hexadecimal string.
-    * **`p.meta`**  (<a href="#Meta">Meta</a>) &lt;optional> Authentication metadata for raw transactions.
+    * **`p.meta`**  (<a href="#Meta">Meta</a>) Authentication metadata for raw transactions.
     * **`p.onSent`**  (function) Callback function that executes once the transaction has been sent.
     * **`p.onSuccess`**  (function) &lt;optional> Callback function that executes if the transaction returned successfully.
     * **`p.onFailed`**  (function) &lt;optional> Callback function that executes if the transaction failed.
@@ -712,7 +712,7 @@ This function is not fully implemented yet, but is a intended to be a point-of-c
         * **`p.tx.to`** (string) Ethereum contract address on which to call this function, as a 20-byte hexadecimal string.
         * **`p.tx.value`**  (string) Number of [attoETH](atto-prefix) required to buy a [Complete Set](#complete-set), as a hexadecimal string.
         * **`p.tx.gas`** (string) Gas limit to use when submitting this transaction, as a hexadecimal string.
-    * **`p.meta`**  (<a href="#Meta">Meta</a>) &lt;optional> Authentication metadata for raw transactions.
+    * **`p.meta`**  (<a href="#Meta">Meta</a>) Authentication metadata for raw transactions.
     * **`p.onSent`**  (function) Callback function that executes once the transaction has been sent.
     * **`p.onSuccess`**  (function) &lt;optional> Callback function that executes if the transaction returned successfully.
     * **`p.onFailed`**  (function) &lt;optional> Callback function that executes if the transaction failed.
@@ -740,7 +740,7 @@ When successful, this transaction will trigger a [`CompleteSetsSold`](#CompleteS
     * **`p.tx`** (Object) Object containing details about how this transaction should be made.
         * **`p.tx.to`** (string) Ethereum contract address on which to call this function, as a 20-byte hexadecimal string.
         * **`p.tx.gas`** (string) Gas limit to use when submitting this transaction, as a hexadecimal string.
-    * **`p.meta`**  (<a href="#Meta">Meta</a>) &lt;optional> Authentication metadata for raw transactions.
+    * **`p.meta`**  (<a href="#Meta">Meta</a>) Authentication metadata for raw transactions.
     * **`p.onSent`**  (function) Callback function that executes once the transaction has been sent.
     * **`p.onSuccess`**  (function) &lt;optional> Callback function that executes if the transaction returned successfully.
     * **`p.onFailed`**  (function) &lt;optional> Callback function that executes if the transaction failed.
@@ -761,7 +761,7 @@ This function is not fully implemented yet, but is a intended to be a point-of-c
     * **`p.tx`** (Object) Object containing details about how this transaction should be made.
         * **`p.tx.to`** (string) Ethereum contract address on which to call this function, as a 20-byte hexadecimal string.
         * **`p.tx.gas`** (string) Gas limit to use when submitting this transaction, as a hexadecimal string.
-    * **`p.meta`**  (<a href="#Meta">Meta</a>) &lt;optional> Authentication metadata for raw transactions.
+    * **`p.meta`**  (<a href="#Meta">Meta</a>) Authentication metadata for raw transactions.
     * **`p.onSent`**  (function) Callback function that executes once the transaction has been sent.
     * **`p.onSuccess`**  (function) &lt;optional> Callback function that executes if the transaction returned successfully.
     * **`p.onFailed`**  (function) &lt;optional> Callback function that executes if the transaction failed.
@@ -837,7 +837,7 @@ This transaction will fail if:
         * **`p.tx.to`** (string) Ethereum contract address on which to call this function, as a 20-byte hexadecimal string.
         * **`p.tx.value`**  (string) Number of [attoETH](atto-prefix) required to create the Order, as a hexadecimal string.
         * **`p.tx.gas`** (string) Gas limit to use when submitting this transaction, as a hexadecimal string.
-    * **`p.meta`**  (<a href="#Meta">Meta</a>) &lt;optional> Authentication metadata for raw transactions.
+    * **`p.meta`**  (<a href="#Meta">Meta</a>) Authentication metadata for raw transactions.
     * **`p.onSent`**  (function) Callback function that executes once the transaction has been sent.
     * **`p.onSuccess`**  (function) &lt;optional> Callback function that executes if the transaction returned successfully.
     * **`p.onFailed`**  (function) &lt;optional> Callback function that executes if the transaction failed.
@@ -924,7 +924,7 @@ This transaction will trigger a [ReportingParticipantDisavowed](#ReportingPartic
     * **`p.tx`** (Object) Object containing details about how this transaction should be made.
         * **`p.tx.to`** (string) Ethereum contract address on which to call this function, as a 20-byte hexadecimal string.
         * **`p.tx.gas`** (string) Gas limit to use when submitting this transaction, as a hexadecimal string.
-    * **`p.meta`**  (<a href="#Meta">Meta</a>) &lt;optional> Authentication metadata for raw transactions.
+    * **`p.meta`**  (<a href="#Meta">Meta</a>) Authentication metadata for raw transactions.
     * **`p.onSent`**  (function) Callback function that executes once the transaction has been sent.
     * **`p.onSuccess`**  (function) &lt;optional> Callback function that executes if the transaction returned successfully.
     * **`p.onFailed`**  (function) &lt;optional> Callback function that executes if the transaction failed.
@@ -961,7 +961,7 @@ This transaction will fail if:
     * **`p.tx`** (Object) Object containing details about how this transaction should be made.
         * **`p.tx.to`** (string) Ethereum contract address on which to call this function, as a 20-byte hexadecimal string.
         * **`p.tx.gas`** (string) Gas limit to use when submitting this transaction, as a hexadecimal string.
-    * **`p.meta`**  (<a href="#Meta">Meta</a>) &lt;optional> Authentication metadata for raw transactions.
+    * **`p.meta`**  (<a href="#Meta">Meta</a>) Authentication metadata for raw transactions.
     * **`p.onSent`**  (function) Callback function that executes once the transaction has been sent.
     * **`p.onSuccess`**  (function) &lt;optional> Callback function that executes if the transaction returned successfully.
     * **`p.onFailed`**  (function) &lt;optional> Callback function that executes if the transaction failed.
@@ -984,7 +984,7 @@ This transaction will fail if:
     * **`p.tx`** (Object) Object containing details about how this transaction should be made.
         * **`p.tx.to`** (string) Ethereum contract address on which to call this function, as a 20-byte hexadecimal string.
         * **`p.tx.gas`** (string) Gas limit to use when submitting this transaction, as a hexadecimal string.
-    * **`p.meta`**  (<a href="#Meta">Meta</a>) &lt;optional> Authentication metadata for raw transactions.
+    * **`p.meta`**  (<a href="#Meta">Meta</a>) Authentication metadata for raw transactions.
     * **`p.onSent`**  (function) Callback function that executes once the transaction has been sent.
     * **`p.onSuccess`**  (function) &lt;optional> Callback function that executes if the transaction returned successfully.
     * **`p.onFailed`**  (function) &lt;optional> Callback function that executes if the transaction failed.
@@ -1072,7 +1072,7 @@ These Participation Tokens can be redeemed later once the Fee Window is no longe
     * **`p.tx`** (Object) Object containing details about how this transaction should be made.
         * **`p.tx.to`** (string) Ethereum contract address on which to call this function, as a 20-byte hexadecimal string.
         * **`p.tx.gas`** (string) Gas limit to use when submitting this transaction, as a hexadecimal string.
-    * **`p.meta`**  (<a href="#Meta">Meta</a>) &lt;optional> Authentication metadata for raw transactions.
+    * **`p.meta`**  (<a href="#Meta">Meta</a>) Authentication metadata for raw transactions.
     * **`p.onSent`**  (function) Callback function that executes once the transaction has been sent.
     * **`p.onSuccess`**  (function) &lt;optional> Callback function that executes if the transaction returned successfully.
     * **`p.onFailed`**  (function) &lt;optional> Callback function that executes if the transaction failed.
@@ -1094,7 +1094,7 @@ This transaction will trigger a [`FeeWindowRedeemed`](#FeeWindowRedeemed) event 
     * **`p.tx`** (Object) Object containing details about how this transaction should be made.
         * **`p.tx.to`** (string) Ethereum contract address on which to call this function, as a 20-byte hexadecimal string.
         * **`p.tx.gas`** (string) Gas limit to use when submitting this transaction, as a hexadecimal string.
-    * **`p.meta`**  (<a href="#Meta">Meta</a>) &lt;optional> Authentication metadata for raw transactions.
+    * **`p.meta`**  (<a href="#Meta">Meta</a>) Authentication metadata for raw transactions.
     * **`p.onSent`**  (function) Callback function that executes once the transaction has been sent.
     * **`p.onSuccess`**  (function) &lt;optional> Callback function that executes if the transaction returned successfully.
     * **`p.onFailed`**  (function) &lt;optional> Callback function that executes if the transaction failed.
@@ -1117,7 +1117,7 @@ This transaction will fail if:
     * **`p.tx`** (Object) Object containing details about how this transaction should be made.
         * **`p.tx.to`** (string) Ethereum contract address on which to call this function, as a 20-byte hexadecimal string.
         * **`p.tx.gas`** (string) Gas limit to use when submitting this transaction, as a hexadecimal string.
-    * **`p.meta`**  (<a href="#Meta">Meta</a>) &lt;optional> Authentication metadata for raw transactions.
+    * **`p.meta`**  (<a href="#Meta">Meta</a>) Authentication metadata for raw transactions.
     * **`p.onSent`**  (function) Callback function that executes once the transaction has been sent.
     * **`p.onSuccess`**  (function) &lt;optional> Callback function that executes if the transaction returned successfully.
     * **`p.onFailed`**  (function) &lt;optional> Callback function that executes if the transaction failed.
@@ -1179,7 +1179,7 @@ This transaction will fail if:
         * **`p.tx.to`** (string) Ethereum contract address on which to call this function, as a 20-byte hexadecimal string.
         * **`p.tx.value`**  (string) Number of [attoETH](atto-prefix) required to fill the Order, as a hexadecimal string.
         * **`p.tx.gas`** (string) Gas limit to use when submitting this transaction, as a hexadecimal string.
-    * **`p.meta`**  (<a href="#Meta">Meta</a>) &lt;optional> Authentication metadata for raw transactions.
+    * **`p.meta`**  (<a href="#Meta">Meta</a>) Authentication metadata for raw transactions.
     * **`p.onSent`**  (function) Callback function that executes once the transaction has been sent.
     * **`p.onSuccess`**  (function) &lt;optional> Callback function that executes if the transaction returned successfully.
     * **`p.onFailed`**  (function) &lt;optional> Callback function that executes if the transaction failed.
@@ -1277,7 +1277,7 @@ This transaction will fail if:
     * **`p.tx`** (Object) Object containing details about how this transaction should be made.
         * **`p.tx.to`** (string) Ethereum contract address on which to call this function, as a 20-byte hexadecimal string.
         * **`p.tx.gas`** (string) Gas limit to use when submitting this transaction, as a hexadecimal string.
-    * **`p.meta`**  (<a href="#Meta">Meta</a>) &lt;optional> Authentication metadata for raw transactions.
+    * **`p.meta`**  (<a href="#Meta">Meta</a>) Authentication metadata for raw transactions.
     * **`p.onSent`**  (function) Callback function that executes once the transaction has been sent.
     * **`p.onSuccess`**  (function) &lt;optional> Callback function that executes if the transaction returned successfully.
     * **`p.onFailed`**  (function) &lt;optional> Callback function that executes if the transaction failed.
@@ -1299,7 +1299,7 @@ This transaction will trigger an [`InitialReporterRedeemed`](#InitialReporterRed
     * **`p.tx`** (Object) Object containing details about how this transaction should be made.
         * **`p.tx.to`** (string) Ethereum contract address on which to call this function, as a 20-byte hexadecimal string.
         * **`p.tx.gas`** (string) Gas limit to use when submitting this transaction, as a hexadecimal string.
-    * **`p.meta`**  (<a href="#Meta">Meta</a>) &lt;optional> Authentication metadata for raw transactions.
+    * **`p.meta`**  (<a href="#Meta">Meta</a>) Authentication metadata for raw transactions.
     * **`p.onSent`**  (function) Callback function that executes once the transaction has been sent.
     * **`p.onSuccess`**  (function) &lt;optional> Callback function that executes if the transaction returned successfully.
     * **`p.onFailed`**  (function) &lt;optional> Callback function that executes if the transaction failed.
@@ -1325,7 +1325,7 @@ This transaction will trigger an [`InitialReporterTransferred`](#InitialReporter
     * **`p.tx`** (Object) Object containing details about how this transaction should be made.
         * **`p.tx.to`** (string) Ethereum contract address on which to call this function, as a 20-byte hexadecimal string.
         * **`p.tx.gas`** (string) Gas limit to use when submitting this transaction, as a hexadecimal string.
-    * **`p.meta`**  (<a href="#Meta">Meta</a>) &lt;optional> Authentication metadata for raw transactions.
+    * **`p.meta`**  (<a href="#Meta">Meta</a>) Authentication metadata for raw transactions.
     * **`p.onSent`**  (function) Callback function that executes once the transaction has been sent.
     * **`p.onSuccess`**  (function) &lt;optional> Callback function that executes if the transaction returned successfully.
     * **`p.onFailed`**  (function) &lt;optional> Callback function that executes if the transaction failed.
@@ -1348,7 +1348,7 @@ This transaction will fail if:
     * **`p.tx`** (Object) Object containing details about how this transaction should be made.
         * **`p.tx.to`** (string) Ethereum contract address on which to call this function, as a 20-byte hexadecimal string.
         * **`p.tx.gas`** (string) Gas limit to use when submitting this transaction, as a hexadecimal string.
-    * **`p.meta`**  (<a href="#Meta">Meta</a>) &lt;optional> Authentication metadata for raw transactions.
+    * **`p.meta`**  (<a href="#Meta">Meta</a>) Authentication metadata for raw transactions.
     * **`p.onSent`**  (function) Callback function that executes once the transaction has been sent.
     * **`p.onSuccess`**  (function) &lt;optional> Callback function that executes if the transaction returned successfully.
     * **`p.onFailed`**  (function) &lt;optional> Callback function that executes if the transaction failed.
@@ -1431,7 +1431,7 @@ This transaction will fail if:
     * **`p.tx`** (Object) Object containing details about how this transaction should be made.
         * **`p.tx.to`** (string) Ethereum contract address on which to call this function, as a 20-byte hexadecimal string.
         * **`p.tx.gas`** (string) Gas limit to use when submitting this transaction, as a hexadecimal string.
-    * **`p.meta`**  (<a href="#Meta">Meta</a>) &lt;optional> Authentication metadata for raw transactions.
+    * **`p.meta`**  (<a href="#Meta">Meta</a>) Authentication metadata for raw transactions.
     * **`p.onSent`**  (function) Callback function that executes once the transaction has been sent.
     * **`p.onSuccess`**  (function) &lt;optional> Callback function that executes if the transaction returned successfully.
     * **`p.onFailed`**  (function) &lt;optional> Callback function that executes if the transaction failed.
@@ -1454,7 +1454,7 @@ This transaction will fail if:
     * **`p.tx`** (Object) Object containing details about how this transaction should be made.
         * **`p.tx.to`** (string) Ethereum contract address on which to call this function, as a 20-byte hexadecimal string.
         * **`p.tx.gas`** (string) Gas limit to use when submitting this transaction, as a hexadecimal string.
-    * **`p.meta`**  (<a href="#Meta">Meta</a>) &lt;optional> Authentication metadata for raw transactions.
+    * **`p.meta`**  (<a href="#Meta">Meta</a>) Authentication metadata for raw transactions.
     * **`p.onSent`**  (function) Callback function that executes once the transaction has been sent.
     * **`p.onSuccess`**  (function) &lt;optional> Callback function that executes if the transaction returned successfully.
     * **`p.onFailed`**  (function) &lt;optional> Callback function that executes if the transaction failed.
@@ -1478,7 +1478,7 @@ This transaction will fail if:
     * **`p.tx`** (Object) Object containing details about how this transaction should be made.
         * **`p.tx.to`** (string) Ethereum contract address on which to call this function, as a 20-byte hexadecimal string.
         * **`p.tx.gas`** (string) Gas limit to use when submitting this transaction, as a hexadecimal string.
-    * **`p.meta`**  (<a href="#Meta">Meta</a>) &lt;optional> Authentication metadata for raw transactions.
+    * **`p.meta`**  (<a href="#Meta">Meta</a>) Authentication metadata for raw transactions.
     * **`p.onSent`**  (function) Callback function that executes once the transaction has been sent.
     * **`p.onSuccess`**  (function) &lt;optional> Callback function that executes if the transaction returned successfully.
     * **`p.onFailed`**  (function) &lt;optional> Callback function that executes if the transaction failed.
@@ -1646,7 +1646,7 @@ This function will fail if:
     * **`p.tx`** (Object) Object containing details about how this transaction should be made.
         * **`p.tx.to`** (string) Ethereum contract address on which to call this function, as a 20-byte hexadecimal string.
         * **`p.tx.gas`** (string) Gas limit to use when submitting this transaction, as a hexadecimal string.
-    * **`p.meta`**  (<a href="#Meta">Meta</a>) &lt;optional> Authentication metadata for raw transactions.
+    * **`p.meta`**  (<a href="#Meta">Meta</a>) Authentication metadata for raw transactions.
     * **`p.onSent`**  (function) Callback function that executes once the transaction has been sent.
     * **`p.onSuccess`**  (function) &lt;optional> Callback function that executes if the transaction returned successfully.
     * **`p.onFailed`**  (function) &lt;optional> Callback function that executes if the transaction failed.
@@ -1673,7 +1673,7 @@ This function will fail if:
     * **`p.tx`** (Object) Object containing details about how this transaction should be made.
         * **`p.tx.to`** (string) Ethereum contract address on which to call this function, as a 20-byte hexadecimal string.
         * **`p.tx.gas`** (string) Gas limit to use when submitting this transaction, as a hexadecimal string.
-    * **`p.meta`**  (<a href="#Meta">Meta</a>) &lt;optional> Authentication metadata for raw transactions.
+    * **`p.meta`**  (<a href="#Meta">Meta</a>) Authentication metadata for raw transactions.
     * **`p.onSent`**  (function) Callback function that executes once the transaction has been sent.
     * **`p.onSuccess`**  (function) &lt;optional> Callback function that executes if the transaction returned successfully.
     * **`p.onFailed`**  (function) &lt;optional> Callback function that executes if the transaction failed.
@@ -1700,7 +1700,7 @@ This transaction will fail if:
     * **`p.tx`** (Object) Object containing details about how this transaction should be made.
         * **`p.tx.to`** (string) Ethereum contract address on which to call this function, as a 20-byte hexadecimal string.
         * **`p.tx.gas`** (string) Gas limit to use when submitting this transaction, as a hexadecimal string.
-    * **`p.meta`**  (<a href="#Meta">Meta</a>) &lt;optional> Authentication metadata for raw transactions.
+    * **`p.meta`**  (<a href="#Meta">Meta</a>) Authentication metadata for raw transactions.
     * **`p.onSent`**  (function) Callback function that executes once the transaction has been sent.
     * **`p.onSuccess`**  (function) &lt;optional> Callback function that executes if the transaction returned successfully.
     * **`p.onFailed`**  (function) &lt;optional> Callback function that executes if the transaction failed.
@@ -1725,7 +1725,7 @@ This transaction will fail if:
     * **`p.tx`** (Object) Object containing details about how this transaction should be made.
         * **`p.tx.to`** (string) Ethereum contract address on which to call this function, as a 20-byte hexadecimal string.
         * **`p.tx.gas`** (string) Gas limit to use when submitting this transaction, as a hexadecimal string.
-    * **`p.meta`**  (<a href="#Meta">Meta</a>) &lt;optional> Authentication metadata for raw transactions.
+    * **`p.meta`**  (<a href="#Meta">Meta</a>) Authentication metadata for raw transactions.
     * **`p.onSent`**  (function) Callback function that executes once the transaction has been sent.
     * **`p.onSuccess`**  (function) &lt;optional> Callback function that executes if the transaction returned successfully.
     * **`p.onFailed`**  (function) &lt;optional> Callback function that executes if the transaction failed.
@@ -1749,7 +1749,7 @@ This transaction will fail if:
     * **`p.tx`** (Object) Object containing details about how this transaction should be made.
         * **`p.tx.to`** (string) Ethereum contract address on which to call this function, as a 20-byte hexadecimal string.
         * **`p.tx.gas`** (string) Gas limit to use when submitting this transaction, as a hexadecimal string.
-    * **`p.meta`**  (<a href="#Meta">Meta</a>) &lt;optional> Authentication metadata for raw transactions.
+    * **`p.meta`**  (<a href="#Meta">Meta</a>) Authentication metadata for raw transactions.
     * **`p.onSent`**  (function) Callback function that executes once the transaction has been sent.
     * **`p.onSuccess`**  (function) &lt;optional> Callback function that executes if the transaction returned successfully.
     * **`p.onFailed`**  (function) &lt;optional> Callback function that executes if the transaction failed.
@@ -1773,7 +1773,7 @@ This transaction will fail if:
     * **`p.tx`** (Object) Object containing details about how this transaction should be made.
         * **`p.tx.to`** (string) Ethereum contract address on which to call this function, as a 20-byte hexadecimal string.
         * **`p.tx.gas`** (string) Gas limit to use when submitting this transaction, as a hexadecimal string.
-    * **`p.meta`**  (<a href="#Meta">Meta</a>) &lt;optional> Authentication metadata for raw transactions.
+    * **`p.meta`**  (<a href="#Meta">Meta</a>) Authentication metadata for raw transactions.
     * **`p.onSent`**  (function) Callback function that executes once the transaction has been sent.
     * **`p.onSuccess`**  (function) &lt;optional> Callback function that executes if the transaction returned successfully.
     * **`p.onFailed`**  (function) &lt;optional> Callback function that executes if the transaction failed.
@@ -1797,7 +1797,7 @@ This transaction will fail if:
     * **`p.tx`** (Object) Object containing details about how this transaction should be made.
         * **`p.tx.to`** (string) Ethereum contract address on which to call this function, as a 20-byte hexadecimal string.
         * **`p.tx.gas`** (string) Gas limit to use when submitting this transaction, as a hexadecimal string.
-    * **`p.meta`**  (<a href="#Meta">Meta</a>) &lt;optional> Authentication metadata for raw transactions.
+    * **`p.meta`**  (<a href="#Meta">Meta</a>) Authentication metadata for raw transactions.
     * **`p.onSent`**  (function) Callback function that executes once the transaction has been sent.
     * **`p.onSuccess`**  (function) &lt;optional> Callback function that executes if the transaction returned successfully.
     * **`p.onFailed`**  (function) &lt;optional> Callback function that executes if the transaction failed.
@@ -1820,7 +1820,7 @@ This transaction will fail if:
     * **`p.tx`** (Object) Object containing details about how this transaction should be made.
         * **`p.tx.to`** (string) Ethereum contract address on which to call this function, as a 20-byte hexadecimal string.
         * **`p.tx.gas`** (string) Gas limit to use when submitting this transaction, as a hexadecimal string.
-    * **`p.meta`**  (<a href="#Meta">Meta</a>) &lt;optional> Authentication metadata for raw transactions.
+    * **`p.meta`**  (<a href="#Meta">Meta</a>) Authentication metadata for raw transactions.
     * **`p.onSent`**  (function) Callback function that executes once the transaction has been sent.
     * **`p.onSuccess`**  (function) &lt;optional> Callback function that executes if the transaction returned successfully.
     * **`p.onFailed`**  (function) &lt;optional> Callback function that executes if the transaction failed.
@@ -2024,7 +2024,7 @@ Allows `p._spender` to spend up to `p._value` [REP](#rep) for the `msg.sender` o
     * **`p.tx`** (Object) Object containing details about how this transaction should be made.
         * **`p.tx.to`** (string) Ethereum contract address on which to call this function, as a 20-byte hexadecimal string.
         * **`p.tx.gas`** (string) Gas limit to use when submitting this transaction, as a hexadecimal string.
-    * **`p.meta`**  (<a href="#Meta">Meta</a>) &lt;optional> Authentication metadata for raw transactions.
+    * **`p.meta`**  (<a href="#Meta">Meta</a>) Authentication metadata for raw transactions.
     * **`p.onSent`**  (function) Callback function that executes once the transaction has been sent.
     * **`p.onSuccess`**  (function) &lt;optional> Callback function that executes if the transaction returned successfully.
     * **`p.onFailed`**  (function) &lt;optional> Callback function that executes if the transaction failed.
@@ -2045,7 +2045,7 @@ Decreases the amount of [REP](#rep) `p._spender` is approved to spend on behalf 
     * **`p.tx`** (Object) Object containing details about how this transaction should be made.
         * **`p.tx.to`** (string) Ethereum contract address on which to call this function, as a 20-byte hexadecimal string.
         * **`p.tx.gas`** (string) Gas limit to use when submitting this transaction, as a hexadecimal string.
-    * **`p.meta`**  (<a href="#Meta">Meta</a>) &lt;optional> Authentication metadata for raw transactions.
+    * **`p.meta`**  (<a href="#Meta">Meta</a>) Authentication metadata for raw transactions.
     * **`p.onSent`**  (function) Callback function that executes once the transaction has been sent.
     * **`p.onSuccess`**  (function) &lt;optional> Callback function that executes if the transaction returned successfully.
     * **`p.onFailed`**  (function) &lt;optional> Callback function that executes if the transaction failed.
@@ -2066,7 +2066,7 @@ Increases the amount of [REP](#rep) `p._spender` is approved to spend on behalf 
     * **`p.tx`** (Object) Object containing details about how this transaction should be made.
         * **`p.tx.to`** (string) Ethereum contract address on which to call this function, as a 20-byte hexadecimal string.
         * **`p.tx.gas`** (string) Gas limit to use when submitting this transaction, as a hexadecimal string.
-    * **`p.meta`**  (<a href="#Meta">Meta</a>) &lt;optional> Authentication metadata for raw transactions.
+    * **`p.meta`**  (<a href="#Meta">Meta</a>) Authentication metadata for raw transactions.
     * **`p.onSent`**  (function) Callback function that executes once the transaction has been sent.
     * **`p.onSuccess`**  (function) &lt;optional> Callback function that executes if the transaction returned successfully.
     * **`p.onFailed`**  (function) &lt;optional> Callback function that executes if the transaction failed.
@@ -2085,7 +2085,7 @@ Migrates [Legacy REP](#legacy-rep) tokens owned by `msg.sender` from the [Legacy
     * **`p.tx`** (Object) Object containing details about how this transaction should be made.
         * **`p.tx.to`** (string) Ethereum contract address on which to call this function, as a 20-byte hexadecimal string.
         * **`p.tx.gas`** (string) Gas limit to use when submitting this transaction, as a hexadecimal string.
-    * **`p.meta`**  (<a href="#Meta">Meta</a>) &lt;optional> Authentication metadata for raw transactions.
+    * **`p.meta`**  (<a href="#Meta">Meta</a>) Authentication metadata for raw transactions.
     * **`p.onSent`**  (function) Callback function that executes once the transaction has been sent.
     * **`p.onSuccess`**  (function) &lt;optional> Callback function that executes if the transaction returned successfully.
     * **`p.onFailed`**  (function) &lt;optional> Callback function that executes if the transaction failed.
@@ -2111,7 +2111,7 @@ This transaction will fail if:
     * **`p.tx`** (Object) Object containing details about how this transaction should be made.
         * **`p.tx.to`** (string) Ethereum contract address on which to call this function, as a 20-byte hexadecimal string.
         * **`p.tx.gas`** (string) Gas limit to use when submitting this transaction, as a hexadecimal string.
-    * **`p.meta`**  (<a href="#Meta">Meta</a>) &lt;optional> Authentication metadata for raw transactions.
+    * **`p.meta`**  (<a href="#Meta">Meta</a>) Authentication metadata for raw transactions.
     * **`p.onSent`**  (function) Callback function that executes once the transaction has been sent.
     * **`p.onSuccess`**  (function) &lt;optional> Callback function that executes if the transaction returned successfully.
     * **`p.onFailed`**  (function) &lt;optional> Callback function that executes if the transaction failed.
@@ -2138,7 +2138,7 @@ This transaction will fail if:
     * **`p.tx`** (Object) Object containing details about how this transaction should be made.
         * **`p.tx.to`** (string) Ethereum contract address on which to call this function, as a 20-byte hexadecimal string.
         * **`p.tx.gas`** (string) Gas limit to use when submitting this transaction, as a hexadecimal string.
-    * **`p.meta`**  (<a href="#Meta">Meta</a>) &lt;optional> Authentication metadata for raw transactions.
+    * **`p.meta`**  (<a href="#Meta">Meta</a>) Authentication metadata for raw transactions.
     * **`p.onSent`**  (function) Callback function that executes once the transaction has been sent.
     * **`p.onSuccess`**  (function) &lt;optional> Callback function that executes if the transaction returned successfully.
     * **`p.onFailed`**  (function) &lt;optional> Callback function that executes if the transaction failed.
@@ -2163,7 +2163,7 @@ This transaction will fail if:
     * **`p.tx`** (Object) Object containing details about how this transaction should be made.
         * **`p.tx.to`** (string) Ethereum contract address on which to call this function, as a 20-byte hexadecimal string.
         * **`p.tx.gas`** (string) Gas limit to use when submitting this transaction, as a hexadecimal string.
-    * **`p.meta`**  (<a href="#Meta">Meta</a>) &lt;optional> Authentication metadata for raw transactions.
+    * **`p.meta`**  (<a href="#Meta">Meta</a>) Authentication metadata for raw transactions.
     * **`p.onSent`**  (function) Callback function that executes once the transaction has been sent.
     * **`p.onSuccess`**  (function) &lt;optional> Callback function that executes if the transaction returned successfully.
     * **`p.onFailed`**  (function) &lt;optional> Callback function that executes if the transaction failed.
@@ -2190,7 +2190,7 @@ This transaction will fail if:
     * **`p.tx`** (Object) Object containing details about how this transaction should be made.
         * **`p.tx.to`** (string) Ethereum contract address on which to call this function, as a 20-byte hexadecimal string.
         * **`p.tx.gas`** (string) Gas limit to use when submitting this transaction, as a hexadecimal string.
-    * **`p.meta`**  (<a href="#Meta">Meta</a>) &lt;optional> Authentication metadata for raw transactions.
+    * **`p.meta`**  (<a href="#Meta">Meta</a>) Authentication metadata for raw transactions.
     * **`p.onSent`**  (function) Callback function that executes once the transaction has been sent.
     * **`p.onSuccess`**  (function) &lt;optional> Callback function that executes if the transaction returned successfully.
     * **`p.onFailed`**  (function) &lt;optional> Callback function that executes if the transaction failed.
@@ -2209,7 +2209,7 @@ Gets the current [Theoretical REP Supply](#theoretical-rep-supply) for this Repu
     * **`p.tx`** (Object) Object containing details about how this transaction should be made.
         * **`p.tx.to`** (string) Ethereum contract address on which to call this function, as a 20-byte hexadecimal string.
         * **`p.tx.gas`** (string) Gas limit to use when submitting this transaction, as a hexadecimal string.
-    * **`p.meta`**  (<a href="#Meta">Meta</a>) &lt;optional> Authentication metadata for raw transactions.
+    * **`p.meta`**  (<a href="#Meta">Meta</a>) Authentication metadata for raw transactions.
     * **`p.onSent`**  (function) Callback function that executes once the transaction has been sent.
     * **`p.onSuccess`**  (function) &lt;optional> Callback function that executes if the transaction returned successfully.
     * **`p.onFailed`**  (function) &lt;optional> Callback function that executes if the transaction failed.
@@ -2234,7 +2234,7 @@ This transaction will fail if:
     * **`p.tx`** (Object) Object containing details about how this transaction should be made.
         * **`p.tx.to`** (string) Ethereum contract address on which to call this function, as a 20-byte hexadecimal string.
         * **`p.tx.gas`** (string) Gas limit to use when submitting this transaction, as a hexadecimal string.
-    * **`p.meta`**  (<a href="#Meta">Meta</a>) &lt;optional> Authentication metadata for raw transactions.
+    * **`p.meta`**  (<a href="#Meta">Meta</a>) Authentication metadata for raw transactions.
     * **`p.onSent`**  (function) Callback function that executes once the transaction has been sent.
     * **`p.onSuccess`**  (function) &lt;optional> Callback function that executes if the transaction returned successfully.
     * **`p.onFailed`**  (function) &lt;optional> Callback function that executes if the transaction failed.
@@ -2359,7 +2359,7 @@ Allows `p._spender` to spend up to `p._value` [Shares](#share) for the `msg.send
     * **`p.tx`** (Object) Object containing details about how this transaction should be made.
         * **`p.tx.to`** (string) Ethereum contract address on which to call this function, as a 20-byte hexadecimal string.
         * **`p.tx.gas`** (string) Gas limit to use when submitting this transaction, as a hexadecimal string.
-    * **`p.meta`**  (<a href="#Meta">Meta</a>) &lt;optional> Authentication metadata for raw transactions.
+    * **`p.meta`**  (<a href="#Meta">Meta</a>) Authentication metadata for raw transactions.
     * **`p.onSent`**  (function) Callback function that executes once the transaction has been sent.
     * **`p.onSuccess`**  (function) &lt;optional> Callback function that executes if the transaction returned successfully.
     * **`p.onFailed`**  (function) &lt;optional> Callback function that executes if the transaction failed.
@@ -2380,7 +2380,7 @@ Decreases the amount of [Shares](#share) `p._spender` is approved to spend on be
     * **`p.tx`** (Object) Object containing details about how this transaction should be made.
         * **`p.tx.to`** (string) Ethereum contract address on which to call this function, as a 20-byte hexadecimal string.
         * **`p.tx.gas`** (string) Gas limit to use when submitting this transaction, as a hexadecimal string.
-    * **`p.meta`**  (<a href="#Meta">Meta</a>) &lt;optional> Authentication metadata for raw transactions.
+    * **`p.meta`**  (<a href="#Meta">Meta</a>) Authentication metadata for raw transactions.
     * **`p.onSent`**  (function) Callback function that executes once the transaction has been sent.
     * **`p.onSuccess`**  (function) &lt;optional> Callback function that executes if the transaction returned successfully.
     * **`p.onFailed`**  (function) &lt;optional> Callback function that executes if the transaction failed.
@@ -2401,7 +2401,7 @@ Increases the amount of [Shares](#share) `p._spender` is approved to spend on be
     * **`p.tx`** (Object) Object containing details about how this transaction should be made.
         * **`p.tx.to`** (string) Ethereum contract address on which to call this function, as a 20-byte hexadecimal string.
         * **`p.tx.gas`** (string) Gas limit to use when submitting this transaction, as a hexadecimal string.
-    * **`p.meta`**  (<a href="#Meta">Meta</a>) &lt;optional> Authentication metadata for raw transactions.
+    * **`p.meta`**  (<a href="#Meta">Meta</a>) Authentication metadata for raw transactions.
     * **`p.onSent`**  (function) Callback function that executes once the transaction has been sent.
     * **`p.onSuccess`**  (function) &lt;optional> Callback function that executes if the transaction returned successfully.
     * **`p.onFailed`**  (function) &lt;optional> Callback function that executes if the transaction failed.
@@ -2426,7 +2426,7 @@ This transaction will fail if:
     * **`p.tx`** (Object) Object containing details about how this transaction should be made.
         * **`p.tx.to`** (string) Ethereum contract address on which to call this function, as a 20-byte hexadecimal string.
         * **`p.tx.gas`** (string) Gas limit to use when submitting this transaction, as a hexadecimal string.
-    * **`p.meta`**  (<a href="#Meta">Meta</a>) &lt;optional> Authentication metadata for raw transactions.
+    * **`p.meta`**  (<a href="#Meta">Meta</a>) Authentication metadata for raw transactions.
     * **`p.onSent`**  (function) Callback function that executes once the transaction has been sent.
     * **`p.onSuccess`**  (function) &lt;optional> Callback function that executes if the transaction returned successfully.
     * **`p.onFailed`**  (function) &lt;optional> Callback function that executes if the transaction failed.
@@ -2453,7 +2453,7 @@ This transaction will fail if:
     * **`p.tx`** (Object) Object containing details about how this transaction should be made.
         * **`p.tx.to`** (string) Ethereum contract address on which to call this function, as a 20-byte hexadecimal string.
         * **`p.tx.gas`** (string) Gas limit to use when submitting this transaction, as a hexadecimal string.
-    * **`p.meta`**  (<a href="#Meta">Meta</a>) &lt;optional> Authentication metadata for raw transactions.
+    * **`p.meta`**  (<a href="#Meta">Meta</a>) Authentication metadata for raw transactions.
     * **`p.onSent`**  (function) Callback function that executes once the transaction has been sent.
     * **`p.onSuccess`**  (function) &lt;optional> Callback function that executes if the transaction returned successfully.
     * **`p.onFailed`**  (function) &lt;optional> Callback function that executes if the transaction failed.
@@ -2691,7 +2691,7 @@ This transaction will fail if:
         * **`p.tx.to`** (string) Ethereum contract address on which to call this function, as a 20-byte hexadecimal string.
         * **`p.tx.value`**  (string) Number of [attoETH](atto-prefix) required to buy the desired amount of Share Units, as a hexadecimal string.
         * **`p.tx.gas`** (string) Gas limit to use when submitting this transaction, as a hexadecimal string.
-    * **`p.meta`**  (<a href="#Meta">Meta</a>) &lt;optional> Authentication metadata for raw transactions.
+    * **`p.meta`**  (<a href="#Meta">Meta</a>) Authentication metadata for raw transactions.
     * **`p.onSent`**  (function) Callback function that executes once the transaction has been sent.
     * **`p.onSuccess`**  (function) &lt;optional> Callback function that executes if the transaction returned successfully.
     * **`p.onFailed`**  (function) &lt;optional> Callback function that executes if the transaction failed.
@@ -2719,7 +2719,7 @@ Works like `augur.api.Trade.publicBuy`, but uses the parameter `_loopLimit` to d
         * **`p.tx.to`** (string) Ethereum contract address on which to call this function, as a 20-byte hexadecimal string.
         * **`p.tx.value`**  (string) Number of [attoETH](atto-prefix) required to buy the desired amount of Share Units, as a hexadecimal string.
         * **`p.tx.gas`** (string) Gas limit to use when submitting this transaction, as a hexadecimal string.
-    * **`p.meta`**  (<a href="#Meta">Meta</a>) &lt;optional> Authentication metadata for raw transactions.
+    * **`p.meta`**  (<a href="#Meta">Meta</a>) Authentication metadata for raw transactions.
     * **`p.onSent`**  (function) Callback function that executes once the transaction has been sent.
     * **`p.onSuccess`**  (function) &lt;optional> Callback function that executes if the transaction returned successfully.
     * **`p.onFailed`**  (function) &lt;optional> Callback function that executes if the transaction failed.
@@ -2745,7 +2745,7 @@ Works similarly to `augur.api.Trade.publicTrade`, except it does not create an [
         * **`p.tx.to`** (string) Ethereum contract address on which to call this function, as a 20-byte hexadecimal string.
         * **`p.tx.value`**  (string) Number of [Share Units](#share-unit) to sell, as a hexadecimal string.
         * **`p.tx.gas`** (string) Gas limit to use when submitting this transaction, as a hexadecimal string.
-    * **`p.meta`**  (<a href="#Meta">Meta</a>) &lt;optional> Authentication metadata for raw transactions.
+    * **`p.meta`**  (<a href="#Meta">Meta</a>) Authentication metadata for raw transactions.
     * **`p.onSent`**  (function) Callback function that executes once the transaction has been sent.
     * **`p.onSuccess`**  (function) &lt;optional> Callback function that executes if the transaction returned successfully.
     * **`p.onFailed`**  (function) &lt;optional> Callback function that executes if the transaction failed.
@@ -2772,7 +2772,7 @@ Works like `augur.api.Trade.publicFillBestOrder`, but uses the parameter `_loopL
         * **`p.tx.to`** (string) Ethereum contract address on which to call this function, as a 20-byte hexadecimal string.
         * **`p.tx.value`**  (string) Number of [Share Units](#share-unit) to sell, as a hexadecimal string.
         * **`p.tx.gas`** (string) Gas limit to use when submitting this transaction, as a hexadecimal string.
-    * **`p.meta`**  (<a href="#Meta">Meta</a>) &lt;optional> Authentication metadata for raw transactions.
+    * **`p.meta`**  (<a href="#Meta">Meta</a>) Authentication metadata for raw transactions.
     * **`p.onSent`**  (function) Callback function that executes once the transaction has been sent.
     * **`p.onSuccess`**  (function) &lt;optional> Callback function that executes if the transaction returned successfully.
     * **`p.onFailed`**  (function) &lt;optional> Callback function that executes if the transaction failed.
@@ -2803,7 +2803,7 @@ This transaction will fail if:
         * **`p.tx.to`** (string) Ethereum contract address on which to call this function, as a 20-byte hexadecimal string.
         * **`p.tx.value`**  (string) Number of [Share Units](#share-unit) to sell, as a hexadecimal string.
         * **`p.tx.gas`** (string) Gas limit to use when submitting this transaction, as a hexadecimal string.
-    * **`p.meta`**  (<a href="#Meta">Meta</a>) &lt;optional> Authentication metadata for raw transactions.
+    * **`p.meta`**  (<a href="#Meta">Meta</a>) Authentication metadata for raw transactions.
     * **`p.onSent`**  (function) Callback function that executes once the transaction has been sent.
     * **`p.onSuccess`**  (function) &lt;optional> Callback function that executes if the transaction returned successfully.
     * **`p.onFailed`**  (function) &lt;optional> Callback function that executes if the transaction failed.
@@ -2831,7 +2831,7 @@ Works like `augur.api.Trade.publicSell`, but uses the parameter `_loopLimit` to 
         * **`p.tx.to`** (string) Ethereum contract address on which to call this function, as a 20-byte hexadecimal string.
         * **`p.tx.value`**  (string) Number of [Share Units](#share-unit) to sell, as a hexadecimal string.
         * **`p.tx.gas`** (string) Gas limit to use when submitting this transaction, as a hexadecimal string.
-    * **`p.meta`**  (<a href="#Meta">Meta</a>) &lt;optional> Authentication metadata for raw transactions.
+    * **`p.meta`**  (<a href="#Meta">Meta</a>) Authentication metadata for raw transactions.
     * **`p.onSent`**  (function) Callback function that executes once the transaction has been sent.
     * **`p.onSuccess`**  (function) &lt;optional> Callback function that executes if the transaction returned successfully.
     * **`p.onFailed`**  (function) &lt;optional> Callback function that executes if the transaction failed.
@@ -2863,7 +2863,7 @@ The value of the Order (calculated as p._price * (Market’s number of Ticks - p
         * **`p.tx.to`** (string) Ethereum contract address on which to call this function, as a 20-byte hexadecimal string.
         * **`p.tx.value`**  (string) Number of [attoETH](atto-prefix) required to buy the desired amount of Share Units, or number of Share Units to sell, as a hexadecimal string.
         * **`p.tx.gas`** (string) Gas limit to use when submitting this transaction, as a hexadecimal string.
-    * **`p.meta`**  (<a href="#Meta">Meta</a>) &lt;optional> Authentication metadata for raw transactions.
+    * **`p.meta`**  (<a href="#Meta">Meta</a>) Authentication metadata for raw transactions.
     * **`p.onSent`**  (function) Callback function that executes once the transaction has been sent.
     * **`p.onSuccess`**  (function) &lt;optional> Callback function that executes if the transaction returned successfully.
     * **`p.onFailed`**  (function) &lt;optional> Callback function that executes if the transaction failed.
@@ -2892,7 +2892,7 @@ Works like `augur.api.Trade.publicTrade`, but uses the parameter `_loopLimit` to
         * **`p.tx.to`** (string) Ethereum contract address on which to call this function, as a 20-byte hexadecimal string.
         * **`p.tx.value`**  (string) Number of [attoETH](atto-prefix) required to buy the desired amount of Share Units, or number of Share Units to sell, as a hexadecimal string.
         * **`p.tx.gas`** (string) Gas limit to use when submitting this transaction, as a hexadecimal string.
-    * **`p.meta`**  (<a href="#Meta">Meta</a>) &lt;optional> Authentication metadata for raw transactions.
+    * **`p.meta`**  (<a href="#Meta">Meta</a>) Authentication metadata for raw transactions.
     * **`p.onSent`**  (function) Callback function that executes once the transaction has been sent.
     * **`p.onSuccess`**  (function) &lt;optional> Callback function that executes if the transaction returned successfully.
     * **`p.onFailed`**  (function) &lt;optional> Callback function that executes if the transaction failed.
@@ -2960,7 +2960,7 @@ This transaction will fail if:
     * **`p.tx`** (Object) Object containing details about how this transaction should be made.
         * **`p.tx.to`** (string) Ethereum contract address on which to call this function, as a 20-byte hexadecimal string.
         * **`p.tx.gas`** (string) Gas limit to use when submitting this transaction, as a hexadecimal string.
-    * **`p.meta`**  (<a href="#Meta">Meta</a>) &lt;optional> Authentication metadata for raw transactions.
+    * **`p.meta`**  (<a href="#Meta">Meta</a>) Authentication metadata for raw transactions.
     * **`p.onSent`**  (function) Callback function that executes once the transaction has been sent.
     * **`p.onSuccess`**  (function) &lt;optional> Callback function that executes if the transaction returned successfully.
     * **`p.onFailed`**  (function) &lt;optional> Callback function that executes if the transaction failed.
@@ -2985,7 +2985,7 @@ This transaction will fail if:
         * **`p.tx.to`** (string) Ethereum contract address on which to call this function, as a 20-byte hexadecimal string.
         * **`p.tx.send`** (boolean) &lt;optional> Whether this function should be executed as a transaction. When set to `true`, this function will be executed as a transaction, which will calculate the value (and thus uses gas). When set to `false`, this function will be executed as a call, which will return the value of the user's Shares in the Market, in that Market's denomination token.
         * **`p.tx.gas`** (string) Gas limit to use when submitting this transaction, as a hexadecimal string.
-    * **`p.meta`**  (<a href="#Meta">Meta</a>) &lt;optional> Authentication metadata for raw transactions.
+    * **`p.meta`**  (<a href="#Meta">Meta</a>) Authentication metadata for raw transactions.
     * **`p.onSent`**  (function) Callback function that executes once the transaction has been sent.
     * **`p.onSuccess`**  (function) &lt;optional> Callback function that executes if the transaction returned successfully.
     * **`p.onFailed`**  (function) &lt;optional> Callback function that executes if the transaction failed.
@@ -3299,7 +3299,7 @@ NOTE: The account attempting to create the new market must have sufficient REP i
         * **`p.tx.to`**  (string) Ethereum address of the Universe contract to run the transaction on, as a 20-byte hexadecimal value.
         * **`p.tx.value`**  (string) Number of [attoETH](atto-prefix) required to create the Market, as a hexadecimal string. This can be obtained by calling `augur.createMarket.getMarketCreationCost` and multiplying the `etherRequiredToCreateMarket` value that's returned by 10<sup>18</sup>.
         * **`p.tx.gas`**  (string) Gas limit to use when submitting this transaction, as a hexadecimal string. This can be obtained from the constant `augur.constants.CREATE_CATEGORICAL_MARKET_GAS`.
-    * **`p.meta`**  (<a href="#Meta">Meta</a>) &lt;optional> Authentication metadata for raw transactions.
+    * **`p.meta`**  (<a href="#Meta">Meta</a>) Authentication metadata for raw transactions.
     * **`p.onSent`**  (function) Callback function that executes once the transaction has been sent.
     * **`p.onSuccess`**  (function) &lt;optional> Callback function that executes if the transaction returned successfully.
     * **`p.onFailed`**  (function) &lt;optional> Callback function that executes if the transaction failed.
@@ -3325,7 +3325,7 @@ This transaction will fail if:
     * **`p.tx`** (Object) Object containing details about how this transaction should be made.
         * **`p.tx.to`** (string) Ethereum contract address on which to call this function, as a 20-byte hexadecimal string.
         * **`p.tx.gas`** (string) Gas limit to use when submitting this transaction, as a hexadecimal string.
-    * **`p.meta`**  (<a href="#Meta">Meta</a>) &lt;optional> Authentication metadata for raw transactions.
+    * **`p.meta`**  (<a href="#Meta">Meta</a>) Authentication metadata for raw transactions.
     * **`p.onSent`**  (function) Callback function that executes once the transaction has been sent.
     * **`p.onSuccess`**  (function) &lt;optional> Callback function that executes if the transaction returned successfully.
     * **`p.onFailed`**  (function) &lt;optional> Callback function that executes if the transaction failed.
@@ -3368,7 +3368,7 @@ NOTE: The account attempting to create the new market must have sufficient REP i
         * **`p.tx.to`**  (string) Ethereum address of the Universe contract to run the transaction on, as a 20-byte hexadecimal value.
         * **`p.tx.value`**  (string) Number of [attoETH](atto-prefix) required to create the Market, as a hexadecimal string. This can be obtained by calling `augur.createMarket.getMarketCreationCost` and multiplying the `etherRequiredToCreateMarket` value that's returned by 10<sup>18</sup>.
         * **`p.tx.gas`**  (string) Gas limit to use when submitting this transaction, as a hexadecimal string. This can be obtained from the constant `augur.constants.CREATE_SCALAR_MARKET_GAS`.
-    * **`p.meta`**  (<a href="#Meta">Meta</a>) &lt;optional> Authentication metadata for raw transactions.
+    * **`p.meta`**  (<a href="#Meta">Meta</a>) Authentication metadata for raw transactions.
     * **`p.onSent`**  (function) Callback function that executes once the transaction has been sent.
     * **`p.onSuccess`**  (function) &lt;optional> Callback function that executes if the transaction returned successfully.
     * **`p.onFailed`**  (function) &lt;optional> Callback function that executes if the transaction failed.
@@ -3407,7 +3407,7 @@ NOTE: The account attempting to create the new market must have sufficient REP i
         * **`p.tx.to`**  (string) Ethereum address of the Universe contract to run the transaction on, as a 20-byte hexadecimal value.
         * **`p.tx.value`**  (string) Number of [attoETH](atto-prefix) required to create the Market, as a hexadecimal string. This can be obtained by calling `augur.createMarket.getMarketCreationCost` and multiplying the `etherRequiredToCreateMarket` value that's returned by 10<sup>18</sup>.
         * **`p.tx.gas`**  (string) Gas limit to use when submitting this transaction, as a hexadecimal string. This can be obtained from the constant `augur.constants.CREATE_YES_NO_MARKET_GAS`.
-    * **`p.meta`**  (<a href="#Meta">Meta</a>) &lt;optional> Authentication metadata for raw transactions.    
+    * **`p.meta`**  (<a href="#Meta">Meta</a>) Authentication metadata for raw transactions.    
     * **`p.onSent`**  (function) Callback function that executes once the transaction has been sent.
     * **`p.onSuccess`**  (function) &lt;optional> Callback function that executes if the transaction returned successfully.
     * **`p.onFailed`**  (function) &lt;optional> Callback function that executes if the transaction failed.
@@ -3427,7 +3427,7 @@ Returns either the size of the [No-Show Bond](#no-show-bond) or the size of the 
         * **`p.tx.to`** (string) Ethereum contract address on which to call this function, as a 20-byte hexadecimal string.
         * **`p.tx.send`** (boolean) &lt;optional> Whether this function should be executed as a transaction. When set to `true`, this function will be executed as a transaction, which will calculate the value (and thus uses gas). When set to `false`, this function will be executed as a call, which will return the [Initial Report](#initial-report) Stake size and will not use any gas. 
         * **`p.tx.gas`** (string) &lt;optional> Gas limit to use when submitting this transaction, as a hexadecimal string. This does not need to be set if `p.tx.send` is `false`.
-    * **`p.meta`**  (<a href="#Meta">Meta</a>) &lt;optional> Authentication metadata for raw transactions.
+    * **`p.meta`**  (<a href="#Meta">Meta</a>) Authentication metadata for raw transactions.
     * **`p.onSent`**  (function) Callback function that executes once the transaction has been sent.
     * **`p.onSuccess`**  (function) &lt;optional> Callback function that executes if the transaction returned successfully.
     * **`p.onFailed`**  (function) &lt;optional> Callback function that executes if the transaction failed.
@@ -3447,7 +3447,7 @@ Gets the [No-Show Bond](#no-show-bond) for [Markets](#market) in the specified [
         * **`p.tx.to`** (string) Ethereum contract address on which to call this function, as a 20-byte hexadecimal string.
         * **`p.tx.send`** (boolean) &lt;optional> Whether this function should be executed as a transaction. When set to `false`, this function will be executed as a call, which will simply return the last value that was cached (and will not use any gas). When set to `true`, this function will be executed as a transaction, which will use gas to re-calculate the value and cache it. (However, the return value will not be [obtainable](#transaction-return-values).)
         * **`p.tx.gas`** (string) &lt;optional> Gas limit to use when submitting this transaction, as a hexadecimal string. This does not need to be set if `p.tx.send` is `false`.
-    * **`p.meta`**  (<a href="#Meta">Meta</a>) &lt;optional> Authentication metadata for raw transactions.
+    * **`p.meta`**  (<a href="#Meta">Meta</a>) Authentication metadata for raw transactions.
     * **`p.onSent`**  (function) Callback function that executes once the transaction has been sent.
     * **`p.onSuccess`**  (function) &lt;optional> Callback function that executes if the transaction returned successfully.
     * **`p.onFailed`**  (function) &lt;optional> Callback function that executes if the transaction failed.
@@ -3467,7 +3467,7 @@ Gets the amount of Staked [REP](#rep) the [Designated Reporter](#designated-repo
         * **`p.tx.to`** (string) Ethereum contract address on which to call this function, as a 20-byte hexadecimal string.
         * **`p.tx.send`** (boolean) &lt;optional> Whether this function should be executed as a transaction. When set to `false`, this function will be executed as a call, which will simply return the last value that was cached (and will not use any gas). When set to `true`, this function will be executed as a transaction, which will use gas to re-calculate the value and cache it. (However, the return value will not be [obtainable](#transaction-return-values).)
         * **`p.tx.gas`** (string) &lt;optional> Gas limit to use when submitting this transaction, as a hexadecimal string. This does not need to be set if `p.tx.send` is `false`.
-    * **`p.meta`**  (<a href="#Meta">Meta</a>) &lt;optional> Authentication metadata for raw transactions.
+    * **`p.meta`**  (<a href="#Meta">Meta</a>) Authentication metadata for raw transactions.
     * **`p.onSent`**  (function) Callback function that executes once the transaction has been sent.
     * **`p.onSuccess`**  (function) &lt;optional> Callback function that executes if the transaction returned successfully.
     * **`p.onFailed`**  (function) &lt;optional> Callback function that executes if the transaction failed.
@@ -3487,7 +3487,7 @@ Gets the estimated amount of [attoETH](#atto-prefix) required to create a [Marke
         * **`p.tx.to`** (string) Ethereum contract address on which to call this function, as a 20-byte hexadecimal string.
         * **`p.tx.send`** (boolean) &lt;optional> Whether this function should be executed as a transaction. When set to `false`, this function will be executed as a call, which will simply return the last value that was cached (and will not use any gas). When set to `true`, this function will be executed as a transaction, which will use gas to re-calculate the value and cache it. (However, the return value will not be [obtainable](#transaction-return-values).)
         * **`p.tx.gas`** (string) &lt;optional> Gas limit to use when submitting this transaction, as a hexadecimal string. This does not need to be set if `p.tx.send` is `false`.
-    * **`p.meta`**  (<a href="#Meta">Meta</a>) &lt;optional> Authentication metadata for raw transactions.
+    * **`p.meta`**  (<a href="#Meta">Meta</a>) Authentication metadata for raw transactions.
     * **`p.onSent`**  (function) Callback function that executes once the transaction has been sent.
     * **`p.onSuccess`**  (function) &lt;optional> Callback function that executes if the transaction returned successfully.
     * **`p.onFailed`**  (function) &lt;optional> Callback function that executes if the transaction failed.
@@ -3507,7 +3507,7 @@ Gets the number by which the total payout amount for a [Market](#market) is divi
         * **`p.tx.to`** (string) Ethereum contract address on which to call this function, as a 20-byte hexadecimal string.
         * **`p.tx.send`** (boolean) &lt;optional> Whether this function should be executed as a transaction. When set to `false`, this function will be executed as a call, which will simply return the last value that was cached (and will not use any gas). When set to `true`, this function will be executed as a transaction, which will use gas to re-calculate the value and cache it. (However, the return value will not be [obtainable](#transaction-return-values).)
         * **`p.tx.gas`** (string) &lt;optional> Gas limit to use when submitting this transaction, as a hexadecimal string. This does not need to be set if `p.tx.send` is `false`.
-    * **`p.meta`**  (<a href="#Meta">Meta</a>) &lt;optional> Authentication metadata for raw transactions.
+    * **`p.meta`**  (<a href="#Meta">Meta</a>) Authentication metadata for raw transactions.
     * **`p.onSent`**  (function) Callback function that executes once the transaction has been sent.
     * **`p.onSuccess`**  (function) &lt;optional> Callback function that executes if the transaction returned successfully.
     * **`p.onFailed`**  (function) &lt;optional> Callback function that executes if the transaction failed.
@@ -3527,7 +3527,7 @@ Gets the amount the [Market Creator](#market-creator) must pay for the [Validity
         * **`p.tx.to`** (string) Ethereum contract address on which to call this function, as a 20-byte hexadecimal string.
         * **`p.tx.send`** (boolean) &lt;optional> Whether this function should be executed as a transaction. When set to `false`, this function will be executed as a call, which will simply return the last value that was cached (and will not use any gas). When set to `true`, this function will be executed as a transaction, which will use gas to re-calculate the value and cache it. (However, the return value will not be [obtainable](#transaction-return-values).)
         * **`p.tx.gas`** (string) &lt;optional> Gas limit to use when submitting this transaction, as a hexadecimal string. This does not need to be set if `p.tx.send` is `false`.
-    * **`p.meta`**  (<a href="#Meta">Meta</a>) &lt;optional> Authentication metadata for raw transactions.
+    * **`p.meta`**  (<a href="#Meta">Meta</a>) Authentication metadata for raw transactions.
     * **`p.onSent`**  (function) Callback function that executes once the transaction has been sent.
     * **`p.onSuccess`**  (function) &lt;optional> Callback function that executes if the transaction returned successfully.
     * **`p.onFailed`**  (function) &lt;optional> Callback function that executes if the transaction failed.
@@ -3547,7 +3547,7 @@ Gets the Ethereum contract address of the [Fee Window](#fee-window) that is curr
         * **`p.tx.to`** (string) Ethereum contract address on which to call this function, as a 20-byte hexadecimal string.
         * **`p.tx.send`** (boolean) &lt;optional> Whether this function should be executed as a transaction. When set to `false`, this function will be executed as a call, which will simply return the last value that was cached (and will not use any gas). When set to `true`, this function will be executed as a transaction, which will use gas to re-calculate the value and cache it. (However, the return value will not be [obtainable](#transaction-return-values).)
         * **`p.tx.gas`** (string) &lt;optional> Gas limit to use when submitting this transaction, as a hexadecimal string. This does not need to be set if `p.tx.send` is `false`.
-    * **`p.meta`**  (<a href="#Meta">Meta</a>) &lt;optional> Authentication metadata for raw transactions.
+    * **`p.meta`**  (<a href="#Meta">Meta</a>) Authentication metadata for raw transactions.
     * **`p.onSent`**  (function) Callback function that executes once the transaction has been sent.
     * **`p.onSuccess`**  (function) &lt;optional> Callback function that executes if the transaction returned successfully.
     * **`p.onFailed`**  (function) &lt;optional> Callback function that executes if the transaction failed.
@@ -3568,7 +3568,7 @@ Gets the Ethereum contract address of the active [Fee Window](#fee-window) at th
         * **`p.tx.to`** (string) Ethereum contract address on which to call this function, as a 20-byte hexadecimal string.
         * **`p.tx.send`** (boolean) &lt;optional> Whether this function should be executed as a transaction. When set to `false`, this function will be executed as a call, which will simply return the last value that was cached (and will not use any gas). When set to `true`, this function will be executed as a transaction, which will use gas to re-calculate the value and cache it. (However, the return value will not be [obtainable](#transaction-return-values).)
         * **`p.tx.gas`** (string) &lt;optional> Gas limit to use when submitting this transaction, as a hexadecimal string. This does not need to be set if `p.tx.send` is `false`.
-    * **`p.meta`**  (<a href="#Meta">Meta</a>) &lt;optional> Authentication metadata for raw transactions.
+    * **`p.meta`**  (<a href="#Meta">Meta</a>) Authentication metadata for raw transactions.
     * **`p.onSent`**  (function) Callback function that executes once the transaction has been sent.
     * **`p.onSuccess`**  (function) &lt;optional> Callback function that executes if the transaction returned successfully.
     * **`p.onFailed`**  (function) &lt;optional> Callback function that executes if the transaction failed.
@@ -3588,7 +3588,7 @@ Gets the Ethereum contract address of the [Fee Window](#fee-window) that will be
         * **`p.tx.to`** (string) Ethereum contract address on which to call this function, as a 20-byte hexadecimal string.
         * **`p.tx.send`** (boolean) &lt;optional> Whether this function should be executed as a transaction. When set to `false`, this function will be executed as a call, which will simply return the last value that was cached (and will not use any gas). When set to `true`, this function will be executed as a transaction, which will use gas to re-calculate the value and cache it. (However, the return value will not be [obtainable](#transaction-return-values).)
         * **`p.tx.gas`** (string) &lt;optional> Gas limit to use when submitting this transaction, as a hexadecimal string. This does not need to be set if `p.tx.send` is `false`.
-    * **`p.meta`**  (<a href="#Meta">Meta</a>) &lt;optional> Authentication metadata for raw transactions.
+    * **`p.meta`**  (<a href="#Meta">Meta</a>) Authentication metadata for raw transactions.
     * **`p.onSent`**  (function) Callback function that executes once the transaction has been sent.
     * **`p.onSuccess`**  (function) &lt;optional> Callback function that executes if the transaction returned successfully.
     * **`p.onFailed`**  (function) &lt;optional> Callback function that executes if the transaction failed.
@@ -3608,7 +3608,7 @@ Gets the Ethereum contract address of the [Fee Window](#fee-window) that was act
         * **`p.tx.to`** (string) Ethereum contract address on which to call this function, as a 20-byte hexadecimal string.
         * **`p.tx.send`** (boolean) &lt;optional> Whether this function should be executed as a transaction. When set to `false`, this function will be executed as a call, which will simply return the last value that was cached (and will not use any gas). When set to `true`, this function will be executed as a transaction, which will use gas to re-calculate the value and cache it. (However, the return value will not be [obtainable](#transaction-return-values).)
         * **`p.tx.gas`** (string) &lt;optional> Gas limit to use when submitting this transaction, as a hexadecimal string. This does not need to be set if `p.tx.send` is `false`.
-    * **`p.meta`**  (<a href="#Meta">Meta</a>) &lt;optional> Authentication metadata for raw transactions.
+    * **`p.meta`**  (<a href="#Meta">Meta</a>) Authentication metadata for raw transactions.
     * **`p.onSent`**  (function) Callback function that executes once the transaction has been sent.
     * **`p.onSuccess`**  (function) &lt;optional> Callback function that executes if the transaction returned successfully.
     * **`p.onFailed`**  (function) &lt;optional> Callback function that executes if the transaction failed.
@@ -3629,7 +3629,7 @@ Calls the `redeem` function for all Ethereum contract addresses in the arrays `p
     * **`p.tx`** (Object) Object containing details about how this transaction should be made.
         * **`p.tx.to`** (string) Ethereum contract address on which to call this function, as a 20-byte hexadecimal string.
         * **`p.tx.gas`** (string) Gas limit to use when submitting this transaction, as a hexadecimal string.
-    * **`p.meta`**  (<a href="#Meta">Meta</a>) &lt;optional> Authentication metadata for raw transactions.
+    * **`p.meta`**  (<a href="#Meta">Meta</a>) Authentication metadata for raw transactions.
     * **`p.onSent`**  (function) Callback function that executes once the transaction has been sent.
     * **`p.onSuccess`**  (function) &lt;optional> Callback function that executes if the transaction returned successfully.
     * **`p.onFailed`**  (function) &lt;optional> Callback function that executes if the transaction failed.
