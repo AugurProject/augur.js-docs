@@ -32,6 +32,9 @@ search: true
 ---
 Overview
 ========
+
+!!! The following documentation describes Augur V1 and is not consistent with the approach taken by Augur V2. For Augur V2 documentation please see https://github.com/AugurProject/augur !!!
+
 Augur is a decentralized prediction market platform that runs on [Ethereum](https://www.ethereum.org). For a detailed, high-level explanation of how Augur works, please refer to the [Augur whitepaper](https://www.augur.net/whitepaper.pdf).
 
 If you want to use or help test Augur, please install the [Augur App](https://github.com/AugurProject/augur-app).  If you want to use our cutting-edge development client, this is maintained at [https://dev.augur.net](https://dev.augur.net). However, be warned -- we push changes here pretty rapidly, so it can be a bit buggy!
